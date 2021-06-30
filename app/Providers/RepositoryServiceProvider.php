@@ -4,12 +4,16 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Eloquent\BaseRepository;
+use App\Repositories\Eloquent\TeamRepository;
+use App\Repositories\Eloquent\UnitRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Eloquent\InviteRepository;
 use App\Repositories\Eloquent\SettingRepository;
 use App\Repositories\Eloquent\PersonnelRepository;
 use App\Repositories\Eloquent\OldPasswordRepository;
 use App\Repositories\Eloquent\LoginAttemptRepository;
+use App\Repositories\Interfaces\TeamRepositoryInterface;
+use App\Repositories\Interfaces\UnitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\InviteRepositoryInterface;
 use App\Repositories\Interfaces\SettingRepositoryInterface;
@@ -44,5 +48,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(LoginAttemptRepositoryInterface::class, LoginAttemptRepository::class);
         $this->app->bind(OldPasswordRepositoryInterface::class, OldPasswordRepository::class);
         $this->app->bind(InviteRepositoryInterface::class, InviteRepository::class);
+        $this->app->bind(TeamRepositoryInterface::class, TeamRepository::class);
+        $this->app->bind(UnitRepositoryInterface::class, UnitRepository::class);
     }
 }

@@ -56,4 +56,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled']], func
     $router->get('/users/only-trashed', 'Users\UserController@onlyTrashed');
     $router->put('/users/restore/{userId}', 'Users\UserController@restore');
     $router->delete('/users/force-delete/{userId}', 'Users\UserController@forceDelete');
+
+    //Teams
+    $router->get('/teams/show-units', 'Teams\TeamController@showUnits');
+    $router->post('/teams/create', 'Teams\TeamController@create');
 });
