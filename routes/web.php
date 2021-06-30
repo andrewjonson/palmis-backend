@@ -60,4 +60,6 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled']], func
     //Teams
     $router->get('/teams/show-units', 'Teams\TeamController@showUnits');
     $router->post('/teams/create', 'Teams\TeamController@create');
+    $router->delete('/teams/{teamId}', 'Teams\TeamController@delete');
+    $router->post('/teams/assign-users/{teamId}', 'Teams\TeamController@assignUsers');
 });
