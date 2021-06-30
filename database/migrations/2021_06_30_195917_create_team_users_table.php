@@ -17,7 +17,6 @@ class CreateTeamUsersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('team_id')->constrained();
-            $table->boolean('assigned')->default(1);
         });
     }
 

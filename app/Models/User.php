@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\TeamUser;
 use App\Models\Personnel;
 use Wildside\Userstamps\Userstamps;
 use Illuminate\Auth\Authenticatable;
@@ -82,5 +83,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function personnel()
     {
         return $this->belongsTo(Personnel::class, 'afpsn', 'afpsn');
+    }
+
+    public function teamUsers()
+    {
+        return $this->hasMany(TeamUser::class);
+    }
+
+    public function teamUser()
+    {
+        return $this->hasOne(TeamUser::class)
+                    ->join('teams', 'teams.id', '=', 'team_users.team_id');
     }
 }

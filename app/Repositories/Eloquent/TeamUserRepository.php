@@ -12,26 +12,16 @@ class TeamUserRepository extends BaseRepository implements TeamUserRepositoryInt
         $this->model = $model;
     }
 
-    public function getUsersById(array $userId)
+    public function unAssignedUsers(array $userId, $teamId)
     {
-        return $this->model->whereIn('user_id', $userId)->pluck('user_id');
-    }
-
-    public function unAssignUsers(array $userId, $teamId)
-    {
-        $this->model->whereNotIn('user_id', $userId)->updateOrCreate([
-            'user_id' => $userId,
-            'team_id' => $teamId,
-            'assigned' => false
-        ]);
+        return $this->model->whereNotIn('user_id', $userId)->where('team_id', $teamId)->delete();
     }
 
     public function assignUsers($userId, $teamId)
     {
-        $this->model->where('team_id', $teamId)->where('user_id', $userId)->update([
-            'user_id' => $userId,
+        $this->model->firstOrCreate([
             'team_id' => $teamId,
-            'assigned' => true
+            'user_id' => $userId
         ]);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UnitResource;
+use App\Http\Resources\UserResource;
 use App\Http\Requests\Teams\TeamRequest;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Repositories\Interfaces\TeamRepositoryInterface;
@@ -79,11 +80,31 @@ class TeamController extends Controller
             throw new AuthorizationException;
         }
 
-        $userExists = $this->teamUserRepository->getUsersById($userId);
+        $this->teamUserRepository->unAssignedUsers($userId, $teamId);
         for ($i = 0; $i < count($userId); $i++) {
             $this->teamUserRepository->assignUsers($userId[$i], $teamId);
         }
 
         return $this->successResponse(trans('teams.user_assigned'), 200);
+    }
+
+    public function usersWithTeam($teamId)
+    {
+        try {
+            $users = $this->userRepository->getUsersWithTeam($teamId);
+            return UserResource::collection($users);
+        } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), 500);
+        }
+    }
+
+    public function usersWithoutTeam() 
+    {
+        try {
+            $users = $this->userRepository->getUsersWithoutTeam();
+            return UserResource::collection($users);
+        } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), 500);
+        }
     }
 }

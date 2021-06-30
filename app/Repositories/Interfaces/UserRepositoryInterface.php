@@ -11,4 +11,10 @@ interface UserRepositoryInterface
     public function disableOtp(array $userId);
 
     public function otpEnabled($userId);
+
+    public function getUsersWithTeam($teamId);
+
+    public function getUsersWithoutTeam();
+
+    public function unAssignedUsers(array $userId);
 }

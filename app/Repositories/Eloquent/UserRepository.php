@@ -37,4 +37,23 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         return $this->model->where('id', $userId)->where('otp_auth', true)->first();
     }
+
+    public function getUsersWithTeam($teamId)
+    {
+        return $this->model->whereHas('teamUsers', function($query) use($teamId) {
+            $query->where('team_id', $teamId);
+        })->get();
+    }
+
+    public function getUsersWithoutTeam()
+    {
+        return $this->model->doesntHave('teamUsers')->get();
+    }
+
+    public function unAssignedUsers(array $userId)
+    {
+        return $this->model->whereHas('teamUsers', function($query) use($userId) {
+            $query->whereNotIn('user_id', $userId);
+        })->get();
+    }
 }
