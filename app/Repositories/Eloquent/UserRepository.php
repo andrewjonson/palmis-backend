@@ -50,10 +50,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $this->model->doesntHave('teamUsers')->get();
     }
 
-    public function unAssignedUsers(array $userId)
+    public function getUsersById(array $userId)
     {
-        return $this->model->whereHas('teamUsers', function($query) use($userId) {
-            $query->whereNotIn('user_id', $userId);
-        })->get();
+        return $this->model->whereIn('id', $userId)->pluck('id')->toArray();
     }
 }

@@ -14,7 +14,7 @@ class TeamUserRepository extends BaseRepository implements TeamUserRepositoryInt
 
     public function unAssignedUsers(array $userId, $teamId)
     {
-        return $this->model->whereNotIn('user_id', $userId)->where('team_id', $teamId)->delete();
+        $this->model->whereNotIn('user_id', $userId)->where('team_id', $teamId)->orWhereIn('user_id', $userId)->delete();
     }
 
     public function assignUsers($userId, $teamId)

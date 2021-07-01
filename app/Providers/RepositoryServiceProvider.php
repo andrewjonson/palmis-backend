@@ -8,6 +8,7 @@ use App\Repositories\Eloquent\TeamRepository;
 use App\Repositories\Eloquent\UnitRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Eloquent\InviteRepository;
+use App\Repositories\Eloquent\ModuleRepository;
 use App\Repositories\Eloquent\SettingRepository;
 use App\Repositories\Eloquent\TeamUserRepository;
 use App\Repositories\Eloquent\PersonnelRepository;
@@ -17,6 +18,7 @@ use App\Repositories\Interfaces\TeamRepositoryInterface;
 use App\Repositories\Interfaces\UnitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\InviteRepositoryInterface;
+use App\Repositories\Interfaces\ModuleRepositoryInterface;
 use App\Repositories\Interfaces\SettingRepositoryInterface;
 use App\Repositories\Interfaces\EloquentRepositoryInterface;
 use App\Repositories\Interfaces\TeamUserRepositoryInterface;
@@ -53,5 +55,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TeamRepositoryInterface::class, TeamRepository::class);
         $this->app->bind(UnitRepositoryInterface::class, UnitRepository::class);
         $this->app->bind(TeamUserRepositoryInterface::class, TeamUserRepository::class);
+        $this->app->bind(ModuleRepositoryInterface::class, ModuleRepository::class);
     }
 }

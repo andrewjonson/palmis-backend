@@ -16,5 +16,5 @@ interface UserRepositoryInterface
 
     public function getUsersWithoutTeam();
 
-    public function unAssignedUsers(array $userId);
+    public function getUsersById(array $userId);
 }

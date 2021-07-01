@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Teams;
 use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TeamResource;
 use App\Http\Resources\UnitResource;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\Teams\TeamRequest;
@@ -58,6 +59,18 @@ class TeamController extends Controller
         }
     }
 
+    public function showTeams(Request $request)
+    {
+        $keyword = $request->keyword;
+        $rowsPerPage = $request->rowsPerPage;
+        try {
+            $teams = $this->teamRepository->search($keyword, $rowsPerPage);
+            return TeamResource::collection($teams);
+        } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), 500);
+        }
+    }
+
     public function delete($teamId)
     {
         $team = $this->teamRepository->find($teamId);
@@ -75,11 +88,11 @@ class TeamController extends Controller
 
     public function assignUsers(Request $request, $teamId)
     {
-        $userId = $request->user_id;
         if (!$teamId) {
             throw new AuthorizationException;
         }
 
+        $userId = $this->userRepository->getUsersById($request->user_id);
         $this->teamUserRepository->unAssignedUsers($userId, $teamId);
         for ($i = 0; $i < count($userId); $i++) {
             $this->teamUserRepository->assignUsers($userId[$i], $teamId);

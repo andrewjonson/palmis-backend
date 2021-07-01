@@ -59,9 +59,15 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled']], func
 
     //Teams
     $router->get('/teams/show-units', 'Teams\TeamController@showUnits');
-    $router->post('/teams/create', 'Teams\TeamController@create');
+    $router->get('/teams', 'Teams\TeamController@showTeams');
+    $router->post('/teams', 'Teams\TeamController@create');
     $router->delete('/teams/{teamId}', 'Teams\TeamController@delete');
     $router->post('/teams/assign-users/{teamId}', 'Teams\TeamController@assignUsers');
     $router->get('/teams/users-with-team/{teamId}', 'Teams\TeamController@usersWithTeam');
     $router->get('/teams/users-without-team', 'Teams\TeamController@usersWithoutTeam');
+
+    //Modules
+    $router->post('/modules', 'Teams\ModuleController@create');
+    $router->put('/modules/{moduleId}', 'Teams\ModuleController@update');
+    $router->get('/modules', 'Teams\ModuleController@showModules');
 });
