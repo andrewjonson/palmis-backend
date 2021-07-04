@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Teams;
+namespace App\Http\Controllers\TeamModules;
 
 use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;

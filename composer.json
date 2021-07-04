@@ -16,6 +16,7 @@
         "intervention/image": "~2.5",
         "laravel/lumen-framework": "^8.0",
         "pragmarx/google2fa": "^7.0|^8.0",
+        "spatie/laravel-permission": "^4.2",
         "tymon/jwt-auth": "^1.0",
         "waiyanhein/lumen-signed-url": "^1.0",
         "wildside/userstamps": "^2.1"

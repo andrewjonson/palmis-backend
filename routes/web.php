@@ -58,16 +58,27 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled']], func
     $router->delete('/users/force-delete/{userId}', 'Users\UserController@forceDelete');
 
     //Teams
-    $router->get('/teams/show-units', 'Teams\TeamController@showUnits');
-    $router->get('/teams', 'Teams\TeamController@showTeams');
-    $router->post('/teams', 'Teams\TeamController@create');
-    $router->delete('/teams/{teamId}', 'Teams\TeamController@delete');
-    $router->post('/teams/assign-users/{teamId}', 'Teams\TeamController@assignUsers');
-    $router->get('/teams/users-with-team/{teamId}', 'Teams\TeamController@usersWithTeam');
-    $router->get('/teams/users-without-team', 'Teams\TeamController@usersWithoutTeam');
+    $router->get('/teams/show-units', 'TeamModules\TeamController@showUnits');
+    $router->get('/teams', 'TeamModules\TeamController@showTeams');
+    $router->post('/teams', 'TeamModules\TeamController@create');
+    $router->delete('/teams/{teamId}', 'TeamModules\TeamController@delete');
+    $router->post('/teams/assign-users/{teamId}', 'TeamModules\TeamController@assignUsers');
+    $router->get('/teams/users-with-team/{teamId}', 'TeamModules\TeamController@usersWithTeam');
+    $router->get('/teams/users-without-team', 'TeamModules\TeamController@usersWithoutTeam');
 
     //Modules
-    $router->post('/modules', 'Teams\ModuleController@create');
-    $router->put('/modules/{moduleId}', 'Teams\ModuleController@update');
-    $router->get('/modules', 'Teams\ModuleController@showModules');
+    $router->post('/modules', 'TeamModules\ModuleController@create');
+    $router->put('/modules/{moduleId}', 'TeamModules\ModuleController@update');
+    $router->get('/modules', 'TeamModules\ModuleController@showModules');
+
+    //Roles and Permissions
+    $router->get('/roles', 'RolePermissions\RoleController@showRoles');
+    $router->post('/roles', 'RolePermissions\RoleController@create');
+    $router->put('/roles/{roleId}', 'RolePermissions\RoleController@update');
+    $router->delete('/roles/{roleId}', 'RolePermissions\RoleController@delete');
+    $router->post('/roles/assign-permissions', 'RolePermissions\RoleController@assignPermissions');
+    $router->get('/permissions', 'RolePermissions\PermissionController@showPermissions');
+    $router->post('/permissions', 'RolePermissions\PermissionController@create');
+    $router->put('/permissions/{permissionId}', 'RolePermissions\PermissionController@update');
+    $router->delete('/permissions/{permissionId}', 'RolePermissions\PermissionController@delete');
 });

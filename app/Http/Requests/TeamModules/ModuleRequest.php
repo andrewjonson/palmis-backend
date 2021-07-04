@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Teams;
+namespace App\Http\Requests\TeamModules;
 
 use Anik\Form\FormRequest;
 
-class TeamRequest extends FormRequest
+class ModuleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,14 @@ class TeamRequest extends FormRequest
      */
     protected function rules(): array
     {
+        if ($this->id) {
+            return [
+                'name' => 'required|alpha|string|unique:modules,name,'.$this->id
+            ];
+        }
+
         return [
-            'name' => 'required|unique:teams'
+            'name' => 'required|alpha|string|unique:modules'
         ];
     }
 }

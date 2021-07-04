@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Eloquent\BaseRepository;
+use App\Repositories\Eloquent\RoleRepository;
 use App\Repositories\Eloquent\TeamRepository;
 use App\Repositories\Eloquent\UnitRepository;
 use App\Repositories\Eloquent\UserRepository;
@@ -12,8 +13,10 @@ use App\Repositories\Eloquent\ModuleRepository;
 use App\Repositories\Eloquent\SettingRepository;
 use App\Repositories\Eloquent\TeamUserRepository;
 use App\Repositories\Eloquent\PersonnelRepository;
+use App\Repositories\Eloquent\PermissionRepository;
 use App\Repositories\Eloquent\OldPasswordRepository;
 use App\Repositories\Eloquent\LoginAttemptRepository;
+use App\Repositories\Interfaces\RoleRepositoryInterface;
 use App\Repositories\Interfaces\TeamRepositoryInterface;
 use App\Repositories\Interfaces\UnitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -23,6 +26,7 @@ use App\Repositories\Interfaces\SettingRepositoryInterface;
 use App\Repositories\Interfaces\EloquentRepositoryInterface;
 use App\Repositories\Interfaces\TeamUserRepositoryInterface;
 use App\Repositories\Interfaces\PersonnelRepositoryInterface;
+use App\Repositories\Interfaces\PermissionRepositoryInterface;
 use App\Repositories\Interfaces\OldPasswordRepositoryInterface;
 use App\Repositories\Interfaces\LoginAttemptRepositoryInterface;
 
@@ -56,5 +60,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UnitRepositoryInterface::class, UnitRepository::class);
         $this->app->bind(TeamUserRepositoryInterface::class, TeamUserRepository::class);
         $this->app->bind(ModuleRepositoryInterface::class, ModuleRepository::class);
+        $this->app->bind(RoleRepositoryInterface::class, RoleRepository::class);
+        $this->app->bind(PermissionRepositoryInterface::class, PermissionRepository::class);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Teams;
+namespace App\Http\Requests\RolePermissions;
 
 use Anik\Form\FormRequest;
 
-class ModuleRequest extends FormRequest
+class RoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,14 @@ class ModuleRequest extends FormRequest
      */
     protected function rules(): array
     {
-        if ($this->id) {
+        if ($this->roleId) {
             return [
-                'name' => 'required|alpha|string|unique:modules,name,'.$this->id
+                'name' => 'required|alpha|unique:roles,name,'.$this->roleId
             ];
         }
 
         return [
-            'name' => 'required|alpha|string|unique:modules'
+            'name' => 'required|alpha|unique:roles'
         ];
     }
 }

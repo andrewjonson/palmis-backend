@@ -74,10 +74,12 @@ $app->configure('database');
 $app->configure('mail');
 $app->configure('queue');
 $app->configure('captcha');
+$app->configure('permission');
 
 $app->alias('mailer', \Illuminate\Contracts\Mail\Mailer::class);
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
 $app->alias('mail.manager', Illuminate\Contracts\Mail\Factory::class);
+$app->alias('cache', \Illuminate\Cache\CacheManager::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +103,7 @@ $app->routeMiddleware([
     'superadmin' => App\Http\Middleware\SuperAdminMiddleware::class,
     'screenlockEnabled' => App\Http\Middleware\ScreenLockEnabledMiddleware::class,
     'screenLockDisabled' => App\Http\Middleware\ScreenLockDisabledMiddleware::class,
+    'permission' => Spatie\Permission\Middlewares\PermissionMiddleware::class,
 ]);
 
 /*
@@ -125,6 +128,7 @@ $app->register(\Illuminate\Mail\MailServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(App\Providers\CaptchaServiceProvider::class);
 $app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
+$app->register(Spatie\Permission\PermissionServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

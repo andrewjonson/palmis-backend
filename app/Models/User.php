@@ -7,6 +7,7 @@ use App\Models\Personnel;
 use Wildside\Userstamps\Userstamps;
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -29,6 +30,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use TwoFactorAuthenticatable;
     use SoftDeletes;
     use Userstamps;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.

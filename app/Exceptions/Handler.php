@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
@@ -56,7 +55,9 @@ class Handler extends ExceptionHandler
                 'type' => 2,
                 'message' => $exception->errors()
             ], $exception->status);
-        } elseif ($exception instanceof AuthorizationException) {
+        } elseif ($exception instanceof AuthorizationException ||
+                    $exception instanceof Spatie\Permission\Exceptions\UnauthorizedException
+        ) {
             return response()->json([
                 'type' => 2,
                 'message' => 'This action is forbidden'
@@ -72,7 +73,7 @@ class Handler extends ExceptionHandler
                 'message' => 'Method not allowed'
             ], 405);
         } elseif ($exception instanceof AuthenticationException ||
-                    $exception instanceof UnauthorizedException
+                    $exception instanceof Illuminate\Validation\UnauthorizedException
         ) {
             return response()->json([
                 'type' => 2,
