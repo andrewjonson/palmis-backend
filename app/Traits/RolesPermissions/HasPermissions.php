@@ -2,16 +2,18 @@
 
 namespace App\Traits\RolesPermissions;
 
-use Illuminate\Support\Collection;
-use App\Services\RolePermissions\Guard;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Auth\Access\AuthorizationException;
-use App\Services\RolePermissions\WildcardPermission;
-use App\Services\RolePermissions\PermissionRegistrar;
-use App\Services\RolePermissions\Contracts\Permission;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Collection;
+use Spatie\Permission\Contracts\Permission;
+use Spatie\Permission\Exceptions\GuardDoesNotMatch;
+use Spatie\Permission\Exceptions\PermissionDoesNotExist;
+use Spatie\Permission\Exceptions\WildcardPermissionInvalidArgument;
+use Spatie\Permission\Guard;
+use Spatie\Permission\PermissionRegistrar;
+use Spatie\Permission\WildcardPermission;
 
-trait PermissionTrait
+trait HasPermissions
 {
     private $permissionClass;
 
@@ -99,6 +101,15 @@ trait PermissionTrait
         }, $permissions);
     }
 
+    /**
+     * Determine if the model may perform the given permission.
+     *
+     * @param string|int|\Spatie\Permission\Contracts\Permission $permission
+     * @param string|null $guardName
+     *
+     * @return bool
+     * @throws PermissionDoesNotExist
+     */
     public function hasPermissionTo($permission, $guardName = null): bool
     {
         if (config('permission.enable_wildcard_permission', false)) {
@@ -119,6 +130,10 @@ trait PermissionTrait
                 $permission,
                 $guardName ?? $this->getDefaultGuardName()
             );
+        }
+
+        if (! $permission instanceof Permission) {
+            throw new PermissionDoesNotExist;
         }
 
         return $this->hasDirectPermission($permission) || $this->hasPermissionViaRole($permission);
@@ -142,6 +157,10 @@ trait PermissionTrait
 
         if ($permission instanceof Permission) {
             $permission = $permission->name;
+        }
+
+        if (! is_string($permission)) {
+            throw WildcardPermissionInvalidArgument::create();
         }
 
         foreach ($this->getAllPermissions() as $userPermission) {
@@ -180,7 +199,7 @@ trait PermissionTrait
     {
         try {
             return $this->hasPermissionTo($permission, $guardName);
-        } catch (\Exception $e) {
+        } catch (PermissionDoesNotExist $e) {
             return false;
         }
     }
@@ -239,6 +258,14 @@ trait PermissionTrait
         return $this->hasRole($permission->roles);
     }
 
+    /**
+     * Determine if the model has the given permission.
+     *
+     * @param string|int|\Spatie\Permission\Contracts\Permission $permission
+     *
+     * @return bool
+     * @throws PermissionDoesNotExist
+     */
     public function hasDirectPermission($permission): bool
     {
         $permissionClass = $this->getPermissionClass();
@@ -249,6 +276,10 @@ trait PermissionTrait
 
         if (is_int($permission)) {
             $permission = $permissionClass->findById($permission, $this->getDefaultGuardName());
+        }
+
+        if (! $permission instanceof Permission) {
+            throw new PermissionDoesNotExist;
         }
 
         return $this->permissions->contains('id', $permission->id);
@@ -392,10 +423,15 @@ trait PermissionTrait
         return $permissions;
     }
 
+    /**
+     * @param \Spatie\Permission\Contracts\Permission|\Spatie\Permission\Contracts\Role $roleOrPermission
+     *
+     * @throws \Spatie\Permission\Exceptions\GuardDoesNotMatch
+     */
     protected function ensureModelSharesGuard($roleOrPermission)
     {
         if (! $this->getGuardNames()->contains($roleOrPermission->guard_name)) {
-            throw new AuthorizationException;
+            throw GuardDoesNotMatch::create($roleOrPermission->guard_name, $this->getGuardNames());
         }
     }
 
