@@ -56,7 +56,9 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled']], func
     $router->get('/users/only-trashed', 'Users\UserController@onlyTrashed');
     $router->put('/users/restore/{userId}', 'Users\UserController@restore');
     $router->delete('/users/force-delete/{userId}', 'Users\UserController@forceDelete');
+});
 
+$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'superadmin']], function() use($router) {
     //Teams
     $router->get('/teams/show-units', 'TeamModules\TeamController@showUnits');
     $router->get('/teams', 'TeamModules\TeamController@showTeams');
@@ -81,4 +83,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled']], func
     $router->post('/permissions', 'RolePermissions\PermissionController@create');
     $router->put('/permissions/{permissionId}', 'RolePermissions\PermissionController@update');
     $router->delete('/permissions/{permissionId}', 'RolePermissions\PermissionController@delete');
+
+    //Models
+    $router->post('/models', 'RolePermissions\ModelController@create');
+    $router->get('/models', 'RolePermissions\ModelController@showModels');
 });

@@ -8,18 +8,22 @@ use App\Repositories\Eloquent\RoleRepository;
 use App\Repositories\Eloquent\TeamRepository;
 use App\Repositories\Eloquent\UnitRepository;
 use App\Repositories\Eloquent\UserRepository;
+use App\Repositories\Eloquent\ModelRepository;
 use App\Repositories\Eloquent\InviteRepository;
 use App\Repositories\Eloquent\ModuleRepository;
 use App\Repositories\Eloquent\SettingRepository;
 use App\Repositories\Eloquent\TeamUserRepository;
 use App\Repositories\Eloquent\PersonnelRepository;
 use App\Repositories\Eloquent\PermissionRepository;
+use App\Repositories\Eloquent\ModuleModelRepository;
 use App\Repositories\Eloquent\OldPasswordRepository;
 use App\Repositories\Eloquent\LoginAttemptRepository;
+use App\Repositories\Eloquent\ModelPermissionRepository;
 use App\Repositories\Interfaces\RoleRepositoryInterface;
 use App\Repositories\Interfaces\TeamRepositoryInterface;
 use App\Repositories\Interfaces\UnitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\ModelRepositoryInterface;
 use App\Repositories\Interfaces\InviteRepositoryInterface;
 use App\Repositories\Interfaces\ModuleRepositoryInterface;
 use App\Repositories\Interfaces\SettingRepositoryInterface;
@@ -27,8 +31,10 @@ use App\Repositories\Interfaces\EloquentRepositoryInterface;
 use App\Repositories\Interfaces\TeamUserRepositoryInterface;
 use App\Repositories\Interfaces\PersonnelRepositoryInterface;
 use App\Repositories\Interfaces\PermissionRepositoryInterface;
+use App\Repositories\Interfaces\ModuleModelRepositoryInterface;
 use App\Repositories\Interfaces\OldPasswordRepositoryInterface;
 use App\Repositories\Interfaces\LoginAttemptRepositoryInterface;
+use App\Repositories\Interfaces\ModelPermissionRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -62,5 +68,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ModuleRepositoryInterface::class, ModuleRepository::class);
         $this->app->bind(RoleRepositoryInterface::class, RoleRepository::class);
         $this->app->bind(PermissionRepositoryInterface::class, PermissionRepository::class);
+        $this->app->bind(ModelRepositoryInterface::class, ModelRepository::class);
+        $this->app->bind(ModelPermissionRepositoryInterface::class, ModelPermissionRepository::class);
+        $this->app->bind(ModuleModelRepositoryInterface::class, ModuleModelRepository::class);
     }
 }

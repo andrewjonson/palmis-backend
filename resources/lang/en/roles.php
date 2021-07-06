@@ -7,5 +7,6 @@ return [
     'permission_created' => 'Permission Created Successfully',
     'permission_updated' => 'Permission Updated Successfully',
     'permission_deleted' => 'Permission Deleted Successfully',
-    'permissions_assigned' => 'Permissions Assigned Successfully'
+    'permissions_assigned' => 'Permissions Assigned Successfully',
+    'model_created' => 'Model Created Successfully'
 ];

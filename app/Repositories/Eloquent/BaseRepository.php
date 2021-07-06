@@ -88,4 +88,9 @@ class BaseRepository implements EloquentRepositoryInterface
             }      
        });
     }
+
+    public function getByIds(array $id)
+    {
+        return $this->model->whereIn('id', $id)->get();
+    }
 }

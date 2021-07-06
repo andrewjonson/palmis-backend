@@ -29,4 +29,6 @@ interface EloquentRepositoryInterface
     public function onlyTrashed($keyword, $rowsPerPage);
 
     public function onlyTrashedById($id);
+
+    public function getByIds(array $id);
 }
