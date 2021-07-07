@@ -103,7 +103,8 @@ $app->routeMiddleware([
     'superadmin' => App\Http\Middleware\SuperAdminMiddleware::class,
     'screenlockEnabled' => App\Http\Middleware\ScreenLockEnabledMiddleware::class,
     'screenLockDisabled' => App\Http\Middleware\ScreenLockDisabledMiddleware::class,
-    'permission' => Spatie\Permission\Middlewares\PermissionMiddleware::class,
+    'permission' => App\Http\Middleware\PermissionMiddleware::class,
+    'role' => App\Http\Middleware\RoleMiddleware::class,
 ]);
 
 /*
@@ -128,7 +129,7 @@ $app->register(\Illuminate\Mail\MailServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(App\Providers\CaptchaServiceProvider::class);
 $app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
-$app->register(Spatie\Permission\PermissionServiceProvider::class);
+$app->register(App\Providers\PermissionServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

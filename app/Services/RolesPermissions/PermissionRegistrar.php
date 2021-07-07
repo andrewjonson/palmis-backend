@@ -3,11 +3,11 @@
 namespace App\Services\RolesPermissions;
 
 use Illuminate\Cache\CacheManager;
-use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Database\Eloquent\Collection;
-use Spatie\Permission\Contracts\Permission;
-use Spatie\Permission\Contracts\Role;
+use App\Services\RolesPermissions\Interfaces\Role;
+use Illuminate\Contracts\Auth\Access\Authorizable;
+use App\Services\RolesPermissions\Interfaces\Permission;
 
 class PermissionRegistrar
 {

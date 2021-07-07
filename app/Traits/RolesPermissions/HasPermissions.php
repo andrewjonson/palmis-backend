@@ -2,16 +2,16 @@
 
 namespace App\Traits\RolesPermissions;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
-use Spatie\Permission\Contracts\Permission;
-use Spatie\Permission\Exceptions\GuardDoesNotMatch;
-use Spatie\Permission\Exceptions\PermissionDoesNotExist;
-use Spatie\Permission\Exceptions\WildcardPermissionInvalidArgument;
-use Spatie\Permission\Guard;
-use Spatie\Permission\PermissionRegistrar;
-use Spatie\Permission\WildcardPermission;
+use App\Services\RolesPermissions\Guard;
+use Illuminate\Database\Eloquent\Builder;
+use App\Services\RolesPermissions\WildcardPermission;
+use App\Services\RolesPermissions\PermissionRegistrar;
+use App\Services\RolesPermissions\Interfaces\Permission;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Services\RolesPermissions\Exceptions\GuardDoesNotMatch;
+use App\Services\RolesPermissions\Exceptions\PermissionDoesNotExist;
+use App\Services\RolesPermissions\Exceptions\WildcardPermissionInvalidArgument;
 
 trait HasPermissions
 {

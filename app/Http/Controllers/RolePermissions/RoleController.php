@@ -20,13 +20,6 @@ class RoleController extends Controller
         PermissionRepositoryInterface $permissionRepository
     )
     {
-        $this->middleware('permission:request-create', [
-            'only' => [
-                'showRoles',
-                'create'
-            ]
-        ]);
-
         $this->roleRepository = $roleRepository;
         $this->permissionRepository = $permissionRepository;
     }
