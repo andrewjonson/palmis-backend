@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\Permission;
+namespace App\Services\RolesPermissions;
 
 use Illuminate\Support\Collection;
-use Spatie\Permission\Exceptions\WildcardPermissionNotProperlyFormatted;
+use App\Services\RolesPermissions\Exceptions\WildcardPermissionNotProperlyFormatted;
 
 class WildcardPermission
 {

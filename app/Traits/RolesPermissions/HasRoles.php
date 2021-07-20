@@ -3,10 +3,10 @@
 namespace App\Traits\RolesPermissions;
 
 use Illuminate\Support\Collection;
-use Spatie\Permission\Contracts\Role;
 use Illuminate\Database\Eloquent\Builder;
-use App\Services\RolesPermissions\PermissionRegistrar;
 use App\Traits\RolesPermissions\HasPermissions;
+use App\Services\RolesPermissions\Interfaces\Role;
+use App\Services\RolesPermissions\PermissionRegistrar;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait HasRoles

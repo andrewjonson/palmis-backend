@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Spatie\Permission\Models\Role as SpatieRole;
+use App\Services\RolesPermissions\Models\Role as Roles;
 
-class Role extends SpatieRole
+class Role extends Roles
 {
     protected $fillable = ['name','guard_name'];
 }
