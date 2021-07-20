@@ -6,7 +6,7 @@ use Closure;
 use Exception;
 use App\Traits\ResponseTrait;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Illuminate\Validation\UnauthorizedException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class JwtMiddleware
@@ -24,11 +24,11 @@ class JwtMiddleware
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
-            if( !$user ) throw new UnauthorizedException;
+            if( !$user ) throw new AuthenticationException;
             if ($user->deleted_at) {
                 if (! $user->auth_status) {
                     throw new AuthorizationException;
-                } 
+                }
                 $user->update([
                     'auth_status' => false
                 ]);
@@ -36,7 +36,10 @@ class JwtMiddleware
                 return $this->failedResponse('You have been deleted', 403);
             }
         } catch (Exception $e) {
-            throw new UnauthorizedException;
+            return response()->json([
+                'type' => 2,
+                'message' => 'Unauthenticated'
+            ], 401);
         }
 
         return $next($request);

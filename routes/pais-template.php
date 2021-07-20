@@ -14,30 +14,32 @@
 */
 
 //Authentication
-$router->post('/login', 'Auth\LoginController@login');
-$router->post('/register', 'Auth\RegisterController@register');
-$router->get('/verify/{email}/{token}', 'Auth\VerificationController@verify');
-$router->post('/resend-email-verification', 'Auth\VerificationController@resendEmailVerification');
+$router->group(['prefix' => 'api'], function() use($router) {
+    $router->post('/login', 'Auth\LoginController@login');
+    $router->post('/register', 'Auth\RegisterController@register');
+    $router->post('/resend-email-verification', 'Auth\VerificationController@resendEmailVerification');
+    $router->post('/reload-captcha', 'Auth\CaptchaController@reloadCaptcha');
+    $router->post('/forgot-password', 'Auth\ForgotPasswordController@sendResetLink');
+    $router->post('/reset-password', 'Auth\ResetPasswordController@reset');
+    $router->post('/setup-account', 'Auth\VerificationController@setupAccount');
+    $router->post('/otp-challenge', 'Auth\OtpController@otpChallenge');
+    $router->post('/resend-otp', 'Auth\OtpController@resendOtp');
+    $router->post('/two-factor-challenge', 'Auth\TwoFactorController@store');
+});
 $router->get('/captcha[/{config}]', 'Auth\CaptchaController@getCaptcha');
-$router->get('/reload-captcha', 'Auth\CaptchaController@reloadCaptcha');
-$router->post('/forgot-password', 'Auth\ForgotPasswordController@sendResetLink');
 $router->get('/reset-password/{token}/{email}', 'Auth\ResetPasswordController@showResetForm');
-$router->post('/reset-password', 'Auth\ResetPasswordController@reset');
-$router->post('/setup-account', 'Auth\VerificationController@setupAccount');
-$router->post('/otp-challenge', 'Auth\OtpController@otpChallenge');
-$router->post('/resend-otp', 'Auth\OtpController@resendOtp');
-$router->post('/two-factor-challenge', 'Auth\TwoFactorController@store');
+$router->get('/verify/{email}/{token}', 'Auth\VerificationController@verify');
 
 //User Management
-$router->group(['middleware' => ['jwt', 'verified']], function() use($router) {
+$router->group(['middleware' => ['jwt', 'verified'], 'prefix' => 'api'], function() use($router) {
     $router->get('/users/current-user', 'Users\UserController@currentUser');
 });
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenlockEnabled']], function() use($router) {
+$router->group(['middleware' => ['jwt', 'verified', 'screenlockEnabled'], 'prefix' => 'api'], function() use($router) {
     $router->post('/users/disable-screenlock', 'Users\ScreenlockController@disable');
 });
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled']], function() use($router) {
+$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'prefix' => 'api'], function() use($router) {
     $router->get('/users', 'Users\UserController@index');
     $router->get('/users/show/{userId}', 'Users\UserController@show');
     $router->put('/users/update/{userId}', 'Users\UserController@update');
@@ -56,6 +58,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled']], func
     $router->get('/users/only-trashed', 'Users\UserController@onlyTrashed');
     $router->put('/users/restore/{userId}', 'Users\UserController@restore');
     $router->delete('/users/force-delete/{userId}', 'Users\UserController@forceDelete');
+    $router->get('/users/login-attempts', 'Users\UserController@showLoginAttempts');
+    $router->put('/users/assign-superadmin/{userId}', 'Users\UserController@assignSuperAdmin');
 
     //Teams
     $router->get('/teams/show-units', 'TeamModules\TeamController@showUnits');

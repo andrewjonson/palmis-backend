@@ -36,9 +36,9 @@ class TwoFactorController extends Controller
         
         try {
             $user = $this->userRepository->getUserByEmail($request->email);
-            if (!$user->auth_type) {
-                throw new AuthorizationException;
-            }
+            // if ($user->auth_type) {
+            //     throw new AuthorizationException;
+            // }
 
             if ($code = $request->validRecoveryCode($user)) {
                 $user->replaceRecoveryCode($code);

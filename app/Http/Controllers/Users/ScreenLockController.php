@@ -31,14 +31,14 @@ class ScreenLockController extends Controller
     public function enable(PinRequest $request)
     {
         $user = auth()->user();
-        if (!Hash::check($request->current_password, $user->password)) {
-            return $this->invalidPasswordResponse($user);
-        }
-
         if (!$user->pin) {
             $pin = $this->userRepository->update([
                 'pin' => Hash::make($request->pin)
             ], $user->id);
+
+            if (!Hash::check($request->current_password, $user->password)) {
+                return $this->invalidPasswordResponse($user);
+            }
         }
 
         try {

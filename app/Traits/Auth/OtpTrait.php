@@ -14,7 +14,8 @@ trait OtpTrait
         $this->userRepository->update([
             'auth_type' => 1,
             'otp_code' => $otpCode,
-            'otp_expire_at' => $otpExpireAt
+            'otp_expire_at' => $otpExpireAt,
+            'auth_status' => false
         ], $user->id);
         $user->notify(new OtpEmailNotification($this->settingRepository->first()));
         $num = '09123456789';

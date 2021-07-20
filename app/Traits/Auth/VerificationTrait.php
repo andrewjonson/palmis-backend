@@ -9,7 +9,7 @@ trait VerificationTrait
             'type' => 1,
             'email' => $user->email,
             'email_verified_at' => null,
-            'apiToken' => auth()->tokenById($user->id)
+            'token' => sha1($user->email)
         ], 200);
     }
 }

@@ -95,12 +95,11 @@ class VerificationController extends Controller
 
     public function setupAccount(SetupAccountRequest $request)
     {
-        try {
-            if (! hash_equals((string) $request->token, sha1($request->email))) {
-                return $this->failedResponse(trans('auth.bad_request'), 400);
-                throw new BadRequestException;
-            }
+        if (! hash_equals((string) $request->token, sha1($request->email))) {
+            return $this->failedResponse(trans('auth.invalid_email'), 400);
+        }
 
+        try {
             $afpsn = $request->afpsn;
             $birthday = $request->birthday;
             $validateUser = $this->personnelRepository->validateAfpsnBirthday($afpsn, $birthday);

@@ -13,6 +13,7 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use App\Http\Requests\Users\UserRequest;
+use App\Http\Resources\LoginAttemptResource;
 use App\Http\Requests\Users\ChangePasswordRequest;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Notifications\EmailVerificationNotification;
@@ -95,11 +96,6 @@ class UserController extends Controller
         }
         
         try {
-            $validateUser = $this->personnelRepository->validateAfpsn($request->afpsn);
-            if (!$validateUser) {
-                return $this->failedResponse(trans('auth.invalid_user'), 400);
-            }
-
             $this->resetLoginAttempts($user);
             if ($currentUser->is_superadmin) {
                 $this->assignSuperAdmin($request, $userId);
@@ -112,13 +108,21 @@ class UserController extends Controller
 
             $user = $this->userRepository->update([
                 'email' => $request->email,
-                'afpsn' => $request->afpsn,
+                'afpsn' => $user->afpsn,
                 'email_verified_at' => $currentEmail
                             ? $user->email_verified_at : null,
+                'two_factor_secret' => $currentEmail
+                            ? $user->token_factor_secret : null,
+                'two_factor_recovery_codes' => $currentEmail
+                            ? $user->two_factor_recovery_codes : null,
             ], $userId);
             if ($currentUser->id == $userId && !$user->email_verified_at) {
                 auth()->invalidate();
-                return $this->successResponse(trans('users.email_updated'), 200);
+                return response()->json([
+                    'type' => 1,
+                    'message' => trans('users.email_updated'),
+                    'logout' => true
+                ]);
             }
 
             return response()->json([
@@ -135,6 +139,10 @@ class UserController extends Controller
     {
         try {
             $user = $this->userRepository->find($userId);
+            if (!$user) {
+                throw new AuthorizationException;
+            }
+
             $isSuperAdmin = $request->isSuperadmin;
             if ($isSuperAdmin) {
                 $user->update([
@@ -149,6 +157,7 @@ class UserController extends Controller
                     ]);
                 }
             }
+            return $this->successResponse(trans('users.assign_success'), 200);
         } catch(Exception $e) {
             return $this->failedResponse($e->getMessage(), 500);
         }
@@ -243,5 +252,13 @@ class UserController extends Controller
         } catch(Exception $e) {
             return $this->failedResponse($e->getMessage(), 500);
         }
+    }
+
+    public function showLoginAttempts(Request $request)
+    {
+        $keyword = $request->keyword;
+        $rowsPerPage = $request->rowsPerPage;
+        $loginAttempts = $this->loginAttemptRepository->search($keyword, $rowsPerPage);
+        return LoginAttemptResource::collection($loginAttempts);
     }
 }

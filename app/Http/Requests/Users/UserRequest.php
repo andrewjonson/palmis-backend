@@ -25,10 +25,6 @@ class UserRequest extends FormRequest
     {
         if ($this->userId) {
             return [
-                'afpsn' => [
-                    'required',
-                    'unique:users,afpsn,'.$this->userId
-                ],
                 'email' => [
                     'required',
                     'email',

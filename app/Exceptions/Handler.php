@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
@@ -79,6 +80,11 @@ class Handler extends ExceptionHandler
                 'type' => 2,
                 'message' => 'Unauthenticated'
             ], 401);
+        } elseif ($exception instanceof BadRequestException) {
+            return response()->json([
+                'type' => 2,
+                'message' => 'Bad Request'
+            ], 400);
         }
 
         return parent::render($request, $exception);

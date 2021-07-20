@@ -70,11 +70,13 @@ $app->singleton(
 */
 
 $app->configure('auth');
+$app->configure('app');
 $app->configure('database');
 $app->configure('mail');
 $app->configure('queue');
 $app->configure('captcha');
 $app->configure('permission');
+$app->configure('services');
 
 $app->alias('mailer', \Illuminate\Contracts\Mail\Mailer::class);
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
@@ -92,9 +94,9 @@ $app->alias('cache', \Illuminate\Cache\CacheManager::class);
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
@@ -144,7 +146,9 @@ $app->register(Spatie\Permission\PermissionServiceProvider::class);
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
-    require __DIR__.'/../routes/web.php';
+    require __DIR__.'/../routes/pais-template.php';
+    require __DIR__.'/../routes/mpf.php';
+    require __DIR__.'/../routes/mpis.php';
 });
 
 return $app;

@@ -27,7 +27,11 @@ class UserResource extends JsonResource
             'status' => $this->auth_status ? 'Online' : 'Offline',
             'email_verified_at' => $this->email_verified_at,
             'screen_lock' => $this->screen_lock,
-            'otp_auth' => $this->otp_auth
+            'otp_auth' => $this->otp_auth,
+            'deleted_at' => $this->deleted_at,
+            'auth_status' => $this->auth_status,
+            'pin' => $this->pin,
+            'two_factor_auth' => $this->two_factor_secret,
         ];
     }
 }

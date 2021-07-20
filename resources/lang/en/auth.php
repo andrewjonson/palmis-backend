@@ -23,5 +23,6 @@ return [
     'otp_disabled' => 'One-time password disabled successfully',
     'two_factor' => 'Two Factor Authentication',
     'invalid_account' => 'Invalid Account',
-    'bad_request' => 'Bad Request'
+    'bad_request' => 'Bad Request',
+    'invalid_email' => 'Invalid email token'
 ];

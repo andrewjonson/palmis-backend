@@ -10,7 +10,7 @@ trait CaptchaTrait
     public function captchaResponse($message, $errorCode) 
     {
         return response()->json([
-            'type' => 2,
+            'type' => 1,
             'message' => $message,
             'captcha' => json_decode($this->captcha())
         ], $errorCode);

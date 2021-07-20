@@ -7,7 +7,8 @@ trait TwoFactorTrait
     {
         $this->resetLoginAttempts($user);
         $this->userRepository->update([
-            'auth_type' => 2
+            'auth_type' => 2,
+            'auth_status' => false
         ], $user->id);
         return response()->json([
             'type' => 1,

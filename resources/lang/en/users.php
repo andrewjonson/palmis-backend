@@ -19,5 +19,6 @@ return [
     'soft_deleted' => 'User Deleted Successfully',
     'restored' => 'User Restored Successfully',
     'force_deleted' => 'User Permanently Deleted Successfully',
-    'user_already_registered' => 'User Already Registered'
+    'user_already_registered' => 'User Already Registered',
+    'assign_success' => 'Assign Superadmin Successfully'
 ];

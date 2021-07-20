@@ -50,7 +50,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'pin',
         'is_superadmin',
         'auth_type',
-        'created_by'
+        'created_by',
+        'two_factor_secret',
+        'two_factor_recovery_codes'
     ];
 
     /**

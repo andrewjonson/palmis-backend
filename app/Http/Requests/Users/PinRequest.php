@@ -30,7 +30,7 @@ class PinRequest extends FormRequest
     protected function rules(): array
     {
         return [
-            'pin' => 'required|numeric|digits:'.$this->settingRepository->first()->pin_digits
+            'pin' => 'numeric|digits:'.$this->settingRepository->first()->pin_digits.'|required_if:pin,!=,null'
         ];
     }
 }
