@@ -17,36 +17,36 @@ class Group
 
     public function index($data)
     {
-        return $this->performRequest('GET', '/api/v1/mpf/groups', $data);
+        return $this->performRequest('GET', '/mpf/groups', $data);
     }
 
     public function store($data)
     {
-        return $this->performRequest('POST', '/api/v1/mpf/groups', $data);
+        return $this->performRequest('POST', '/mpf/groups', $data);
     }
 
     public function update($data, $id)
     {
-        return $this->performRequest('PUT', '/api/v1/mpf/groups/'.$id, $data);
+        return $this->performRequest('PUT', '/mpf/groups/'.$id, $data);
     }
 
     public function delete($id)
     {
-        return $this->performRequest('DELETE', '/api/v1/mpf/groups/'.$id);
+        return $this->performRequest('DELETE', '/mpf/groups/'.$id);
     }
 
     public function onlyTrashed($data)
     {
-        return $this->performRequest('GET', '/api/v1/mpf/groups/only-trashed', $data);
+        return $this->performRequest('GET', '/mpf/groups/only-trashed', $data);
     }
 
     public function restore($id)
     {
-        return $this->performRequest('PUT', '/api/v1/mpf/groups/restore/'.$id);
+        return $this->performRequest('PUT', '/mpf/groups/restore/'.$id);
     }
 
     public function forceDelete($id)
     {
-        return $this->performRequest('DELETE', '/api/v1/mpf/groups/force-delete/'.$id);
+        return $this->performRequest('DELETE', '/mpf/groups/force-delete/'.$id);
     }
 }

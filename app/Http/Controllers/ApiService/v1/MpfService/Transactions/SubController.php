@@ -13,6 +13,29 @@ class SubController extends Controller
 
     public function __construct(Sub $apiService)
     {
+        $this->middleware('permission:sub-read|admin', [
+            'only' => [
+                'index',
+                'onlyTrashed'
+            ]
+        ]);
+        $this->middleware('permission:sub-create|admin', [
+            'only' => [
+                'store'
+            ]
+        ]);
+        $this->middleware('permission:sub-update|admin', [
+            'only' => [
+                'update',
+                'restore'
+            ]
+        ]);
+        $this->middleware('permission:sub-delete|admin', [
+            'only' => [
+                'delete',
+                'forceDelete'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 

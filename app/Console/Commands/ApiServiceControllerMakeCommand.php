@@ -98,10 +98,9 @@ class ApiServiceControllerMakeCommand extends GeneratorCommand
         $name = Str::replaceArray('/', ['\\'], $this->argument('name'));
         $name = Str::replaceArray('/', ['\\'], $name);
         $name = Str::replaceArray('Controller', [''], $name);
-        $module = Str::replaceArray('Service\\References/'.class_basename($name), [''], $name);
 
         return array_merge($replace, [
-            'DummyModuleLowerClass' => Str::lower($module),
+            'DummyModuleLowerClass' => Str::lower(class_basename($name)),
             'DummyAppVersion' => config('app.version'),
             'DummyModulePluralClass' => Str::plural(Str::lower(class_basename($name))),
             'DummyApiServiceNamespace' => $name,

@@ -13,6 +13,29 @@ class PersonnelProfileController extends Controller
 
     public function __construct(PersonnelProfile $apiService)
     {
+        $this->middleware('permission:personnelprofile-read|admin', [
+            'only' => [
+                'index',
+                'onlyTrashed'
+            ]
+        ]);
+        $this->middleware('permission:personnelprofile-create|admin', [
+            'only' => [
+                'store'
+            ]
+        ]);
+        $this->middleware('permission:personnelprofile-update|admin', [
+            'only' => [
+                'update',
+                'restore'
+            ]
+        ]);
+        $this->middleware('permission:personnelprofile-delete|admin', [
+            'only' => [
+                'delete',
+                'forceDelete'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 

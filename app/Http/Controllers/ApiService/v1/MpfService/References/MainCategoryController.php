@@ -13,6 +13,29 @@ class MainCategoryController extends Controller
 
     public function __construct(MainCategory $apiService)
     {
+        $this->middleware('permission:maincategory-read|admin', [
+            'only' => [
+                'index',
+                'onlyTrashed'
+            ]
+        ]);
+        $this->middleware('permission:maincategory-create|admin', [
+            'only' => [
+                'store'
+            ]
+        ]);
+        $this->middleware('permission:maincategory-update|admin', [
+            'only' => [
+                'update',
+                'restore'
+            ]
+        ]);
+        $this->middleware('permission:maincategory-delete|admin', [
+            'only' => [
+                'delete',
+                'forceDelete'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 

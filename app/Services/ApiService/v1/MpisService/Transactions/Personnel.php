@@ -17,36 +17,36 @@ class Personnel
 
     public function index($data)
     {
-        return $this->performRequest('GET', '/api/v1/mpis/personnels', $data);
+        return $this->performRequest('GET', '/mpis/personnels', $data);
     }
 
     public function store($data)
     {
-        return $this->performRequest('POST', '/api/v1/mpis/personnels', $data);
+        return $this->performRequest('POST', '/mpis/personnels', $data);
     }
 
     public function update($data, $id)
     {
-        return $this->performRequest('PUT', '/api/v1/mpis/personnels/'.$id, $data);
+        return $this->performRequest('PUT', '/mpis/personnels/'.$id, $data);
     }
 
     public function delete($id)
     {
-        return $this->performRequest('DELETE', '/api/v1/mpis/personnels/'.$id);
+        return $this->performRequest('DELETE', '/mpis/personnels/'.$id);
     }
 
     public function onlyTrashed($data)
     {
-        return $this->performRequest('GET', '/api/v1/mpis/personnels/only-trashed', $data);
+        return $this->performRequest('GET', '/mpis/personnels/only-trashed', $data);
     }
 
     public function restore($id)
     {
-        return $this->performRequest('PUT', '/api/v1/mpis/personnels/restore/'.$id);
+        return $this->performRequest('PUT', '/mpis/personnels/restore/'.$id);
     }
 
     public function forceDelete($id)
     {
-        return $this->performRequest('DELETE', '/api/v1/mpis/personnels/force-delete/'.$id);
+        return $this->performRequest('DELETE', '/mpis/personnels/force-delete/'.$id);
     }
 }

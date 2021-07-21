@@ -17,36 +17,36 @@ class MainCategory
 
     public function index($data)
     {
-        return $this->performRequest('GET', '/api/v1/mpf/main-categories', $data);
+        return $this->performRequest('GET', '/mpf/main-categories', $data);
     }
 
     public function store($data)
     {
-        return $this->performRequest('POST', '/api/v1/mpf/main-categories', $data);
+        return $this->performRequest('POST', '/mpf/main-categories', $data);
     }
 
     public function update($data, $id)
     {
-        return $this->performRequest('PUT', '/api/v1/mpf/main-categories/'.$id, $data);
+        return $this->performRequest('PUT', '/mpf/main-categories/'.$id, $data);
     }
 
     public function delete($id)
     {
-        return $this->performRequest('DELETE', '/api/v1/mpf/main-categories/'.$id);
+        return $this->performRequest('DELETE', '/mpf/main-categories/'.$id);
     }
 
     public function onlyTrashed($data)
     {
-        return $this->performRequest('GET', '/api/v1/mpf/main-categories/only-trashed', $data);
+        return $this->performRequest('GET', '/mpf/main-categories/only-trashed', $data);
     }
 
     public function restore($id)
     {
-        return $this->performRequest('PUT', '/api/v1/mpf/main-categories/restore/'.$id);
+        return $this->performRequest('PUT', '/mpf/main-categories/restore/'.$id);
     }
 
     public function forceDelete($id)
     {
-        return $this->performRequest('DELETE', '/api/v1/mpf/main-categories/force-delete/'.$id);
+        return $this->performRequest('DELETE', '/mpf/main-categories/force-delete/'.$id);
     }
 }

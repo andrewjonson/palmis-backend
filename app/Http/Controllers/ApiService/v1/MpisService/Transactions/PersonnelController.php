@@ -13,6 +13,29 @@ class PersonnelController extends Controller
 
     public function __construct(Personnel $apiService)
     {
+        $this->middleware('permission:personnel-read|admin', [
+            'only' => [
+                'index',
+                'onlyTrashed'
+            ]
+        ]);
+        $this->middleware('permission:personnel-create|admin', [
+            'only' => [
+                'store'
+            ]
+        ]);
+        $this->middleware('permission:personnel-update|admin', [
+            'only' => [
+                'update',
+                'restore'
+            ]
+        ]);
+        $this->middleware('permission:personnel-delete|admin', [
+            'only' => [
+                'delete',
+                'forceDelete'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 

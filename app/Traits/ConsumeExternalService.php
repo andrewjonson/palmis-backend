@@ -20,7 +20,7 @@ trait ConsumeExternalService
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Accept' => 'application/json'
-        ])->withToken($token)->$method($base_uri.$requestUrl, $formParams);
+        ])->withToken($token)->$method($base_uri.'/api/'.config('app.version').$requestUrl, $formParams);
         return $response->json();
     }
 }

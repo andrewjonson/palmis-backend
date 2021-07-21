@@ -13,6 +13,29 @@ class DummyClass extends Controller
 
     public function __construct(DummyApiServiceClass $apiService)
     {
+        $this->middleware('permission:DummyModuleLowerClass-read|admin', [
+            'only' => [
+                'index',
+                'onlyTrashed'
+            ]
+        ]);
+        $this->middleware('permission:DummyModuleLowerClass-create|admin', [
+            'only' => [
+                'store'
+            ]
+        ]);
+        $this->middleware('permission:DummyModuleLowerClass-update|admin', [
+            'only' => [
+                'update',
+                'restore'
+            ]
+        ]);
+        $this->middleware('permission:DummyModuleLowerClass-delete|admin', [
+            'only' => [
+                'delete',
+                'forceDelete'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 

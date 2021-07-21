@@ -12,6 +12,6 @@ class DummyClass
 
     public function __construct()
     {
-        $this->baseUri = config('services.DummyModuleLowerClass_base_url');
+        $this->baseUri = config('services.DummyModuleLowerClass_base_uri');
     }
 }

@@ -17,11 +17,11 @@ class Sub
 
     public function getSub($id)
     {
-        return $this->performRequest('GET', '/api/v1/mpf/profiles/sub/'.$id);
+        return $this->performRequest('GET', '/mpf/profiles/sub/'.$id);
     }
 
     public function createSub($data)
     {
-        return $this->performRequest('POST', '/api/v1/mpf/profiles/sub', $data);
+        return $this->performRequest('POST', '/mpf/profiles/sub', $data);
     }
 }

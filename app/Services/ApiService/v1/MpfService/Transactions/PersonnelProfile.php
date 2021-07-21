@@ -17,11 +17,11 @@ class PersonnelProfile
 
     public function getProfile($id)
     {
-        return $this->performRequest('GET', '/api/v1/mpf/personnels/profiles/'.$id);
+        return $this->performRequest('GET', '/mpf/personnels/profiles/'.$id);
     }
 
     public function addProfile($data)
     {
-        return $this->performRequest('POST', '/api/v1/mpf/personnels/profiles/add', $data);
+        return $this->performRequest('POST', '/mpf/personnels/profiles/add', $data);
     }
 }
