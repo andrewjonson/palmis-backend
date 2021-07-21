@@ -22,6 +22,7 @@ class UserResource extends JsonResource
             'middle_name' => $this->personnel->middlename,
             'mobile_number' => $this->mobile_number,
             'email' => $this->email,
+            'is_superadmin' => $this->is_superadmin,
             'role' => $this->roles,
             'team' => $this->teamUser ? $this->teamUser->name : null,
             'status' => $this->auth_status ? 'Online' : 'Offline',

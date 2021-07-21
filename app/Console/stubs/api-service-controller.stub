@@ -1,0 +1,17 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Http\Controllers\Controller;
+use App\Traits\ConsumeExternalService;
+use App\Services\ApiService\DummyAppVersion\DummyApiServiceNamespace;
+
+class DummyClass extends Controller
+{
+    use ConsumeExternalService;
+
+    public function __construct(DummyApiServiceClass $apiService)
+    {
+        $this->apiService = $apiService;
+    }
+}

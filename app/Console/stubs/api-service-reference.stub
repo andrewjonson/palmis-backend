@@ -1,0 +1,52 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Traits\ConsumeExternalService;
+
+class DummyClass
+{
+    use ConsumeExternalService;
+
+    public $baseUri;
+
+    public function __construct()
+    {
+        $this->baseUri = config('services.DummyModuleLowerClass_base_url');
+    }
+
+    public function index($data)
+    {
+        return $this->performRequest('GET', '/api/DummyAppVersion/DummyModuleLowerClass/DummyModulePluralClass', $data);
+    }
+
+    public function store($data)
+    {
+        return $this->performRequest('POST', '/api/DummyAppVersion/DummyModuleLowerClass/DummyModulePluralClass', $data);
+    }
+
+    public function update($data, $id)
+    {
+        return $this->performRequest('PUT', '/api/DummyAppVersion/DummyModuleLowerClass/DummyModulePluralClass/'.$id, $data);
+    }
+
+    public function delete($id)
+    {
+        return $this->performRequest('DELETE', '/api/DummyAppVersion/DummyModuleLowerClass/DummyModulePluralClass/'.$id);
+    }
+
+    public function onlyTrashed($data)
+    {
+        return $this->performRequest('GET', '/api/DummyAppVersion/DummyModuleLowerClass/DummyModulePluralClass/only-trashed', $data);
+    }
+
+    public function restore($id)
+    {
+        return $this->performRequest('PUT', '/api/DummyAppVersion/DummyModuleLowerClass/DummyModulePluralClass/restore/'.$id);
+    }
+
+    public function forceDelete($id)
+    {
+        return $this->performRequest('DELETE', '/api/DummyAppVersion/DummyModuleLowerClass/DummyModulePluralClass/force-delete/'.$id);
+    }
+}

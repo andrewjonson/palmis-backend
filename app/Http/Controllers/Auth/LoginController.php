@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 
 use Carbon\Carbon;
+use App\Models\Personnel;
 use App\Traits\Auth\OtpTrait;
 use App\Traits\ResponseTrait;
 use App\Traits\Auth\LoginTrait;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\ApiServices\v1\MpisService\Transactions;
+namespace App\Services\ApiService\v1\MpisService\Transactions;
 
 use App\Traits\ConsumeExternalService;
 
@@ -48,15 +48,5 @@ class Personnel
     public function forceDelete($id)
     {
         return $this->performRequest('DELETE', '/api/v1/mpis/personnels/force-delete/'.$id);
-    }
-
-    public function profiles()
-    {
-        return $this->performRequest('GET', '/api/v1/mpis/personnels/profiles');
-    }
-
-    public function addProfile($data)
-    {
-        return $this->performRequest('POST', '/api/v1/mpis/personnels/profiles/add', $data);
     }
 }

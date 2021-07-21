@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\ApiServiceControllers\v1\MpfService\References;
+namespace App\Http\Controllers\ApiService\v1\MpfService\References;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Services\ApiServices\v1\MpfService\References\SubCategory;
+use App\Services\ApiService\v1\MpfService\References\Group;
 
-class SubCategoryController extends Controller
+class GroupController extends Controller
 {
     use ConsumeExternalService;
 
-    public function __construct(SubCategory $apiService)
+    public function __construct(Group $apiService)
     {
         $this->apiService = $apiService;
     }

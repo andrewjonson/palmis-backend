@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\ApiServiceControllers\v1\MpisService\Transactions;
+namespace App\Http\Controllers\ApiService\v1\MpfService\References;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Services\ApiServices\v1\MpisService\Transactions\Personnel;
+use App\Services\ApiService\v1\MpfService\References\MainCategory;
 
-class PersonnelController extends Controller
+class MainCategoryController extends Controller
 {
     use ConsumeExternalService;
 
-    public function __construct(Personnel $apiService)
+    public function __construct(MainCategory $apiService)
     {
         $this->apiService = $apiService;
     }
@@ -49,15 +49,5 @@ class PersonnelController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
-    }
-
-    public function profiles()
-    {
-        return $this->apiService->profiles();
-    }
-
-    public function addProfile(Request $request)
-    {
-        return $this->apiService->addProfile($request->all());
     }
 }

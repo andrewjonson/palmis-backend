@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\ApiServices\v1\MpfService\References;
+namespace App\Services\ApiService\v1\MpfService\References;
 
 use App\Traits\ConsumeExternalService;
 

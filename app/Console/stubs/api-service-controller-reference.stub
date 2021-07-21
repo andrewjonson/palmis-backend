@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\ApiServiceControllers\v1\MpfService\References;
+namespace DummyNamespace;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Services\ApiServices\v1\MpfService\References\MainCategory;
+use App\Services\ApiService\DummyAppVersion\DummyApiServiceNamespace;
 
-class MainCategoryController extends Controller
+class DummyClass extends Controller
 {
     use ConsumeExternalService;
 
-    public function __construct(MainCategory $apiService)
+    public function __construct(DummyApiServiceClass $apiService)
     {
         $this->apiService = $apiService;
     }

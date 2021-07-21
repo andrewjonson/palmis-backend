@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\ApiServiceControllers\v1\MpfService\References;
+namespace App\Http\Controllers\ApiService\v1\MpisService\Transactions;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Services\ApiServices\v1\MpfService\References\Group;
+use App\Services\ApiService\v1\MpisService\Transactions\Personnel;
 
-class GroupController extends Controller
+class PersonnelController extends Controller
 {
     use ConsumeExternalService;
 
-    public function __construct(Group $apiService)
+    public function __construct(Personnel $apiService)
     {
         $this->apiService = $apiService;
     }
