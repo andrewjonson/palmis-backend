@@ -62,12 +62,15 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'pref
     $router->put('/users/assign-superadmin/{userId}', 'Users\UserController@assignSuperAdmin');
 });
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'superadmin']], function() use($router) {
+$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'superadmin'], 'prefix' => 'api'], function() use($router) {
     //Teams
     $router->get('/teams/show-units', 'TeamModules\TeamController@showUnits');
     $router->get('/teams', 'TeamModules\TeamController@showTeams');
     $router->post('/teams', 'TeamModules\TeamController@create');
     $router->delete('/teams/{teamId}', 'TeamModules\TeamController@delete');
+    $router->get('/teams/only-trashed', 'TeamModules\TeamController@onlyTrashed');
+    $router->put('/teams/restore/{teamId}', 'TeamModules\TeamController@restore');
+    $router->delete('/teams/force-delete/{teamId}', 'TeamModules\TeamController@forceDelete');
     $router->post('/teams/assign-users/{teamId}', 'TeamModules\TeamController@assignUsers');
     $router->get('/teams/users-with-team/{teamId}', 'TeamModules\TeamController@usersWithTeam');
     $router->get('/teams/users-without-team', 'TeamModules\TeamController@usersWithoutTeam');
@@ -91,4 +94,17 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'super
     //Models
     $router->post('/models', 'RolePermissions\ModelController@create');
     $router->get('/models', 'RolePermissions\ModelController@showModels');
+
+    //Units
+    $router->get('/units/unit-by-code', 'Units\UnitController@getUnitByUnitCode');
+    $router->get('/units', 'Units\UnitController@searchUnit');
+
+    //Announcements
+    $router->get('/announcements', 'Dashboard\AnnouncementController@index');
+    $router->post('/announcements', 'Dashboard\AnnouncementController@create');
+    $router->put('/announcements/{announcementId}', 'Dashboard\AnnouncementController@update');
+    $router->delete('/announcements/{announcementId}', 'Dashboard\AnnouncementController@delete');
+    $router->get('/announcements/only-trashed', 'Dashboard\AnnouncementController@onlyTrashed');
+    $router->put('/announcements/restore/{announcementId}', 'Dashboard\AnnouncementController@restore');
+    $router->delete('/announcements/force-delete/{announcementId}', 'Dashboard\AnnouncementController@forceDelete');
 });

@@ -7,5 +7,7 @@ return [
     'user_assigned' => 'User Assigned Successfully',
     'module_created' => 'Module Created Successfully',
     'module_not_exist' => 'Module not exist',
-    'module_updated' => 'Module Updated Successfully'
+    'module_updated' => 'Module Updated Successfully',
+    'restored' => 'Team Restored Successfully',
+    'force_deleted' => 'Team Permanently Deleted Successfully'
 ];

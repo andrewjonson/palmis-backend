@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TeamResource extends JsonResource
+class AnnouncementResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +16,8 @@ class TeamResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => DB::connection('pamis')->table('tr_unit')->where('UnitCode', $this->name)->first()->UnitDesc
+            'title' => $this->title,
+            'description' => $this->description
         ];
     }
 }

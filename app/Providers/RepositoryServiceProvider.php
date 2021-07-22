@@ -17,6 +17,7 @@ use App\Repositories\Eloquent\PersonnelRepository;
 use App\Repositories\Eloquent\PermissionRepository;
 use App\Repositories\Eloquent\ModuleModelRepository;
 use App\Repositories\Eloquent\OldPasswordRepository;
+use App\Repositories\Eloquent\AnnouncementRepository;
 use App\Repositories\Eloquent\LoginAttemptRepository;
 use App\Repositories\Eloquent\ModelPermissionRepository;
 use App\Repositories\Interfaces\RoleRepositoryInterface;
@@ -33,6 +34,7 @@ use App\Repositories\Interfaces\PersonnelRepositoryInterface;
 use App\Repositories\Interfaces\PermissionRepositoryInterface;
 use App\Repositories\Interfaces\ModuleModelRepositoryInterface;
 use App\Repositories\Interfaces\OldPasswordRepositoryInterface;
+use App\Repositories\Interfaces\AnnouncementRepositoryInterface;
 use App\Repositories\Interfaces\LoginAttemptRepositoryInterface;
 use App\Repositories\Interfaces\ModelPermissionRepositoryInterface;
 
@@ -71,5 +73,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ModelRepositoryInterface::class, ModelRepository::class);
         $this->app->bind(ModelPermissionRepositoryInterface::class, ModelPermissionRepository::class);
         $this->app->bind(ModuleModelRepositoryInterface::class, ModuleModelRepository::class);
+        $this->app->bind(AnnouncementRepositoryInterface::class,AnnouncementRepository::class);
     }
 }

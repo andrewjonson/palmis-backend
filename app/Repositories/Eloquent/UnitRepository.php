@@ -16,4 +16,11 @@ class UnitRepository extends BaseRepository implements UnitRepositoryInterface
     {
         return $this->model->where('UnitCode', $unitCode)->first();
     }
+
+    public function searchUnit($keyword, $rowsPerPage)
+    {
+        return $this->model->where('UnitCode', 'ilike', '%'.$keyword.'%')
+                        ->orWhere('UnitDesc', 'ilike', '%'.$keyword.'%')
+                        ->paginate($rowsPerPage);
+    }
 }

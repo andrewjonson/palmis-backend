@@ -13,4 +13,5 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'pref
     $router->get('/profiles/sub/{id}', 'ApiService\v1\MpfService\Transactions\SubController@getSub');
     $router->post('/profiles/sub', 'ApiService\v1\MpfService\Transactions\SubController@createSub');
     $router->get('/tabs/{id}', 'ApiService\v1\MpfService\References\TabController@getTab');
+    $router->post('/tabs', 'ApiService\v1\MpfService\References\TabController@createTab');
 });

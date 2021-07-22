@@ -84,7 +84,7 @@ class BaseRepository implements EloquentRepositoryInterface
         $columns = Schema::getColumnListing($this->model->getTable());
         return $this->model->where(function ($query) use($columns, $keyword) {
             for ($i = 0; $i < count($columns); $i++){
-               $query->orwhere($columns[$i], 'like',  '%' . $keyword .'%');
+               $query->orwhere($columns[$i], 'ilike',  '%' . $keyword .'%');
             }      
        });
     }

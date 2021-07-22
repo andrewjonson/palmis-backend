@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\TeamResource;
 use App\Http\Resources\UnitResource;
 use App\Http\Resources\UserResource;
-use App\Http\Requests\Teams\TeamRequest;
+use App\Http\Requests\TeamModules\TeamRequest;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Repositories\Interfaces\TeamRepositoryInterface;
 use App\Repositories\Interfaces\UnitRepositoryInterface;
@@ -37,7 +37,7 @@ class TeamController extends Controller
         $keyword = $request->keyword;
         $rowsPerPage = $request->rowsPerPage;
         try {
-            $units = $this->unitRepository->search($keyword, $rowsPerPage);
+            $units = $this->unitRepository->searchUnit($keyword, $rowsPerPage);
             return UnitResource::collection($units);
         } catch(Exception $e) {
             return $this->failedResponse($e->getMessage(), 500);
@@ -82,6 +82,48 @@ class TeamController extends Controller
             $team->delete();
             return $this->successResponse(trans('teams.team_deleted'), 200);
         } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), 500);
+        }
+    }
+
+    public function onlyTrashed(Request $request)
+    {
+        $keyword = $request->keyword;
+        $rowsPerPage = $request->rowsPerPage;
+        try {
+            $results = $this->teamRepository->onlyTrashed($keyword, $rowsPerPage);
+            return TeamResource::collection($results);
+        } catch(\Exception $e) {
+            return $this->failedResponse($e->getMessage(), 500);
+        }
+    }
+
+    public function restore($teamId)
+    {
+        $data = $this->teamRepository->onlyTrashedById($teamId);
+        if (!$data) {
+            throw new AuthorizationException;
+        }
+
+        try {
+            $data->restore();
+            return $this->successResponse(trans('teams.restored'), 200);
+        } catch(\Exception $e) {
+            return $this->failedResponse($e->getMessage(), 500);
+        }
+    }
+
+    public function forceDelete($teamId)
+    {
+        $data = $this->teamRepository->onlyTrashedById($teamId);
+        if (!$data) {
+            throw new AuthorizationException;
+        }
+
+        try {
+            $data->forceDelete();
+            return $this->successResponse(trans('teams.force_deleted'), 200);
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), 500);
         }
     }

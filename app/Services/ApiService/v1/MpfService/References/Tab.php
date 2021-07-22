@@ -19,4 +19,9 @@ class Tab
     {
         return $this->performRequest('GET', '/mpf/tabs/'.$id);
     }
+
+    public function createTab($data)
+    {
+        return $this->performRequest('POST', '/mpf/tabs', $data);
+    }
 }
