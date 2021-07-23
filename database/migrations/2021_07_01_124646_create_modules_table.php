@@ -16,6 +16,7 @@ class CreateModulesTable extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('description');
             $table->foreignId('created_by')
                     ->nullable()
                     ->constrained('users');

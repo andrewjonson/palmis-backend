@@ -44,17 +44,17 @@ class TwoFactorAuthenticationController extends Controller
             $user = auth()->user();
             $otpEnabled = $this->userRepository->otpEnabled($user->id);
             if ($otpEnabled) {
-                return $this->failedResponse(trans('users.otp_already_enabled'), 403);
+                return $this->failedResponse(trans('users.otp_already_enabled'), FORBIDDEN);
             }
             
             if (Hash::check($request->password, $user->password)) {
                 $enable($user);
                 $this->resetLoginattempts($user);
-                return $this->successResponse(trans('users.2fa_enabled'), 200);
+                return $this->successResponse(trans('users.2fa_enabled'), DATA_OK);
             } 
             return $this->invalidPasswordResponse($user);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -69,9 +69,9 @@ class TwoFactorAuthenticationController extends Controller
     {
         try {
             $disable($request->user());
-            return $this->successResponse(trans('users.2fa_disabled'), 200);
+            return $this->successResponse(trans('users.2fa_disabled'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

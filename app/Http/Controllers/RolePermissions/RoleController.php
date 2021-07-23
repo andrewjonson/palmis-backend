@@ -33,7 +33,7 @@ class RoleController extends Controller
             $roles = $this->roleRepository->search($keyword, $rowsPerPage);
             return RoleResource::collection($roles);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -41,14 +41,15 @@ class RoleController extends Controller
     {
         try {
             $this->roleRepository->create($request->all());
-            return $this->successResponse(trans('roles.role_created'), 201);
+            return $this->successResponse(trans('roles.role_created'), DATA_CREATED);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function update(RoleRequest $request, $roleId)
     {
+        $roleId = hashid_decode($roleId);
         $role = $this->roleRepository->find($roleId);
         if (!$role) {
             throw new AuthorizationException;
@@ -56,14 +57,15 @@ class RoleController extends Controller
 
         try {
             $role->update($request->all());
-            return $this->successResponse(trans('roles.role_updated'), 200);
+            return $this->successResponse(trans('roles.role_updated'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function delete($roleId)
     {
+        $roleId = hashid_decode($roleId);
         $role = $this->roleRepository->find($roleId);
         if (!$role) {
             throw new AuthorizationException;
@@ -71,9 +73,9 @@ class RoleController extends Controller
 
         try {
             $role->delete();
-            return $this->successResponse(trans('roles.role_deleted'), 200);
+            return $this->successResponse(trans('roles.role_deleted'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -88,9 +90,9 @@ class RoleController extends Controller
             $role->syncPermissions($permissions);
             $user = auth()->user();
             $user->assignRole([$roleId]);
-            return $this->successResponse(trans('roles.permissions_assigned'), 200);
+            return $this->successResponse(trans('roles.permissions_assigned'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

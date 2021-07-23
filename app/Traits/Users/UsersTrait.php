@@ -17,7 +17,7 @@ trait UsersTrait
         return response()->json([
             'type' => 2,
             'message' => trans('users.incorrect_password_response', ['counter' => $counter])
-        ], 403);
+        ], FORBIDDEN);
     }
 
     public function invalidPinResponse($user) 
@@ -37,6 +37,6 @@ trait UsersTrait
         return response()->json([
             'type' => 2,
             'message' => trans('users.incorrect_pin', ['counter' => $counter])
-        ], 403);
+        ], FORBIDDEN);
     }
 }

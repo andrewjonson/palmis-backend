@@ -16,6 +16,6 @@ trait TwoFactorTrait
             'email' => $user->email,
             'message' => trans('auth.two_factor'),
             'auth_type' => 2
-        ], 200);
+        ], DATA_OK);
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 
 use Carbon\Carbon;
-use App\Models\Personnel;
 use App\Traits\Auth\OtpTrait;
 use App\Traits\ResponseTrait;
 use App\Traits\Auth\LoginTrait;
@@ -43,7 +42,7 @@ class LoginController extends Controller
             
             if ($user) {  
                 if ($user->deleted_at) {
-                    return $this->failedResponse(trans('auth.deleted'), 401);
+                    return $this->failedResponse(trans('auth.deleted'), UNAUTHORIZED_USER);
                 }
 
                 if ($this->unblockable($user)) {
@@ -58,7 +57,7 @@ class LoginController extends Controller
                             return $this->block($user);
                         }
                         $count = $maxLoginAttempts - $this->countLoginAttempts($user);
-                        return $this->captchaResponse(trans('auth.invalid_captcha', ['count' => $count]), 401);
+                        return $this->captchaResponse(trans('auth.invalid_captcha', ['count' => $count]), UNAUTHORIZED_USER);
                     }
                 }
 
@@ -72,9 +71,9 @@ class LoginController extends Controller
                     }
                     
                     if ($totalLoginAttempts >= $captchaLoginAttempts) {
-                        return $this->captchaResponse(trans('auth.invalid_password', ['count' => $count]), 401);
+                        return $this->captchaResponse(trans('auth.invalid_password', ['count' => $count]), UNAUTHORIZED_USER);
                     }
-                    return $this->failedResponse(trans('auth.invalid_password', ['count' => $count]), 401);
+                    return $this->failedResponse(trans('auth.invalid_password', ['count' => $count]), UNAUTHORIZED_USER);
                 }
 
                 if ($this->countLoginAttempts($user) >= $maxLoginAttempts) {
@@ -93,9 +92,9 @@ class LoginController extends Controller
                 
                 return $this->loginResponse($user);
             }
-            return $this->failedResponse(trans('auth.invalid_credentials'), 401);
+            return $this->failedResponse(trans('auth.invalid_credentials'), UNAUTHORIZED_USER);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

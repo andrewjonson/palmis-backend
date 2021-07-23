@@ -32,12 +32,12 @@ class InviteController extends Controller
         try {
             $user = $this->userRepository->getUserByEmail($request->email);
             if ($user) {
-                return $this->failedResponse(trans('users.user_already_registered'), 400);
+                return $this->failedResponse(trans('users.user_already_registered'), BAD_REQUEST);
             }
             event(new UserHasRegistered($this->inviteRepository->create($request->all()), $this->settingRepository->first()));
-            return $this->successResponse(trans('users.invited'), 200);
+            return $this->successResponse(trans('users.invited'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -47,7 +47,7 @@ class InviteController extends Controller
             $invites = $this->inviteRepository->paginate();
             return InviteResource::collection($invites);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

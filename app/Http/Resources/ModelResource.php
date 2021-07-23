@@ -16,7 +16,7 @@ class ModelResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id' => hashid_encode($this->id),
             'name' => $this->name,
             'permissions' => PermissionResource::collection($this->modelPermissions)
         ];

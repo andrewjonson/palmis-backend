@@ -15,7 +15,9 @@ class ModuleResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name
+            'id' => hashid_encode($this->id),
+            'name' => $this->name,
+            'description' => $this->description
         ];
     }
 }

@@ -38,7 +38,7 @@ class RecoveryCodeController extends Controller
     {
         if (! $request->user()->two_factor_secret ||
             ! $request->user()->two_factor_recovery_codes) {
-            return $this->failedResponse(trans('users.2fa_disabled'), 403);
+            return $this->failedResponse(trans('users.2fa_disabled'), FORBIDDEN);
         }
 
         if (Hash::check($request->password, $request->user()->password)) {
@@ -49,7 +49,7 @@ class RecoveryCodeController extends Controller
                 json_decode(decrypt(
                     $request->user()->two_factor_recovery_codes
                 ), true)
-            ], 200);
+            ], DATA_OK);
         }
 
         return $this->invalidPasswordResponse($request->user());
@@ -65,13 +65,13 @@ class RecoveryCodeController extends Controller
     public function store(ConfirmPasswordRequest $request, GenerateNewRecoveryCodes $generate)
     {
         if (! $request->user()->two_factor_secret) {
-            return $this->failedResponse(trans('users.2fa_disabled'), 403);
+            return $this->failedResponse(trans('users.2fa_disabled'), FORBIDDEN);
         }
 
         if (Hash::check($request->password, $request->user()->password)) {
             $generate($request->user());
             $this->resetLoginattempts($request->user());
-            return $this->successResponse(trans('users.regenerate_recovery_codes'), 200);
+            return $this->successResponse(trans('users.regenerate_recovery_codes'), DATA_OK);
         }
 
         return $this->invalidPasswordResponse($request->user());

@@ -28,7 +28,7 @@ class PermissionController extends Controller
             $permissions = $this->permissionRepository->search($keyword, $rowsPerPage);
             return PermissionResource::collection($permissions);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -36,14 +36,15 @@ class PermissionController extends Controller
     {
         try {
             $this->permissionRepository->create($request->all());
-            return $this->successResponse(trans('roles.permission_created'), 201);
+            return $this->successResponse(trans('roles.permission_created'), DATA_CREATED);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function update(PermissionRequest $request, $permissionId)
     {
+        $permissionId = hashid_decode($permissionId);
         $permission = $this->permissionRepository->find($permissionId);
         if (!$permission) {
             throw new AuthorizationException;
@@ -51,14 +52,15 @@ class PermissionController extends Controller
 
         try {
             $permission->update($request->all());
-            return $this->successResponse(trans('roles.permission_updated'), 200);
+            return $this->successResponse(trans('roles.permission_updated'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function delete($permissionId)
     {
+        $permissionId = hashid_decode($permissionId);
         $permission = $this->permissionRepository->find($permissionId);
         if (!$permission) {
             throw new AuthorizationException;
@@ -66,9 +68,9 @@ class PermissionController extends Controller
 
         try {
             $permission->delete();
-            return $this->successResponse(trans('roles.permission_deleted'), 200);
+            return $this->successResponse(trans('roles.permission_deleted'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

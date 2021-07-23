@@ -15,7 +15,7 @@ class LoginAttemptResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id' => hashid_encode($this->id),
             'email' => $this->email,
             'ip_address' => $this->ip_address,
             'created_at' => $this->created_at

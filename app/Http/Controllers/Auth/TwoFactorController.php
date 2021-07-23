@@ -49,7 +49,7 @@ class TwoFactorController extends Controller
 
             return $this->loginResponse($user);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 401);
+            return $this->failedResponse($e->getMessage(), UNAUTHORIZED_USER);
         }
     }
 }

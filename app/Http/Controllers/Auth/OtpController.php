@@ -52,7 +52,7 @@ class OtpController extends Controller
             }
             return $this->loginResponse($user);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -74,7 +74,7 @@ class OtpController extends Controller
                 'message' => trans('auth.resend_otp')
             ]);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -85,13 +85,13 @@ class OtpController extends Controller
             if ($user) {
                 if (!$user->two_factor_secret) {
                     $this->userRepository->enableOtp($request->user_id);
-                    return $this->successResponse(trans('auth.otp_enabled'), 200);
+                    return $this->successResponse(trans('auth.otp_enabled'), DATA_OK);
                 }
-                return $this->failedResponse(trans('users.2fa_already_enabled'), 403);
+                return $this->failedResponse(trans('users.2fa_already_enabled'), FORBIDDEN);
             }
             throw new AuthorizationException;
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -100,9 +100,9 @@ class OtpController extends Controller
         try {
             $user = auth()->user();
             $this->userRepository->disableOtp($request->user_id);
-            return $this->successResponse(trans('auth.otp_disabled'), 200);
+            return $this->successResponse(trans('auth.otp_disabled'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

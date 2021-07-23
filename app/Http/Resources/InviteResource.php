@@ -15,6 +15,7 @@ class InviteResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => hashid_encode($this->id),
             'email' => $this->email,
             'created_at' => $this->created_at
         ];

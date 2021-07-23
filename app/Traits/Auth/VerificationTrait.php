@@ -10,6 +10,6 @@ trait VerificationTrait
             'email' => $user->email,
             'email_verified_at' => null,
             'token' => sha1($user->email)
-        ], 200);
+        ], DATA_OK);
     }
 }

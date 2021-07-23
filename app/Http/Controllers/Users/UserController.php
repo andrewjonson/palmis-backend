@@ -53,7 +53,7 @@ class UserController extends Controller
             $users = $this->userRepository->search($keyword, $rowsPerPage);
             return UserResource::collection($users);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -63,22 +63,24 @@ class UserController extends Controller
             $user = auth()->user();
             return new UserResource($user);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function show($userId)
     {
         try {
+            $userId = hashid_decode($userId);
             $user = $this->userRepository->find($userId);
             return new UserResource($user);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function update(UserRequest $request, $userId)
     {
+        $userId = hashid_decode($userId);
         $currentUser = auth()->user();
         $user = $this->userRepository->find($userId);
         if (!$user) {
@@ -131,13 +133,14 @@ class UserController extends Controller
                 'data' => new UserResource($user)
             ]);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function assignSuperAdmin(Request $request, $userId)
     {
         try {
+            $userId = hashid_decode($userId);
             $user = $this->userRepository->find($userId);
             if (!$user) {
                 throw new AuthorizationException;
@@ -157,9 +160,9 @@ class UserController extends Controller
                     ]);
                 }
             }
-            return $this->successResponse(trans('users.assign_success'), 200);
+            return $this->successResponse(trans('users.assign_success'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -173,7 +176,7 @@ class UserController extends Controller
         $oldPasswords = $this->oldPasswordRepository->getOldPasswordsByUserId($user->id);
         for ($i = 0; $i < count($oldPasswords); $i++) {
             if (Hash::check($request->password, $oldPasswords->pluck('old_password')[$i])) {
-                return $this->failedResponse(trans('users.old_password'), 400);
+                return $this->failedResponse(trans('users.old_password'), BAD_REQUEST);
             }
         }
 
@@ -184,14 +187,15 @@ class UserController extends Controller
             event(new ResetPassword($user));
             $this->resetLoginAttempts($user);
             auth()->invalidate();
-            return $this->successResponse(trans('users.password_changed'), 200);
+            return $this->successResponse(trans('users.password_changed'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function softDelete($userId)
     {
+        $userId = hashid_decode($userId);
         $currentUser = auth()->user();
         $user = $this->userRepository->find($userId);
         if (!$user || $currentUser->id == $userId) {
@@ -206,9 +210,9 @@ class UserController extends Controller
 
         try {
             $user->delete();
-            return $this->successResponse(trans('users.soft_deleted'), 200);
+            return $this->successResponse(trans('users.soft_deleted'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -220,12 +224,13 @@ class UserController extends Controller
             $users = $this->userRepository->onlyTrashed($keyword, $rowsPerPage);
             return UserResource::collection($users);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function restore($userId)
     {
+        $userId = hashid_decode($userId);
         $user = $this->userRepository->onlyTrashedById($userId);
         if (!$user) {
             throw new AuthorizationException;
@@ -233,14 +238,15 @@ class UserController extends Controller
 
         try {
             $user->restore();
-            return $this->successResponse(trans('users.restored'), 200);
+            return $this->successResponse(trans('users.restored'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function forceDelete($userId)
     {
+        $userId = hashid_decode($userId);
         $user = $this->userRepository->onlyTrashedById($userId);
         if (!$user) {
             throw new AuthorizationException;
@@ -248,9 +254,9 @@ class UserController extends Controller
 
         try {
             $user->forceDelete();
-            return $this->successResponse(trans('users.force_deleted'), 200);
+            return $this->successResponse(trans('users.force_deleted'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 

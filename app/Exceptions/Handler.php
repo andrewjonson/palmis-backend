@@ -62,29 +62,29 @@ class Handler extends ExceptionHandler
             return response()->json([
                 'type' => 2,
                 'message' => 'This action is forbidden'
-            ], 403);
+            ], FORBIDDEN);
         } elseif ($exception instanceof NotFoundHttpException) {
             return response()->json([
                 'type' => 2,
                 'message' => 'Page not found'
-            ], 404);
+            ], HTTP_NOT_FOUND);
         } elseif ($exception instanceof MethodNotAllowedHttpException) {
             return response()->json([
                 'type' => 2,
                 'message' => 'Method not allowed'
-            ], 405);
+            ], METHOD_NOT_ALLOWED);
         } elseif ($exception instanceof AuthenticationException ||
                     $exception instanceof Illuminate\Validation\UnauthorizedException
         ) {
             return response()->json([
                 'type' => 2,
                 'message' => 'Unauthenticated'
-            ], 401);
+            ], UNAUTHORIZED_USER);
         } elseif ($exception instanceof BadRequestException) {
             return response()->json([
                 'type' => 2,
                 'message' => 'Bad Request'
-            ], 400);
+            ], BAD_REQUEST);
         }
 
         return parent::render($request, $exception);

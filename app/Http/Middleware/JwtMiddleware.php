@@ -33,13 +33,13 @@ class JwtMiddleware
                     'auth_status' => false
                 ]);
                 auth()->invalidate();
-                return $this->failedResponse('You have been deleted', 403);
+                return $this->failedResponse('You have been deleted', FORBIDDEN);
             }
         } catch (Exception $e) {
             return response()->json([
                 'type' => 2,
                 'message' => 'Unauthenticated'
-            ], 401);
+            ], UNAUTHORIZED_USER);
         }
 
         return $next($request);

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\RolePermissions;
 
-use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ModelResource;
@@ -48,9 +47,9 @@ class ModelController extends Controller
                 ]);
             }
 
-            return $this->successResponse(trans('roles.model_created'), 201);
+            return $this->successResponse(trans('roles.model_created'), DATA_CREATED);
         } catch (\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -60,7 +59,7 @@ class ModelController extends Controller
             $models = $this->modelRepository->getModelsWithoutModule();
             return ModelResource::collection($models);
         } catch (\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

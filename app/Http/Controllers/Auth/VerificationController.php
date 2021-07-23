@@ -56,18 +56,18 @@ class VerificationController extends Controller
                 'invited' => true,
                 'token' => $token,
                 'email' => $email
-            ], 200);
+            ], DATA_OK);
         }
 
         if ($user->email_verified_at) {
-            return $this->successResponse(trans('auth.verified'), 200);
+            return $this->successResponse(trans('auth.verified'), DATA_OK);
         }
 
         try {
             event(new Verified($user));
             return $this->loginResponse($user);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -85,18 +85,18 @@ class VerificationController extends Controller
         try {
             if ($user->email_verified_at == null) {
                 $user->notify(new EmailVerificationNotification($this->settingRepository->first()));
-                return $this->successResponse(trans('auth.email_verification_sent'), 200);
+                return $this->successResponse(trans('auth.email_verification_sent'), DATA_OK);
             }
-            return $this->successResponse(trans('auth.verified'), 200);
+            return $this->successResponse(trans('auth.verified'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function setupAccount(SetupAccountRequest $request)
     {
         if (! hash_equals((string) $request->token, sha1($request->email))) {
-            return $this->failedResponse(trans('auth.invalid_email'), 400);
+            return $this->failedResponse(trans('auth.invalid_email'), BAD_REQUEST);
         }
 
         try {
@@ -104,7 +104,7 @@ class VerificationController extends Controller
             $birthday = $request->birthday;
             $validateUser = $this->personnelRepository->validateAfpsnBirthday($afpsn, $birthday);
             if (!$validateUser) {
-                return $this->failedResponse(trans('auth.invalid_user'), 403);
+                return $this->failedResponse(trans('auth.invalid_user'), FORBIDDEN);
             }
 
             $request['password'] = Hash::make($request->password);
@@ -113,7 +113,7 @@ class VerificationController extends Controller
             event(new Verified($user));
             return $this->loginResponse($user);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

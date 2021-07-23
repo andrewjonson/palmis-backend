@@ -23,9 +23,9 @@ class ModuleController extends Controller
     {
         try {
             $this->moduleRepository->create($request->all());
-            return $this->successResponse(trans('teams.module_created'), 201);
+            return $this->successResponse(trans('teams.module_created'), DATA_CREATED);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -37,12 +37,13 @@ class ModuleController extends Controller
             $modules = $this->moduleRepository->search($keyword, $rowsPerPage);
             return ModuleResource::collection($modules);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function update(ModuleRequest $request, $moduleId)
     {
+        $moduleId = hashid_decode($moduleId);
         if (!$moduleId) {
             throw new AuthorizationException;
         }
@@ -50,13 +51,13 @@ class ModuleController extends Controller
         try {
             $module = $this->moduleRepository->find($moduleId);
             if (!$module) {
-                return $this->failedResponse(trans('teams.module_not_exist'), 400);
+                return $this->failedResponse(trans('teams.module_not_exist'), BAD_REQUEST);
             }
 
             $module->update($request->all());
-            return $this->successResponse(trans('teams.module_updated'), 200);
+            return $this->successResponse(trans('teams.module_updated'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

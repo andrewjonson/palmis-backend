@@ -37,14 +37,14 @@ class TwoFactorQrCodeController extends Controller
     public function show(ConfirmPasswordRequest $request)
     {
         if (! $request->user()->two_factor_secret) {
-            return $this->failedResponse(trans('users.2fa_disabled'), 403);
+            return $this->failedResponse(trans('users.2fa_disabled'), FORBIDDEN);
         }
         if (Hash::check($request->password, $request->user()->password)) {
             $this->resetLoginattempts($request->user());
             return response()->json([
                 'type' => 1,
                 'svg' => $request->user()->twoFactorQrCodeSvg()
-            ], 200);
+            ], DATA_OK);
         }
 
         return $this->invalidPasswordResponse($request->user());

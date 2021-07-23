@@ -41,7 +41,7 @@ class ResetPasswordController extends Controller
         try {
             $user = $this->userRepository->getUserByEmail($request->email);
             if (!$user) {
-                return $this->failedResponse(trans('auth.incorrect_email'), 400);
+                return $this->failedResponse(trans('auth.incorrect_email'), BAD_REQUEST);
             }
 
             event(new ResetPassword($user));
@@ -55,7 +55,7 @@ class ResetPasswordController extends Controller
                         ? $this->sendResetResponse($response)
                         : $this->sendResetFailedResponse($response);
         } catch(Exception $e) {
-            $this->failedResponse($e->getMessage(), 500);
+            $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -105,7 +105,7 @@ class ResetPasswordController extends Controller
         return response()->json([
             'type' => 1,
             'message' => trans($response)
-        ], 200);
+        ], DATA_OK);
     }
 
     protected function sendResetFailedResponse($response)
@@ -113,7 +113,7 @@ class ResetPasswordController extends Controller
         return response()->json([
             'type' => 2,
             'message' => trans($response)
-        ], 400);
+        ], BAD_REQUEST);
     }
 
     /**

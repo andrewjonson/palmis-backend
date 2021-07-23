@@ -27,7 +27,7 @@ class AnnouncementController extends Controller
             $announcements = $this->announcementRepository->search($keyword, $rowsPerPage);
             return AnnouncementResource::collection($announcements);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -35,14 +35,15 @@ class AnnouncementController extends Controller
     {
         try {
             $this->announcementRepository->create($request->all());
-            return $this->successResponse(trans('announcements.created'), 201);
+            return $this->successResponse(trans('announcements.created'), DATA_CREATED);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function update(AnnouncementRequest $request, $announcementId)
     {
+        $announcementId = hashid_decode($announcementId);
         $announcement = $this->announcementRepository->find($announcementId);
         if (!$announcement) {
             throw new AuthorizationException;
@@ -50,14 +51,15 @@ class AnnouncementController extends Controller
 
         try {
             $this->announcementRepository->update($request->all(), $announcementId);
-            return $this->successResponse(trans('announcements.updated'), 200);
+            return $this->successResponse(trans('announcements.updated'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function delete($announcementId)
     {
+        $announcementId = hashid_decode($announcementId);
         $announcement = $this->announcementRepository->find($announcementId);
         if (!$announcement) {
             throw new AuthorizationException;
@@ -65,9 +67,9 @@ class AnnouncementController extends Controller
 
         try {
             $announcement->delete();
-            return $this->successResponse(trans('announcements.deleted'), 200);
+            return $this->successResponse(trans('announcements.deleted'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -79,12 +81,13 @@ class AnnouncementController extends Controller
             $results = $this->announcementRepository->onlyTrashed($keyword, $rowsPerPage);
             return AnnouncementResource::collection($results);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function restore($announcementId)
     {
+        $announcementId = hashid_decode($announcementId);
         $data = $this->announcementRepository->onlyTrashedById($announcementId);
         if (!$data) {
             throw new AuthorizationException;
@@ -92,14 +95,15 @@ class AnnouncementController extends Controller
 
         try {
             $data->restore();
-            return $this->successResponse(trans('announcements.restored'), 200);
+            return $this->successResponse(trans('announcements.restored'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function forceDelete($announcementId)
     {
+        $announcementId = hashid_decode($announcementId);
         $data = $this->announcementRepository->onlyTrashedById($announcementId);
         if (!$data) {
             throw new AuthorizationException;
@@ -107,9 +111,9 @@ class AnnouncementController extends Controller
 
         try {
             $data->forceDelete();
-            return $this->successResponse(trans('announcements.force_deleted'), 200);
+            return $this->successResponse(trans('announcements.force_deleted'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

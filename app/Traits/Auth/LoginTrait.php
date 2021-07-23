@@ -24,7 +24,7 @@ trait LoginTrait
             'token' => $token,
             'message' => trans('auth.logged_in'),
             'auth_type' => $user->auth_status,
-        ], 200);
+        ], DATA_OK);
     }
 
     public function throttleLoginAttempts($user)
@@ -83,7 +83,7 @@ trait LoginTrait
         }
         
         $blockedTimeLimit = Carbon::now()->diffInSeconds($user->blocked_at);
-        return $this->failedResponse(trans('auth.blocked', ['blockedTimeLimit' => $blockedTimeLimit]), 401);
+        return $this->failedResponse(trans('auth.blocked', ['blockedTimeLimit' => $blockedTimeLimit]), UNAUTHORIZED_USER);
     }
 
     public function invalidCodeResponse($user) 
@@ -100,6 +100,6 @@ trait LoginTrait
         return response()->json([
             'type' => 2,
             'message' => trans('auth.incorrect_code', ['count' => $count])
-        ], 403);
+        ], FORBIDDEN);
     }
 }

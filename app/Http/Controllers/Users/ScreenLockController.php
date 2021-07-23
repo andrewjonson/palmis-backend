@@ -52,7 +52,7 @@ class ScreenLockController extends Controller
                 'screen_lock' => true
             ]);
         } catch (Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -74,7 +74,7 @@ class ScreenLockController extends Controller
                 'screen_lock' => false
             ]);
         } catch (Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

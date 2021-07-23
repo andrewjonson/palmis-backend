@@ -29,11 +29,11 @@ class ForgotPasswordController extends Controller
                                 ? $this->sendResetLinkResponse($response)
                                 : $this->sendResetLinkFailedResponse($response);
                 }
-                return $this->failedResponse(trans('auth.not_verified'), 400);
+                return $this->failedResponse(trans('auth.not_verified'), BAD_REQUEST);
             }
             return $this->sendResetLinkFailedResponse(trans('passwords.user'));
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -42,7 +42,7 @@ class ForgotPasswordController extends Controller
         return response()->json([
             'type' => 1,
             'message' => trans($response)
-        ], 200);
+        ], DATA_OK);
     }
 
     protected function sendResetLinkFailedResponse($response)
@@ -50,7 +50,7 @@ class ForgotPasswordController extends Controller
         return response()->json([
             'type' => 2,
             'message' => trans($response)
-        ], 400);
+        ], BAD_REQUEST);
     }
 
     public function broker()

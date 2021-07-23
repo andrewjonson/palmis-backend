@@ -77,6 +77,9 @@ $app->configure('queue');
 $app->configure('captcha');
 $app->configure('permission');
 $app->configure('services');
+$app->configure('hashid');
+
+require_once __DIR__. './constant.php';
 
 $app->alias('mailer', \Illuminate\Contracts\Mail\Mailer::class);
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
@@ -132,6 +135,7 @@ $app->register(App\Providers\EventServiceProvider::class);
 $app->register(App\Providers\CaptchaServiceProvider::class);
 $app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
 $app->register(App\Providers\PermissionServiceProvider::class);
+$app->register(ElfSundae\Laravel\Hashid\HashidServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

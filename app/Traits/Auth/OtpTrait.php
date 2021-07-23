@@ -28,7 +28,7 @@ trait OtpTrait
             'mobile_number' => $mobile_number,
             'message' => trans('auth.otp_auth_response'),
             'auth_type' => 1
-        ], 200);
+        ], DATA_OK);
     }
 
     protected function generateCode()

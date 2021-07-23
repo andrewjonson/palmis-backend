@@ -16,7 +16,7 @@ class TeamResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id' => hashid_encode($this->id),
             'name' => $this->name,
             'description' => DB::connection('pamis')->table('tr_unit')->where('UnitCode', $this->name)->first()->UnitDesc
         ];

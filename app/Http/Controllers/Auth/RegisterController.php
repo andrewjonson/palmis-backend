@@ -35,7 +35,7 @@ class RegisterController extends Controller
             $validateUser = $this->personnelRepository->validateAfpsnBirthday($afpsn, $birthday);
 
             if (!$validateUser) {
-                return $this->failedResponse(trans('auth.invalid_user'), 400);
+                return $this->failedResponse(trans('auth.invalid_user'), BAD_REQUEST);
             }
 
             $request['password'] = Hash::make($request->password);
@@ -51,7 +51,7 @@ class RegisterController extends Controller
                 'message' => trans('auth.registered')
             ], 201);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

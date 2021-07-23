@@ -17,16 +17,16 @@ class CaptchaController extends Controller
         try {
             return $captcha->create($config, true);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function reloadCaptcha()
     {
         try {
-            return $this->captchaResponse(trans('auth.reload_captcha'), 200);
+            return $this->captchaResponse(trans('auth.reload_captcha'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 }

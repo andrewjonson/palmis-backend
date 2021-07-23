@@ -10,6 +10,7 @@ use App\Http\Resources\UnitResource;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\TeamModules\TeamRequest;
 use Illuminate\Auth\Access\AuthorizationException;
+use App\Http\Requests\TeamModules\TeamAssignAllRequest;
 use App\Repositories\Interfaces\TeamRepositoryInterface;
 use App\Repositories\Interfaces\UnitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -40,7 +41,7 @@ class TeamController extends Controller
             $units = $this->unitRepository->searchUnit($keyword, $rowsPerPage);
             return UnitResource::collection($units);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -49,13 +50,13 @@ class TeamController extends Controller
         try {
             $unit = $this->unitRepository->getUnitByUnitCode($request->name);
             if (!$unit) {
-                return $this->failedResponse(trans('teams.invalid_unit'), 400);
+                return $this->failedResponse(trans('teams.invalid_unit'), BAD_REQUEST);
             }
 
             $this->teamRepository->create($request->all());
-            return $this->successResponse(trans('teams.team_created'), 201);
+            return $this->successResponse(trans('teams.team_created'), DATA_CREATED);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -67,12 +68,13 @@ class TeamController extends Controller
             $teams = $this->teamRepository->search($keyword, $rowsPerPage);
             return TeamResource::collection($teams);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function delete($teamId)
     {
+        $teamId = hashid_decode($teamId);
         $team = $this->teamRepository->find($teamId);
         if (!$teamId || !$team) {
             throw new AuthorizationException;
@@ -80,9 +82,9 @@ class TeamController extends Controller
 
         try {
             $team->delete();
-            return $this->successResponse(trans('teams.team_deleted'), 200);
+            return $this->successResponse(trans('teams.team_deleted'), DATA_OK);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -94,12 +96,13 @@ class TeamController extends Controller
             $results = $this->teamRepository->onlyTrashed($keyword, $rowsPerPage);
             return TeamResource::collection($results);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function restore($teamId)
     {
+        $teamId = hashid_decode($teamId);
         $data = $this->teamRepository->onlyTrashedById($teamId);
         if (!$data) {
             throw new AuthorizationException;
@@ -107,14 +110,15 @@ class TeamController extends Controller
 
         try {
             $data->restore();
-            return $this->successResponse(trans('teams.restored'), 200);
+            return $this->successResponse(trans('teams.restored'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function forceDelete($teamId)
     {
+        $teamId = hashid_decode($teamId);
         $data = $this->teamRepository->onlyTrashedById($teamId);
         if (!$data) {
             throw new AuthorizationException;
@@ -122,14 +126,15 @@ class TeamController extends Controller
 
         try {
             $data->forceDelete();
-            return $this->successResponse(trans('teams.force_deleted'), 200);
+            return $this->successResponse(trans('teams.force_deleted'), DATA_OK);
         } catch(\Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function assignUsers(Request $request, $teamId)
     {
+        $teamId = hashid_decode($teamId);
         if (!$teamId) {
             throw new AuthorizationException;
         }
@@ -140,16 +145,17 @@ class TeamController extends Controller
             $this->teamUserRepository->assignUsers($userId[$i], $teamId);
         }
 
-        return $this->successResponse(trans('teams.user_assigned'), 200);
+        return $this->successResponse(trans('teams.user_assigned'), DATA_OK);
     }
 
     public function usersWithTeam($teamId)
     {
         try {
+            $teamId = hashid_decode($teamId);
             $users = $this->userRepository->getUsersWithTeam($teamId);
             return UserResource::collection($users);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
@@ -159,7 +165,12 @@ class TeamController extends Controller
             $users = $this->userRepository->getUsersWithoutTeam();
             return UserResource::collection($users);
         } catch(Exception $e) {
-            return $this->failedResponse($e->getMessage(), 500);
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
+    }
+
+    public function assignAll(TeamAssignAllRequest $request, $userId)
+    {
+        
     }
 }
