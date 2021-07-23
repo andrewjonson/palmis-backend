@@ -9,5 +9,6 @@ return [
     'module_not_exist' => 'Module not exist',
     'module_updated' => 'Module Updated Successfully',
     'restored' => 'Team Restored Successfully',
-    'force_deleted' => 'Team Permanently Deleted Successfully'
+    'force_deleted' => 'Team Permanently Deleted Successfully',
+    'assigned_all' => 'User Assigned Successfully'
 ];

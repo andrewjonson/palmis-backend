@@ -15,6 +15,8 @@ use App\Repositories\Interfaces\TeamRepositoryInterface;
 use App\Repositories\Interfaces\UnitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\TeamUserRepositoryInterface;
+use App\Repositories\Interfaces\UserRoleRepositoryInterface;
+use App\Repositories\Interfaces\TeamModuleRepositoryInterface;
 
 class TeamController extends Controller
 {
@@ -24,13 +26,17 @@ class TeamController extends Controller
         TeamRepositoryInterface $teamRepository,
         UnitRepositoryInterface $unitRepository,
         UserRepositoryInterface $userRepository,
-        TeamUserRepositoryInterface $teamUserRepository
+        TeamUserRepositoryInterface $teamUserRepository,
+        TeamModuleRepositoryInterface $teamModuleRepository,
+        UserRoleRepositoryInterface $userRoleRepository
     )
     {
         $this->teamRepository = $teamRepository;
         $this->unitRepository = $unitRepository;
         $this->userRepository = $userRepository;
         $this->teamUserRepository = $teamUserRepository;
+        $this->teamModuleRepository = $teamModuleRepository;
+        $this->userRoleRepository = $userRoleRepository;
     }
 
     public function showUnits(Request $request)
@@ -140,7 +146,7 @@ class TeamController extends Controller
         }
 
         $userId = $this->userRepository->getUsersById($request->user_id);
-        $this->teamUserRepository->unAssignedUsers($userId, $teamId);
+        $this->teamUserRepository->unAssignUsers($userId, $teamId);
         for ($i = 0; $i < count($userId); $i++) {
             $this->teamUserRepository->assignUsers($userId[$i], $teamId);
         }
@@ -154,7 +160,7 @@ class TeamController extends Controller
             $teamId = hashid_decode($teamId);
             $users = $this->userRepository->getUsersWithTeam($teamId);
             return UserResource::collection($users);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -164,13 +170,35 @@ class TeamController extends Controller
         try {
             $users = $this->userRepository->getUsersWithoutTeam();
             return UserResource::collection($users);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
 
     public function assignAll(TeamAssignAllRequest $request, $userId)
     {
-        
+        try {
+            $userId = hashid_decode($userId);
+            $user = $this->userRepository->find($userId);
+            if (!$user) {
+                throw new AuthorizationException;
+            }
+            
+            $teamId = $request->team_id;
+            $moduleId = $request->module_id;
+            $roleId = $request->role_id;
+            $this->teamUserRepository->unAssignUser($userId, $teamId);
+            $this->teamModuleRepository->unAssignModules($moduleId, $teamId);
+            $this->userRoleRepository->unAssignRoles($roleId, $userId);
+            $this->teamUserRepository->assignUsers($userId, $teamId);
+            $this->userRepository->find($userId)->assignRole($roleId);
+            for ($i = 0; $i < count($moduleId); $i++) {
+                $this->teamModuleRepository->assignModules($moduleId[$i], $teamId);
+            }
+
+            return $this->successResponse(trans('teams.assigned_all'), DATA_OK);
+        } catch(\Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
     }
 }

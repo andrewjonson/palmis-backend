@@ -74,6 +74,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'super
     $router->post('/teams/assign-users/{teamId}', 'TeamModules\TeamController@assignUsers');
     $router->get('/teams/users-with-team/{teamId}', 'TeamModules\TeamController@usersWithTeam');
     $router->get('/teams/users-without-team', 'TeamModules\TeamController@usersWithoutTeam');
+    $router->post('/teams/assign-all/{userId}', 'TeamModules\TeamController@assignAll');
 
     //Modules
     $router->post('/modules', 'TeamModules\ModuleController@create');
