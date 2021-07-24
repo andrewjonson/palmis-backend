@@ -18,7 +18,8 @@ class TeamResource extends JsonResource
         return [
             'id' => hashid_encode($this->id),
             'name' => $this->name,
-            'description' => DB::connection('pamis')->table('tr_unit')->where('UnitCode', $this->name)->first()->UnitDesc
+            'description' => DB::connection('pamis')->table('tr_unit')->where('UnitCode', $this->name)->first()->UnitDesc,
+            'total_users' => count($this->users)
         ];
     }
 }

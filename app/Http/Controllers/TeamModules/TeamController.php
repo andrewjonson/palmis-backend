@@ -145,17 +145,22 @@ class TeamController extends Controller
         if (!$teamId) {
             throw new AuthorizationException;
         }
+        foreach($request->user_id as $userId) {
+            $userId = hashid_decode($userId);
+            $user[] = $this->userRepository->find($userId);
+        }
+        
+        if (empty($user)) {
+            $userId = [];
+        } else {
+            $userId = Arr::pluck($user, 'id');
+        }
+        $this->userRepository->unAssignTeams($userId, $teamId);
+        $this->userRepository->assignTeams($userId, $teamId);
+        return $this->successResponse(trans('teams.user_assigned'), DATA_OK);
 
         try {
-            foreach($request->user_id as $userId) {
-                $userId = hashid_decode($userId);
-                $user[] = $this->userRepository->find($userId);
-            }
             
-            $userId = Arr::pluck($user, 'id');
-            $this->userRepository->unAssignTeams($userId, $teamId);
-            $this->userRepository->assignTeams($userId, $teamId);
-            return $this->successResponse(trans('teams.user_assigned'), DATA_OK);
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\ModelResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ModuleResource extends JsonResource
@@ -17,7 +18,8 @@ class ModuleResource extends JsonResource
         return [
             'id' => hashid_encode($this->id),
             'name' => $this->name,
-            'description' => $this->description
+            'description' => $this->description,
+            'model' => count($this->models) > 0 ? ModelResource::collection($this->models) : null
         ];
     }
 }

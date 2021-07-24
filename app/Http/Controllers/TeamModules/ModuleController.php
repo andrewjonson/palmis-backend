@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\TeamModules;
 
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ModuleResource;
@@ -46,21 +47,22 @@ class ModuleController extends Controller
                     'name' => $model_permission['model']
                 ]);
 
-                foreach($model_permission['permissions'] as $permission) {
-                    $createdPermission = $this->permissionRepository->firstOrCreate([
-                        'name' => Str::lower($createdModel->name).'-'.$permission
-                    ]);
-                }
-
-                $this->moduleModelRepository->firstOrCreate([
+                $this->moduleModelRepository->create([
                     'module_id' => $createdModule->id,
                     'model_id' => $createdModel->id
                 ]);
 
-                $this->modelPermissionRepository->firstOrCreate([
-                    'model_id' => $createdModel->id,
-                    'permission_id' => $createdPermission->id
-                ]);
+                foreach($model_permission['permissions'] as $permission) {
+                    $model = preg_replace("/[\s_-]+/", "", $createdModel->name);
+                    $createdPermission = $this->permissionRepository->firstOrCreate([
+                        'name' => Str::lower($model).'-'.$permission
+                    ]);
+
+                    $this->modelPermissionRepository->create([
+                        'model_id' => $createdModel->id,
+                        'permission_id' => $createdPermission->id
+                    ]);
+                }
             }
 
             return $this->successResponse(trans('teams.module_created'), DATA_CREATED);

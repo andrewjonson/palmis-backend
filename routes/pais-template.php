@@ -94,10 +94,6 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'super
     $router->put('/permissions/{permissionId}', 'RolePermissions\PermissionController@update');
     $router->delete('/permissions/{permissionId}', 'RolePermissions\PermissionController@delete');
 
-    //Models
-    $router->post('/models', 'RolePermissions\ModelController@create');
-    $router->get('/models', 'RolePermissions\ModelController@showModels');
-
     //Units
     $router->get('/units/unit-by-code', 'Units\UnitController@getUnitByUnitCode');
     $router->get('/units', 'Units\UnitController@searchUnit');
