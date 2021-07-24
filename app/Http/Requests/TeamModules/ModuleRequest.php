@@ -25,12 +25,14 @@ class ModuleRequest extends FormRequest
     {
         if ($this->id) {
             return [
-                'name' => 'required|alpha|string|unique:modules,name,'.$this->id
+                'name' => 'required|alpha|string|unique:modules,name,'.$this->id,
+                'description' => 'required'
             ];
         }
 
         return [
-            'name' => 'required|alpha|string|unique:modules'
+            'name' => 'required|alpha|string|unique:modules',
+            'description' => 'required'
         ];
     }
 }

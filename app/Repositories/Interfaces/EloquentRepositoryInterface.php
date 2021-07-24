@@ -20,6 +20,8 @@ interface EloquentRepositoryInterface
 
     public function find($id);
 
+    public function firstOrCreate(array $data);
+
     public function paginate();
 
     public function delete($id);

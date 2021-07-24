@@ -54,6 +54,11 @@ class BaseRepository implements EloquentRepositoryInterface
         return $this->model->find($id);
     }
 
+    public function firstOrCreate(array $data)
+    {
+        return $this->model->firstOrCreate($data);
+    }
+
     public function paginate()
     {
         return $this->model->orderBy('id', 'desc')->paginate(10);

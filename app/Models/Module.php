@@ -9,5 +9,5 @@ class Module extends Model
 {
     use Userstamps;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description'];
 }
