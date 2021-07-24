@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/Resource.php';
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'prefix' => '/api/'.config('app.version').'/mpf'], function() use($router) {
+$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modular:mpf'], 'prefix' => '/api/'.config('app.version').'/mpf'], function() use($router) {
     resource('/groups', 'MpfService\References\GroupController', $router);
     resource('/main-categories', 'MpfService\References\MainCategoryController', $router);
     resource('/sub-categories', 'MpfService\References\SubCategoryController', $router);

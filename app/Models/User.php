@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Team;
 use App\Models\TeamUser;
 use App\Models\Personnel;
 use Wildside\Userstamps\Userstamps;
@@ -49,6 +50,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'screen_lock',
         'pin',
         'is_superadmin',
+        'team_id',
+        'modules',
         'auth_type',
         'created_by',
         'two_factor_secret',
@@ -89,14 +92,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->belongsTo(Personnel::class, 'afpsn', 'afpsn');
     }
 
-    public function teamUsers()
+    public function team()
     {
-        return $this->hasMany(TeamUser::class);
-    }
-
-    public function teamUser()
-    {
-        return $this->hasOne(TeamUser::class)
-                    ->join('teams', 'teams.id', '=', 'team_users.team_id');
+        return $this->belongsTo(Team::class);
     }
 }

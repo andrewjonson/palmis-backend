@@ -60,6 +60,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'pref
     $router->delete('/users/force-delete/{userId}', 'Users\UserController@forceDelete');
     $router->get('/users/login-attempts', 'Users\UserController@showLoginAttempts');
     $router->put('/users/assign-superadmin/{userId}', 'Users\UserController@assignSuperAdmin');
+    $router->get('/users/account-type/{userId}', 'Users\UserController@accountType');
 });
 
 $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'superadmin'], 'prefix' => 'api'], function() use($router) {
@@ -75,6 +76,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'super
     $router->get('/teams/users-with-team/{teamId}', 'TeamModules\TeamController@usersWithTeam');
     $router->get('/teams/users-without-team', 'TeamModules\TeamController@usersWithoutTeam');
     $router->post('/teams/assign-all/{userId}', 'TeamModules\TeamController@assignAll');
+    $router->put('/teams/unassign-user/{userId}', 'TeamModules\TeamController@unAssignUser');
 
     //Modules
     $router->post('/modules', 'TeamModules\ModuleController@create');

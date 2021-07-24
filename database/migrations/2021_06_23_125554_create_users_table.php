@@ -20,6 +20,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_superadmin')->default(0);
+            $table->foreignId('team_id')
+                    ->nullable()
+                    ->constrained();
+            $table->string('modules')->nullable();
             $table->boolean('otp_auth')->default(0);
             $table->integer('otp_code')->nullable();
             $table->datetime('otp_expire_at')->nullable();

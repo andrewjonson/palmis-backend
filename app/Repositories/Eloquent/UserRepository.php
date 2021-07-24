@@ -40,18 +40,77 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function getUsersWithTeam($teamId)
     {
-        return $this->model->whereHas('teamUsers', function($query) use($teamId) {
-            $query->where('team_id', $teamId);
-        })->get();
+        return $this->model->where('team_id', $teamId)->get();
     }
 
     public function getUsersWithoutTeam()
     {
-        return $this->model->doesntHave('teamUsers')->get();
+        return $this->model->whereNull('team_id')->get();
     }
 
     public function getUsersById(array $userId)
     {
         return $this->model->whereIn('id', $userId)->pluck('id')->toArray();
+    }
+
+    public function unAssignTeams(array $userId, $teamId)
+    {
+        $this->model
+            ->whereNotIn('id', $userId)
+            ->where('team_id', $teamId)
+            ->orWhereIn('id', $userId)
+            ->update([
+                'team_id' => null
+            ]);
+    }
+
+    public function unAssignTeam($userId, $teamId)
+    {
+        $this->model
+            ->where('id', '!=', $userId)
+            ->where('team_id', $teamId)
+            ->orWhere('id', '!=', $userId)
+            ->update([
+                'team_id' => null
+            ]);
+    }
+
+    public function assignTeams(array $userId, $teamId)
+    {
+        $this->model->whereIn('id', $userId)->update([
+            'team_id' => $teamId
+        ]);
+    }
+
+    public function assignTeam($userId, $teamId)
+    {
+        $this->model->where('id', $userId)->update([
+            'team_id' => $teamId
+        ]);
+    }
+
+    public function unAssignModules($moduleId, $teamId)
+    {
+        $this->model
+            ->whereNotIn('modules', $moduleId)
+            ->where('team_id', $teamId)
+            ->orWhereIn('modules', $moduleId)
+            ->update([
+                'modules' => null
+            ]);
+    }
+
+    public function assignModules($moduleId, $userId)
+    {
+        $this->model->where('id', $userId)->update([
+            'modules' => $moduleId
+        ]);
+    }
+
+    public function unAssignUser($userId)
+    {
+        $this->model->where('id', $userId)->update([
+            'team_id' => null
+        ]);
     }
 }

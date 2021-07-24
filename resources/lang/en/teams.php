@@ -10,5 +10,6 @@ return [
     'module_updated' => 'Module Updated Successfully',
     'restored' => 'Team Restored Successfully',
     'force_deleted' => 'Team Permanently Deleted Successfully',
-    'assigned_all' => 'User Assigned Successfully'
+    'assigned_all' => 'User Assigned Successfully',
+    'unassigned_user' => 'User Unassigned Successfully'
 ];

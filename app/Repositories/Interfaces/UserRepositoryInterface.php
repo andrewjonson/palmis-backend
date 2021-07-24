@@ -17,4 +17,16 @@ interface UserRepositoryInterface
     public function getUsersWithoutTeam();
 
     public function getUsersById(array $userId);
+
+    public function unAssignTeams(array $userId, $teamId);
+
+    public function assignTeams(array $userId, $teamId);
+
+    public function assignTeam($userId, $teamId);
+
+    public function unAssignTeam($userId, $teamId);
+
+    public function assignModules(array $moduleId, $userId);
+
+    public function unAssignUser($userId);
 }

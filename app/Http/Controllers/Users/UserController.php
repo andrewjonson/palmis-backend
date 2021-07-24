@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Users;
 
-use Exception;
 use Illuminate\Http\Request;
 use App\Events\ResetPassword;
 use App\Traits\ResponseTrait;
@@ -13,12 +12,14 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use App\Http\Requests\Users\UserRequest;
+use App\Http\Resources\AccountTypeResource;
 use App\Http\Resources\LoginAttemptResource;
 use App\Http\Requests\Users\ChangePasswordRequest;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Notifications\EmailVerificationNotification;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\InviteRepositoryInterface;
+use App\Repositories\Interfaces\ModuleRepositoryInterface;
 use App\Repositories\Interfaces\SettingRepositoryInterface;
 use App\Repositories\Interfaces\PersonnelRepositoryInterface;
 use App\Repositories\Interfaces\OldPasswordRepositoryInterface;
@@ -34,7 +35,8 @@ class UserController extends Controller
         SettingRepositoryInterface $settingRepository,
         PersonnelRepositoryInterface $personnelRepository,
         LoginAttemptRepositoryInterface $loginAttemptRepository,
-        OldPasswordRepositoryInterface $oldPasswordRepository
+        OldPasswordRepositoryInterface $oldPasswordRepository,
+        ModuleRepositoryInterface $moduleRepository
     )
     {
         $this->userRepository = $userRepository;
@@ -43,6 +45,7 @@ class UserController extends Controller
         $this->personnelRepository = $personnelRepository;
         $this->loginAttemptRepository = $loginAttemptRepository;
         $this->oldPasswordRepository = $oldPasswordRepository;
+        $this->moduleRepository = $moduleRepository;
     }
 
     public function index(Request $request)
@@ -52,7 +55,7 @@ class UserController extends Controller
             $rowsPerPage = $request->rowsPerPage;
             $users = $this->userRepository->search($keyword, $rowsPerPage);
             return UserResource::collection($users);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -62,7 +65,7 @@ class UserController extends Controller
         try {
             $user = auth()->user();
             return new UserResource($user);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -73,7 +76,7 @@ class UserController extends Controller
             $userId = hashid_decode($userId);
             $user = $this->userRepository->find($userId);
             return new UserResource($user);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -132,7 +135,7 @@ class UserController extends Controller
                 'message' => trans('users.user_updated'),
                 'data' => new UserResource($user)
             ]);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -161,7 +164,7 @@ class UserController extends Controller
                 }
             }
             return $this->successResponse(trans('users.assign_success'), DATA_OK);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -188,7 +191,7 @@ class UserController extends Controller
             $this->resetLoginAttempts($user);
             auth()->invalidate();
             return $this->successResponse(trans('users.password_changed'), DATA_OK);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -211,7 +214,7 @@ class UserController extends Controller
         try {
             $user->delete();
             return $this->successResponse(trans('users.soft_deleted'), DATA_OK);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -223,7 +226,7 @@ class UserController extends Controller
             $rowsPerPage = $request->rowsPerPage;
             $users = $this->userRepository->onlyTrashed($keyword, $rowsPerPage);
             return UserResource::collection($users);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -239,7 +242,7 @@ class UserController extends Controller
         try {
             $user->restore();
             return $this->successResponse(trans('users.restored'), DATA_OK);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -255,7 +258,7 @@ class UserController extends Controller
         try {
             $user->forceDelete();
             return $this->successResponse(trans('users.force_deleted'), DATA_OK);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
@@ -264,7 +267,25 @@ class UserController extends Controller
     {
         $keyword = $request->keyword;
         $rowsPerPage = $request->rowsPerPage;
-        $loginAttempts = $this->loginAttemptRepository->search($keyword, $rowsPerPage);
-        return LoginAttemptResource::collection($loginAttempts);
+        try {
+            $loginAttempts = $this->loginAttemptRepository->search($keyword, $rowsPerPage);
+            return LoginAttemptResource::collection($loginAttempts);
+        } catch(\Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
+    }
+
+    public function accountType($userId)
+    {
+        $userId = hashid_decode($userId);
+        $user = $this->userRepository->find($userId);
+        if (!$user) {
+            throw new AuthorizationException;
+        }
+        try {
+            return new AccountTypeResource($user, $this->moduleRepository);
+        } catch(\Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
     }
 }

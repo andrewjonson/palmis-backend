@@ -110,6 +110,7 @@ $app->routeMiddleware([
     'screenLockDisabled' => App\Http\Middleware\ScreenLockDisabledMiddleware::class,
     'permission' => App\Http\Middleware\PermissionMiddleware::class,
     'role' => App\Http\Middleware\RoleMiddleware::class,
+    'modular' => App\Http\Middleware\ModularMiddleware::class,
 ]);
 
 /*
