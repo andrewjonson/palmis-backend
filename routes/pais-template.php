@@ -82,6 +82,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'super
     $router->post('/modules', 'TeamModules\ModuleController@create');
     $router->put('/modules/{moduleId}', 'TeamModules\ModuleController@update');
     $router->get('/modules', 'TeamModules\ModuleController@showModules');
+    $router->get('/modules/{moduleId}', 'TeamModules\ModuleController@showModule');
+    $router->get('/modules/model-permissions/permissions', 'TeamModules\ModuleController@showModuleModelPermissions');
 
     //Roles and Permissions
     $router->get('/roles', 'RolePermissions\RoleController@showRoles');

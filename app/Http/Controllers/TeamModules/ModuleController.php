@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ModuleResource;
 use App\Http\Requests\TeamModules\ModuleRequest;
 use Illuminate\Auth\Access\AuthorizationException;
+use App\Http\Resources\ModuleModelPermissionResource;
 use App\Repositories\Interfaces\ModelRepositoryInterface;
 use App\Repositories\Interfaces\ModuleRepositoryInterface;
 use App\Repositories\Interfaces\PermissionRepositoryInterface;
@@ -83,6 +84,21 @@ class ModuleController extends Controller
         }
     }
 
+    public function showModule(Request $request, $moduleId)
+    {
+        $moduleId = hashid_decode($moduleId);
+        $module = $this->moduleRepository->find($moduleId);
+        if (!$module) {
+            throw new AuthorizationException;
+        }
+
+        try {
+            return new ModuleResource($module);
+        } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
+    }
+
     public function update(ModuleRequest $request, $moduleId)
     {
         $moduleId = hashid_decode($moduleId);
@@ -98,6 +114,16 @@ class ModuleController extends Controller
 
             $module->update($request->all());
             return $this->successResponse(trans('teams.module_updated'), DATA_OK);
+        } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
+    }
+
+    public function showModuleModelPermissions()
+    {
+        try {
+            $modules = $this->moduleRepository->getModulesWithModel();
+            return ModuleModelPermissionResource::collection($modules);
         } catch(Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }

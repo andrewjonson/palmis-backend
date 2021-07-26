@@ -10,9 +10,9 @@ class Model extends Models
 {
     protected $fillable = ['name'];
 
-    public function hahaha()
+    public function modelPermissions()
     {
-        return $this->hasMany(ModelPermission::class, 'model_id', 'id');
+        return $this->hasMany(ModelPermission::class);
     }
 
     public function moduleModels()

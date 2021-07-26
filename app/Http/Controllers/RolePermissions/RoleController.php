@@ -10,6 +10,7 @@ use App\Http\Requests\RolePermissions\RoleRequest;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Repositories\Interfaces\RoleRepositoryInterface;
 use App\Repositories\Interfaces\PermissionRepositoryInterface;
+use App\Repositories\Interfaces\RolePermissionRepositoryInterface;
 
 class RoleController extends Controller
 {
@@ -17,11 +18,13 @@ class RoleController extends Controller
 
     public function __construct(
         RoleRepositoryInterface $roleRepository,
-        PermissionRepositoryInterface $permissionRepository
+        PermissionRepositoryInterface $permissionRepository,
+        RolePermissionRepositoryInterface $rolePermissionRepository
     )
     {
         $this->roleRepository = $roleRepository;
         $this->permissionRepository = $permissionRepository;
+        $this->rolePermissionRepository = $rolePermissionRepository;
     }
 
     public function showRoles(Request $request)
@@ -40,7 +43,17 @@ class RoleController extends Controller
     public function create(RoleRequest $request)
     {
         try {
-            $this->roleRepository->create($request->all());
+            $role = $this->roleRepository->create([
+                'name' => $request->name
+            ]);
+
+            foreach ($request->permission_id as $permission_id) {
+                $permission_id = hashid_decode($permission_id);
+                $this->rolePermissionRepository->firstOrCreate([
+                    'permission_id' => $permission_id,
+                    'role_id' => $role->id
+                ]);
+            }
             return $this->successResponse(trans('roles.role_created'), DATA_CREATED);
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
@@ -83,7 +96,6 @@ class RoleController extends Controller
     {
         $roleId = $request->role_id;
         $permissions = $request->permissions;
-
         try {
             $role = $this->roleRepository->find($roleId);
             $permissions = $this->permissionRepository->getPermissionsById($permissions);

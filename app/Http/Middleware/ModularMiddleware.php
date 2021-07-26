@@ -28,12 +28,14 @@ class ModularMiddleware
             throw new AuthenticationException;
         }
         
-        if ($user->modules) {
-            $modules = unserialize($user->modules);
-            $userModule = $this->moduleRepository->getModulesById($modules)->pluck('name')->toArray();
-            for($i = 0; $i < count($userModule); $i++) {
-                if ($userModule[$i] != $module) {
-                    throw new AuthorizationException;
+        if (!$user->is_superadmin) {
+            if ($user->modules) {
+                $modules = unserialize($user->modules);
+                $userModule = $this->moduleRepository->getModulesById($modules)->pluck('name')->toArray();
+                for($i = 0; $i < count($userModule); $i++) {
+                    if ($userModule[$i] != $module) {
+                        throw new AuthorizationException;
+                    }
                 }
             }
         }

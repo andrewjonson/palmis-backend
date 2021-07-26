@@ -16,4 +16,9 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
     {
         return $this->model->whereIn('id', $moduleId)->get();
     }
+
+    public function getModulesWithModel()
+    {
+        return $this->model->has('models')->get();
+    }
 }
