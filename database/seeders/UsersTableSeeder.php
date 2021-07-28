@@ -63,7 +63,7 @@ class UsersTableSeeder extends Seeder
         ];
 
         foreach($emails as $key => $email) {
-            $this->userRepository->updateOrcreate([
+            $this->userRepository->firstOrCreate([
                 'afpsn' => $afpsn[$key],
                 'email' => $email,
                 'is_superadmin' => true,

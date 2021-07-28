@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
-use Symfony\Component\Console\Input\InputOption;
 
 class ApiServicePermissionSeederMakeCommand extends GeneratorCommand
 {
@@ -13,14 +12,14 @@ class ApiServicePermissionSeederMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:api-service-permission-seeder';
+    protected $name = 'make:api-service-permission-seed';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new seeder';
+    protected $description = 'Create a new permissions seeder';
 
     /**
      * The type of class being generated.
@@ -39,12 +38,6 @@ class ApiServicePermissionSeederMakeCommand extends GeneratorCommand
         if (parent::handle() === false) {
             return false;
         }
-
-        if ($this->option('references')) {
-            $this->createReferenceController();
-        } else {
-            $this->createController();
-        }
     }
 
     /**
@@ -54,44 +47,21 @@ class ApiServicePermissionSeederMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        $stub = '../../stubs/api-service.stub';
-        if ($this->option('references')) {
-            $stub = '../../stubs/api-service-reference.stub';
-        }
+        $stub = '../../stubs/api-service-permission-seeder.stub';
 
         return __DIR__ . $stub;
     }
 
     /**
-     * Get the default namespace for the class.
+     * Get the destination class path.
      *
-     * @param string $rootNamespace
-     *
+     * @param  string  $name
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace)
+    protected function getPath($name)
     {
-        return $rootNamespace.'\\Services\\ApiService\\'.config('app.version');
-    }
-
-    protected function createReferenceController()
-    {
-        $controller = Str::studly($this->argument('name'));
-        $modelName = $this->qualifyClass($this->getNameInput());
-
-        $this->call('make:api-service-controller', array_filter([
-            'name'  => "{$controller}Controller",
-            '--references' => $modelName
-        ]));
-    }
-
-    protected function createController()
-    {
-        $controller = Str::studly($this->argument('name'));
-
-        $this->call('make:api-service-controller', array_filter([
-            'name'  => "{$controller}Controller"
-        ]));
+        $modelClass = Str::replaceArray('App', [''], $this->argument('name'));
+        return $this->laravel->basePath('database').'/seeders/ApiService/'.config('app.version').'/'.$modelClass.'.php';
     }
 
     /**
@@ -106,7 +76,7 @@ class ApiServicePermissionSeederMakeCommand extends GeneratorCommand
     {
         $replace = [];
 
-        $replace = $this->buildApiServiceReplacements($replace);
+        $replace = $this->buildReplacements($replace);
 
         return str_replace(
             array_keys($replace), array_values($replace), parent::buildClass($name)
@@ -119,28 +89,19 @@ class ApiServicePermissionSeederMakeCommand extends GeneratorCommand
      * @param  array  $replace
      * @return array
      */
-    protected function buildApiServiceReplacements(array $replace)
+    protected function buildReplacements(array $replace)
     {
         $name = Str::replaceArray('/', ['\\'], $this->argument('name'));
-        $module = Str::replaceArray('Service\\References/'.class_basename($name), [''], $name);
+        $seeder = Str::replaceArray('/'.class_basename($name), [''], $name);
+        $baseName = Str::replaceArray('PermissionsTableSeeder', [''], class_basename($name));
+        $moduleName = Str::replaceArray('Service\\References/'.class_basename($name), [''], $name);
 
         return array_merge($replace, [
-            'DummyModuleLowerClass' => Str::lower($module),
             'DummyAppVersion' => config('app.version'),
-            'DummyModulePluralClass' => Str::plural(Str::lower(class_basename($name)))
+            'DummySeederNamespace' => $seeder,
+            'DummyNameLower' => Str::lower($baseName),
+            'DummyNameStudly' => Str::studly($baseName),
+            'DummyModuleLowerClass' => Str::lower($moduleName)
         ]);
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['controller', null, InputOption::VALUE_NONE, 'Generate an api service controller'],
-            ['references', 'r', InputOption::VALUE_NONE, 'Create a plain api service class'],
-        ];
     }
 }

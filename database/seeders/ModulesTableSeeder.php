@@ -36,7 +36,7 @@ class ModulesTableSeeder extends Seeder
         ];
 
         foreach($names as $key => $name) {
-            $this->moduleRepository->updateOrcreate([
+            $this->moduleRepository->firstOrCreate([
                 'name' => $name,
                 'description' => $descriptions[$key],
                 'created_by' => 1,

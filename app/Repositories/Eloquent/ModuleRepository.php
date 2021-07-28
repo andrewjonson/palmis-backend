@@ -21,4 +21,9 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
     {
         return $this->model->has('models')->get();
     }
+
+    public function getModuleByName($moduleName)
+    {
+        return $this->model->where('name', $moduleName)->first();
+    }
 }

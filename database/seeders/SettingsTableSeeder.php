@@ -19,7 +19,7 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->settingRepository->updateOrCreate([
+        $this->settingRepository->firstOrCreate([
             'project_label' => 'PAHRMIS',
             'project_description' => 'Philippine Army Human Resource Management Information System',
             'frontend_domain' => 'http://127.0.0.1',

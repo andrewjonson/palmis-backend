@@ -19,7 +19,7 @@ class TeamsTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->teamRepository->create([
+        $this->teamRepository->firstOrCreate([
             'name' => 'NETB',
             'created_by' => 1,
             'updated_by' => 1

@@ -26,7 +26,7 @@ class RolesTableSeeder extends Seeder
         ];
 
         foreach($roles as $role) {
-            $this->roleRepository->updateOrCreate([
+            $this->roleRepository->firstOrCreate([
                 'name' => $role,
                 'guard_name' => 'api'
             ]);

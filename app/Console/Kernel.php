@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'App\Console\Commands\ApiServiceMakeCommand',
-        'App\Console\Commands\ApiServiceControllerMakeCommand'
+        'App\Console\Commands\ApiServiceControllerMakeCommand',
+        'App\Console\Commands\ApiServicePermissionSeederMakeCommand'
     ];
 
     /**

@@ -45,6 +45,7 @@ class ApiServiceMakeCommand extends GeneratorCommand
         } else {
             $this->createController();
         }
+        $this->createPermissionSeeder();
     }
 
     /**
@@ -91,6 +92,15 @@ class ApiServiceMakeCommand extends GeneratorCommand
 
         $this->call('make:api-service-controller', array_filter([
             'name'  => "{$controller}Controller"
+        ]));
+    }
+
+    protected function createPermissionSeeder()
+    {
+        $seeder = Str::studly($this->argument('name'));
+
+        $this->call('make:api-service-permission-seed', array_filter([
+            'name'  => "{$seeder}PermissionsTableSeeder"
         ]));
     }
 
