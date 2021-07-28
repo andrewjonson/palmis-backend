@@ -11,5 +11,8 @@ return [
     'restored' => 'Team Restored Successfully',
     'force_deleted' => 'Team Permanently Deleted Successfully',
     'assigned_all' => 'User Assigned Successfully',
-    'unassigned_user' => 'User Unassigned Successfully'
+    'unassigned_user' => 'User Unassigned Successfully',
+    'module_deleted' => 'Module Deleted Successfully',
+    'module_restored' => 'Module Restored Successfully',
+    'module_permanently_deleted' => 'Module Permanently Deleted Successfully'
 ];

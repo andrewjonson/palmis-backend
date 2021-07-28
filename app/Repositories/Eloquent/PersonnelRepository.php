@@ -21,4 +21,9 @@ class PersonnelRepository extends BaseRepository implements PersonnelRepositoryI
     {
         return $this->model->where('afpsn', $afpsn)->first();
     }
+
+    public function searchPersonnelByAfpsn($afpsn, $rowsPerPage)
+    {
+        return $this->model->where('afpsn', 'like', $afpsn.'%')->paginate($rowsPerPage);
+    }
 }

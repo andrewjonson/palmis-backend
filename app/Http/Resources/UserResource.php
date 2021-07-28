@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\TeamResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -23,7 +24,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'is_superadmin' => $this->is_superadmin,
             'role' => count($this->roles) == 0 ? null : $this->roles->pluck('name')->first(),
-            'team' => $this->team_id ? $this->team->name : null,
+            'team' => $this->team_id ? new TeamResource($this->team) : null,
             'status' => $this->auth_status ? 'Online' : 'Offline',
             'email_verified_at' => $this->email_verified_at,
             'screen_lock' => $this->screen_lock,

@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Models\ModuleModel;
 use Wildside\Userstamps\Userstamps;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Module extends Model
 {
     use Userstamps;
+    use SoftDeletes;
 
     protected $fillable = ['name', 'description'];
 

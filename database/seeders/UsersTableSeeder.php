@@ -69,6 +69,7 @@ class UsersTableSeeder extends Seeder
                 'is_superadmin' => true,
                 'password' => Hash::make('pahrmis_2020'),
                 'email_verified_at' => '2021-07-19',
+                'team_id' => 1,
                 'created_by' => 1,
                 'updated_by' => 1
             ]);

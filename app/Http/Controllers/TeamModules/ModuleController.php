@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ModuleResource;
 use App\Http\Requests\TeamModules\ModuleRequest;
 use Illuminate\Auth\Access\AuthorizationException;
-use App\Http\Resources\ModuleModelPermissionResource;
 use App\Repositories\Interfaces\ModelRepositoryInterface;
 use App\Repositories\Interfaces\ModuleRepositoryInterface;
 use App\Repositories\Interfaces\PermissionRepositoryInterface;
@@ -119,11 +118,71 @@ class ModuleController extends Controller
         }
     }
 
-    public function showModuleModelPermissions()
+    public function getModulesWithModel()
     {
         try {
             $modules = $this->moduleRepository->getModulesWithModel();
-            return ModuleModelPermissionResource::collection($modules);
+            return ModuleResource::collection($modules);
+        } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
+    }
+
+    public function delete($moduleId)
+    {
+        $moduleId = hashid_decode($moduleId);
+        $module = $this->moduleRepository->find($moduleId);
+        if (!$module) {
+            throw new AuthorizationException;
+        }
+
+        try {
+            $module->delete();
+            return $this->successResponse(trans('teams.module_deleted'), DATA_OK);
+        } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
+    }
+
+    public function restore($moduleId)
+    {
+        $moduleId = hashid_decode($moduleId);
+        $module = $this->moduleRepository->onlyTrashedById($moduleId);
+        if (!$module) {
+            throw new AuthorizationException;
+        }
+
+        try {
+            $module->restore();
+            return $this->successResponse(trans('teams.module_restored'), DATA_OK);
+        } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
+    }
+
+    public function onlyTrashed(Request $request)
+    {
+        $keyword = $request->keyword;
+        $rowsPerPage = $request->rowsPerPage;
+        try {
+            $modules = $this->moduleRepository->onlyTrashed($keyword, $rowsPerPage);
+            return ModuleResource::collection($modules);
+        } catch(Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
+    }
+
+    public function forceDelete($moduleId)
+    {
+        $moduleId = hashid_decode($moduleId);
+        $module = $this->moduleRepository->onlyTrashedById($moduleId);
+        if (!$module) {
+            throw new AuthorizationException;
+        }
+
+        try {
+            $module->forceDelete();
+            return $this->successResponse(trans('teams.module_permanently_deleted'), DATA_OK);
         } catch(Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
