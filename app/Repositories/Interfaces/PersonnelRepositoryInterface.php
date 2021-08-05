@@ -9,4 +9,6 @@ interface PersonnelRepositoryInterface
     public function validateAfpsn($afpsn);
 
     public function searchPersonnelByAfpsn($afpsn, $rowsPerPage);
+
+    public function getPersonnelByPmcode($pmcode);
 }

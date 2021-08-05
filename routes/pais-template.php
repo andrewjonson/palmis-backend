@@ -64,6 +64,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'pref
     
     //Personnels
     $router->get('/personnels', 'Personnels\PersonnelController@searchPersonnelByAfpsn');
+    $router->get('/personnels/pmcode/{pmcode}', 'Personnels\PersonnelController@getPersonnelByPmcode');
 });
 
 $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'superadmin'], 'prefix' => 'api'], function() use($router) {

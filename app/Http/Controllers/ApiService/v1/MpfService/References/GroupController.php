@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ApiService\v1\MpfService\References;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
 use App\Traits\RestfulApiServiceControllerTrait;
@@ -37,5 +38,10 @@ class GroupController extends Controller
             ]
         ]);
         $this->apiService = $apiService;
+    }
+
+    public function index(Request $request)
+    {
+        return $this->apiService->index($request->all());
     }
 }

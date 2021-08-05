@@ -16,7 +16,7 @@ class PersonnelResource extends JsonResource
     {
         return [
             'afpsn' => $this->afpsn,
-            'pm_code' => $this->PMCode,
+            'pmcode' => $this->PMCode,
             'first_name' => $this->firstname,
             'middle_name' => $this->middlename,
             'middle_initials' => $this->middleinitials,

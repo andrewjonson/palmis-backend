@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use Database\Seeders\ApiService\v1\MpfService\References\TabPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\GroupPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\MpfPermissionsTableSeeder;
@@ -24,10 +25,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(SettingsTableSeeder::class);
+        $this->call(TeamsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(ModulesTableSeeder::class);
         $this->call(RolesTableSeeder::class);
-        $this->call(TeamsTableSeeder::class);
 
         //Mpis
         $this->call(PersonnelPermissionsTableSeeder::class);

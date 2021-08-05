@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PersonnelResource;
+use Illuminate\Auth\Access\AuthorizationException;
 use App\Repositories\Interfaces\PersonnelRepositoryInterface;
 
 class PersonnelController extends Controller
@@ -28,6 +29,24 @@ class PersonnelController extends Controller
 
             $personnels = $this->personnelRepository->searchPersonnelByAfpsn($afpsn, $rowsPerPage);
             return PersonnelResource::collection($personnels);
+        } catch(\Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
+    }
+
+    public function getPersonnelByPmcode(Request $request, $pmcode)
+    {
+        try {
+            if (!$pmcode) {
+                return $this->failedResponse(trans('personnels.pmcode'), VALIDATION_EXCEPTION);
+            }
+
+            $personnel = $this->personnelRepository->getPersonnelByPmcode($pmcode);
+            if ($personnel) {
+                return new PersonnelResource($personnel);
+            }
+            
+            throw new AuthorizationException;
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
