@@ -132,7 +132,7 @@ class ApiServiceMakeCommand extends GeneratorCommand
     protected function buildApiServiceReplacements(array $replace)
     {
         $name = Str::replaceArray('/', ['\\'], $this->argument('name'));
-        $module = Str::replaceArray('Service\\References/'.class_basename($name), [''], $name);
+        $module = Str::replaceArray('Service/'.class_basename($name), [''], $name);
 
         return array_merge($replace, [
             'DummyModuleLowerClass' => Str::lower($module),

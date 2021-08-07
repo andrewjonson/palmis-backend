@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ApiService\v1\MpisService\Transactions;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
 use App\Traits\RestfulApiServiceControllerTrait;
@@ -37,5 +38,20 @@ class PersonnelController extends Controller
             ]
         ]);
         $this->apiService = $apiService;
+    }
+
+    public function searchPersonnel(Request $request)
+    {
+        return $this->apiService->searchPersonnel($request->all());
+    }
+
+    public function getPersonnelById($id)
+    {
+        return $this->apiService->getPersonnelById($id);
+    }
+
+    public function advanceSearchPersonnel(Request $request)
+    {
+        return $this->apiService->advanceSearchPersonnel($request->all());
     }
 }

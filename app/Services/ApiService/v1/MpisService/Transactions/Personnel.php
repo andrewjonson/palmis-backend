@@ -49,4 +49,19 @@ class Personnel
     {
         return $this->performRequest('DELETE', '/mpis/personnels/force-delete/'.$id);
     }
+
+    public function searchPersonnel($data)
+    {
+        return $this->performRequest('POST', '/mpis/personnel-search', $data);
+    }
+
+    public function getPersonnelById($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-personnel/'.$id);
+    }
+
+    public function advanceSearchPersonnel($data)
+    {
+        return $this->performRequest('POST', '/mpis/search-info', $data);
+    }
 }
