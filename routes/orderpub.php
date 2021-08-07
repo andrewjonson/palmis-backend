@@ -6,4 +6,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/categories', 'OrderPubService\References\CategoryController', $router);
     resource('/templates', 'OrderPubService\References\TemplateController', $router);
     resource('/types', 'OrderPubService\References\TypeController', $router);
+    resource('/appurtenances', 'OrderPubService\References\AppurtenanceController', $router);
+    resource('/awards', 'OrderPubService\References\AwardController', $router);
+    resource('/awards/type', 'OrderPubService\References\AwardTypeController', $router);
 });

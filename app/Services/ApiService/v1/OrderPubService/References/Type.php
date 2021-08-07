@@ -17,36 +17,36 @@ class Type
 
     public function index($data)
     {
-        return $this->performRequest('GET', '/api/v1/orderpub/types', $data);
+        return $this->performRequest('GET', '/orderpub/types', $data);
     }
 
     public function store($data)
     {
-        return $this->performRequest('POST', '/api/v1/orderpub/types', $data);
+        return $this->performRequest('POST', '/orderpub/types', $data);
     }
 
     public function update($data, $id)
     {
-        return $this->performRequest('PUT', '/api/v1/orderpub/types/'.$id, $data);
+        return $this->performRequest('PUT', '/orderpub/types/'.$id, $data);
     }
 
     public function delete($id)
     {
-        return $this->performRequest('DELETE', '/api/v1/orderpub/types/'.$id);
+        return $this->performRequest('DELETE', '/orderpub/types/'.$id);
     }
 
     public function onlyTrashed($data)
     {
-        return $this->performRequest('GET', '/api/v1/orderpub/types/only-trashed', $data);
+        return $this->performRequest('GET', '/orderpub/types/only-trashed', $data);
     }
 
     public function restore($id)
     {
-        return $this->performRequest('PUT', '/api/v1/orderpub/types/restore/'.$id);
+        return $this->performRequest('PUT', '/orderpub/types/restore/'.$id);
     }
 
     public function forceDelete($id)
     {
-        return $this->performRequest('DELETE', '/api/v1/orderpub/types/force-delete/'.$id);
+        return $this->performRequest('DELETE', '/orderpub/types/force-delete/'.$id);
     }
 }

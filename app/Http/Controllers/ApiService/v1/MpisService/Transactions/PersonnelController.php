@@ -17,7 +17,10 @@ class PersonnelController extends Controller
         $this->middleware('permission:personnel-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchPersonnel',
+                'getPersonnelById',
+                'advanceSearchPersonnel'
             ]
         ]);
         $this->middleware('permission:personnel-create|admin', [
