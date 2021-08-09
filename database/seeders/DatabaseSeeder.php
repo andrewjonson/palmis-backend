@@ -13,6 +13,7 @@ use Database\Seeders\ApiService\v1\MpfService\References\SubCategoryPermissionsT
 use Database\Seeders\ApiService\v1\MpfService\References\MainCategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TemplatePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\OrderPubService\References\ModelListPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -46,5 +47,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryPermissionsTableSeeder::class);
         $this->call(TemplatePermissionsTableSeeder::class);
         $this->call(TypePermissionsTableSeeder::class);
+        $this->call(ModelListPermissionsTableSeeder::class);
     }
 }

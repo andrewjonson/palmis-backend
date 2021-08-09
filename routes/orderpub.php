@@ -9,4 +9,6 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/appurtenances', 'OrderPubService\References\AppurtenanceController', $router);
     resource('/awards', 'OrderPubService\References\AwardController', $router);
     resource('/awards/type', 'OrderPubService\References\AwardTypeController', $router);
+    $router->get('/models', 'ApiService\v1\MpisService\Transactions\ModelListController@index');
+    $router->get('/models/type/{id}', 'ApiService\v1\MpisService\Transactions\ModelListController@getModelbyType');
 });
