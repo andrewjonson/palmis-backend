@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\ApiService\v1\OrderPubService\References;
 
 use App\Http\Controllers\Controller;
+use App\Traits\ConsumeExternalService;
+use App\Traits\RestfulApiServiceControllerTrait;
 use App\Services\ApiService\v1\OrderPubService\References\ModelList;
 
 class ModelListController extends Controller
