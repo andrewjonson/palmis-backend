@@ -22,14 +22,14 @@ class ModelListController extends Controller
         $this->apiService = $apiService;
     }
 
-    public function index($data)
+    public function index(Request $request)
     {
-        return $this->apiService->index($data);
+        return $this->apiService->index($request->all());
     }
 
     public function getModelbyType($typeId)
     {
-        return $this->apiService->getModelbyType($tabId);
+        return $this->apiService->getModelbyType($typeId);
     }
 
 }
