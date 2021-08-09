@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ApiService\v1\OrderPubService\References;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
 use App\Traits\RestfulApiServiceControllerTrait;
@@ -27,9 +28,9 @@ class ModelListController extends Controller
         return $this->apiService->index($request->all());
     }
 
-    public function getModelbyType($typeId)
+    public function getModelbyType($id)
     {
-        return $this->apiService->getModelbyType($typeId);
+        return $this->apiService->getModelbyType($id);
     }
 
 }
