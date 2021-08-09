@@ -20,7 +20,11 @@ class PersonnelController extends Controller
                 'onlyTrashed',
                 'searchPersonnel',
                 'getPersonnelById',
-                'advanceSearchPersonnel'
+                'advanceSearchPersonnel',
+                'getPersonnelByPmcode',
+                'uploadPersonnelImage',
+                'searchPersonnelBySerialNumberBirthdate',
+                'searchPersonnelBySerial'
             ]
         ]);
         $this->middleware('permission:personnel-create|admin', [
@@ -56,5 +60,25 @@ class PersonnelController extends Controller
     public function advanceSearchPersonnel(Request $request)
     {
         return $this->apiService->advanceSearchPersonnel($request->all());
+    }
+
+    public function getPersonnelByPmcode($id)
+    {
+        return $this->apiService->getPersonnelByPmcode($id);
+    }
+
+    public function uploadPersonnelImage(Request $request)
+    {
+        return $this->apiService->uploadPersonnelImage($request->all());
+    }
+
+    public function searchPersonnelBySerialNumberBirthdate(Request $request)
+    {
+        return $this->apiService->searchPersonnelBySerialNumberBirthdate($request->all());
+    }
+
+    public function searchPersonnelBySerial(Request $request)
+    {
+        return $this->apiService->searchPersonnelBySerial($request->all());
     }
 }

@@ -57,11 +57,32 @@ class Personnel
 
     public function getPersonnelById($id)
     {
-        return $this->performRequest('GET', '/mpis/show-personnel/'.$id);
+        return $this->performRequest('GET', '/mpis/personnels/show-personnel/'.$id);
     }
 
     public function advanceSearchPersonnel($data)
     {
         return $this->performRequest('POST', '/mpis/search-info', $data);
     }
+
+    public function getPersonnelByPmcode($pmcode)
+    {
+        return $this->performRequest('GET', '/mpis/show-pmcode/'.$pmcode);
+    }
+
+    public function uploadPersonnelImage($data)
+    {
+        return $this->performRequest('POST', '/mpis/upload-image', $data);
+    }
+
+    public function searchPersonnelBySerialNumberBirthdate($data)
+    {
+        return $this->performRequest('POST', '/mpis/search-serial-birth', $data);
+    }
+
+    public function searchPersonnelBySerial($serial)
+    {
+        return $this->performRequest('POST', '/mpis/search-serial', $serial);
+    }
+
 }
