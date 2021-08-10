@@ -57,7 +57,7 @@ class Personnel
 
     public function getPersonnelById($id)
     {
-        return $this->performRequest('GET', '/mpis/personnels/show-personnel/'.$id);
+        return $this->performRequest('GET', '/mpis/show-personnel/'.$id);
     }
 
     public function advanceSearchPersonnel($data)
