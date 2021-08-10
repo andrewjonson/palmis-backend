@@ -81,4 +81,9 @@ class PersonnelController extends Controller
     {
         return $this->apiService->searchPersonnelBySerial($request->all());
     }
+
+    public function createPersonnel(Request $request)
+    {
+        return $this->apiService->createPersonnel($request->all());
+    }
 }

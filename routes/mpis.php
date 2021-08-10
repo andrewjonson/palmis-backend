@@ -11,5 +11,6 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->post('upload-image', 'ApiService\v1\MpisService\Transactions\PersonnelController@uploadPersonnelImage');
     $router->post('search-serial-birth', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerialNumberBirthdate');
     $router->post('search-serial', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerial');
+    $router->post('create-personnel', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnel');
 
 });
