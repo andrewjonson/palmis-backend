@@ -7,13 +7,27 @@ use Database\Seeders\ApiService\v1\MpfService\References\TabPermissionsTableSeed
 use Database\Seeders\ApiService\v1\MpfService\References\GroupPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\MpfPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\SubPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\BuiltPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\CoursePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\EthnicPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\SchoolPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\BdaSizePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\BarangayPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\EyeColorPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\HairTypePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\MuniCityPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\ProvincePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\ReligionPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TypePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\HairColorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\SubCategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\MainCategoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\CitizenshipPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TemplatePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\ModelListPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\EducationLevelPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -33,7 +47,20 @@ class DatabaseSeeder extends Seeder
 
         //Mpis
         $this->call(PersonnelPermissionsTableSeeder::class);
-
+        $this->call(BarangayPermissionsTableSeeder::class);
+        $this->call(BdaSizePermissionsTableSeeder::class);
+        $this->call(BuiltPermissionsTableSeeder::class);
+        $this->call(CitizenshipPermissionsTableSeeder::class);
+        $this->call(MuniCityPermissionsTableSeeder::class);
+        $this->call(CoursePermissionsTableSeeder::class);
+        $this->call(EducationLevelPermissionsTableSeeder::class);
+        $this->call(EthnicPermissionsTableSeeder::class);
+        $this->call(EyeColorPermissionsTableSeeder::class);
+        $this->call(HairColorPermissionsTableSeeder::class);
+        $this->call(HairTypePermissionsTableSeeder::class);
+        $this->call(ProvincePermissionsTableSeeder::class);
+        $this->call(ReligionPermissionsTableSeeder::class);
+        $this->call(SchoolPermissionsTableSeeder::class);
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
         $this->call(MainCategoryPermissionsTableSeeder::class);

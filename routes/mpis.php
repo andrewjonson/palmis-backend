@@ -4,6 +4,20 @@ require_once __DIR__ . '/Resource.php';
 
 $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modular:mpis'], 'prefix' => '/api/'.config('app.version').'/mpis'], function() use($router) {
     resource('/personnels', 'MpisService\Transactions\PersonnelController', $router);
+    resource('/barangay', 'MpisService\References\BarangayController', $router);
+    resource('/bda-size', 'MpisService\References\BdaSizeController', $router);
+    resource('/built', 'MpisService\References\BuiltController', $router);
+    resource('/citizenship', 'MpisService\References\CitizenshipController', $router);
+    resource('/municity', 'MpisService\References\MuniCityController', $router);
+    resource('/course', 'MpisService\References\CourseController', $router);
+    resource('/education-level', 'MpisService\References\EducationLevelController', $router);
+    resource('/ethnic', 'MpisService\References\EthnicController', $router);
+    resource('/eye-color', 'MpisService\References\EyeColorController', $router);
+    resource('/hair-color', 'MpisService\References\HairColorController', $router);
+    resource('/hair-type', 'MpisService\References\HairTypeController', $router);
+    resource('/province', 'MpisService\References\ProvinceController', $router);
+    resource('/religion', 'MpisService\References\ReligionController', $router);
+    resource('/school', 'MpisService\References\SchoolController', $router);
     $router->post('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
     $router->get('show-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelById');
     $router->post('search-info', 'ApiService\v1\MpisService\Transactions\PersonnelController@advanceSearchPersonnel');
@@ -12,5 +26,4 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->post('search-serial-birth', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerialNumberBirthdate');
     $router->post('search-serial', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerial');
     $router->post('create-personnel', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnel');
-
 });

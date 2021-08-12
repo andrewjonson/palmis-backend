@@ -89,6 +89,4 @@ class Personnel
     {
         return $this->performRequest('POST', '/mpis/create-personnel', $serial);
     }
-
-
 }
