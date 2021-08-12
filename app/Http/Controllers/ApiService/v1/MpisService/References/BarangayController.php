@@ -16,7 +16,8 @@ class BarangayController extends Controller
         $this->middleware('permission:barangay-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getBarangay'
             ]
         ]);
         $this->middleware('permission:barangay-create|admin', [
@@ -73,4 +74,10 @@ class BarangayController extends Controller
     {
         return $this->apiService->forceDelete($id);
     }
+
+    public function getBarangay(Request $request)
+    {
+        return $this->apiService->getBarangay($request->all());
+    }
+
 }

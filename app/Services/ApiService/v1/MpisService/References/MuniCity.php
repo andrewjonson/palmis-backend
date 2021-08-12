@@ -49,4 +49,10 @@ class MuniCity
     {
         return $this->performRequest('DELETE', '/mpis/municity/force-delete/'.$id);
     }
+
+    public function getMunicity($data)
+    {
+        return $this->performRequest('GET', '/mpis/get-municity', $data);
+    }
+
 }

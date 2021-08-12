@@ -49,4 +49,9 @@ class Barangay
     {
         return $this->performRequest('DELETE', '/mpis/barangay/force-delete/'.$id);
     }
+
+    public function getBarangay($data)
+    {
+        return $this->performRequest('GET', '/mpis/get-barangay', $data);
+    }
 }

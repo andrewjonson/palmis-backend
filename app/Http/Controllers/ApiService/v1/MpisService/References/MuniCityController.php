@@ -16,7 +16,8 @@ class MuniCityController extends Controller
         $this->middleware('permission:municity-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getMunicity'
             ]
         ]);
         $this->middleware('permission:municity-create|admin', [
@@ -72,5 +73,10 @@ class MuniCityController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getMunicity(Request $request)
+    {
+        return $this->apiService->getMunicity($request->all());
     }
 }
