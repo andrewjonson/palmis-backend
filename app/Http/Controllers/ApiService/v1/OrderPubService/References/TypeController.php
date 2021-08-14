@@ -16,7 +16,10 @@ class TypeController extends Controller
         $this->middleware('permission:type-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getTypeByCategory',
+                'getTypeById'
+
             ]
         ]);
         $this->middleware('permission:type-create|admin', [
@@ -37,5 +40,15 @@ class TypeController extends Controller
             ]
         ]);
         $this->apiService = $apiService;
+    }
+
+    public function getTypeByCategory($id)
+    {
+        return $this->apiService->getTypeByCategory($id);
+    }
+
+    public function getTypeById($id)
+    {
+        return $this->apiService->getTypeById($id);
     }
 }

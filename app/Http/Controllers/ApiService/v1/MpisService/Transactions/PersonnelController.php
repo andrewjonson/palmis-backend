@@ -69,7 +69,9 @@ class PersonnelController extends Controller
 
     public function uploadPersonnelImage(Request $request)
     {
-        return $this->apiService->uploadPersonnelImage($request->all());
+        $image = $request->image->getClientOriginalName();
+        $personnelImage = array_merge($request->all(),['image' => $image]);
+        return $this->apiService->uploadPersonnelImage($personnelImage);
     }
 
     public function searchPersonnelBySerialNumberBirthdate(Request $request)

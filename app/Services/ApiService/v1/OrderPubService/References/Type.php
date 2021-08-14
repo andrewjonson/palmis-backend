@@ -49,4 +49,14 @@ class Type
     {
         return $this->performRequest('DELETE', '/orderpub/types/force-delete/'.$id);
     }
+
+    public function getTypeByCategory($id)
+    {
+        return $this->performRequest('GET', '/orderpub/types/category/'.$id);
+    }
+
+    public function getTypeById($id)
+    {
+        return $this->performRequest('GET', '/orderpub/types/model/'.$id);
+    }
 }
