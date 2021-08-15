@@ -15,7 +15,7 @@ class DocumentSettingController extends Controller
     {
         $this->middleware('permission:documentsetting-read|admin', [
             'only' => [
-                'getDocumentSettingById',
+                'getDocumentSetting',
             ]
         ]);
         $this->middleware('permission:documentsetting-create|admin', [
@@ -32,9 +32,9 @@ class DocumentSettingController extends Controller
         $this->apiService = $apiService;
     }
 
-    public function getDocumentSettingById($id)
+    public function getDocumentSetting()
     {
-        return $this->apiService->getDocumentSettingById($id);
+        return $this->apiService->getDocumentSetting();
     }
 
     public function updateDocumentSetting(Request $request, $id)

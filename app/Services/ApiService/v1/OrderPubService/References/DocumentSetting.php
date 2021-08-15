@@ -15,9 +15,9 @@ class DocumentSetting
         $this->baseUri = config('services.orderpub_base_uri');
     }
 
-    public function getDocumentSettingById($id)
+    public function getDocumentSetting()
     {
-        return $this->performRequest('GET', '/orderpub/document-setting/'.$id);
+        return $this->performRequest('GET', '/orderpub/document-setting');
     }
 
     public function updateDocumentSetting($data,$id)

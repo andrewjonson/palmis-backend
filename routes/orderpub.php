@@ -13,7 +13,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/awards/type', 'OrderPubService\References\AwardTypeController', $router);
     $router->get('/models', 'ApiService\v1\OrderPubService\References\ModelListController@index');
     $router->get('/models/type/{id}', 'ApiService\v1\OrderPubService\References\ModelListController@getModelbyType');
-    $router->get('/document-setting/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingController@getDocumentSettingById');
+    $router->get('/document-setting', 'ApiService\v1\OrderPubService\References\DocumentSettingController@getDocumentSetting');
     $router->post('/update-document-setting/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingController@updatetDocumentSetting');
     $router->post('/document-setting', 'ApiService\v1\OrderPubService\References\DocumentSettingController@storeDocumentSetting');
 
