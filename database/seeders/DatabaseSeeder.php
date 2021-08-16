@@ -66,6 +66,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SchoolPermissionsTableSeeder::class);
         $this->call(PersonnelTypePermissionsTableSeeder::class);
         $this->call(BranchOfServicePermissionsTableSeeder::class);
+        $this->call(RankStatusPermissionsTableSeeder::class);
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
         $this->call(MainCategoryPermissionsTableSeeder::class);
