@@ -21,6 +21,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/personnel-type', 'MpisService\References\PersonnelTypeController', $router);
     resource('/branch-of-service', 'MpisService\References\BranchOfServiceController', $router);
     resource('/rank-status', 'MpisService\References\RankStausController', $router);
+    resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
 
     $router->get('get-municity', 'ApiService\v1\MpisService\References\MuniCityController@getMunicity');
     $router->get('get-barangay', 'ApiService\v1\MpisService\References\BarangayController@getBarangay');
