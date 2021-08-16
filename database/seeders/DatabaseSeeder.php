@@ -26,6 +26,7 @@ use Database\Seeders\ApiService\v1\MpfService\References\MainCategoryPermissions
 use Database\Seeders\ApiService\v1\MpisService\References\CitizenshipPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TemplatePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\PersonnelTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\ModelListPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\EducationLevelPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
@@ -62,6 +63,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvincePermissionsTableSeeder::class);
         $this->call(ReligionPermissionsTableSeeder::class);
         $this->call(SchoolPermissionsTableSeeder::class);
+        $this->call(PersonnelTypePermissionsTableSeeder::class);
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
         $this->call(MainCategoryPermissionsTableSeeder::class);

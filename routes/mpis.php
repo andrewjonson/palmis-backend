@@ -18,6 +18,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/province', 'MpisService\References\ProvinceController', $router);
     resource('/religion', 'MpisService\References\ReligionController', $router);
     resource('/school', 'MpisService\References\SchoolController', $router);
+    resource('/personnel-type', 'MpisService\References\PersonnelTypeController', $router);
     $router->get('get-municity', 'ApiService\v1\MpisService\References\MuniCityController@getMunicity');
     $router->get('get-barangay', 'ApiService\v1\MpisService\References\BarangayController@getBarangay');
     $router->post('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
