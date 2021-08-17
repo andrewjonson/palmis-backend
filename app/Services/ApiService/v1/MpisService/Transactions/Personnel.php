@@ -89,4 +89,30 @@ class Personnel
     {
         return $this->performRequest('POST', '/mpis/create-personnel', $serial);
     }
+
+    public function createPersonnelRank($data)
+    {
+        return $this->performRequest('POST', '/mpis/create-personnel-rank', $data);
+    }
+
+    public function createPersonnelUnit($data)
+    {
+        return $this->performRequest('POST', '/mpis/create-personnel-unit', $data);
+    }
+
+    public function createPersonnelAddress($data)
+    {
+        return $this->performRequest('POST', '/mpis/store-address', $data);
+    }
+
+    public function getPersonnelAddress($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-address/'.$id);
+    }
+
+    public function updatePersonnelAddress($data, $id)
+    {
+        return $this->performRequest('PUT', '/mpis/update-address/'.$id, $data);
+    }
+
 }

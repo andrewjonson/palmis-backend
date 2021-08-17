@@ -88,4 +88,24 @@ class PersonnelController extends Controller
     {
         return $this->apiService->createPersonnel($request->all());
     }
+
+    public function createPersonnelRank(Request $request)
+    {
+        return $this->apiService->createPersonnelRank($request->all());
+    }
+
+    public function createPersonnelUnit(Request $request)
+    {
+        return $this->apiService->createPersonnelRank($request->all());
+    }
+
+    public function createPersonnelAddress(Request $request)
+    {
+        return $this->apiService->createPersonnelAddress($request->all());
+    }
+
+    public function updatePersonnelAddress(Request $request, $id)
+    {
+        return $this->apiService->updatePersonnelAddress($request->all(), $id);
+    }
 }

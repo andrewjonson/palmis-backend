@@ -49,4 +49,9 @@ class Province
     {
         return $this->performRequest('DELETE', '/mpis/province/force-delete/'.$id);
     }
+
+    public function getProvince($data)
+    {
+        return $this->performRequest('GET', '/mpis/get-province', $data);
+    }
 }

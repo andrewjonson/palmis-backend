@@ -15,6 +15,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/eye-color', 'MpisService\References\EyeColorController', $router);
     resource('/hair-color', 'MpisService\References\HairColorController', $router);
     resource('/hair-type', 'MpisService\References\HairTypeController', $router);
+    resource('/region', 'MpisService\References\RegionController', $router);
     resource('/province', 'MpisService\References\ProvinceController', $router);
     resource('/religion', 'MpisService\References\ReligionController', $router);
     resource('/school', 'MpisService\References\SchoolController', $router);
@@ -24,8 +25,17 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/rank-category', 'MpisService\References\RankCategoryController', $router);
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
 
+    $router->post('show-education/{id}', 'ApiService\v1\MpisService\Transactions\EducationalBackgroundController@getPersonnelEducationBackground');
+    $router->get('store-education', 'ApiService\v1\MpisService\References\EducationalBackgroundController@createPersonnelEducationBackground');
+    $router->put('update-education/{id}', 'ApiService\v1\MpisService\References\EducationalBackgroundController@updatePersonnelEducationBackground');
+    $router->get('get-province', 'ApiService\v1\MpisService\References\ProvinceController@getProvince');
     $router->get('get-municity', 'ApiService\v1\MpisService\References\MuniCityController@getMunicity');
     $router->get('get-barangay', 'ApiService\v1\MpisService\References\BarangayController@getBarangay');
+    $router->post('create-personnel-rank', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelRank');
+    $router->post('create-personnel-unit', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelUnit');
+    $router->post('store-address', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelAddress');
+    $router->get('show-address/{id}', 'ApiService\v1\MpisService\References\BarangayController@getPersonnelAddress');
+    $router->put('update-address/{id}', 'ApiService\v1\MpisService\References\BarangayController@updatePersonnelAddress');
     $router->post('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
     $router->get('show-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelById');
     $router->post('search-info', 'ApiService\v1\MpisService\Transactions\PersonnelController@advanceSearchPersonnel');

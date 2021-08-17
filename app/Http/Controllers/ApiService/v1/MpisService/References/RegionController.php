@@ -5,33 +5,32 @@ namespace App\Http\Controllers\ApiService\v1\MpisService\References;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Services\ApiService\v1\MpisService\References\Province;
+use App\Services\ApiService\v1\MpisService\References\Region;
 
-class ProvinceController extends Controller
+class RegionController extends Controller
 {
     use ConsumeExternalService;
 
-    public function __construct(Province $apiService)
+    public function __construct(Region $apiService)
     {
-        $this->middleware('permission:province-read|admin', [
+        $this->middleware('permission:region-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed',
-                'getProvince'
+                'onlyTrashed'
             ]
         ]);
-        $this->middleware('permission:province-create|admin', [
+        $this->middleware('permission:region-create|admin', [
             'only' => [
                 'store'
             ]
         ]);
-        $this->middleware('permission:province-update|admin', [
+        $this->middleware('permission:region-update|admin', [
             'only' => [
                 'update',
                 'restore'
             ]
         ]);
-        $this->middleware('permission:province-delete|admin', [
+        $this->middleware('permission:region-delete|admin', [
             'only' => [
                 'delete',
                 'forceDelete'
@@ -73,10 +72,5 @@ class ProvinceController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
-    }
-
-    public function getProvince($data)
-    {
-        return $this->apiService->getProvince($data);
     }
 }
