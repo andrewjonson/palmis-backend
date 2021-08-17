@@ -89,5 +89,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ModelListPermissionsTableSeeder::class);
         $this->call(DocumentSettingPermissionsTableSeeder::class);
         $this->call(DocumentSettingSignatoryPermissionsTableSeeder::class);
+
     }
 }
