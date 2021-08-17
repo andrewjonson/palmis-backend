@@ -75,8 +75,8 @@ class ProvinceController extends Controller
         return $this->apiService->forceDelete($id);
     }
 
-    public function getProvince($data)
+    public function getProvince(Request $request)
     {
-        return $this->apiService->getProvince($data);
+        return $this->apiService->getProvince($request->all());
     }
 }
