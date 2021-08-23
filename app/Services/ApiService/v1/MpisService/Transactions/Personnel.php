@@ -115,4 +115,9 @@ class Personnel
         return $this->performRequest('PUT', '/mpis/update-address/'.$id, $data);
     }
 
+    public function countPersonnel()
+    {
+        return $this->performRequest('GET', '/mpis/personnel-total');
+    }
+
 }

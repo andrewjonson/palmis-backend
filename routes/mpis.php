@@ -47,6 +47,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->put('update-address/{id}', 'ApiService\v1\MpisService\References\BarangayController@updatePersonnelAddress');
     $router->post('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
     $router->get('show-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelById');
+    $router->get('personnel-total', 'ApiService\v1\MpisService\Transactions\PersonnelController@countPersonnel');
     $router->post('search-info', 'ApiService\v1\MpisService\Transactions\PersonnelController@advanceSearchPersonnel');
     $router->get('show-pmcode/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelByPmcode');
     $router->post('upload-image', 'ApiService\v1\MpisService\Transactions\PersonnelController@uploadPersonnelImage');

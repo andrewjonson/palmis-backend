@@ -108,4 +108,10 @@ class PersonnelController extends Controller
     {
         return $this->apiService->updatePersonnelAddress($request->all(), $id);
     }
+
+    public function countPersonnel()
+    {
+        return $this->apiService->countPersonnel();
+    }
+
 }
