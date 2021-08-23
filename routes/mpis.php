@@ -25,6 +25,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/rank-category', 'MpisService\References\RankCategoryController', $router);
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
 
+    $router->get('show-tariff-size/{id}', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@getTarrifSizeById');
+    $router->post('store-tariff-size', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@createTarrifSize');
     $router->get('show-characteristic/{id}', 'ApiService\v1\MpisService\References\PersonalCharacteristicController@getPersonalCharacteristicById');
     $router->post('store-characteristic', 'ApiService\v1\MpisService\References\PersonalCharacteristicController@createPersonalCharacteristic');
     $router->get('show-family/{id}', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@showFamilyHistoryById');
