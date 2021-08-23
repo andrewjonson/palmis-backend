@@ -36,6 +36,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\BranchOfServicePermiss
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonalCharacteristicPermissionsTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -75,6 +76,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RankCategoryPermissionsTableSeeder::class);
         $this->call(RegionPermissionsTableSeeder::class);
         $this->call(FamilyHistoryPermissionsTableSeeder::class);
+        $this->call(PersonalCharacteristicPermissionsTableSeeder::class);
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
         $this->call(MainCategoryPermissionsTableSeeder::class);
