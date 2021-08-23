@@ -25,6 +25,10 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/rank-category', 'MpisService\References\RankCategoryController', $router);
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
 
+    $router->get('show-family/{id}', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@showFamilyHistoryById');
+    $router->post('store-family', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@createFamilyHistory');
+    $router->put('update-family/{id}', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@updateFamilyHistory');
+    $router->delete('delete-family/{id}', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@deleteFamily');
     $router->post('show-education/{id}', 'ApiService\v1\MpisService\Transactions\EducationalBackgroundController@getPersonnelEducationBackground');
     $router->get('store-education', 'ApiService\v1\MpisService\References\EducationalBackgroundController@createPersonnelEducationBackground');
     $router->put('update-education/{id}', 'ApiService\v1\MpisService\References\EducationalBackgroundController@updatePersonnelEducationBackground');
