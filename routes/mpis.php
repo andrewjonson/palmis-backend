@@ -24,6 +24,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/rank-status', 'MpisService\References\RankStatusController', $router);
     resource('/rank-category', 'MpisService\References\RankCategoryController', $router);
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
+    resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
 
     $router->get('show-tariff-size/{id}', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@getTarrifSizeById');
     $router->post('store-tariff-size', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@createTarrifSize');
