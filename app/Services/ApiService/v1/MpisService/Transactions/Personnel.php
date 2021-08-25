@@ -66,8 +66,59 @@ class Personnel
         return $this->performRequest('POST', '/mpis/search-info', $data);
     }
 
-    public function getPersonnelBySerialNumberBirthday($data)
+    public function getPersonnelByPmcode($pmcode)
     {
-        return Http::post('http://10.50.30.151'.'/api/'.config('app.version').'/mpis/search-serial-birth', $data)->json();
+        return $this->performRequest('GET', '/mpis/show-pmcode/'.$pmcode);
     }
+
+    public function uploadPersonnelImage($data)
+    {
+        return $this->performRequest('POST', '/mpis/upload-image', $data);
+    }
+
+    public function searchPersonnelBySerialNumberBirthdate($data)
+    {
+        return $this->performRequest('POST', '/mpis/search-serial-birth', $data);
+    }
+
+    public function searchPersonnelBySerial($serial)
+    {
+        return $this->performRequest('POST', '/mpis/search-serial', $serial);
+    }
+
+    public function createPersonnel($serial)
+    {
+        return $this->performRequest('POST', '/mpis/create-personnel', $serial);
+    }
+
+    public function createPersonnelRank($data)
+    {
+        return $this->performRequest('POST', '/mpis/create-personnel-rank', $data);
+    }
+
+    public function createPersonnelUnit($data)
+    {
+        return $this->performRequest('POST', '/mpis/create-personnel-unit', $data);
+    }
+
+    public function createPersonnelAddress($data)
+    {
+        return $this->performRequest('POST', '/mpis/store-address', $data);
+    }
+
+    public function getPersonnelAddress($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-address/'.$id);
+    }
+
+    public function updatePersonnelAddress($data, $id)
+    {
+        return $this->performRequest('PUT', '/mpis/update-address/'.$id, $data);
+    }
+
+    public function countPersonnel()
+    {
+        return $this->performRequest('GET', '/mpis/personnel-total');
+    }
+
 }

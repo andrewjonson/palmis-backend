@@ -20,7 +20,11 @@ class PersonnelController extends Controller
                 'onlyTrashed',
                 'searchPersonnel',
                 'getPersonnelById',
-                'advanceSearchPersonnel'
+                'advanceSearchPersonnel',
+                'getPersonnelByPmcode',
+                'uploadPersonnelImage',
+                'searchPersonnelBySerialNumberBirthdate',
+                'searchPersonnelBySerial'
             ]
         ]);
         $this->middleware('permission:personnel-create|admin', [
@@ -57,4 +61,57 @@ class PersonnelController extends Controller
     {
         return $this->apiService->advanceSearchPersonnel($request->all());
     }
+
+    public function getPersonnelByPmcode($id)
+    {
+        return $this->apiService->getPersonnelByPmcode($id);
+    }
+
+    public function uploadPersonnelImage(Request $request)
+    {
+        $image = $request->image->getClientOriginalName();
+        $personnelImage = array_merge($request->all(),['image' => $image]);
+        return $this->apiService->uploadPersonnelImage($personnelImage);
+    }
+
+    public function searchPersonnelBySerialNumberBirthdate(Request $request)
+    {
+        return $this->apiService->searchPersonnelBySerialNumberBirthdate($request->all());
+    }
+
+    public function searchPersonnelBySerial(Request $request)
+    {
+        return $this->apiService->searchPersonnelBySerial($request->all());
+    }
+
+    public function createPersonnel(Request $request)
+    {
+        return $this->apiService->createPersonnel($request->all());
+    }
+
+    public function createPersonnelRank(Request $request)
+    {
+        return $this->apiService->createPersonnelRank($request->all());
+    }
+
+    public function createPersonnelUnit(Request $request)
+    {
+        return $this->apiService->createPersonnelRank($request->all());
+    }
+
+    public function createPersonnelAddress(Request $request)
+    {
+        return $this->apiService->createPersonnelAddress($request->all());
+    }
+
+    public function updatePersonnelAddress(Request $request, $id)
+    {
+        return $this->apiService->updatePersonnelAddress($request->all(), $id);
+    }
+
+    public function countPersonnel()
+    {
+        return $this->apiService->countPersonnel();
+    }
+
 }

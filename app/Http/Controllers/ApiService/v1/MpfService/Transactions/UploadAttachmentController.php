@@ -15,11 +15,21 @@ class UploadAttachmentController extends Controller
 
     public function uploadTabAttachment(Request $request, $tabId)
     {
-        return $this->apiService->uploadTabAttachment($request->all(), $tabId);
+        $year = $request->year;
+        $pmcode = $request->pmcode;
+        $data = $request->except('attachment');
+        $data['attachment'] = time().'.'.$request->attachment->getClientOriginalExtension();
+        $request->attachment->move(public_path('mpf/tabattachments/'.$year.'/'.$pmcode), $data['attachment']);
+        return $this->apiService->uploadTabAttachment($data, $tabId);
     }
 
     public function uploadSubTabAttachment(Request $request, $subTabId)
     {
-        return $this->apiService->uploadSubTabAttachment($request->all(), $subTabId);
+        $year = $request->year;
+        $pmcode = $request->pmcode;
+        $data = $request->except('attachment');
+        $data['attachment'] = time().'.'.$request->attachment->getClientOriginalExtension();
+        $request->attachment->move(public_path('mpf/subtabattachments/'.$year.'/'.$pmcode), $data['attachment']);
+        return $this->apiService->uploadSubTabAttachment($data, $subTabId);
     }
 }
