@@ -23,9 +23,14 @@ class PersonnelFolderController extends Controller
         $this->apiService = $apiService;
     }
 
-    public function getPersonnelFolder(Request $request, $pmcode)
+    public function getPersonnelFolderByPmcode(Request $request, $pmcode)
     {
-        return $this->apiService->getPersonnelFolder($request->all(), $pmcode);
+        return $this->apiService->getPersonnelFolderByPmcode($request->all(), $pmcode);
+    }
+
+    public function getPersonnelFolders($pmcode)
+    {
+        return $this->apiService->getPersonnelFolders($pmcode);
     }
 
     public function createPersonnelFolder(Request $request)
