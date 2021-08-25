@@ -14,6 +14,7 @@ class CreateModuleModelsTable extends Migration
     public function up()
     {
         Schema::create('module_models', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('module_id')->constrained();
             $table->foreignId('model_id')->constrained();
         });

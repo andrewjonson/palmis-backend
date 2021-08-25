@@ -192,7 +192,8 @@ class TeamController extends Controller
         try {
             $userId = hashid_decode($userId);
             $user = $this->userRepository->find($userId);
-            if (!$user) {
+            $currentUser = auth()->user();
+            if (!$user || $currentUser->id == $userId) {
                 throw new AuthorizationException;
             }
 

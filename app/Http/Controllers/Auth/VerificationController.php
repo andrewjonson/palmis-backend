@@ -100,9 +100,9 @@ class VerificationController extends Controller
         }
 
         try {
-            $afpsn = $request->afpsn;
+            $serialNumber = $request->serial_number;
             $birthday = $request->birthday;
-            $validateUser = $this->personnelRepository->validateAfpsnBirthday($afpsn, $birthday);
+            $validateUser = $this->personnelRepository->validateSerialNumberBirthday($serialNumber, $birthday);
             if (!$validateUser) {
                 return $this->failedResponse(trans('auth.invalid_user'), FORBIDDEN);
             }

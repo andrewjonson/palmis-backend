@@ -19,7 +19,7 @@ class RegisterController extends Controller
     public function __construct(
         UserRepositoryInterface $userRepository,
         PersonnelRepositoryInterface $personnelRepository,
-        SettingRepositoryInterface $settingRepository
+        SettingRepositoryInterface $settingRepository,
     )
     {
         $this->userRepository = $userRepository;
@@ -30,9 +30,9 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         try {
-            $afpsn = $request->afpsn;
+            $serialNumber = $request->serial_number;
             $birthday = $request->birthday;
-            $validateUser = $this->personnelRepository->validateAfpsnBirthday($afpsn, $birthday);
+            $validateUser = $this->personnelRepository->validateSerialNumberBirthday($serialNumber, $birthday);
 
             if (!$validateUser) {
                 return $this->failedResponse(trans('auth.invalid_user'), BAD_REQUEST);

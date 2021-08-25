@@ -11,4 +11,12 @@ class ModuleModelRepository extends BaseRepository implements ModuleModelReposit
     {
         $this->model = $model;
     }
+
+    public function updateOrCreateModuleModels($moduleId, $modelId)
+    {
+        $this->model->updateOrCreate(
+            ['module_id' => $moduleId],
+            ['model_id' => $modelId]
+        );
+    }
 }

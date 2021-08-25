@@ -63,7 +63,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'pref
     $router->get('/users/account-type/{userId}', 'Users\UserController@accountType');
     
     //Personnels
-    $router->get('/personnels', 'Personnels\PersonnelController@searchPersonnelByAfpsn');
+    $router->get('/personnels', 'Personnels\PersonnelController@searchPersonnelBySerialNumber');
     $router->get('/personnels/pmcode/{pmcode}', 'Personnels\PersonnelController@getPersonnelByPmcode');
 });
 

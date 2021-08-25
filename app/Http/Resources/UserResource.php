@@ -17,7 +17,7 @@ class UserResource extends JsonResource
     {
         return [
             'id' => hashid_encode($this->id),
-            'afpsn' => $this->afpsn,
+            'serial_number' => $this->serial_number,
             'last_name' => $this->personnel->lastname,
             'first_name' => $this->personnel->firstname,
             'middle_name' => $this->personnel->middlename,

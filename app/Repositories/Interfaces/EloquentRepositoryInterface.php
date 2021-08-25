@@ -33,4 +33,6 @@ interface EloquentRepositoryInterface
     public function onlyTrashedById($id);
 
     public function getByIds(array $id);
+
+    public function where($column, $data);
 }

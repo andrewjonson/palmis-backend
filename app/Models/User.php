@@ -40,7 +40,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $fillable = [
         'email',
-        'afpsn',
+        'serial_number',
         'password',
         'auth_status',
         'blocked_at',
@@ -89,7 +89,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function personnel()
     {
-        return $this->belongsTo(Personnel::class, 'afpsn', 'afpsn');
+        return $this->belongsTo(Personnel::class, 'serial_number', 'afpsn');
     }
 
     public function team()

@@ -2,6 +2,7 @@
 
 namespace App\Services\ApiService\v1\MpisService\Transactions;
 
+use Illuminate\Support\Facades\Http;
 use App\Traits\ConsumeExternalService;
 
 class Personnel
@@ -63,5 +64,10 @@ class Personnel
     public function advanceSearchPersonnel($data)
     {
         return $this->performRequest('POST', '/mpis/search-info', $data);
+    }
+
+    public function getPersonnelBySerialNumberBirthday($data)
+    {
+        return Http::post('http://10.50.30.151'.'/api/'.config('app.version').'/mpis/search-serial-birth', $data)->json();
     }
 }

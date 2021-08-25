@@ -35,7 +35,7 @@ class UserRequest extends FormRequest
         }
 
         return [
-            'afpsn' => 'required|unique:users',
+            'serial_number' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'current_password' => 'required'
         ];

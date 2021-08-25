@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'search' => 'Please Enter AFPSN',
+    'search' => 'Please Enter Serial Number',
     'pmcode' => 'Please Enter Pmcode'
 ];

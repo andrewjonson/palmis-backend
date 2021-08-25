@@ -15,7 +15,7 @@ class PersonnelResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'afpsn' => $this->afpsn,
+            'serial_number' => $this->serial_number,
             'pmcode' => $this->PMCode,
             'first_name' => $this->firstname,
             'middle_name' => $this->middlename,

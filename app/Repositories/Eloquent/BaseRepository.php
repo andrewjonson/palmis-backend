@@ -98,4 +98,13 @@ class BaseRepository implements EloquentRepositoryInterface
     {
         return $this->model->whereIn('id', $id)->get();
     }
+
+    public function where($column, $data)
+    {
+        return $this->model->where(function($query) use($column, $data) {
+            for($i = 0; $i <= count($column); $i++) {
+                $query->where($column[$i], $data[$i]);
+            }
+        });
+    }
 }

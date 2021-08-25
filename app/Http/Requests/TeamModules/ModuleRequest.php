@@ -23,9 +23,10 @@ class ModuleRequest extends FormRequest
      */
     protected function rules(): array
     {
-        if ($this->id) {
+        $moduleId = hashid_decode($this->moduleId);
+        if ($moduleId) {
             return [
-                'name' => 'required|alpha|string|unique:modules,name,'.$this->id,
+                'name' => 'required|alpha|string|unique:modules,name,'.$moduleId,
                 'description' => 'required'
             ];
         }

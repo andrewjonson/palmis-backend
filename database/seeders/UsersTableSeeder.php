@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $afpsn = [
+        $serialNumber = [
             '903724',
             '960592',
             '962868',
@@ -64,7 +64,7 @@ class UsersTableSeeder extends Seeder
 
         foreach($emails as $key => $email) {
             $this->userRepository->firstOrCreate([
-                'afpsn' => $afpsn[$key],
+                'serial_number' => $serialNumber[$key],
                 'email' => $email,
                 'is_superadmin' => true,
                 'password' => Hash::make('pahrmis_2020'),

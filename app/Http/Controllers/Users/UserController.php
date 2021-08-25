@@ -113,7 +113,7 @@ class UserController extends Controller
 
             $user = $this->userRepository->update([
                 'email' => $request->email,
-                'afpsn' => $user->afpsn,
+                'serial_number' => $user->serial_number,
                 'email_verified_at' => $currentEmail
                             ? $user->email_verified_at : null,
                 'two_factor_secret' => $currentEmail

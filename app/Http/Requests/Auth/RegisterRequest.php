@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
     protected function rules(): array
     {
         return [
-            'afpsn' => 'required|unique:users',
+            'serial_number' => 'required|unique:users',
             'birthday' => 'required|date|date_format:Y-m-d',
             'password' => [
                 'required',

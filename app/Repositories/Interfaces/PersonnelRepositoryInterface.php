@@ -4,11 +4,11 @@ namespace App\Repositories\Interfaces;
 
 interface PersonnelRepositoryInterface 
 {
-    public function validateAfpsnBirthday($afpsn, $birthday);
+    public function validateSerialNumberBirthday($serialNumber, $birthday);
 
-    public function validateAfpsn($afpsn);
+    public function validateSerialNumber($serialNumber);
 
-    public function searchPersonnelByAfpsn($afpsn, $rowsPerPage);
+    public function searchPersonnelBySerialNumber($serialNumber, $rowsPerPage);
 
     public function getPersonnelByPmcode($pmcode);
 }

@@ -12,19 +12,19 @@ class PersonnelRepository extends BaseRepository implements PersonnelRepositoryI
         $this->model = $model;
     }
 
-    public function validateAfpsnBirthday($afpsn, $birthday)
+    public function validateSerialNumberBirthday($serialNumber, $birthday)
     {
-        return $this->model->where('afpsn', $afpsn)->where('birthday', $birthday)->first();
+        return $this->model->where('afpsn', $serialNumber)->where('birthday', $birthday)->first();
     }
 
-    public function validateAfpsn($afpsn) 
+    public function validateSerialNumber($serialNumber) 
     {
-        return $this->model->where('afpsn', $afpsn)->first();
+        return $this->model->where('serial_number', $serialNumber)->first();
     }
 
-    public function searchPersonnelByAfpsn($afpsn, $rowsPerPage)
+    public function searchPersonnelBySerialNumber($serialNumber, $rowsPerPage)
     {
-        return $this->model->where('afpsn', 'like', $afpsn.'%')->paginate($rowsPerPage);
+        return $this->model->where('serial_number', 'like', $serialNumber.'%')->paginate($rowsPerPage);
     }
 
     public function getPersonnelByPmcode($pmcode)

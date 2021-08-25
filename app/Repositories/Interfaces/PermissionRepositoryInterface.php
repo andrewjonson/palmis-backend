@@ -4,4 +4,6 @@ namespace App\Repositories\Interfaces;
 interface PermissionRepositoryInterface
 {
     public function getPermissionsById(array $id);
+
+    public function updatePermissionByModelId($modelId, array $data);
 }

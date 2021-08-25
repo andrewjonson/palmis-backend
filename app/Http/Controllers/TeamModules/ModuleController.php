@@ -101,17 +101,33 @@ class ModuleController extends Controller
     public function update(ModuleRequest $request, $moduleId)
     {
         $moduleId = hashid_decode($moduleId);
-        if (!$moduleId) {
+        $module = $this->moduleRepository->find($moduleId);
+        if (!$module) {
             throw new AuthorizationException;
         }
 
         try {
-            $module = $this->moduleRepository->find($moduleId);
-            if (!$module) {
-                return $this->failedResponse(trans('teams.module_not_exist'), BAD_REQUEST);
-            }
-
             $module->update($request->all());
+            foreach($request->model_permissions as $key => $model_permission) {
+                $updatedModel = $this->modelRepository->firstOrCreate([
+                    'name' => $model_permission['model']
+                ]);
+
+                $this->moduleModelRepository->updateOrCreateModuleModels($module->id, $updatedModel->id);
+
+                // foreach($model_permission['permissions'] as $permission) {
+                //     $model = preg_replace("/[\s_-]+/", "", $module->name);
+                //     $updatedPermission = $this->permissionRepository->updatePermissionByModelId($updatedModel->id, [
+                //         'name' => Str::lower($model).'-'.$permission
+                //     ]);
+
+                //     $this->modelPermissionRepository->create([
+                //         'model_id' => $updatedModel->id,
+                //         'permission_id' => $createdPermission->id
+                //     ]);
+                // }
+            }
+            
             return $this->successResponse(trans('teams.module_updated'), DATA_OK);
         } catch(Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);

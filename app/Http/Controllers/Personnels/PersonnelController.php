@@ -18,16 +18,16 @@ class PersonnelController extends Controller
         $this->personnelRepository = $personnelRepository;
     }
 
-    public function searchPersonnelByAfpsn(Request $request)
+    public function searchPersonnelBySerialNumber(Request $request)
     {
-        $afpsn = $request->afpsn;
+        $serialNumber = $request->serial_number;
         $rowsPerPage = $request->rowsPerPage;
         try {
-            if (!$afpsn) {
+            if (!$serialNumber) {
                 return $this->failedResponse(trans('personnels.search'), VALIDATION_EXCEPTION);
             }
 
-            $personnels = $this->personnelRepository->searchPersonnelByAfpsn($afpsn, $rowsPerPage);
+            $personnels = $this->personnelRepository->searchPersonnelBySerialNumber($serialNumber, $rowsPerPage);
             return PersonnelResource::collection($personnels);
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
