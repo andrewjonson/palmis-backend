@@ -137,6 +137,8 @@ $app->register(App\Providers\CaptchaServiceProvider::class);
 $app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
 $app->register(App\Providers\PermissionServiceProvider::class);
 $app->register(ElfSundae\Laravel\Hashid\HashidServiceProvider::class);
+$app->register(GeneaLabs\LaravelModelCaching\Providers\Service::class);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

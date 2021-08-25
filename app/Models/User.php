@@ -15,6 +15,7 @@ use App\Traits\RolesPermissions\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use App\Notifications\ResetPasswordNotification;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Services\TwoFactorAuthentication\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -32,6 +33,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use SoftDeletes;
     use Userstamps;
     use HasRoles;
+    use Cachable;
 
     /**
      * The attributes that are mass assignable.
