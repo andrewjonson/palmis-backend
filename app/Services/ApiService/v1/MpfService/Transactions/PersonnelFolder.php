@@ -20,9 +20,9 @@ class PersonnelFolder
         return $this->performRequest('GET', '/mpf/personnels/folder/'.$pmcode, $data);
     }
 
-    public function getPersonnelFolders($pmcode)
+    public function getPersonnelFolders()
     {
-        return $this->performRequest('GET', '/mpf/personnels/folders/'.$pmcode);
+        return $this->performRequest('GET', '/mpf/personnels/folders');
     }
 
     public function createPersonnelFolder($data)
