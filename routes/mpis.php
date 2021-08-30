@@ -26,6 +26,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
 
+    $router->post('store-work', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@createWorkHistory');
+    $router->get('show-work/{id}', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@getWorkHistory');
     $router->post('store-social-org', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@createSocialOrg');
     $router->get('show-social-org/{id}', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@getSocialOrg');
     $router->post('store-insurance', 'ApiService\v1\MpisService\Transactions\InsuranceController@createInsurance');
