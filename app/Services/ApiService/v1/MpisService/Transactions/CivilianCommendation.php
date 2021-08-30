@@ -4,7 +4,7 @@ namespace App\Services\ApiService\v1\MpisService\Transactions;
 
 use App\Traits\ConsumeExternalService;
 
-class CharacterReference
+class CivilianCommendation
 {
     use ConsumeExternalService;
 
@@ -15,13 +15,13 @@ class CharacterReference
         $this->baseUri = config('services.mpis_base_uri');
     }
 
-    public function getReference($id)
+    public function getCommendation($id)
     {
-        return $this->performRequest('GET', '/mpis/show-reference/'.$id);
+        return $this->performRequest('GET', '/mpis/show-civilian-commendation/'.$id);
     }
 
-    public function createReference($data)
+    public function createCommendation($data)
     {
-        return $this->performRequest('POST', '/mpis/store-reference', $data);
+        return $this->performRequest('POST', '/mpis/store-civilian-commendation', $data);
     }
 }

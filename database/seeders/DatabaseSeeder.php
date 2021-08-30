@@ -39,6 +39,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermiss
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CharacterReferencePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\CivilianCommendationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonalCharacteristicPermissionsTableSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -83,6 +84,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TarrifSizePermissionsTableSeeder::class);
         $this->call(CivilStatusPermissionsTableSeeder::class);
         $this->call(CharacterReferencePermissionsTableSeeder::class);
+        $this->call(CivilianCommendationPermissionsTableSeeder::class);
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
         $this->call(MainCategoryPermissionsTableSeeder::class);
