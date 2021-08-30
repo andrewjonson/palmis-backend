@@ -4,7 +4,7 @@ namespace App\Services\ApiService\v1\MpisService\Transactions;
 
 use App\Traits\ConsumeExternalService;
 
-class CommunicationSkill
+class CountryVisited
 {
     use ConsumeExternalService;
 
@@ -15,13 +15,13 @@ class CommunicationSkill
         $this->baseUri = config('services.mpis_base_uri');
     }
 
-    public function getCommunicationSkill($id)
+    public function getCountryVisited($id)
     {
-        return $this->performRequest('GET', '/mpis/show-communication/'.$id);
+        return $this->performRequest('GET', '/mpis/show-country-visited/'.$id);
     }
 
-    public function createCommunicationSkill($data)
+    public function createCountryVisited($data)
     {
-        return $this->performRequest('POST', '/mpis/store-communication', $data);
+        return $this->performRequest('POST', '/mpis/store-country', $data);
     }
 }
