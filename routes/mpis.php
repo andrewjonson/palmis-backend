@@ -26,6 +26,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
 
+    $router->post('store-government', 'ApiService\v1\MpisService\Transactions\GovernmentIdController@createGovernmentId');
+    $router->get('show-government/{id}', 'ApiService\v1\MpisService\Transactions\GovernmentIdController@getGovernmentId');
     $router->post('store-financial', 'ApiService\v1\MpisService\Transactions\FinancialReferenceController@createFinancialReference');
     $router->get('show-financial/{id}', 'ApiService\v1\MpisService\Transactions\FinancialReferenceController@getFinancialReference');
     $router->post('store-eligibility', 'ApiService\v1\MpisService\Transactions\EligibilityController@createElibility');
