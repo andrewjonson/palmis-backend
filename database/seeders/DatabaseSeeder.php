@@ -31,6 +31,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\TarrifSizePermission
 use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TemplatePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelTypePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\EligibilityPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\ModelListPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\EducationLevelPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelGroupPermissionsTableSeeder;
@@ -43,6 +44,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\CharacterReferencePe
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CommunicationSkillPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CivilianCommendationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonalCharacteristicPermissionsTableSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -89,6 +91,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CivilianCommendationPermissionsTableSeeder::class);
         $this->call(CommunicationSkillPermissionsTableSeeder::class);
         $this->call(CountryVisitedPermissionsTableSeeder::class);
+        $this->call(EligibilityPermissionsTableSeeder::class);
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
         $this->call(MainCategoryPermissionsTableSeeder::class);
