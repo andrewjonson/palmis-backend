@@ -26,7 +26,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
 
-
+    $router->post('store-communication', 'ApiService\v1\MpisService\Transactions\CommunicationSkillController@createCommunicationSkill');
+    $router->get('show-communication/{id}', 'ApiService\v1\MpisService\Transactions\CommunicationSkillController@getCommunicationSkill');
     $router->post('store-civilian-commendation', 'ApiService\v1\MpisService\Transactions\CivilianCommendationController@createCommendation');
     $router->get('show-civilian-commendation/{id}', 'ApiService\v1\MpisService\Transactions\CivilianCommendationController@getCommendation');
     $router->post('store-reference', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@createReference');
