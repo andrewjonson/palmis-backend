@@ -26,6 +26,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
 
+    $router->post('store-reference', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@createReference');
+    $router->get('show-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@getReference');
     $router->get('show-tariff-size/{id}', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@getTarrifSizeById');
     $router->post('store-tariff-size', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@createTarrifSize');
     $router->get('show-characteristic/{id}', 'ApiService\v1\MpisService\References\PersonalCharacteristicController@getPersonalCharacteristicById');
