@@ -45,6 +45,7 @@ use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPer
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CharacterReferencePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CommunicationSkillPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FinancialReferencePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\SocialOrganizationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CivilianCommendationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonalCharacteristicPermissionsTableSeeder;
 
@@ -98,6 +99,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FinancialReferencePermissionsTableSeeder::class);
         $this->call(GovernmentIdPermissionsTableSeeder::class);
         $this->call(InsurancePermissionsTableSeeder::class);
+        $this->call(SocialOrganizationPermissionsTableSeeder::class);
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
         $this->call(MainCategoryPermissionsTableSeeder::class);
