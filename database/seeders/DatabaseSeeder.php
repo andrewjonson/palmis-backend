@@ -28,6 +28,7 @@ use Database\Seeders\ApiService\v1\MpfService\References\MainCategoryPermissions
 use Database\Seeders\ApiService\v1\MpisService\References\CitizenshipPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CivilStatusPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\InsurancePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\References\AppurtenancePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankCategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\TarrifSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermissionsTableSeeder;
@@ -68,6 +69,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ModulesTableSeeder::class);
         $this->call(RolesTableSeeder::class);
 
+        //
+        $this->call(AppurtenancePermissionsTableSeeder::class);
         //Mpis
         $this->call(PersonnelPermissionsTableSeeder::class);
         $this->call(BarangayPermissionsTableSeeder::class);
