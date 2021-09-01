@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\ApiService\v1\MpfService\Transactions;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ApiService\v1\MpfService\Transactions\UploadAttachment;
+use App\Http\Requests\ApiService\v1\MpfService\Transactions\UploadTabRequest;
 
 class UploadAttachmentController extends Controller
 {
@@ -13,23 +15,39 @@ class UploadAttachmentController extends Controller
         $this->apiService = $apiService;
     }
 
-    public function uploadTabAttachment(Request $request, $tabId)
+    public function uploadTabAttachment(UploadTabRequest $request, $tabId)
     {
-        $year = $request->year;
+        $effectivityDate = $request->effectivityDate;
+        $year = Carbon::parse($effectivityDate)->format('Y');
         $pmcode = $request->pmcode;
-        $data = $request->except('attachment');
-        $data['attachment'] = time().'.'.$request->attachment->getClientOriginalExtension();
-        $request->attachment->move(public_path('mpf/tabattachments/'.$year.'/'.$pmcode), $data['attachment']);
-        return $this->apiService->uploadTabAttachment($data, $tabId);
+        foreach($request->file('attachments') as $attachment) {
+            $attachmentName = time().rand(1,100).'.'.$attachment->extension();
+            $attachment->move(public_path('mpf/tabattachments/'.$year.'/'.$pmcode), $attachmentName);
+            $attachments[] = $attachmentName;
+        }
+        
+        return $this->apiService->uploadTabAttachment([
+            'pmcode' => $pmcode,
+            'effectivityDate' => $effectivityDate,
+            'attachments' => $attachments
+        ], $tabId);
     }
 
-    public function uploadSubTabAttachment(Request $request, $subTabId)
+    public function uploadSubTabAttachment(UploadTabRequest $request, $subTabId)
     {
-        $year = $request->year;
+        $effectivityDate = $request->effectivityDate;
+        $year = Carbon::parse($effectivityDate)->format('Y');
         $pmcode = $request->pmcode;
-        $data = $request->except('attachment');
-        $data['attachment'] = time().'.'.$request->attachment->getClientOriginalExtension();
-        $request->attachment->move(public_path('mpf/subtabattachments/'.$year.'/'.$pmcode), $data['attachment']);
-        return $this->apiService->uploadSubTabAttachment($data, $subTabId);
+        foreach($request->file('attachments') as $attachment) {
+            $attachmentName = time().rand(1,100).'.'.$attachment->extension();
+            $attachment->move(public_path('mpf/subtabattachments/'.$year.'/'.$pmcode), $attachmentName);
+            $attachments[] = $attachmentName;
+        }
+
+        return $this->apiService->uploadSubTabAttachment([
+            'pmcode' => $pmcode,
+            'effectivityDate' => $effectivityDate,
+            'attachments' => $attachments
+        ], $subTabId);
     }
 }
