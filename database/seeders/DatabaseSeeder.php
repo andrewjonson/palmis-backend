@@ -45,6 +45,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\SerialNumberPermissi
 use Database\Seeders\ApiService\v1\MpisService\References\BranchOfServicePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CountryVisitedPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\References\SubFactorLevelOnePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CharacterReferencePermissionsTableSeeder;
@@ -73,6 +74,7 @@ class DatabaseSeeder extends Seeder
         //
         $this->call(AppurtenancePermissionsTableSeeder::class);
         $this->call(SubFactorPermissionsTableSeeder::class);
+        $this->call(SubFactorLevelOnePermissionsTableSeeder::class);
         //Mpis
         $this->call(PersonnelPermissionsTableSeeder::class);
         $this->call(BarangayPermissionsTableSeeder::class);
