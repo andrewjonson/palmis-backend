@@ -46,12 +46,14 @@ class DocumentSettingController extends Controller
     public function storeDocumentSetting(DocumentSettingRequest $request)
     {
         if ($request->logo) {
-            $data = $request->except('logo');
-            $data['logo'] = time().'.'.$request->logo->getClientOriginalExtension();
-            $request->logo->move(public_path('orderpub/images'), $data['logo']);
+            $logo = $request->logo;
+            $logoName = time().'.'.$request->logo->getClientOriginalExtension();
+            $logo->move(public_path('orderpub/images'), $logoName);
+            $data = array_merge($request->all(),['logo' => $logoName]);
             return $this->apiService->storeDocumentSetting($data);
         }
 
-        return $this->apiService->storeDocumentSetting($request->all());
+        $data = array_merge($request->all(),['logo' => NULL]);
+        return $this->apiService->storeDocumentSetting($data);
     }
 }
