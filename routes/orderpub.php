@@ -17,7 +17,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->post('/update-document-setting/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingController@updatetDocumentSetting');
     $router->post('/document-setting', 'ApiService\v1\OrderPubService\References\DocumentSettingController@storeDocumentSetting');
     $router->get('/orders', 'ApiService\v1\OrderPubService\Transactions\OrderController@getOrders');
-    $router->get('/general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@createGeneralOrder');
+    $router->post('/general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@createGeneralOrder');
     $router->get('/signatories', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@index');
     $router->post('/signatory', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@store');
     $router->put('/signatory/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@update');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiService\v1\OrderPubService\References;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
+use App\Http\Requests\OrderPubRequest\Transactions\DocumentSettingRequest;
 use App\Services\ApiService\v1\OrderPubService\References\DocumentSetting;
 
 class DocumentSettingController extends Controller
@@ -42,7 +43,7 @@ class DocumentSettingController extends Controller
         return $this->apiService->updateDocumentSetting($request->all(), $id);
     }
 
-    public function storeDocumentSetting(Request $request)
+    public function storeDocumentSetting(DocumentSettingRequest $request)
     {
         if ($request->logo) {
             $data = $request->except('logo');
