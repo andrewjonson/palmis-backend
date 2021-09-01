@@ -8,6 +8,7 @@ use Database\Seeders\ApiService\v1\MpfService\References\GroupPermissionsTableSe
 use Database\Seeders\ApiService\v1\MpfService\Transactions\MpfPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\SubPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\References\AwardPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BuiltPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CoursePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\EthnicPermissionsTableSeeder;
@@ -77,6 +78,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SubFactorPermissionsTableSeeder::class);
         $this->call(SubFactorLevelOnePermissionsTableSeeder::class);
         $this->call(PurposePermissionsTableSeeder::class);
+        $this->call(AwardPermissionsTableSeeder::class);
         //Mpis
         $this->call(PersonnelPermissionsTableSeeder::class);
         $this->call(BarangayPermissionsTableSeeder::class);
