@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\OrderPubRequest\Transactions;
+namespace App\Http\Requests\ApiRequest\v1\OrderPubRequest\Transactions;
 
 use Anik\Form\FormRequest;
 
