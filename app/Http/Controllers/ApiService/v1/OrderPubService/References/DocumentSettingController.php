@@ -5,8 +5,8 @@ namespace App\Http\Controllers\ApiService\v1\OrderPubService\References;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Http\Requests\OrderPubRequest\Transactions\DocumentSettingRequest;
 use App\Services\ApiService\v1\OrderPubService\References\DocumentSetting;
+use App\Http\Requests\ApiRequest\v1\OrderPubRequest\Transactions\DocumentSettingRequest;
 
 class DocumentSettingController extends Controller
 {
