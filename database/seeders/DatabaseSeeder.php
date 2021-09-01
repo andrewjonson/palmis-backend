@@ -21,6 +21,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\MuniCityPermissionsTab
 use Database\Seeders\ApiService\v1\MpisService\References\ProvincePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ReligionPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TypePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\References\SubFactorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\HairColorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\SubCategoryPermissionsTableSeeder;
@@ -71,6 +72,7 @@ class DatabaseSeeder extends Seeder
 
         //
         $this->call(AppurtenancePermissionsTableSeeder::class);
+        $this->call(SubFactorPermissionsTableSeeder::class);
         //Mpis
         $this->call(PersonnelPermissionsTableSeeder::class);
         $this->call(BarangayPermissionsTableSeeder::class);
