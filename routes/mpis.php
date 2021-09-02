@@ -65,8 +65,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->post('create-personnel-rank', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelRank');
     $router->post('create-personnel-unit', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelUnit');
     $router->post('store-address', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelAddress');
-    $router->get('show-address/{id}', 'ApiService\v1\MpisService\References\BarangayController@getPersonnelAddress');
-    $router->put('update-address/{id}', 'ApiService\v1\MpisService\References\BarangayController@updatePersonnelAddress');
+    $router->get('show-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAddress');
+    $router->put('update-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@updatePersonnelAddress');
     $router->post('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
     $router->get('show-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelById');
     $router->get('personnel-total', 'ApiService\v1\MpisService\Transactions\PersonnelController@countPersonnel');

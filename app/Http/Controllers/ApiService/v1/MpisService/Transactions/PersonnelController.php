@@ -24,18 +24,22 @@ class PersonnelController extends Controller
                 'getPersonnelByPmcode',
                 'uploadPersonnelImage',
                 'searchPersonnelBySerialNumberBirthdate',
-                'searchPersonnelBySerial'
+                'searchPersonnelBySerial',
+                'countPersonnel'
             ]
         ]);
         $this->middleware('permission:personnel-create|admin', [
             'only' => [
-                'store'
+                'createPersonnel',
+                'createPersonnelRank',
+                'createPersonnelUnit',
+                'createPersonnelAddress',
+
             ]
         ]);
         $this->middleware('permission:personnel-update|admin', [
             'only' => [
-                'update',
-                'restore'
+                'updatePersonnelAddress'
             ]
         ]);
         $this->middleware('permission:personnel-delete|admin', [
