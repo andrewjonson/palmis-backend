@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\ApiService\v1\MpfService\References\TabPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\References\QrsPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\GroupPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\MpfPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\SubPermissionsTableSeeder;
@@ -84,6 +85,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AwardPointPermissionsTableSeeder::class);
         $this->call(CriteriaPermissionsTableSeeder::class);
         $this->call(FormulaPermissionsTableSeeder::class);
+        $this->call(QrsPermissionsTableSeeder::class);
         //Mpis
         $this->call(PersonnelPermissionsTableSeeder::class);
         $this->call(BarangayPermissionsTableSeeder::class);
