@@ -16,7 +16,9 @@ class SubFactorLevelOneController extends Controller
         $this->middleware('permission:subfactorlevelone-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchSubLevelByParent',
+                'searchSubLevelPoints'
             ]
         ]);
         $this->middleware('permission:subfactorlevelone-create|admin', [
@@ -73,4 +75,15 @@ class SubFactorLevelOneController extends Controller
     {
         return $this->apiService->forceDelete($id);
     }
+
+    public function searchSubLevelByParent(Request $request)
+    {
+        return $this->apiService->searchSubLevelByParent($request->all());
+    }
+
+    public function searchSubLevelPoints(Request $request)
+    {
+        return $this->apiService->searchSubLevelPoints($request->all());
+    }
+
 }

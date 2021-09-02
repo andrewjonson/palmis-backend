@@ -16,7 +16,8 @@ class SubFactorController extends Controller
         $this->middleware('permission:subfactor-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchSubfactorByCriteriaAndQrs'
             ]
         ]);
         $this->middleware('permission:subfactor-create|admin', [
@@ -72,5 +73,15 @@ class SubFactorController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchSubfactorByCriteriaAndQrs(Request $request)
+    {
+        return $this->apiService->searchSubfactorByCriteriaAndQrs($request->all());
+    }
+
+    public function getDataByCriteria(Request $request)
+    {
+        return $this->apiService->getDataByCriteria($request->all());
     }
 }

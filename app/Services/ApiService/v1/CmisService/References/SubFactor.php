@@ -17,36 +17,47 @@ class SubFactor
 
     public function index($data)
     {
-        return $this->performRequest('GET', '/cmis/subfactor/name', $data);
+        return $this->performRequest('GET', '/cmis/subfactor', $data);
     }
 
     public function store($data)
     {
-        return $this->performRequest('POST', '/cmis/subfactor/name', $data);
+        return $this->performRequest('POST', '/cmis/subfactor', $data);
     }
 
     public function update($data, $id)
     {
-        return $this->performRequest('PUT', '/cmis/subfactor/name'.$id, $data);
+        return $this->performRequest('PUT', '/cmis/subfactor/'.$id, $data);
     }
 
     public function delete($id)
     {
-        return $this->performRequest('DELETE', '/cmis/subfactor/name'.$id);
+        return $this->performRequest('DELETE', '/cmis/subfactor/'.$id);
     }
 
     public function onlyTrashed($data)
     {
-        return $this->performRequest('GET', '/cmis/subfactor/name/only-trashed', $data);
+        return $this->performRequest('GET', '/cmis/subfactor/only-trashed', $data);
     }
 
     public function restore($id)
     {
-        return $this->performRequest('PUT', '/cmis/subfactor/name/restore/'.$id);
+        return $this->performRequest('PUT', '/cmis/subfactor/restore/'.$id);
     }
 
     public function forceDelete($id)
     {
-        return $this->performRequest('DELETE', '/cmis/subfactor/name/force-delete/'.$id);
+        return $this->performRequest('DELETE', '/cmis/subfactor/force-delete/'.$id);
     }
+
+    public function searchSubfactorByCriteriaAndQrs($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/criteria',$data);
+    }
+
+    public function getDataByCriteria($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/sublvl/dropdown',$data);
+    }
+
 }

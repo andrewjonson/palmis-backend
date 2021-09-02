@@ -49,4 +49,14 @@ class SubFactorLevelOne
     {
         return $this->performRequest('DELETE', '/cmis/sublvl1/force-delete/'.$id);
     }
+
+    public function searchSubLevelByParent($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/main-subfactor', $data);
+    }
+
+    public function searchSubLevelPoints($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/sublvl/points', $data);
+    }
 }
