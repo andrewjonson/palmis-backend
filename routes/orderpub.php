@@ -11,12 +11,12 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/awards/type', 'OrderPubService\References\AwardTypeController', $router);
     resource('/templates', 'OrderPubService\References\TemplateController', $router);
 
-    $router->get('/folders', 'ApiService\v1\OrderPubService\References\FolderController@getFolder');
-    $router->get('/folders/templates/{id}', 'ApiService\v1\OrderPubService\References\FolderController@getFolderWithTemplate');
-    $router->post('/folders', 'ApiService\v1\OrderPubService\References\FolderController@createFolder');
-    $router->post('/folders/{id}', 'ApiService\v1\OrderPubService\References\FolderController@createSubFolder');
-    $router->post('/folders/store-templates/{id}', 'ApiService\v1\OrderPubService\References\FolderController@storeTemplateToFolder');
-    $router->put('/folders/{id}', 'ApiService\v1\OrderPubService\References\FolderController@updateFolder');
+    $router->get('/folders', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolder');
+    $router->get('/folders/templates/{id}', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderWithTemplate');
+    $router->post('/folders', 'ApiService\v1\OrderPubService\Transactions\FolderController@createFolder');
+    $router->post('/folders/{id}', 'ApiService\v1\OrderPubService\Transactions\FolderController@createSubFolder');
+    $router->post('/folders/store-templates/{id}', 'ApiService\v1\OrderPubService\Transactions\FolderController@storeTemplateToFolder');
+    $router->put('/folders/{id}', 'ApiService\v1\OrderPubService\Transactions\FolderController@updateFolder');
     $router->get('/types/category/{id}', 'ApiService\v1\OrderPubService\References\TypeController@getTypeByCategory');
     $router->get('/types/model/{id}', 'ApiService\v1\OrderPubService\References\TypeController@getTypeById');
     $router->get('/types/template/{id}', 'ApiService\v1\OrderPubService\References\TypeController@getTypeWithTemplates');
