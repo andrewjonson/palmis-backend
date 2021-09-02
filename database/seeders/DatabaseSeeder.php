@@ -14,6 +14,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\CoursePermissionsTable
 use Database\Seeders\ApiService\v1\MpisService\References\EthnicPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RegionPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\SchoolPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\References\FormulaPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\PurposePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BdaSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BarangayPermissionsTableSeeder;
@@ -82,6 +83,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AwardTypePermissionsTableSeeder::class);
         $this->call(AwardPointPermissionsTableSeeder::class);
         $this->call(CriteriaPermissionsTableSeeder::class);
+        $this->call(FormulaPermissionsTableSeeder::class);
         //Mpis
         $this->call(PersonnelPermissionsTableSeeder::class);
         $this->call(BarangayPermissionsTableSeeder::class);
