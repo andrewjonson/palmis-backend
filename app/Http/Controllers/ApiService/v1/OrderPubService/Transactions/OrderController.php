@@ -21,7 +21,11 @@ class OrderController extends Controller
         ]);
         $this->middleware('permission:order-create|admin', [
             'only' => [
-                'createGeneralOrder',
+                'createGeneralOrder'
+            ]
+        ]);
+        $this->middleware('permission:order-update|admin', [
+            'only' => [
                 'publishOrder'
             ]
         ]);
