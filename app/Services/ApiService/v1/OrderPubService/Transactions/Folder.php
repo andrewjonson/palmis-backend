@@ -12,7 +12,7 @@ class Folder
 
     public function __construct()
     {
-        $this->baseUri = config('services.orderpubservice\transactions/folder_base_uri');
+        $this->baseUri = config('services.orderpub_base_uri');
     }
 
     public function getFolder($data)
