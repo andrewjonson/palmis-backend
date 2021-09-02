@@ -50,8 +50,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->get('show-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@getReference');
     $router->get('show-tariff-size/{id}', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@getTarrifSizeById');
     $router->post('store-tariff-size', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@createTarrifSize');
-    $router->get('show-characteristic/{id}', 'ApiService\v1\MpisService\References\PersonalCharacteristicController@getPersonalCharacteristicById');
-    $router->post('store-characteristic', 'ApiService\v1\MpisService\References\PersonalCharacteristicController@createPersonalCharacteristic');
+    $router->get('show-characteristic/{id}', 'ApiService\v1\MpisService\Transactions\PersonalCharacteristicController@getPersonalCharacteristicById');
+    $router->post('store-characteristic', 'ApiService\v1\MpisService\Transactions\PersonalCharacteristicController@createPersonalCharacteristic');
     $router->get('show-family/{id}', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@showFamilyHistoryById');
     $router->post('store-family', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@createFamilyHistory');
     $router->put('update-family/{id}', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@updateFamilyHistory');
