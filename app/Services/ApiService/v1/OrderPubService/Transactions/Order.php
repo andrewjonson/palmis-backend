@@ -27,7 +27,7 @@ class Order
 
     public function publishOrder($id)
     {
-        return $this->performRequest('POST', '/orderpub/publish-order/'.$id);
+        return $this->performRequest('PUT', '/orderpub/publish-order/'.$id);
     }
 
     public function viewPublishOrder($id)
