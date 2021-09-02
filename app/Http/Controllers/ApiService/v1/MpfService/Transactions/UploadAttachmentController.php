@@ -19,6 +19,7 @@ class UploadAttachmentController extends Controller
     {
         $effectivityDate = $request->effectivityDate;
         $year = Carbon::parse($effectivityDate)->format('Y');
+        // return $year;
         $pmcode = $request->pmcode;
         foreach($request->file('attachments') as $attachment) {
             $attachmentName = time().rand(1,100).'.'.$attachment->extension();
