@@ -158,6 +158,7 @@ $app->router->group([
     require __DIR__.'/../routes/mpf.php';
     require __DIR__.'/../routes/mpis.php';
     require __DIR__.'/../routes/orderpub.php';
+    require __DIR__.'/../routes/cmis.php';
 });
 
 return $app;
