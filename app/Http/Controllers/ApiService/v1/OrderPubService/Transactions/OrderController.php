@@ -15,12 +15,14 @@ class OrderController extends Controller
     {
         $this->middleware('permission:order-read|admin', [
             'only' => [
-                'getOrders'
+                'getOrders',
+                'viewPublishOrder'
             ]
         ]);
         $this->middleware('permission:order-create|admin', [
             'only' => [
-                'createGeneralOrder'
+                'createGeneralOrder',
+                'publishOrder'
             ]
         ]);
         $this->apiService = $apiService;
@@ -34,5 +36,15 @@ class OrderController extends Controller
     public function createGeneralOrder(Request $request, $id)
     {
         return $this->apiService->createGeneralOrder($request->all(), $id);
+    }
+
+    public function publishOrder($id)
+    {
+        return $this->apiService->publishOrder($id);
+    }
+
+    public function viewPublishOrder($id)
+    {
+        return $this->apiService->viewPublishOrder($id);
     }
 }
