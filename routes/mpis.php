@@ -56,8 +56,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->post('store-family', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@createFamilyHistory');
     $router->put('update-family/{id}', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@updateFamilyHistory');
     $router->delete('delete-family/{id}', 'ApiService\v1\MpisService\Transactions\FamilyHistoryController@deleteFamily');
-    $router->post('show-education/{id}', 'ApiService\v1\MpisService\Transactions\EducationalBackgroundController@getPersonnelEducationBackground');
-    $router->get('store-education', 'ApiService\v1\MpisService\References\EducationalBackgroundController@createPersonnelEducationBackground');
+    $router->post('show-education/{id}', 'ApiService\v1\MpisService\References\EducationalBackgroundController@getPersonnelEducationBackground');
+    $router->post('store-education', 'ApiService\v1\MpisService\References\EducationalBackgroundController@createPersonnelEducationBackground');
     $router->put('update-education/{id}', 'ApiService\v1\MpisService\References\EducationalBackgroundController@updatePersonnelEducationBackground');
     $router->get('get-province', 'ApiService\v1\MpisService\References\ProvinceController@getProvince');
     $router->get('get-municity', 'ApiService\v1\MpisService\References\MuniCityController@getMunicity');
