@@ -38,6 +38,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\RankCategoryPermission
 use Database\Seeders\ApiService\v1\MpisService\Transactions\TarrifSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TemplatePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FolderPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\EligibilityPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\WorkHistoryPermissionsTableSeeder;
@@ -140,6 +141,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ModelListPermissionsTableSeeder::class);
         $this->call(DocumentSettingPermissionsTableSeeder::class);
         $this->call(DocumentSettingSignatoryPermissionsTableSeeder::class);
-
+        $this->call(FolderPermissionsTableSeeder::class);
     }
 }
