@@ -25,7 +25,8 @@ class PersonnelController extends Controller
                 'uploadPersonnelImage',
                 'searchPersonnelBySerialNumberBirthdate',
                 'searchPersonnelBySerial',
-                'countPersonnel'
+                'countPersonnel',
+                'getPersonnelAddress'
             ]
         ]);
         $this->middleware('permission:personnel-create|admin', [
@@ -106,6 +107,11 @@ class PersonnelController extends Controller
     public function createPersonnelAddress(Request $request)
     {
         return $this->apiService->createPersonnelAddress($request->all());
+    }
+
+    public function getPersonnelAddress($id)
+    {
+        return $this->apiService->getPersonnelAddress($id);
     }
 
     public function updatePersonnelAddress(Request $request, $id)
