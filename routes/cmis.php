@@ -10,4 +10,5 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/award', 'CmisService\References\AwardController', $router);
     resource('/award/type', 'CmisService\References\AwardController', $router);
     resource('/award-point', 'CmisService\References\AwardPointController', $router);
+    resource('/criteria', 'CmisService\References\CriteriaController', $router);
 });

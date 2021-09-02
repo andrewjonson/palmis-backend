@@ -81,6 +81,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AwardPermissionsTableSeeder::class);
         $this->call(AwardTypePermissionsTableSeeder::class);
         $this->call(AwardPointPermissionsTableSeeder::class);
+        $this->call(CriteriaPermissionsTableSeeder::class);
         //Mpis
         $this->call(PersonnelPermissionsTableSeeder::class);
         $this->call(BarangayPermissionsTableSeeder::class);
