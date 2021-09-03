@@ -40,7 +40,8 @@ class PersonnelController extends Controller
         ]);
         $this->middleware('permission:personnel-update|admin', [
             'only' => [
-                'updatePersonnelAddress'
+                'updatePersonnelAddress',
+                'updatePersonnel'
             ]
         ]);
         $this->middleware('permission:personnel-delete|admin', [
@@ -124,4 +125,8 @@ class PersonnelController extends Controller
         return $this->apiService->countPersonnel();
     }
 
+    public function updatePersonnel(Request $request, $id)
+    {
+        return $this->apiService->updatePersonnel($request->all(), $id);
+    }
 }

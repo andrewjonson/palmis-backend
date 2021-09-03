@@ -121,4 +121,8 @@ class Personnel
         return $this->performRequest('GET', '/mpis/personnel-total');
     }
 
+    public function updatePersonnel($data, $id)
+    {
+        return $this->performRequest('PUT', '/mpis/update-personnel/'.$id, $data);
+    }
 }
