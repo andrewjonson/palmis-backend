@@ -49,4 +49,9 @@ class Citizenship
     {
         return $this->performRequest('DELETE', '/mpis/citizenship/force-delete/'.$id);
     }
+
+    public function searchCitizenship($data)
+    {
+        return $this->performRequest('GET', '/mpis/citizenship-search', $data);
+    }
 }
