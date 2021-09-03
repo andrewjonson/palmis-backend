@@ -16,7 +16,8 @@ class FolderController extends Controller
         $this->middleware('permission:folder-read|admin', [
             'only' => [
                 'getFolder',
-                'getFolderWithTemplate'
+                'getFolderWithTemplate',
+                'getFolderbyCategory'
             ]
         ]);
         $this->middleware('permission:folder-create|admin', [
