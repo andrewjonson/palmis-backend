@@ -45,4 +45,9 @@ class Folder
         return $this->performRequest('POST', '/orderpub/folders/store-templates/'.$id, $data);
     }
 
+    public function getFolderbyCategory($id)
+    {
+        return $this->performRequest('POST', '/orderpub/folders/store-templates/'.$id);
+    }
+
 }

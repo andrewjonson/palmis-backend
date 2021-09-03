@@ -64,4 +64,8 @@ class FolderController extends Controller
         return $this->apiService->storeTemplateToFolder($request->all(), $id);
     }
 
+    public function getFolderbyCategory($id)
+    {
+        return $this->apiService->getFolderbyCategory($id);
+    }
 }
