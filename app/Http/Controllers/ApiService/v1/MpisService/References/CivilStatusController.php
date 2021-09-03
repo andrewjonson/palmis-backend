@@ -16,7 +16,8 @@ class CivilStatusController extends Controller
         $this->middleware('permission:civilstatus-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchCivilStatus'
             ]
         ]);
         $this->middleware('permission:civilstatus-create|admin', [
@@ -72,5 +73,10 @@ class CivilStatusController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchCivilStatus(Request $request)
+    {
+        return $this->apiService->searchCivilStatus($request->all());
     }
 }

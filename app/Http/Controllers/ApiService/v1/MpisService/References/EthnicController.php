@@ -16,7 +16,8 @@ class EthnicController extends Controller
         $this->middleware('permission:ethnic-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchEthnic'
             ]
         ]);
         $this->middleware('permission:ethnic-create|admin', [
@@ -72,5 +73,10 @@ class EthnicController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchEthnic(Request $request)
+    {
+        return $this->apiService->searchEthnic($request->all());
     }
 }

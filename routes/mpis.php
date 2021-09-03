@@ -28,6 +28,9 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
     resource('/country', 'MpisService\References\CountryController', $router);
 
+    $router->get('ethnic-code-search', 'ApiService\v1\MpisService\References\EthnicController@searchEthnic');
+    $router->get('personnel-group-search', 'ApiService\v1\MpisService\References\PersonnelGroupController@searchPersonnelGroup');
+    $router->get('civil-status-search', 'ApiService\v1\MpisService\References\CitizenshipController@searchCivilStatus');
     $router->get('citizenship-search', 'ApiService\v1\MpisService\References\CitizenshipController@searchCitizenship');
     $router->get('course-type', 'ApiService\v1\MpisService\References\CourseController@getCourseByType');
     $router->post('create-serial', 'ApiService\v1\MpisService\Transactions\SerialNumberController@createSerialNumber');
