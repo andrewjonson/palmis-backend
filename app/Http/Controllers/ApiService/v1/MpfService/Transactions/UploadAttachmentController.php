@@ -17,37 +17,34 @@ class UploadAttachmentController extends Controller
 
     public function uploadTabAttachment(UploadTabRequest $request, $tabId)
     {
-        $effectivityDate = $request->effectivityDate;
-        $year = Carbon::parse($effectivityDate)->format('Y');
-        // return $year;
+        $folderId = hashid_decode($request->folderId);
         $pmcode = $request->pmcode;
         foreach($request->file('attachments') as $attachment) {
             $attachmentName = time().rand(1,100).'.'.$attachment->extension();
-            $attachment->move(public_path('mpf/tabattachments/'.$year.'/'.$pmcode), $attachmentName);
+            $attachment->move(public_path('mpf/tabattachments/'.$pmcode), $attachmentName);
             $attachments[] = $attachmentName;
         }
         
         return $this->apiService->uploadTabAttachment([
             'pmcode' => $pmcode,
-            'effectivityDate' => $effectivityDate,
+            'folderId' => $folderId,
             'attachments' => $attachments
         ], $tabId);
     }
 
     public function uploadSubTabAttachment(UploadTabRequest $request, $subTabId)
     {
-        $effectivityDate = $request->effectivityDate;
-        $year = Carbon::parse($effectivityDate)->format('Y');
+        $folderId = hashid_decode($request->folderId);
         $pmcode = $request->pmcode;
         foreach($request->file('attachments') as $attachment) {
             $attachmentName = time().rand(1,100).'.'.$attachment->extension();
-            $attachment->move(public_path('mpf/subtabattachments/'.$year.'/'.$pmcode), $attachmentName);
+            $attachment->move(public_path('mpf/subtabattachments/'.$pmcode), $attachmentName);
             $attachments[] = $attachmentName;
         }
 
         return $this->apiService->uploadSubTabAttachment([
             'pmcode' => $pmcode,
-            'effectivityDate' => $effectivityDate,
+            'folderId' => $folderId,
             'attachments' => $attachments
         ], $subTabId);
     }

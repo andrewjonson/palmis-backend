@@ -25,8 +25,7 @@ class UploadTabRequest extends FormRequest
     {
         return [
             'attachments.*' => 'required|mimes:jpg,jpeg,png,pdf',
-            'pmcode' => 'required',
-            'effectivityDate' => 'required|date'
+            'pmcode' => 'required'
         ];
     }
 }
