@@ -49,4 +49,9 @@ class Course
     {
         return $this->performRequest('DELETE', '/mpis/course/force-delete/'.$id);
     }
+
+    public function getCourseByType($data)
+    {
+        return $this->performRequest('GET', '/mpis/course-type', $data);
+    }
 }

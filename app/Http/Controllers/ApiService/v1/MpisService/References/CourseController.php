@@ -16,7 +16,8 @@ class CourseController extends Controller
         $this->middleware('permission:course-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getCourseByType'
             ]
         ]);
         $this->middleware('permission:course-create|admin', [
@@ -72,5 +73,10 @@ class CourseController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getCourseByType(Request $request)
+    {
+        return $this->apiService->getCourseByType($request->all());
     }
 }

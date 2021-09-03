@@ -28,7 +28,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
     resource('/country', 'MpisService\References\CountryController', $router);
 
-
+    $router->get('course-type', 'ApiService\v1\MpisService\References\CourseController@getCourseByType');
     $router->post('create-serial', 'ApiService\v1\MpisService\Transactions\SerialNumberController@createSerialNumber');
     $router->post('store-work', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@createWorkHistory');
     $router->get('show-work/{id}', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@getWorkHistory');
