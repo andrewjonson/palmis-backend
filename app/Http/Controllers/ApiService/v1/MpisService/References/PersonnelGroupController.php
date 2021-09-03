@@ -16,7 +16,8 @@ class PersonnelGroupController extends Controller
         $this->middleware('permission:personnelgroup-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchPersonnelGroup'
             ]
         ]);
         $this->middleware('permission:personnelgroup-create|admin', [
@@ -72,5 +73,10 @@ class PersonnelGroupController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchPersonnelGroup(Request $request)
+    {
+        return $this->apiService->searchPersonnelGroup($request->all());
     }
 }
