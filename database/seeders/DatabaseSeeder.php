@@ -18,6 +18,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\SchoolPermissionsTable
 use Database\Seeders\ApiService\v1\CmisService\References\FormulaPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\PurposePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BdaSizePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\CountryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BarangayPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\EyeColorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\HairTypePermissionsTableSeeder;
@@ -88,6 +89,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FormulaPermissionsTableSeeder::class);
         $this->call(QrsPermissionsTableSeeder::class);
         //Mpis
+        $this->call(CountryPermissionsTableSeeder::class);
         $this->call(PersonnelPermissionsTableSeeder::class);
         $this->call(BarangayPermissionsTableSeeder::class);
         $this->call(BdaSizePermissionsTableSeeder::class);
