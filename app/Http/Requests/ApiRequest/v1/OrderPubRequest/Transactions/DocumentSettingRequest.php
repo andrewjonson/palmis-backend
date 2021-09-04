@@ -24,7 +24,7 @@ class DocumentSettingRequest extends FormRequest
     protected function rules(): array
     {
         return [
-            'logo' => 'mimes:jpeg, jpg, png|image'
+            'logo' => 'required|mimes:jpeg,jpg,png|image'
         ];
     }
 }

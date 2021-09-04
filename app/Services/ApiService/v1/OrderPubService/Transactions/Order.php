@@ -34,4 +34,9 @@ class Order
     {
         return $this->performRequest('GET', '/orderpub/view-order/'.$id);
     }
+
+    public function viewDraftOrder($id)
+    {
+        return $this->performRequest('GET', '/orderpub/view-draft-order/'.$id);
+    }
 }

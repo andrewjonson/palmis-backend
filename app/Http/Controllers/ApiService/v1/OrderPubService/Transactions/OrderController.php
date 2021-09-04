@@ -16,7 +16,8 @@ class OrderController extends Controller
         $this->middleware('permission:order-read|admin', [
             'only' => [
                 'getOrders',
-                'viewPublishOrder'
+                'viewPublishOrder',
+                'viewDraftOrder'
             ]
         ]);
         $this->middleware('permission:order-create|admin', [
@@ -50,5 +51,10 @@ class OrderController extends Controller
     public function viewPublishOrder($id)
     {
         return $this->apiService->viewPublishOrder($id);
+    }
+
+    public function viewDraftOrder($id)
+    {
+        return $this->apiService->viewDraftOrder($id);
     }
 }
