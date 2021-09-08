@@ -296,5 +296,6 @@ class UserController extends Controller
         if (!Hash::check($request->current_password, $user->password)) {
             return $this->invalidPasswordResponse($user);
         }
+        $this->resetLoginAttempts($user);
     }
 }
