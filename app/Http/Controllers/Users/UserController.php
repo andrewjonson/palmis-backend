@@ -16,6 +16,7 @@ use App\Http\Resources\AccountTypeResource;
 use App\Http\Resources\LoginAttemptResource;
 use App\Http\Requests\Users\ChangePasswordRequest;
 use Illuminate\Auth\Access\AuthorizationException;
+use App\Http\Requests\Users\ValidatePasswordRequest;
 use App\Notifications\EmailVerificationNotification;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\InviteRepositoryInterface;
