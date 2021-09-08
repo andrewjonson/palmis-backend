@@ -61,6 +61,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'pref
     $router->get('/users/login-attempts', 'Users\UserController@showLoginAttempts');
     $router->put('/users/assign-superadmin/{userId}', 'Users\UserController@assignSuperAdmin');
     $router->get('/users/account-type/{userId}', 'Users\UserController@accountType');
+    $router->post('/users/validate-password', 'Users\UserController@validatePassword');
     
     //Personnels
     $router->get('/personnels', 'Personnels\PersonnelController@searchPersonnelBySerialNumber');
@@ -98,7 +99,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'super
     $router->post('/roles', 'RolePermissions\RoleController@create');
     $router->put('/roles/{roleId}', 'RolePermissions\RoleController@update');
     $router->delete('/roles/{roleId}', 'RolePermissions\RoleController@delete');
-    $router->post('/roles/assign-permissions', 'RolePermissions\RoleController@assignPermissions');
+    $router->post('/roles/assign-permissions/{roleId}', 'RolePermissions\RoleController@assignPermissions');
     $router->get('/permissions', 'RolePermissions\PermissionController@showPermissions');
     $router->post('/permissions', 'RolePermissions\PermissionController@create');
     $router->put('/permissions/{permissionId}', 'RolePermissions\PermissionController@update');

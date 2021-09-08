@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 class ModelPermission extends EloquentModel
 {
-    protected $fillable = ['model_id', 'permission_id'];
+    protected $fillable = ['model_id', 'permission_id', 'is_enabled'];
     public $timestamps = false;
     public $incrementing = false;
 
