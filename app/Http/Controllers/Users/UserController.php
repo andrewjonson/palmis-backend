@@ -293,7 +293,7 @@ class UserController extends Controller
     public function validatePassword(ValidatePasswordRequest $request)
     {
         $user = auth()->user();
-        if (!Hash::check($request->current_password, $user->password)) {
+        if (!Hash::check($request->password, $user->password)) {
             return $this->invalidPasswordResponse($user);
         }
         $this->resetLoginAttempts($user);
