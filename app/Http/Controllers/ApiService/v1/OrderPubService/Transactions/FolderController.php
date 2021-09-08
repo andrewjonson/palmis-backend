@@ -17,7 +17,8 @@ class FolderController extends Controller
             'only' => [
                 'getFolder',
                 'getFolderWithTemplate',
-                'getFolderbyCategory'
+                'getFolderbyCategory',
+                'getFolderContent'
             ]
         ]);
         $this->middleware('permission:folder-create|admin', [
@@ -68,5 +69,10 @@ class FolderController extends Controller
     public function getFolderbyCategory($id)
     {
         return $this->apiService->getFolderbyCategory($id);
+    }
+
+    public function getFolderContent($id)
+    {
+        return $this->apiService->getFolderContent($id);
     }
 }
