@@ -53,7 +53,6 @@ class DocumentSettingController extends Controller
             return $this->apiService->storeDocumentSetting($data);
         }
 
-        $data = array_merge($request->all(),['logo' => NULL]);
-        return $this->apiService->storeDocumentSetting($data);
+        return $this->apiService->storeDocumentSetting($request->all());
     }
 }
