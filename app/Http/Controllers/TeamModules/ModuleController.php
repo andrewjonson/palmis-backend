@@ -44,7 +44,7 @@ class ModuleController extends Controller
 
             foreach($request->model_permissions as $key => $model_permission) {
                 $createdModel = $this->modelRepository->firstOrCreate([
-                    'name' => $model_permission['model']
+                    'name' => $model_permission['name']
                 ]);
 
                 $this->moduleModelRepository->create([
@@ -53,14 +53,14 @@ class ModuleController extends Controller
                 ]);
 
                 foreach($model_permission['permissions'] as $permission) {
-                    $model = preg_replace("/[\s_-]+/", "", $createdModel->name);
                     $createdPermission = $this->permissionRepository->firstOrCreate([
-                        'name' => Str::lower($model).'-'.$permission
+                        'name' => Str::lower($createdModel->name).'-'.$permission['name']
                     ]);
 
                     $this->modelPermissionRepository->create([
                         'model_id' => $createdModel->id,
-                        'permission_id' => $createdPermission->id
+                        'permission_id' => $createdPermission->id,
+                        'is_enabled' => $permission['is_enabled'] ? true : false
                     ]);
                 }
             }
@@ -108,24 +108,44 @@ class ModuleController extends Controller
 
         try {
             $module->update($request->all());
-            foreach($request->model_permissions as $key => $model_permission) {
-                $updatedModel = $this->modelRepository->firstOrCreate([
-                    'name' => $model_permission['model']
-                ]);
+            foreach($request->model_permissions as $model_permission) {
+                $updatedModel = $this->modelRepository->updateOrCreate(
+                    ['id' => isset($model_permission['id']) ? hashid_decode($model_permission['id']) : null],
+                    ['name' => $model_permission['name']]
+                );
 
-                $this->moduleModelRepository->updateOrCreateModuleModels($module->id, $updatedModel->id);
+                $this->moduleModelRepository->updateOrCreate(
+                    [
+                        'module_id' => $moduleId,
+                        'model_id' => $updatedModel->id
+                    ],
+                    [
+                        'module_id' => $moduleId,
+                        'model_id' => $updatedModel->id
+                    ]
+                );
 
-                // foreach($model_permission['permissions'] as $permission) {
-                //     $model = preg_replace("/[\s_-]+/", "", $module->name);
-                //     $updatedPermission = $this->permissionRepository->updatePermissionByModelId($updatedModel->id, [
-                //         'name' => Str::lower($model).'-'.$permission
-                //     ]);
-
-                //     $this->modelPermissionRepository->create([
-                //         'model_id' => $updatedModel->id,
-                //         'permission_id' => $createdPermission->id
-                //     ]);
-                // }
+                foreach($model_permission['permissions'] as $permission) {
+                    $updatedPermission = $this->permissionRepository->updateOrCreate(
+                        [
+                            'id' => isset($permission['id']) ? hashid_decode($permission['id']) : null,
+                            'name' => Str::lower($updatedModel->name).'-'.$permission['name']
+                        ],
+                        ['name' => Str::lower($updatedModel->name).'-'.$permission['name']]
+                    );
+                    
+                    $this->modelPermissionRepository->updateOrCreate(
+                        [
+                            'model_id' => $updatedModel->id,
+                            'permission_id' => $updatedPermission->id
+                        ],
+                        [
+                            'model_id' => $updatedModel->id,
+                            'permission_id' => $updatedPermission->id,
+                            'is_enabled' => $permission['is_enabled'] ? true : false
+                        ]
+                    );
+                }
             }
             
             return $this->successResponse(trans('teams.module_updated'), DATA_OK);

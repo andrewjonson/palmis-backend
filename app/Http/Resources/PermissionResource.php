@@ -16,7 +16,8 @@ class PermissionResource extends JsonResource
     {
         return [
             'id' => hashid_encode($this->id),
-            'name' => substr($this->name, strpos($this->name, "-") + 1)
+            'name' => substr($this->name, strpos($this->name, "-") + 1),
+            'is_enabled' => $this->is_enabled
         ];
     }
 }

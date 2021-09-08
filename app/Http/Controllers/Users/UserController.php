@@ -288,4 +288,12 @@ class UserController extends Controller
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
     }
+
+    public function validatePassword(ValidatePasswordRequest $request)
+    {
+        $user = auth()->user();
+        if (!Hash::check($request->current_password, $user->password)) {
+            return $this->invalidPasswordResponse($user);
+        }
+    }
 }

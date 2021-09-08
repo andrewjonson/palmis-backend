@@ -14,6 +14,7 @@ class CreateModelPermissionsTable extends Migration
     public function up()
     {
         Schema::create('model_permissions', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('model_id')->constrained();
             $table->foreignId('permission_id')->constrained();
         });

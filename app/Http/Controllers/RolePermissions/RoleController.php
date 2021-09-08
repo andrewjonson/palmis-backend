@@ -92,13 +92,18 @@ class RoleController extends Controller
         }
     }
 
-    public function assignPermissions(Request $request)
+    public function assignPermissions(Request $request, $roleId)
     {
-        $roleId = $request->role_id;
+        $roleId = hashid_decode($role_id);
         $permissions = $request->permissions;
         try {
             $role = $this->roleRepository->find($roleId);
-            $permissions = $this->permissionRepository->getPermissionsById($permissions);
+            foreach($permissions as $permission) {
+                $permissions[] = $this->permissionRepository->find(hashid_decode($permission));
+            }
+
+            return var_dump($permissions);
+            
             $role->syncPermissions($permissions);
             $user = auth()->user();
             $user->assignRole([$roleId]);
