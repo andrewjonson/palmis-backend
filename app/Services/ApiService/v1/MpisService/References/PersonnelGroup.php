@@ -49,4 +49,9 @@ class PersonnelGroup
     {
         return $this->performRequest('DELETE', '/mpis/personnel-group/force-delete/'.$id);
     }
+
+    public function searchPersonnelGroup($data)
+    {
+        return $this->performRequest('GET', '/mpis/personnel-group-search', $data);
+    }
 }

@@ -59,4 +59,9 @@ class Type
     {
         return $this->performRequest('GET', '/orderpub/types/model/'.$id);
     }
+
+    public function getTypeWithTemplates($id)
+    {
+        return $this->performRequest('GET', '/orderpub/types/template/'.$id);
+    }
 }

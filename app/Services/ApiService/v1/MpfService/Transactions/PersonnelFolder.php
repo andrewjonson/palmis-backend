@@ -15,9 +15,14 @@ class PersonnelFolder
         $this->baseUri = config('services.mpf_base_uri');
     }
 
-    public function getPersonnelFolder($data, $pmcode)
+    public function getPersonnelFolderByPmcode($data, $pmcode)
     {
         return $this->performRequest('GET', '/mpf/personnels/folder/'.$pmcode, $data);
+    }
+
+    public function getPersonnelFolders()
+    {
+        return $this->performRequest('GET', '/mpf/personnels/folders');
     }
 
     public function createPersonnelFolder($data)

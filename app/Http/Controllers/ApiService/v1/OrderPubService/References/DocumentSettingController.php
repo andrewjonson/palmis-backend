@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
 use App\Services\ApiService\v1\OrderPubService\References\DocumentSetting;
+use App\Http\Requests\ApiRequest\v1\OrderPubRequest\Transactions\DocumentSettingRequest;
 
 class DocumentSettingController extends Controller
 {
@@ -42,17 +43,17 @@ class DocumentSettingController extends Controller
         return $this->apiService->updateDocumentSetting($request->all(), $id);
     }
 
-    public function storeDocumentSetting(Request $request)
+    public function storeDocumentSetting(DocumentSettingRequest $request)
     {
-        if ($request->logo){
-            $logo = $request->logo->getClientOriginalName();
-            $documentSetting = array_merge($request->all(),['logo' => $logo]);
-            //  return $request->all();
-             return $this->apiService->storeDocumentSetting($documentSetting);
+        if ($request->logo) {
+            $logo = $request->logo;
+            $logoName = time().'.'.$request->logo->getClientOriginalExtension();
+            $logo->move(public_path('orderpub/images'), $logoName);
+            $data = array_merge($request->all(),['logo' => $logoName]);
+            return $this->apiService->storeDocumentSetting($data);
         }
-        // $logo = $request->logo;
-        // return $documentSetting = array_merge($request->all());
-        // return $request->hasFile('logo');
-        return $this->apiService->storeDocumentSetting($request->all());
+
+        $data = array_merge($request->all(),['logo' => NULL]);
+        return $this->apiService->storeDocumentSetting($data);
     }
 }

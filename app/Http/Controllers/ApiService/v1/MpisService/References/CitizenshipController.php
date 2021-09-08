@@ -16,7 +16,8 @@ class CitizenshipController extends Controller
         $this->middleware('permission:citizenship-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchCitizenship'
             ]
         ]);
         $this->middleware('permission:citizenship-create|admin', [
@@ -72,5 +73,10 @@ class CitizenshipController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchCitizenship(Request $request)
+    {
+        return $this->apiService->searchCitizenship($request->all());
     }
 }

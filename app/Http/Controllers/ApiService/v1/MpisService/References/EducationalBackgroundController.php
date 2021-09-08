@@ -28,16 +28,17 @@ class EducationalBackgroundController extends Controller
                 'updatePersonnelEducationBackground'
             ]
         ]);
+        $this->apiService = $apiService;
     }
 
     public function getPersonnelEducationBackground($id)
     {
-        return $this->apiService->storePersonnelEducationBackground($id);
+        return $this->apiService->getPersonnelEducationBackground($id);
     }
 
-    public function storePersonnelEducationBackground(Request $request)
+    public function createPersonnelEducationBackground(Request $request)
     {
-        return $this->apiService->storePersonnelEducationBackground($request->all());
+        return $this->apiService->createPersonnelEducationBackground($request->all());
     }
 
     public function updatePersonnelEducationBackground(Request $request, $id)

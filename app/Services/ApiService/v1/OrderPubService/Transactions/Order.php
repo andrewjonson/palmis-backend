@@ -24,4 +24,14 @@ class Order
     {
         return $this->performRequest('POST', '/orderpub/general-order/'.$id, $data);
     }
+
+    public function publishOrder($id)
+    {
+        return $this->performRequest('PUT', '/orderpub/publish-order/'.$id);
+    }
+
+    public function viewPublishOrder($id)
+    {
+        return $this->performRequest('GET', '/orderpub/view-order/'.$id);
+    }
 }

@@ -24,18 +24,24 @@ class PersonnelController extends Controller
                 'getPersonnelByPmcode',
                 'uploadPersonnelImage',
                 'searchPersonnelBySerialNumberBirthdate',
-                'searchPersonnelBySerial'
+                'searchPersonnelBySerial',
+                'countPersonnel',
+                'getPersonnelAddress'
             ]
         ]);
         $this->middleware('permission:personnel-create|admin', [
             'only' => [
-                'store'
+                'createPersonnel',
+                'createPersonnelRank',
+                'createPersonnelUnit',
+                'createPersonnelAddress',
+
             ]
         ]);
         $this->middleware('permission:personnel-update|admin', [
             'only' => [
-                'update',
-                'restore'
+                'updatePersonnelAddress',
+                'updatePersonnel'
             ]
         ]);
         $this->middleware('permission:personnel-delete|admin', [
@@ -104,6 +110,11 @@ class PersonnelController extends Controller
         return $this->apiService->createPersonnelAddress($request->all());
     }
 
+    public function getPersonnelAddress($id)
+    {
+        return $this->apiService->getPersonnelAddress($id);
+    }
+
     public function updatePersonnelAddress(Request $request, $id)
     {
         return $this->apiService->updatePersonnelAddress($request->all(), $id);
@@ -114,4 +125,8 @@ class PersonnelController extends Controller
         return $this->apiService->countPersonnel();
     }
 
+    public function updatePersonnel(Request $request, $id)
+    {
+        return $this->apiService->updatePersonnel($request->all(), $id);
+    }
 }

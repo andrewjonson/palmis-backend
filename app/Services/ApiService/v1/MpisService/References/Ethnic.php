@@ -49,4 +49,9 @@ class Ethnic
     {
         return $this->performRequest('DELETE', '/mpis/ethnic/force-delete/'.$id);
     }
+
+    public function searchEthnic($data)
+    {
+        return $this->performRequest('GET', '/mpis/ethnic-code-search', $data);
+    }
 }

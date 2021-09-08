@@ -49,4 +49,9 @@ class CivilStatus
     {
         return $this->performRequest('DELETE', '/mpis/civil-status/force-delete/'.$id);
     }
+
+    public function searchCivilStatus($data)
+    {
+        return $this->performRequest('GET', '/mpis/civil-status-search', $data);
+    }
 }
