@@ -15,25 +15,12 @@ class TarrifSizeController extends Controller
     {
         $this->middleware('permission:tarrifsize-read|admin', [
             'only' => [
-                'index',
-                'onlyTrashed'
+                'getTarrifSizeById'
             ]
         ]);
         $this->middleware('permission:tarrifsize-create|admin', [
             'only' => [
-                'store'
-            ]
-        ]);
-        $this->middleware('permission:tarrifsize-update|admin', [
-            'only' => [
-                'update',
-                'restore'
-            ]
-        ]);
-        $this->middleware('permission:tarrifsize-delete|admin', [
-            'only' => [
-                'delete',
-                'forceDelete'
+                'createTarrifSize'
             ]
         ]);
         $this->apiService = $apiService;
