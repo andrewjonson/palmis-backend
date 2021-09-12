@@ -49,4 +49,9 @@ class AuthorityLine
     {
         return $this->performRequest('DELETE', '/orderpub/authoritylines/force-delete/'.$id);
     }
+
+    public function getAuthorityLine($office)
+    {
+        return $this->performRequest('GET', '/orderpub/authority/'.$office);
+    }
 }
