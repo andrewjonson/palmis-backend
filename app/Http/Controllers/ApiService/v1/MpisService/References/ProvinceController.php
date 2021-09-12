@@ -17,7 +17,8 @@ class ProvinceController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'getProvince'
+                'getProvince',
+                'getProvinceById'
             ]
         ]);
         $this->middleware('permission:province-create|admin', [
@@ -78,5 +79,10 @@ class ProvinceController extends Controller
     public function getProvince(Request $request)
     {
         return $this->apiService->getProvince($request->all());
+    }
+
+    public function getProvinceById($id)
+    {
+        return $this->apiService->getProvinceById($id);
     }
 }
