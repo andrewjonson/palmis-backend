@@ -16,7 +16,8 @@ class AuthorityLineController extends Controller
         $this->middleware('permission:authorityline-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getAuthorityLine'
             ]
         ]);
         $this->middleware('permission:authorityline-create|admin', [
@@ -72,5 +73,10 @@ class AuthorityLineController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getAuthorityLine($office)
+    {
+        return $this->apiService->getAuthorityLine($office);
     }
 }
