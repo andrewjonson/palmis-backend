@@ -57,6 +57,6 @@ class Barangay
 
     public function getBarangayById($id)
     {
-        return $this->performRequest('GET', '/mpis/get-barangay/'. $id);
+        return $this->performRequest('GET', '/mpis/show-barangay/'. $id);
     }
 }

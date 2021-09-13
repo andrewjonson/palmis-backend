@@ -52,7 +52,7 @@ class Province
 
     public function getProvince($data)
     {
-        return $this->performRequest('GET', '/mpis/get-province', $data);
+        return $this->performRequest('GET', '/mpis/show-province', $data);
     }
 
     public function getProvinceById($id)
