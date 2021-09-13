@@ -26,7 +26,6 @@ class DocumentSettingRequest extends FormRequest
         return [
             'logo' => 'mimes:jpeg,jpg,png|image',
             'header' => 'required',
-            'acronym' => 'required',
             'signatories' => 'required',
             'signatories.*.pmcode' => 'required',
             'signatories.*.designation' => 'required',
