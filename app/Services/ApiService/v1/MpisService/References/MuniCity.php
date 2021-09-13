@@ -57,7 +57,7 @@ class MuniCity
 
     public function getMunicityById($id)
     {
-        return $this->performRequest('GET', '/mpis/get-municity/'.$id);
+        return $this->performRequest('GET', '/mpis/show-municity/'.$id);
     }
 
 }
