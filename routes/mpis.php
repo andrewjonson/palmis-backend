@@ -68,9 +68,9 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->get('get-province', 'ApiService\v1\MpisService\References\ProvinceController@getProvince');
     $router->get('get-municity', 'ApiService\v1\MpisService\References\MuniCityController@getMunicity');
     $router->get('get-barangay', 'ApiService\v1\MpisService\References\BarangayController@getBarangay');
-    $router->get('get-municity/{id}', 'ApiService\v1\MpisService\References\MuniCityController@getMunicityById');
-    $router->get('get-province/{id}', 'ApiService\v1\MpisService\References\ProvinceController@getProvinceById');
-    $router->get('get-barangay/{id}', 'ApiService\v1\MpisService\References\BarangayController@getBarangayById');
+    $router->get('show-municity/{id}', 'ApiService\v1\MpisService\References\MuniCityController@getMunicityById');
+    $router->get('show-province/{id}', 'ApiService\v1\MpisService\References\ProvinceController@getProvinceById');
+    $router->get('show-barangay/{id}', 'ApiService\v1\MpisService\References\BarangayController@getBarangayById');
     $router->post('create-personnel-rank', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelRank');
     $router->post('create-personnel-unit', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelUnit');
     $router->post('store-address', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelAddress');
