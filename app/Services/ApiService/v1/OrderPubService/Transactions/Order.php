@@ -39,4 +39,9 @@ class Order
     {
         return $this->performRequest('GET', '/orderpub/view-draft-order/'.$id);
     }
+
+    public function saveOrderAsTemplate($data, $id)
+    {
+        return $this->performRequest('POST', '/orderpub/orders/templates/'.$id, $data);
+    }
 }
