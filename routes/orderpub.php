@@ -12,7 +12,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/authoritylines', 'OrderPubService\References\AuthorityLineController', $router);
 
     $router->get('/authority/{office}', 'ApiService\v1\OrderPubService\References\AuthorityLineController@getAuthorityLine');
-    $router->get('/folders/content/{id}', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderContent');
+    $router->get('/folders/content', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderContent');
     $router->get('/folders/categories', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderbyCategory');
     $router->get('/folders', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolder');
     $router->get('/folders/templates/{id}', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderWithTemplate');

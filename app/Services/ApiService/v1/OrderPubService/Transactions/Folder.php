@@ -50,9 +50,9 @@ class Folder
         return $this->performRequest('GET', '/orderpub/folders/categories', $data);
     }
 
-    public function getFolderContent($id)
+    public function getFolderContent($data)
     {
-        return $this->performRequest('GET', '/orderpub/folders/content/'.$id);
+        return $this->performRequest('GET', '/orderpub/folders/content', $data);
     }
 
 }
