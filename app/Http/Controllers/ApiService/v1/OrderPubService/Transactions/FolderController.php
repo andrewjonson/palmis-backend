@@ -71,8 +71,8 @@ class FolderController extends Controller
         return $this->apiService->getFolderbyCategory($request->all());
     }
 
-    public function getFolderContent($id)
+    public function getFolderContent(Request $request)
     {
-        return $this->apiService->getFolderContent($id);
+        return $this->apiService->getFolderContent($request->all());
     }
 }
