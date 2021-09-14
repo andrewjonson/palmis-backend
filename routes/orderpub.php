@@ -29,6 +29,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->post('/update-document-setting/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingController@updatetDocumentSetting');
     $router->post('/document-setting', 'ApiService\v1\OrderPubService\References\DocumentSettingController@storeDocumentSetting');
     $router->get('/orders', 'ApiService\v1\OrderPubService\Transactions\OrderController@getOrders');
+    $router->get('/orders/templates/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@saveOrderAsTemplate');
     $router->post('/general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@createGeneralOrder');
     $router->put('/publish-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@publishOrder');
     $router->get('/view-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewPublishOrder');
