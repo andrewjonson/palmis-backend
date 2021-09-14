@@ -40,4 +40,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->delete('/signatory/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@destroy');
     $router->get('/signatories-trashed', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@onlyTrashed');
     $router->put('/signatory-restore/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@restore');
+    $router->post('/route-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@routeOrder');
+    $router->post('/update-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
+
+
 });
