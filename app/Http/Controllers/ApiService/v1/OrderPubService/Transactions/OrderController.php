@@ -18,7 +18,9 @@ class OrderController extends Controller
                 'getOrders',
                 'viewPublishOrder',
                 'viewDraftOrder',
-                'saveOrderAsTemplate'
+                'saveOrderAsTemplate',
+                'getDraftOrders',
+                'getPublishedOrders'
             ]
         ]);
         $this->middleware('permission:order-create|admin', [
@@ -62,5 +64,15 @@ class OrderController extends Controller
     public function saveOrderAsTemplate(Request $request, $id)
     {
         return $this->apiService->saveOrderAsTemplate($request->all(), $id);
+    }
+
+    public function getDraftOrders(Request $request)
+    {
+        return $this->apiService->getDraftOrders($request->all());
+    }
+
+    public function getPublishedOrders(Request $request)
+    {
+        return $this->apiService->getPublishedOrders($request->all());
     }
 }

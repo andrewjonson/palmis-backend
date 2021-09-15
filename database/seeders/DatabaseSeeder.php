@@ -30,6 +30,7 @@ use Database\Seeders\ApiService\v1\CmisService\References\SubFactorPermissionsTa
 use Database\Seeders\ApiService\v1\MpisService\References\HairColorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\SubCategoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\OrderPubService\References\StatusPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\MainCategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CitizenshipPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CivilStatusPermissionsTableSeeder;
@@ -150,5 +151,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentSettingSignatoryPermissionsTableSeeder::class);
         $this->call(FolderPermissionsTableSeeder::class);
         $this->call(OrderRoutePermissionsTableSeeder::class);
+        $this->call(StatusPermissionsTableSeeder::class);
     }
 }
