@@ -44,4 +44,14 @@ class Order
     {
         return $this->performRequest('POST', '/orderpub/orders/templates/'.$id, $data);
     }
+
+    public function getDraftOrders($data)
+    {
+        return $this->performRequest('GET', '/orderpub/order-drafts',$data);
+    }
+
+    public function getPublishedOrders($data)
+    {
+        return $this->performRequest('GET', '/orderpub/published-drafts',$data);
+    }
 }
