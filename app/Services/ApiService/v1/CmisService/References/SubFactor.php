@@ -32,7 +32,7 @@ class SubFactor
 
     public function delete($id)
     {
-        return $this->performRequest('DELETE', '/cmis/subfactor/name'.$id);
+        return $this->performRequest('DELETE', '/cmis/subfactor/name/'.$id);
     }
 
     public function onlyTrashed($data)
