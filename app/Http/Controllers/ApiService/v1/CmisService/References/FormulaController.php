@@ -16,7 +16,8 @@ class FormulaController extends Controller
         $this->middleware('permission:formula-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchFormulaByCriteria'
             ]
         ]);
         $this->middleware('permission:formula-create|admin', [
@@ -72,5 +73,10 @@ class FormulaController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchFormulaByCriteria(Request $request)
+    {
+        return $this->apiService->searchFormulaByCriteria($request->all());
     }
 }

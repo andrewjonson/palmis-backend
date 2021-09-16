@@ -51,6 +51,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\GovernmentIdPermissi
 use Database\Seeders\ApiService\v1\MpisService\Transactions\SerialNumberPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BranchOfServicePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\Transactions\TableStructurePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CountryVisitedPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\OrderRoutePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\SubFactorLevelOnePermissionsTableSeeder;
@@ -91,6 +92,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CriteriaPermissionsTableSeeder::class);
         $this->call(FormulaPermissionsTableSeeder::class);
         $this->call(QrsPermissionsTableSeeder::class);
+        $this->call(TableStructurePermissionsTableSeeder::class);
 
         //Mpis
         $this->call(CountryPermissionsTableSeeder::class);

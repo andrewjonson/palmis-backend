@@ -16,7 +16,8 @@ class CriteriaController extends Controller
         $this->middleware('permission:criteria-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getCriteriaPoints'
             ]
         ]);
         $this->middleware('permission:criteria-create|admin', [
@@ -72,5 +73,10 @@ class CriteriaController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getCriteriaPoints(Request $request)
+    {
+        return $this->apiService->getCriteriaPoints($request->all());
     }
 }

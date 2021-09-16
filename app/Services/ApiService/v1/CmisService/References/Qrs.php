@@ -49,4 +49,19 @@ class Qrs
     {
         return $this->performRequest('DELETE', '/cmis/qrs/force-delete/'.$id);
     }
+
+    public function searchQrs($data)
+    {
+        return $this->performRequest('GET', '/cmis/search', $data);
+    }
+
+    public function searchQrsByName($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/qrs-name', $data);
+    }
+
+    public function searchQrsByNameOnly($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/qrs/name-only', $data);
+    }
 }
