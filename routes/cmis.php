@@ -13,6 +13,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/criteria', 'CmisService\References\CriteriaController', $router); //
     resource('/formula', 'CmisService\References\FormulaController', $router); //
     resource('/qrs', 'CmisService\References\QrsController', $router); //
+    resource('/subfactor', 'CmisService\Transactions\TSubFactorController', $router);
+    resource('/sublvl', 'CmisService\Transactions\TSubFactorController', $router);
 
     $router->get('/search/award-points', 'ApiService\v1\CmisService\References\AwardPointController@searchAwardPointBySubfactor');
     $router->get('/search/formula', 'ApiService\v1\CmisService\References\FormulaController@searchFormulaByCriteria');

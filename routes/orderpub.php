@@ -34,6 +34,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->get('/published-orders', 'ApiService\v1\OrderPubService\Transactions\OrderController@getPublishedOrders');
     $router->post('/orders/templates/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@saveOrderAsTemplate');
     $router->post('/general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@createGeneralOrder');
+    $router->put('/revise-general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@reviseGeneralOrder');
     $router->put('/publish-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@publishOrder');
     $router->get('/view-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewPublishOrder');
     $router->get('/view-draft-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewDraftOrder');

@@ -30,7 +30,8 @@ class OrderController extends Controller
         ]);
         $this->middleware('permission:order-update|admin', [
             'only' => [
-                'publishOrder'
+                'publishOrder',
+                'reviseGeneralOrder'
             ]
         ]);
         $this->apiService = $apiService;
@@ -44,6 +45,11 @@ class OrderController extends Controller
     public function createGeneralOrder(Request $request, $id)
     {
         return $this->apiService->createGeneralOrder($request->all(), $id);
+    }
+
+    public function reviseGeneralOrder(Request $request, $id)
+    {
+        return $this->apiService->reviseGeneralOrder($request->all(), $id);
     }
 
     public function publishOrder($id)

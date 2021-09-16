@@ -36,6 +36,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\CitizenshipPermissions
 use Database\Seeders\ApiService\v1\MpisService\References\CivilStatusPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\InsurancePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\AppurtenancePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\Transactions\TSubFactorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankCategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\TarrifSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermissionsTableSeeder;
@@ -58,6 +59,7 @@ use Database\Seeders\ApiService\v1\CmisService\References\SubFactorLevelOnePermi
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\AuthorityLinePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\Transactions\TSubFactorLevelOnePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CharacterReferencePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CommunicationSkillPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FinancialReferencePermissionsTableSeeder;
@@ -93,7 +95,10 @@ class DatabaseSeeder extends Seeder
         $this->call(FormulaPermissionsTableSeeder::class);
         $this->call(QrsPermissionsTableSeeder::class);
         $this->call(TableStructurePermissionsTableSeeder::class);
-
+        $this->call(SubFactorPermissionsTableSeeder::class);
+        $this->call(SubFactorLevelOnePermissionsTableSeeder::class);
+        $this->call(TSubFactorLevelOnePermissionsTableSeeder::class);
+        $this->call(TSubFactorPermissionsTableSeeder::class);
         //Mpis
         $this->call(CountryPermissionsTableSeeder::class);
         $this->call(PersonnelPermissionsTableSeeder::class);
