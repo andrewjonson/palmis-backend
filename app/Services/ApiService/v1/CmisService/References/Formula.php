@@ -49,4 +49,9 @@ class Formula
     {
         return $this->performRequest('DELETE', '/cmis/formula/force-delete/'.$id);
     }
+
+    public function searchFormulaByCriteria($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/formula', $data);
+    }
 }

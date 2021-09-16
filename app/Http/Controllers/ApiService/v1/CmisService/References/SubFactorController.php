@@ -17,7 +17,8 @@ class SubFactorController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'searchSubfactorByCriteriaAndQrs'
+                'searchSubfactorByCriteriaAndQrs',
+                'getPointsByCriteriaAndQrs'
             ]
         ]);
         $this->middleware('permission:subfactor-create|admin', [
@@ -83,5 +84,10 @@ class SubFactorController extends Controller
     public function getDataByCriteria(Request $request)
     {
         return $this->apiService->getDataByCriteria($request->all());
+    }
+
+    public function getPointsByCriteriaAndQrs(Request $request)
+    {
+        return $this->apiService->getPointsByCriteriaAndQrs($request->all());
     }
 }

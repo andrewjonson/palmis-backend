@@ -16,7 +16,10 @@ class QrsController extends Controller
         $this->middleware('permission:qrs-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchQrs',
+                'searchQrsByName',
+                'searchQrsByNameOnly'
             ]
         ]);
         $this->middleware('permission:qrs-create|admin', [
@@ -72,5 +75,20 @@ class QrsController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchQrs(Request $request)
+    {
+        return $this->apiService->searchQrs($request->all());
+    }
+
+    public function searchQrsByName(Request $request)
+    {
+        return $this->apiService->searchQrsByName($request->all());
+    }
+
+    public function searchQrsByNameOnly(Request $request)
+    {
+        return $this->apiService->searchQrsByNameOnly($request->all());
     }
 }

@@ -45,6 +45,4 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->put('/signatory-restore/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@restore');
     $router->post('/route-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@routeOrder');
     $router->post('/update-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
-
-
 });
