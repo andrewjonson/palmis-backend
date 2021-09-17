@@ -59,4 +59,9 @@ class Order
     {
         return $this->performRequest('GET', '/orderpub/published-drafts',$data);
     }
+
+    public function getOrderHistories($id)
+    {
+        return $this->performRequest('GET', '/orderpub/order-histories/'.$id);
+    }
 }
