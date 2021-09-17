@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/Resource.php';
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modular:mpis'], 'prefix' => '/api/'.config('app.version').'/mpis'], function() use($router) {
+$router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'modular:mpis'], 'prefix' => '/api/'.config('app.version').'/mpis'], function() use($router) {
     resource('/personnels', 'MpisService\Transactions\PersonnelController', $router);
     resource('/barangay', 'MpisService\References\BarangayController', $router);
     resource('/bda-size', 'MpisService\References\BdaSizeController', $router);

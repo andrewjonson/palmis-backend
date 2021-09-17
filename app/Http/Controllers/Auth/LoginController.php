@@ -10,6 +10,7 @@ use App\Traits\Auth\LoginTrait;
 use App\Traits\Auth\CaptchaTrait;
 use App\Traits\Auth\TwoFactorTrait;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use App\Traits\Auth\VerificationTrait;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -33,8 +34,15 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
+        $client = Http::post(config('passport.login_endpoint'), [
+            'client_secret' => config('passport.client_secret'),
+            'grant_type' => 'password',
+            'client_id' => config('passport.client_id'),
+            'username' => $request->email,
+            'password' => $request->password
+        ]);
+
         try {
-            $credentials = request(['email', 'password']);
             $settings = $this->settingRepository->first();
             $captchaLoginAttempts = $settings->captcha_login_attempts;
             $maxLoginAttempts = $settings->max_login_attempts;
@@ -61,7 +69,7 @@ class LoginController extends Controller
                     }
                 }
 
-                if (!auth()->attempt($credentials)) {
+                if ($client->status() == 400) {
                     $this->throttleLoginAttempts($user);
                     $totalLoginAttempts = $this->countLoginAttempts($user);
                     $count = $maxLoginAttempts - $totalLoginAttempts;
@@ -90,7 +98,7 @@ class LoginController extends Controller
                     return $this->twoFactorResponse($user);
                 }
                 
-                return $this->loginResponse($user);
+                return $this->loginResponse($user, $client->json('access_token'));
             }
             return $this->failedResponse(trans('auth.invalid_credentials'), UNAUTHORIZED_USER);
         } catch(Exception $e) {
