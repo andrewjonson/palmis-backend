@@ -3,10 +3,13 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Traits\ResponseTrait;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Factory as Auth;
 
 class Authenticate
 {
+    use ResponseTrait;
     /**
      * The authentication guard factory instance.
      *
@@ -36,7 +39,7 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', UNAUTHORIZED_USER);
+            return $this->failedResponse('Unauthenticated', UNAUTHORIZED_USER);
         }
 
         return $next($request);
