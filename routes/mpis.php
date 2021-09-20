@@ -27,6 +27,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
     resource('/country', 'MpisService\References\CountryController', $router);
+    resource('/training', 'MpisService\References\TrainingController', $router);
 
     $router->get('ethnic-code-search', 'ApiService\v1\MpisService\References\EthnicController@searchEthnic');
     $router->get('personnel-group-search', 'ApiService\v1\MpisService\References\PersonnelGroupController@searchPersonnelGroup');
@@ -86,4 +87,8 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('search-serial', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerial');
     $router->post('create-personnel', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnel');
     $router->put('update-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@updatePersonnel');
+    $router->get('show-rank/{id}', 'ApiService\v1\MpisService\References\RankController@getRankById');
+    $router->get('show-training/{id}', 'ApiService\v1\MpisService\References\TrainingController@geTrainingById');
+    $router->get('show-personnel-type/{id}', 'ApiService\v1\MpisService\References\PersonnelTypeController@getPersonnelTypeById');
+
 });

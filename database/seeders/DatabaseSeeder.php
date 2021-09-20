@@ -25,6 +25,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\HairTypePermissionsTab
 use Database\Seeders\ApiService\v1\MpisService\References\MuniCityPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ProvincePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ReligionPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\TrainingPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\SubFactorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\HairColorPermissionsTableSeeder;
@@ -138,6 +139,8 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkHistoryPermissionsTableSeeder::class);
         $this->call(RankPermissionsTableSeeder::class);
         $this->call(SerialNumberPermissionsTableSeeder::class);
+        $this->call(TrainingPermissionsTableSeeder::class);
+
 
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
