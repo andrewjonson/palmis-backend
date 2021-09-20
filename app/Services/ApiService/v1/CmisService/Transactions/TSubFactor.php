@@ -49,4 +49,20 @@ class TSubFactor
     {
         return $this->performRequest('DELETE', '/cmis/subfactor/force-delete/'.$id);
     }
+
+    public function searchPoints($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/points', $data);
+    }
+
+    public function searchByCriteria($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/criteria', $data);
+    }
+
+    public function getDataByCriteria($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/sublvl/dropdown', $data);
+    }
+
 }

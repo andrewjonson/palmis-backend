@@ -49,7 +49,21 @@ class QrsController extends Controller
 
     public function store(Request $request)
     {
-        return $this->apiService->store($request->all());
+        $attachment = $request->file('attachments');
+        $attachmentName = time().rand(1,100).'.'.$attachment->extension();
+        $attachment->move(public_path('cmis/policy'), $attachmentName);
+
+        return $this->apiService->store([
+            'effectivityStart' => $request->effectivityStart,
+            'effectivityEnd' =>  $request->effectivityEnd,
+            'docDemsFrom' =>  $request->docDemsFrom,
+            'status' =>  $request->status,
+            'rf_personnel_type_id' =>  $request->rf_personnel_type_id,
+            'rfPurposeId' =>  $request->rfPurposeId,
+            'totalPoints' =>  $request->totalPoints,
+            'QRSScore' =>  $request->QRSScore,
+            'policy' =>  $attachmentName
+        ]);
     }
 
     public function update(Request $request, $id)

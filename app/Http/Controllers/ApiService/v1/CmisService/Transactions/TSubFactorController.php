@@ -16,7 +16,10 @@ class TSubFactorController extends Controller
         $this->middleware('permission:tsubfactor-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchPoints',
+                'searchByCriteria',
+                'getDataByCriteria'
             ]
         ]);
         $this->middleware('permission:tsubfactor-create|admin', [
@@ -73,4 +76,20 @@ class TSubFactorController extends Controller
     {
         return $this->apiService->forceDelete($id);
     }
+
+    public function searchPoints(Request $request)
+    {
+        return $this->apiService->searchPoints($request->all());
+    }
+
+    public function searchByCriteria(Request $request)
+    {
+        return $this->apiService->searchByCriteria($request->all());
+    }
+
+    public function getDataByCriteria(Request $request)
+    {
+        return $this->apiService->getDataByCriteria($request->all());
+    }
+
 }

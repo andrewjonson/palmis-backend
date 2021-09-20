@@ -52,6 +52,6 @@ class Criteria
 
     public function getCriteriaPoints($data)
     {
-        return $this->performRequest('DELETE', '/cmis/get/criteria/points', $data);
+        return $this->performRequest('GET', '/cmis/get/criteria/points', $data);
     }
 }

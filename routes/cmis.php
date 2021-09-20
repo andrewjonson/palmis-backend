@@ -16,6 +16,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/subfactor', 'CmisService\Transactions\TSubFactorController', $router);
     resource('/sublvl', 'CmisService\Transactions\TSubFactorController', $router);
 
+    $router->get('/search/points', 'ApiService\v1\CmisService\Transactions\TSubFactorController@searchPoints');
+    $router->get('/search/criteria', 'ApiService\v1\CmisService\Transactions\TSubFactorController@searchByCriteria');
+    $router->get('/search/sublvl/dropdown', 'ApiService\v1\CmisService\Transactions\TSubFactorController@getDataByCriteria');
     $router->get('/search/award-points', 'ApiService\v1\CmisService\References\AwardPointController@searchAwardPointBySubfactor');
     $router->get('/search/formula', 'ApiService\v1\CmisService\References\FormulaController@searchFormulaByCriteria');
     $router->get('/search/qrs-name', 'ApiService\v1\CmisService\References\QrsController@searchQrsByName');
@@ -24,7 +27,5 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/get/criteria/points', 'ApiService\v1\CmisService\References\CriteriaController@getCriteriaPoints');
     $router->get('/search/main-subfactor', 'ApiService\v1\CmisService\References\SubFactorLevelOneController@searchSubLevelByParent');
     $router->get('/search/sublvl/points', 'ApiService\v1\CmisService\References\SubFactorLevelOneController@searchSubLevelPoints');
-    $router->get('/search/criteria', 'ApiService\v1\CmisService\References\SubFactorController@searchSubfactorByCriteriaAndQrs');
-    $router->get('/search/sublvl/dropdown', 'ApiService\v1\CmisService\References\SubFactorController@getDataByCriteria');
     $router->get('/search/command-assignment', 'ApiService\v1\CmisService\References\TableStructureController@getTableStructureByCriteria');
 });
