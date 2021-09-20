@@ -14,7 +14,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/formula', 'CmisService\References\FormulaController', $router); //
     resource('/qrs', 'CmisService\References\QrsController', $router); //
     resource('/subfactor', 'CmisService\Transactions\TSubFactorController', $router);
-    resource('/sublvl', 'CmisService\Transactions\TSubFactorController', $router);
+    resource('/sublvl1', 'CmisService\Transactions\TSubFactorController', $router);
 
     $router->get('/search/points', 'ApiService\v1\CmisService\Transactions\TSubFactorController@searchPoints');
     $router->get('/search/criteria', 'ApiService\v1\CmisService\Transactions\TSubFactorController@searchByCriteria');
