@@ -16,25 +16,12 @@ class StatusController extends Controller
         $this->middleware('permission:status-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed',
                 'getStatusById'
-            ]
-        ]);
-        $this->middleware('permission:status-create|admin', [
-            'only' => [
-                'store'
             ]
         ]);
         $this->middleware('permission:status-update|admin', [
             'only' => [
-                'update',
-                'restore'
-            ]
-        ]);
-        $this->middleware('permission:status-delete|admin', [
-            'only' => [
-                'delete',
-                'forceDelete'
+                'update'
             ]
         ]);
         $this->apiService = $apiService;
@@ -45,34 +32,9 @@ class StatusController extends Controller
         return $this->apiService->index($request->all());
     }
 
-    public function store(Request $request)
-    {
-        return $this->apiService->store($request->all());
-    }
-
     public function update(Request $request, $id)
     {
         return $this->apiService->update($request->all(), $id);
-    }
-
-    public function delete($id)
-    {
-        return $this->apiService->delete($id);
-    }
-
-    public function onlyTrashed(Request $request)
-    {
-        return $this->apiService->onlyTrashed($request->all());
-    }
-
-    public function restore($id)
-    {
-        return $this->apiService->restore($id);
-    }
-
-    public function forceDelete($id)
-    {
-        return $this->apiService->forceDelete($id);
     }
 
     public function getStatusById($id)

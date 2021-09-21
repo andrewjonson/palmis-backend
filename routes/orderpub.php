@@ -10,8 +10,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/awards', 'OrderPubService\References\AwardController', $router);
     resource('/awards/type', 'OrderPubService\References\AwardTypeController', $router);
     resource('/authoritylines', 'OrderPubService\References\AuthorityLineController', $router);
-    resource('/statuses', 'OrderPubService\References\StatusController', $router);
 
+    $router->get('/statuses', 'ApiService\v1\OrderPubService\References\StatusController@index');
+    $router->put('/statuses/{id}', 'ApiService\v1\OrderPubService\References\StatusController@update');
     $router->get('/statuses/{id}', 'ApiService\v1\OrderPubService\References\StatusController@getStatusById');
     $router->get('/authority/{office}', 'ApiService\v1\OrderPubService\References\AuthorityLineController@getAuthorityLine');
     $router->get('/folders/content', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderContent');

@@ -20,34 +20,9 @@ class Status
         return $this->performRequest('GET', '/orderpub/statuses', $data);
     }
 
-    public function store($data)
-    {
-        return $this->performRequest('POST', '/orderpub/statuses', $data);
-    }
-
     public function update($data, $id)
     {
         return $this->performRequest('PUT', '/orderpub/statuses/'.$id, $data);
-    }
-
-    public function delete($id)
-    {
-        return $this->performRequest('DELETE', '/orderpub/statuses/'.$id);
-    }
-
-    public function onlyTrashed($data)
-    {
-        return $this->performRequest('GET', '/orderpub/statuses/only-trashed', $data);
-    }
-
-    public function restore($id)
-    {
-        return $this->performRequest('PUT', '/orderpub/statuses/restore/'.$id);
-    }
-
-    public function forceDelete($id)
-    {
-        return $this->performRequest('DELETE', '/orderpub/statuses/force-delete/'.$id);
     }
 
     public function getStatusById($id)
