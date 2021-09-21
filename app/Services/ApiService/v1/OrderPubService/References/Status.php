@@ -49,4 +49,9 @@ class Status
     {
         return $this->performRequest('DELETE', '/orderpub/statuses/force-delete/'.$id);
     }
+
+    public function getStatusById($id)
+    {
+        return $this->performRequest('GET', '/orderpub/statuses/'. $id);
+    }
 }

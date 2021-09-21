@@ -16,7 +16,8 @@ class StatusController extends Controller
         $this->middleware('permission:status-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getStatusById'
             ]
         ]);
         $this->middleware('permission:status-create|admin', [
@@ -72,5 +73,10 @@ class StatusController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getStatusById($id)
+    {
+        return $this->apiService->getStatusById($id);
     }
 }
