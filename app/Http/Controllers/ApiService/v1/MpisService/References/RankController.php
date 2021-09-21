@@ -16,7 +16,8 @@ class RankController extends Controller
         $this->middleware('permission:rank-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getRankById'
             ]
         ]);
         $this->middleware('permission:rank-create|admin', [
@@ -72,5 +73,10 @@ class RankController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getRankById($id)
+    {
+        return $this->apiService->getRankById($id);
     }
 }

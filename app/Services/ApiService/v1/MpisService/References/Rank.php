@@ -49,4 +49,9 @@ class Rank
     {
         return $this->performRequest('DELETE', '/mpis/rank/force-delete/'.$id);
     }
+
+    public function getRankById($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-rank/'. $id);
+    }
 }
