@@ -12,7 +12,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/authoritylines', 'OrderPubService\References\AuthorityLineController', $router);
     resource('/statuses', 'OrderPubService\References\StatusController', $router);
 
-    $router->get('/statuses/{$id}', 'ApiService\v1\OrderPubService\References\StatusController@getStatusById');
+    $router->get('/statuses/{id}', 'ApiService\v1\OrderPubService\References\StatusController@getStatusById');
     $router->get('/authority/{office}', 'ApiService\v1\OrderPubService\References\AuthorityLineController@getAuthorityLine');
     $router->get('/folders/content', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderContent');
     $router->get('/folders/categories', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderbyCategory');
