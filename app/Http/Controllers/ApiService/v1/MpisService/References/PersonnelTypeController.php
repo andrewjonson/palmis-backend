@@ -16,7 +16,8 @@ class PersonnelTypeController extends Controller
         $this->middleware('permission:personneltype-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getPersonnelTypeById'
             ]
         ]);
         $this->middleware('permission:personneltype-create|admin', [
@@ -72,5 +73,10 @@ class PersonnelTypeController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getPersonnelTypeById($id)
+    {
+        return $this->apiService->getPersonnelTypeById($id);
     }
 }
