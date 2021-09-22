@@ -10,10 +10,11 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/awards', 'OrderPubService\References\AwardController', $router);
     resource('/awards/type', 'OrderPubService\References\AwardTypeController', $router);
     resource('/authoritylines', 'OrderPubService\References\AuthorityLineController', $router);
+    resource('/signatories', 'OrderPubService\References\DocumentSignatoryController', $router);
 
     $router->get('/statuses', 'ApiService\v1\OrderPubService\References\StatusController@index');
     $router->put('/statuses/{id}', 'ApiService\v1\OrderPubService\References\StatusController@update');
-    $router->get('/statuses/{id}', 'ApiService\v1\OrderPubService\References\StatusController@getStatusById');
+    $router->get('/show-status', 'ApiService\v1\OrderPubService\References\StatusController@getStatusById');
     $router->get('/authority/{office}', 'ApiService\v1\OrderPubService\References\AuthorityLineController@getAuthorityLine');
     $router->get('/folders/content', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderContent');
     $router->get('/folders/categories', 'ApiService\v1\OrderPubService\Transactions\FolderController@getFolderbyCategory');
@@ -41,12 +42,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->put('/publish-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@publishOrder');
     $router->get('/view-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewPublishOrder');
     $router->get('/view-draft-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewDraftOrder');
-    $router->get('/signatories', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@index');
-    $router->post('/signatory', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@store');
-    $router->put('/signatory/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@update');
-    $router->delete('/signatory/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@destroy');
-    $router->get('/signatories-trashed', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@onlyTrashed');
-    $router->put('/signatory-restore/{id}', 'ApiService\v1\OrderPubService\References\DocumentSettingSignatoryController@restore');
     $router->post('/route-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@routeOrder');
     $router->post('/update-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
+    $router->post('/show-status/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
 });

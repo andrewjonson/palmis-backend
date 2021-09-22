@@ -37,8 +37,8 @@ class StatusController extends Controller
         return $this->apiService->update($request->all(), $id);
     }
 
-    public function getStatusById($id)
+    public function getStatusById(Request $request)
     {
-        return $this->apiService->getStatusById($id);
+        return $this->apiService->getStatusById($request->all());
     }
 }

@@ -25,8 +25,8 @@ class Status
         return $this->performRequest('PUT', '/orderpub/statuses/'.$id, $data);
     }
 
-    public function getStatusById($id)
+    public function getStatusById($data)
     {
-        return $this->performRequest('GET', '/orderpub/statuses/'. $id);
+        return $this->performRequest('GET', '/orderpub/show-status', $data);
     }
 }
