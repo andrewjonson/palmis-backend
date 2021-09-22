@@ -68,4 +68,9 @@ class DocumentSettingSignatoryController extends Controller
     {
         return $this->apiService->restore($id);
     }
+
+    public function forceDelete($id)
+    {
+        return $this->apiService->forceDelete($id);
+    }
 }

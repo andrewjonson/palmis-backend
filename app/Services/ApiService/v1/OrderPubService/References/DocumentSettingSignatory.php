@@ -22,17 +22,17 @@ class DocumentSettingSignatory
 
     public function store($data)
     {
-        return $this->performRequest('POST', '/orderpub/signatory', $data);
+        return $this->performRequest('POST', '/orderpub/signatories', $data);
     }
 
     public function update($data, $id)
     {
-        return $this->performRequest('PUT', '/orderpub/signatory/'.$id, $data);
+        return $this->performRequest('PUT', '/orderpub/signatories/'.$id, $data);
     }
 
     public function delete($id)
     {
-        return $this->performRequest('DELETE', '/orderpub/signatory/'.$id);
+        return $this->performRequest('DELETE', '/orderpub/signatories/'.$id);
     }
 
     public function onlyTrashed($data)
@@ -42,6 +42,11 @@ class DocumentSettingSignatory
 
     public function restore($id)
     {
-        return $this->performRequest('PUT', '/orderpub/signatory-restore/'.$id);
+        return $this->performRequest('PUT', '/orderpub/signatories-restore/'.$id);
+    }
+
+    public function forceDelete($id)
+    {
+        return $this->performRequest('DELETE', '/orderpub/signatories/force-delete/'.$id);
     }
 }
