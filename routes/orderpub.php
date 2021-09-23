@@ -11,6 +11,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/awards/type', 'OrderPubService\References\AwardTypeController', $router);
     resource('/authoritylines', 'OrderPubService\References\AuthorityLineController', $router);
     resource('/signatories', 'OrderPubService\References\DocumentSettingSignatoryController', $router);
+    resource('/originating-offices', 'OrderPubService\References\OriginatingOfficeController', $router);
 
     $router->get('/statuses', 'ApiService\v1\OrderPubService\References\StatusController@index');
     $router->put('/statuses/{id}', 'ApiService\v1\OrderPubService\References\StatusController@update');
