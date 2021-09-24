@@ -60,6 +60,7 @@ use Database\Seeders\ApiService\v1\CmisService\References\SubFactorLevelOnePermi
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\AuthorityLinePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FileDirectoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TSubFactorLevelOnePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CharacterReferencePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CommunicationSkillPermissionsTableSeeder;
@@ -164,5 +165,6 @@ class DatabaseSeeder extends Seeder
         $this->call(OrderRoutePermissionsTableSeeder::class);
         $this->call(StatusPermissionsTableSeeder::class);
         $this->call(OriginatingOfficePermissionsTableSeeder::class);
+        $this->call(FileDirectoryPermissionsTableSeeder::class);
     }
 }
