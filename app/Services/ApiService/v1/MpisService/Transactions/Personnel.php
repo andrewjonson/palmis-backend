@@ -125,4 +125,9 @@ class Personnel
     {
         return $this->performRequest('PUT', '/mpis/update-personnel/'.$id, $data);
     }
+
+    public function createPersonnelPromotion($data)
+    {
+        return $this->performRequest('POST', '/mpis/store-personnel-promotion', $data);
+    }
 }

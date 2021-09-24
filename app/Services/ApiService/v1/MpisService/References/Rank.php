@@ -54,4 +54,9 @@ class Rank
     {
         return $this->performRequest('GET', '/mpis/show-rank/'. $id);
     }
+
+    public function searchPersonnelRank($data)
+    {
+        return $this->performRequest('GET', '/mpis/search-personnel-rank', $data);
+    }
 }

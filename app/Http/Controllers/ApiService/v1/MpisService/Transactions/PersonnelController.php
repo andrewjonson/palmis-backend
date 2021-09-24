@@ -35,6 +35,7 @@ class PersonnelController extends Controller
                 'createPersonnelRank',
                 'createPersonnelUnit',
                 'createPersonnelAddress',
+                'createPersonnelPromotion'
 
             ]
         ]);
@@ -128,5 +129,10 @@ class PersonnelController extends Controller
     public function updatePersonnel(Request $request, $id)
     {
         return $this->apiService->updatePersonnel($request->all(), $id);
+    }
+
+    public function createPersonnelPromotion(Request $request)
+    {
+        return $this->apiService->createPersonnelPromotion($request->all());
     }
 }

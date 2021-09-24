@@ -5,33 +5,33 @@ namespace App\Http\Controllers\ApiService\v1\MpisService\References;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Services\ApiService\v1\MpisService\References\RankCategory;
+use App\Services\ApiService\v1\MpisService\References\Zipcode;
 
-class RankCategoryController extends Controller
+class ZipcodeController extends Controller
 {
     use ConsumeExternalService;
 
-    public function __construct(RankCategory $apiService)
+    public function __construct(Zipcode $apiService)
     {
-        $this->middleware('permission:rankcategory-read|admin', [
+        $this->middleware('permission:zipcode-read|admin', [
             'only' => [
                 'index',
                 'onlyTrashed',
-                'searchPersonnelRank'
+                'getZipcodeById'
             ]
         ]);
-        $this->middleware('permission:rankcategory-create|admin', [
+        $this->middleware('permission:zipcode-create|admin', [
             'only' => [
                 'store'
             ]
         ]);
-        $this->middleware('permission:rankcategory-update|admin', [
+        $this->middleware('permission:zipcode-update|admin', [
             'only' => [
                 'update',
                 'restore'
             ]
         ]);
-        $this->middleware('permission:rankcategory-delete|admin', [
+        $this->middleware('permission:zipcode-delete|admin', [
             'only' => [
                 'delete',
                 'forceDelete'
@@ -75,8 +75,8 @@ class RankCategoryController extends Controller
         return $this->apiService->forceDelete($id);
     }
 
-    public function searchPersonnelRank(Request $request)
+    public function getZipcodeById($id)
     {
-        return $this->apiService->searchPersonnelRank($request->all());
+        return $this->apiService->getZipcodeById($id);
     }
 }
