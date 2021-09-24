@@ -17,7 +17,8 @@ class RankController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'getRankById'
+                'getRankById',
+                'searchPersonnelRank'
             ]
         ]);
         $this->middleware('permission:rank-create|admin', [
@@ -78,5 +79,10 @@ class RankController extends Controller
     public function getRankById($id)
     {
         return $this->apiService->getRankById($id);
+    }
+
+    public function searchPersonnelRank(Request $request)
+    {
+        return $this->apiService->searchPersonnelRank($request->all());
     }
 }
