@@ -28,7 +28,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
     resource('/country', 'MpisService\References\CountryController', $router);
     resource('/training', 'MpisService\References\TrainingController', $router);
-    resource('/zipcode', 'OrderPubService\References\ZipcodeOfficeController', $router);
+    resource('/zipcode', 'OrderPubService\References\ZipcodeController', $router);
 
     $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelPromotion');
     $router->get('search-personnel-rank', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');
