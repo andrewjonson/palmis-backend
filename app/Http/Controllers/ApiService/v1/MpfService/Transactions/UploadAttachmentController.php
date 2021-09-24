@@ -48,4 +48,14 @@ class UploadAttachmentController extends Controller
             'attachments' => $attachments
         ], $subTabId);
     }
+
+    public function deleteTabAttachment($id)
+    {
+        return $this->apiService->deleteTabAttachment($id);
+    }
+
+    public function deleteSubTabAttachment($id)
+    {
+        return $this->apiService->deleteSubTabAttachment($id);
+    }
 }

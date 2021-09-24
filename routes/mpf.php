@@ -11,4 +11,6 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('/sub-tab-attachments/upload/{subTabId}', 'ApiService\v1\MpfService\Transactions\UploadAttachmentController@uploadSubTabAttachment');
     $router->get('/personnels/personnel-folders/{pmcode}', 'ApiService\v1\MpfService\Transactions\PersonnelFolderController@getPersonnelFolders');
     $router->post('/personnels/folder/sync', 'ApiService\v1\MpfService\Transactions\PersonnelFolderController@syncPersonnelFolder');
+    $router->delete('/tab-attachments/delete/{id}', 'ApiService\v1\MpfService\Transactions\UploadAttachmentController@deleteTabAttachment');
+    $router->delete('/sub-tab-attachments/delete/{id}', 'ApiService\v1\MpfService\Transactions\UploadAttachmentController@deleteSubTabAttachment');
 });
