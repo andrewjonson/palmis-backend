@@ -24,4 +24,14 @@ class UploadAttachment
     {
         return $this->performRequest('POST', '/mpf/sub-tab-attachments/upload/'.$subTabId, $data);
     }
+
+    public function deleteTabAttachment($id)
+    {
+        return $this->performRequest('DELETE', '/mpf/tab-attachments/delete/'.$id);
+    }
+
+    public function deleteSubTabAttachment($id)
+    {
+        return $this->performRequest('DELETE', '/mpf/sub-tab-attachments/delete/'.$id);
+    }
 }
