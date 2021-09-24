@@ -13,7 +13,14 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/signatories', 'OrderPubService\References\DocumentSettingSignatoryController', $router);
     resource('/originating-offices', 'OrderPubService\References\OriginatingOfficeController', $router);
 
-    $router->get('/statuses', 'ApiService\v1\OrderPubService\References\StatusController@index');
+    $router->get('/directories', 'ApiService\v1\OrderPubService\Transactions\FileDirectoryController@getDirectories');
+    $router->post('/directories/folders', 'ApiService\v1\OrderPubService\Transactions\FileDirectoryController@createFolder');
+    $router->put('/directories/{id}', 'ApiService\v1\OrderPubService\Transactions\FileDirectoryController@updateFolder');
+    $router->get('/directories/show-folders', 'ApiService\v1\OrderPubService\Transactions\FileDirectoryController@showFolders');
+    $router->get('/directories/contents', 'ApiService\v1\OrderPubService\Transactions\FileDirectoryController@showFolderContents');
+    $router->delete('/directories/{id}', 'ApiService\v1\OrderPubService\Transactions\FileDirectoryController@deleteContent');
+    $router->put('/directories/restore/{id}', 'ApiService\v1\OrderPubService\Transactions\FileDirectoryController@restoreFolder');
+    $router->get('/directories/only-trashed', 'ApiService\v1\OrderPubService\Transactions\FileDirectoryController@showFolderTrashed');
     $router->put('/statuses/{id}', 'ApiService\v1\OrderPubService\References\StatusController@update');
     $router->get('/show-status', 'ApiService\v1\OrderPubService\References\StatusController@getStatusById');
     $router->get('/authority/{office}', 'ApiService\v1\OrderPubService\References\AuthorityLineController@getAuthorityLine');
