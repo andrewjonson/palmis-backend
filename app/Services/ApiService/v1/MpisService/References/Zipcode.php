@@ -53,7 +53,7 @@ class Zipcode
 
     public function getZipcode($data)
     {
-        return $this->performRequest('GET', '/mpis/get-zipcode',$data);
+        return $this->performRequest('GET', '/mpis/get-zipcode', $data);
     }
 
 }

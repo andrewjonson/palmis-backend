@@ -32,7 +32,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
 
     $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelPromotion');
     $router->get('search-personnel-rank', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');
-    $router->get('get-zipcode', 'ApiService\v1\MpisService\Transactions\ZipcodeController@getZipcode');
+    $router->get('get-zipcode', 'ApiService\v1\MpisService\References\ZipcodeController@getZipcode');
     $router->get('ethnic-code-search', 'ApiService\v1\MpisService\References\EthnicController@searchEthnic');
     $router->get('personnel-group-search', 'ApiService\v1\MpisService\References\PersonnelGroupController@searchPersonnelGroup');
     $router->get('civil-status-search', 'ApiService\v1\MpisService\References\CitizenshipController@searchCivilStatus');
