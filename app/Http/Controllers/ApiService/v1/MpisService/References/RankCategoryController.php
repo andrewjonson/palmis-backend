@@ -16,8 +16,7 @@ class RankCategoryController extends Controller
         $this->middleware('permission:rankcategory-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed',
-                'searchPersonnelRank'
+                'onlyTrashed'
             ]
         ]);
         $this->middleware('permission:rankcategory-create|admin', [
@@ -73,10 +72,5 @@ class RankCategoryController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
-    }
-
-    public function searchPersonnelRank(Request $request)
-    {
-        return $this->apiService->searchPersonnelRank($request->all());
     }
 }
