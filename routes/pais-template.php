@@ -82,7 +82,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/teams/users-without-team', 'TeamModules\TeamController@usersWithoutTeam');
     $router->post('/teams/assign-all/{userId}', 'TeamModules\TeamController@assignAll');
     $router->put('/teams/unassign-user/{userId}', 'TeamModules\TeamController@unAssignUser');
-    $router->get('/teams/{id}', 'TeamModules\TeamController@getTeamByTeamId');
+    $router->get('/teams/{teamId}', 'TeamModules\TeamController@getTeamByTeamId');
 
 
     //Modules
