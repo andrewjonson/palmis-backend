@@ -108,7 +108,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->delete('/permissions/{permissionId}', 'RolePermissions\PermissionController@delete');
 
     //Units
-    $router->get('/units/unit-by-code', 'Units\UnitController@getUnitByUnitCode');
+    $router->get('/units/unit-by-code/{unitCode}', 'Units\UnitController@getUnitByUnitCode');
     $router->get('/units', 'Units\UnitController@searchUnit');
 
 
