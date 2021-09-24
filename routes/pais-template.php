@@ -62,7 +62,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->put('/users/assign-superadmin/{userId}', 'Users\UserController@assignSuperAdmin');
     $router->get('/users/account-type/{userId}', 'Users\UserController@accountType');
     $router->post('/users/validate-password', 'Users\UserController@validatePassword');
-    
+
     //Personnels
     $router->get('/personnels', 'Personnels\PersonnelController@searchPersonnelBySerialNumber');
     $router->get('/personnels/pmcode/{pmcode}', 'Personnels\PersonnelController@getPersonnelByPmcode');
@@ -82,6 +82,8 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/teams/users-without-team', 'TeamModules\TeamController@usersWithoutTeam');
     $router->post('/teams/assign-all/{userId}', 'TeamModules\TeamController@assignAll');
     $router->put('/teams/unassign-user/{userId}', 'TeamModules\TeamController@unAssignUser');
+    $router->get('/teams/{id}', 'TeamModules\TeamController@getTeamByTeamId');
+
 
     //Modules
     $router->post('/modules', 'TeamModules\ModuleController@create');
@@ -108,6 +110,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     //Units
     $router->get('/units/unit-by-code', 'Units\UnitController@getUnitByUnitCode');
     $router->get('/units', 'Units\UnitController@searchUnit');
+
 
     //Announcements
     $router->get('/announcements', 'Dashboard\AnnouncementController@index');
