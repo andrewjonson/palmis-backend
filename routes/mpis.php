@@ -31,7 +31,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/zipcode', 'OrderPubService\References\ZipcodeOfficeController', $router);
 
     $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelPromotion');
-    $router->get('search-personnel-rank/{id}', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');
+    $router->get('search-personnel-rank', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');
     $router->get('show-zipcode/{id}', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@getZipcodeById');
     $router->get('ethnic-code-search', 'ApiService\v1\MpisService\References\EthnicController@searchEthnic');
     $router->get('personnel-group-search', 'ApiService\v1\MpisService\References\PersonnelGroupController@searchPersonnelGroup');
