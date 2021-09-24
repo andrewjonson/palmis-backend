@@ -28,7 +28,11 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
     resource('/country', 'MpisService\References\CountryController', $router);
     resource('/training', 'MpisService\References\TrainingController', $router);
+    resource('/zipcode', 'OrderPubService\References\ZipcodeOfficeController', $router);
 
+    $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelPromotion');
+    $router->get('search-personnel-rank/{id}', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');
+    $router->get('show-zipcode/{id}', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@getZipcodeById');
     $router->get('ethnic-code-search', 'ApiService\v1\MpisService\References\EthnicController@searchEthnic');
     $router->get('personnel-group-search', 'ApiService\v1\MpisService\References\PersonnelGroupController@searchPersonnelGroup');
     $router->get('civil-status-search', 'ApiService\v1\MpisService\References\CitizenshipController@searchCivilStatus');

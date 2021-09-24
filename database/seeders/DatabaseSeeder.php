@@ -19,6 +19,7 @@ use Database\Seeders\ApiService\v1\CmisService\References\FormulaPermissionsTabl
 use Database\Seeders\ApiService\v1\CmisService\References\PurposePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BdaSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CountryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\ZipcodePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BarangayPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\EyeColorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\HairTypePermissionsTableSeeder;
@@ -142,6 +143,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RankPermissionsTableSeeder::class);
         $this->call(SerialNumberPermissionsTableSeeder::class);
         $this->call(TrainingPermissionsTableSeeder::class);
+        $this->call(ZipcodePermissionsTableSeeder::class);
 
 
         //Mpf
