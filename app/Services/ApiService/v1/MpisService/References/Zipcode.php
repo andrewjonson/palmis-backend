@@ -17,37 +17,37 @@ class Zipcode
 
     public function index($data)
     {
-        return $this->performRequest('GET', '/mpis/zipcodes', $data);
+        return $this->performRequest('GET', '/mpis/zipcode', $data);
     }
 
     public function store($data)
     {
-        return $this->performRequest('POST', '/mpis/zipcodes', $data);
+        return $this->performRequest('POST', '/mpis/zipcode', $data);
     }
 
     public function update($data, $id)
     {
-        return $this->performRequest('PUT', '/mpis/zipcodes/'.$id, $data);
+        return $this->performRequest('PUT', '/mpis/zipcode/'.$id, $data);
     }
 
     public function delete($id)
     {
-        return $this->performRequest('DELETE', '/mpis/zipcodes/'.$id);
+        return $this->performRequest('DELETE', '/mpis/zipcode/'.$id);
     }
 
     public function onlyTrashed($data)
     {
-        return $this->performRequest('GET', '/mpis/zipcodes/only-trashed', $data);
+        return $this->performRequest('GET', '/mpis/zipcode/only-trashed', $data);
     }
 
     public function restore($id)
     {
-        return $this->performRequest('PUT', '/mpis/zipcodes/restore/'.$id);
+        return $this->performRequest('PUT', '/mpis/zipcode/restore/'.$id);
     }
 
     public function forceDelete($id)
     {
-        return $this->performRequest('DELETE', '/mpis/zipcodes/force-delete/'.$id);
+        return $this->performRequest('DELETE', '/mpis/zipcode/force-delete/'.$id);
     }
 
 
