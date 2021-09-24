@@ -17,7 +17,7 @@ class ZipcodeController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'getZipcodeById'
+                'getZipcode'
             ]
         ]);
         $this->middleware('permission:zipcode-create|admin', [
@@ -75,8 +75,8 @@ class ZipcodeController extends Controller
         return $this->apiService->forceDelete($id);
     }
 
-    public function getZipcodeById($id)
+    public function getZipcode(Request $request)
     {
-        return $this->apiService->getZipcodeById($id);
+        return $this->apiService->getZipcode($request->all());
     }
 }

@@ -51,9 +51,9 @@ class Zipcode
     }
 
 
-    public function getZipcodeById($id)
+    public function getZipcode($data)
     {
-        return $this->performRequest('GET', '/mpis/get-zipcode'.$id);
+        return $this->performRequest('GET', '/mpis/get-zipcode',$data);
     }
 
 }
