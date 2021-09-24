@@ -37,7 +37,7 @@ class DocumentSettingSignatory
 
     public function onlyTrashed($data)
     {
-        return $this->performRequest('GET', '/orderpub/signatories-trashed', $data);
+        return $this->performRequest('GET', '/orderpub/signatories/only-trashed', $data);
     }
 
     public function restore($id)
