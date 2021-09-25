@@ -14,10 +14,10 @@ class UnitController extends Controller
         $this->unitRepository = $unitRepository;
     }
 
-    public function getUnitByUnitCode($unitCode)
+    public function getUnitByUnitCode($code)
     {
         try {
-            return $this->unitRepository->getUnitByUnitCode($unitCode);
+            return $this->unitRepository->getUnitByUnitCode($code);
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
