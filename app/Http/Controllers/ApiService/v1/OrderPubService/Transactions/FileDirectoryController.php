@@ -77,6 +77,6 @@ class FileDirectoryController extends Controller
 
     public function showFolderTrashed(Request $request)
     {
-        return $this->apiService->showFolderContents($request->all());
+        return $this->apiService->showFolderTrashed($request->all());
     }
 }
