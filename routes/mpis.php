@@ -60,6 +60,8 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('store-civilian-commendation', 'ApiService\v1\MpisService\Transactions\CivilianCommendationController@createCommendation');
     $router->get('show-civilian-commendation/{id}', 'ApiService\v1\MpisService\Transactions\CivilianCommendationController@getCommendation');
     $router->post('store-reference', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@createReference');
+    $router->put('update-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@updateReference');
+    $router->delete('delete-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@deleteReference');
     $router->get('show-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@getReference');
     $router->get('show-tariff-size/{id}', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@getTarrifSizeById');
     $router->post('store-tariff-size', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@createTarrifSize');

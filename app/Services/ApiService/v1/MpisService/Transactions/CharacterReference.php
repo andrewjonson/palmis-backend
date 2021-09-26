@@ -24,4 +24,14 @@ class CharacterReference
     {
         return $this->performRequest('POST', '/mpis/store-reference', $data);
     }
+
+    public function updateReference($data, $id)
+    {
+        return $this->performRequest('POST', '/mpis/update-reference/'.$id, $data);
+    }
+
+    public function deleteReference($id)
+    {
+        return $this->performRequest('POST', '/mpis/delete-reference/'.$id);
+    }
 }
