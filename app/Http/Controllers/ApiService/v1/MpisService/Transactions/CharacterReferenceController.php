@@ -23,6 +23,16 @@ class CharacterReferenceController extends Controller
                 'createReference'
             ]
         ]);
+        $this->middleware('permission:characterreference-update|admin', [
+            'only' => [
+                'updateReference'
+            ]
+        ]);
+        $this->middleware('permission:characterreference-delete|admin', [
+            'only' => [
+                'deleteReference'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 
@@ -34,5 +44,15 @@ class CharacterReferenceController extends Controller
     public function createReference(Request $request)
     {
         return $this->apiService->createReference($request->all());
+    }
+
+    public function updateReference(Request $request, $id)
+    {
+        return $this->apiService->updateReference($request->all(), $id);
+    }
+
+    public function deleteReference(Request $request)
+    {
+        return $this->apiService->deleteReference($id);
     }
 }
