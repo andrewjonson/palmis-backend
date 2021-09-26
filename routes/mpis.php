@@ -29,7 +29,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/country', 'MpisService\References\CountryController', $router);
     resource('/training', 'MpisService\References\TrainingController', $router);
     resource('/zipcode', 'MpisService\References\ZipcodeController', $router);
+    resource('/relationship', 'MpisService\References\RelationshipController', $router);
 
+    $router->get('relationship-search', 'ApiService\v1\MpisService\References\RelationshipController@searchRelationship');
     $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelPromotion');
     $router->get('search-personnel-rank', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');
     $router->get('get-zipcode', 'ApiService\v1\MpisService\References\ZipcodeController@getZipcode');
