@@ -40,6 +40,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\InsurancePermissions
 use Database\Seeders\ApiService\v1\CmisService\References\AppurtenancePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TSubFactorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankCategoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\RelationshipPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\TarrifSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TemplatePermissionsTableSeeder;
@@ -144,6 +145,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SerialNumberPermissionsTableSeeder::class);
         $this->call(TrainingPermissionsTableSeeder::class);
         $this->call(ZipcodePermissionsTableSeeder::class);
+        $this->call(RelationshipPermissionsTableSeeder::class);
 
 
         //Mpf
