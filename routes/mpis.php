@@ -31,7 +31,6 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/zipcode', 'MpisService\References\ZipcodeController', $router);
     resource('/relationship', 'MpisService\References\RelationshipController', $router);
 
-    $router->get('show-training/{id}', 'ApiService\v1\MpisService\References\TrainingController@getTrainingById');
     $router->get('show-personnel-group/{id}', 'ApiService\v1\MpisService\References\PersonnelGroupController@getPersonnelGroupById');
     $router->get('show-civil-status/{id}', 'ApiService\v1\MpisService\References\CivilStatusController@getCivilStatusById');
     $router->get('relationship-search', 'ApiService\v1\MpisService\References\RelationshipController@searchRelationship');
@@ -99,7 +98,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('create-personnel', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnel');
     $router->put('update-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@updatePersonnel');
     $router->get('show-rank/{id}', 'ApiService\v1\MpisService\References\RankController@getRankById');
-    $router->get('show-training/{id}', 'ApiService\v1\MpisService\References\TrainingController@geTrainingById');
+    $router->get('show-training/{id}', 'ApiService\v1\MpisService\References\TrainingController@getTrainingById');
     $router->get('show-personnel-type/{id}', 'ApiService\v1\MpisService\References\PersonnelTypeController@getPersonnelTypeById');
 
 });
