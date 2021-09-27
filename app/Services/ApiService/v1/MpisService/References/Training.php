@@ -49,4 +49,9 @@ class Training
     {
         return $this->performRequest('DELETE', '/mpis/training/force-delete/'.$id);
     }
+
+    public function getTrainingById($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-training/'.$id);
+    }
 }

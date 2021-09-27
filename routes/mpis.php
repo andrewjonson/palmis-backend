@@ -31,6 +31,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/zipcode', 'MpisService\References\ZipcodeController', $router);
     resource('/relationship', 'MpisService\References\RelationshipController', $router);
 
+    $router->get('show-training/{id}', 'ApiService\v1\MpisService\References\TrainingController@getTrainingById');
+    $router->get('show-personnel-group/{id}', 'ApiService\v1\MpisService\References\PersonnelGroupController@getPersonnelGroupById');
+    $router->get('show-civil-status/{id}', 'ApiService\v1\MpisService\References\CivilStatusController@getCivilStatusById');
     $router->get('relationship-search', 'ApiService\v1\MpisService\References\RelationshipController@searchRelationship');
     $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelPromotion');
     $router->get('search-personnel-rank', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');

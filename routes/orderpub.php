@@ -33,7 +33,8 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('/folders/store-templates/{id}', 'ApiService\v1\OrderPubService\Transactions\FolderController@storeTemplateToFolder');
     $router->put('/folders/{id}', 'ApiService\v1\OrderPubService\Transactions\FolderController@updateFolder');
     $router->get('/types/category/{id}', 'ApiService\v1\OrderPubService\References\TypeController@getTypeByCategory');
-    $router->get('/types/model/{id}', 'ApiService\v1\OrderPubService\References\TypeController@getTypeById');
+    $router->get('/types/{id}', 'ApiService\v1\OrderPubService\References\TypeController@getTypeById');
+    $router->get('/types/model/{id}', 'ApiService\v1\OrderPubService\References\TypeController@getModelByType');
     $router->get('/types/template/{id}', 'ApiService\v1\OrderPubService\References\TypeController@getTypeWithTemplates');
     $router->get('/models', 'ApiService\v1\OrderPubService\References\ModelListController@index');
     $router->get('/models/type/{id}', 'ApiService\v1\OrderPubService\References\ModelListController@getModelbyType');

@@ -55,7 +55,7 @@ class Type
         return $this->performRequest('GET', '/orderpub/types/category/'.$id);
     }
 
-    public function getTypeById($id)
+    public function getModelByType($id)
     {
         return $this->performRequest('GET', '/orderpub/types/model/'.$id);
     }
@@ -63,5 +63,10 @@ class Type
     public function getTypeWithTemplates($id)
     {
         return $this->performRequest('GET', '/orderpub/types/template/'.$id);
+    }
+
+    public function getTypeById($id)
+    {
+        return $this->performRequest('GET', '/orderpub/types/'.$id);
     }
 }

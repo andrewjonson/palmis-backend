@@ -19,7 +19,8 @@ class TypeController extends Controller
                 'onlyTrashed',
                 'getTypeByCategory',
                 'getTypeById',
-                'getTypeWithTemplates'
+                'getTypeWithTemplates',
+                'getModelByType'
 
             ]
         ]);
@@ -56,5 +57,10 @@ class TypeController extends Controller
     public function getTypeWithTemplates($id)
     {
         return $this->apiService->getTypeWithTemplates($id);
+    }
+
+    public function getModelByType($id)
+    {
+        return $this->apiService->getModelByType($id);
     }
 }

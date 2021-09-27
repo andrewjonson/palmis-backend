@@ -54,4 +54,9 @@ class PersonnelGroup
     {
         return $this->performRequest('GET', '/mpis/personnel-group-search', $data);
     }
+
+    public function getPersonnelGroupById($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-personnel-group/'.$id);
+    }
 }

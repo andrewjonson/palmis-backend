@@ -17,7 +17,8 @@ class PersonnelGroupController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'searchPersonnelGroup'
+                'searchPersonnelGroup',
+                'getPersonnelGroupById'
             ]
         ]);
         $this->middleware('permission:personnelgroup-create|admin', [
@@ -78,5 +79,10 @@ class PersonnelGroupController extends Controller
     public function searchPersonnelGroup(Request $request)
     {
         return $this->apiService->searchPersonnelGroup($request->all());
+    }
+
+    public function getPersonnelGroupById($id)
+    {
+        return $this->apiService->getPersonnelGroupById($id);
     }
 }
