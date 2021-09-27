@@ -54,6 +54,7 @@ class QrsController extends Controller
         $attachment->move(public_path('cmis/policy'), $attachmentName);
 
         return $this->apiService->store([
+            'name' => $request->name,
             'effectivityStart' => $request->effectivityStart,
             'effectivityEnd' =>  $request->effectivityEnd,
             'docDemsFrom' =>  $request->docDemsFrom,
