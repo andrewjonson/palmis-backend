@@ -16,7 +16,8 @@ class AwardController extends Controller
         $this->middleware('permission:award-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchAwardById'
             ]
         ]);
         $this->middleware('permission:award-create|admin', [
@@ -72,5 +73,10 @@ class AwardController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchAwardById($id)
+    {
+        return $this->apiService->searchAwardById($id);
     }
 }
