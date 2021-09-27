@@ -16,7 +16,8 @@ class TrainingController extends Controller
         $this->middleware('permission:training-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getTrainingById'
             ]
         ]);
         $this->middleware('permission:training-create|admin', [
@@ -72,5 +73,10 @@ class TrainingController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getTrainingById($id)
+    {
+        return $this->apiService->getTrainingById($id);
     }
 }

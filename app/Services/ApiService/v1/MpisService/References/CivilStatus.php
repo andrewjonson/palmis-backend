@@ -54,4 +54,9 @@ class CivilStatus
     {
         return $this->performRequest('GET', '/mpis/civil-status-search', $data);
     }
+
+    public function getCivilStatusById($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-civil-status/'.$id);
+    }
 }
