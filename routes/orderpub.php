@@ -53,6 +53,5 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/view-order/{versionId}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewDraftOrder');
     $router->post('/route-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@routeOrder');
     $router->get('/order-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@showOrderRoute');
-    $router->post('/update-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
-    $router->post('/show-status/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
+    $router->put('/update-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
 });
