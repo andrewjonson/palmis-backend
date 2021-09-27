@@ -13,6 +13,11 @@ class OrderRouteController extends Controller
 
     public function __construct(OrderRoute $apiService)
     {
+        $this->middleware('permission:order-read|admin', [
+            'only' => [
+                'showOrderRoute'
+            ]
+        ]);
         $this->middleware('permission:orderroute-create|admin', [
             'only' => [
                 'routeOrder'
@@ -34,5 +39,10 @@ class OrderRouteController extends Controller
     public function saveRemarks(Request $request, $id)
     {
         return $this->apiService->saveRemarks($request->all(), $id);
+    }
+
+    public function showOrderRoute($id)
+    {
+        return $this->apiService->showOrderRoute($id);
     }
 }

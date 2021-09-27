@@ -24,4 +24,9 @@ class OrderRoute
     {
         return $this->performRequest('PUT', '/orderpub/update-route/'.$id, $data);
     }
+
+    public function showOrderRoute($id)
+    {
+        return $this->performRequest('GET', '/orderpub/order-route/'.$id);
+    }
 }

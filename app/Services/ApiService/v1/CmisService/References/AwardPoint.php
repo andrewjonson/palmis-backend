@@ -52,6 +52,6 @@ class AwardPoint
 
     public function searchAwardPointBySubfactor($data)
     {
-        return $this->performRequest('GET', '/cmis/search/award-point', $data);
+        return $this->performRequest('GET', '/cmis/search/award-points', $data);
     }
 }

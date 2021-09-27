@@ -37,12 +37,12 @@ class Order
 
     public function viewPublishOrder($id)
     {
-        return $this->performRequest('GET', '/orderpub/view-order/'.$id);
+        return $this->performRequest('GET', '/orderpub/order/'.$id);
     }
 
-    public function viewDraftOrder($id)
+    public function viewDraftOrder($versionId)
     {
-        return $this->performRequest('GET', '/orderpub/view-draft-order/'.$id);
+        return $this->performRequest('GET', '/orderpub/view-order/'.$versionId);
     }
 
     public function saveOrderAsTemplate($data, $id)
