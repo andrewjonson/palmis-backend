@@ -21,7 +21,8 @@ class OrderController extends Controller
                 'saveOrderAsTemplate',
                 'getDraftOrders',
                 'getPublishedOrders',
-                'getOrderHistories'
+                'getOrderHistories',
+                'onlyTrashed'
             ]
         ]);
         $this->middleware('permission:order-create|admin', [
@@ -32,7 +33,14 @@ class OrderController extends Controller
         $this->middleware('permission:order-update|admin', [
             'only' => [
                 'publishOrder',
-                'reviseGeneralOrder'
+                'reviseGeneralOrder',
+                'restore'
+            ]
+        ]);
+        $this->middleware('permission:order-delete|admin', [
+            'only' => [
+                'destroy',
+                'foceDelete'
             ]
         ]);
         $this->apiService = $apiService;
@@ -41,6 +49,26 @@ class OrderController extends Controller
     public function getOrders(Request $request)
     {
         return $this->apiService->getOrders($request->all());
+    }
+
+    public function destroy($id)
+    {
+        return $this->apiService->destroy($id);
+    }
+
+    public function foceDelete($id)
+    {
+        return $this->apiService->foceDelete($id);
+    }
+
+    public function restore($id)
+    {
+        return $this->apiService->restore($id);
+    }
+
+    public function onlyTrashed(Request $request)
+    {
+        return $this->apiService->onlyTrashed($request->all());
     }
 
     public function createGeneralOrder(Request $request, $id)
