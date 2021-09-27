@@ -49,9 +49,10 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('/general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@createGeneralOrder');
     $router->put('/revise-general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@reviseGeneralOrder');
     $router->put('/publish-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@publishOrder');
-    $router->get('/view-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewPublishOrder');
-    $router->get('/view-draft-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewDraftOrder');
+    $router->get('/order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewPublishOrder');
+    $router->get('/view-order/{versionId}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewDraftOrder');
     $router->post('/route-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@routeOrder');
+    $router->post('/order-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@showOrderRoute');
     $router->post('/update-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
     $router->post('/show-status/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
 });

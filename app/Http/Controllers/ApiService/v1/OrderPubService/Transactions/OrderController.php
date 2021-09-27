@@ -63,9 +63,9 @@ class OrderController extends Controller
         return $this->apiService->viewPublishOrder($id);
     }
 
-    public function viewDraftOrder($id)
+    public function viewDraftOrder($versionId)
     {
-        return $this->apiService->viewDraftOrder($id);
+        return $this->apiService->viewDraftOrder($versionId);
     }
 
     public function saveOrderAsTemplate(Request $request, $id)
