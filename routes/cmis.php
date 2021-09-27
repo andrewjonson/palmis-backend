@@ -8,7 +8,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/sublvl1/name', 'CmisService\References\SubFactorLevelOneController', $router);//
     resource('/purpose', 'CmisService\References\PurposeController', $router); //
     resource('/award', 'CmisService\References\AwardController', $router); //
-    resource('/award/type', 'CmisService\References\AwardController', $router); //
+    resource('/award/type', 'CmisService\References\AwardTypeController', $router); //
     resource('/award-point', 'CmisService\References\AwardPointController', $router);//
     resource('/criteria', 'CmisService\References\CriteriaController', $router); //
     resource('/formula', 'CmisService\References\FormulaController', $router); //
