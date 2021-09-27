@@ -49,7 +49,7 @@ class QrsController extends Controller
 
     public function store(Request $request)
     {
-        $attachment = $request->file('attachments');
+        $attachment = $request->file('policy');
         $attachmentName = time().rand(1,100).'.'.$attachment->extension();
         $attachment->move(public_path('cmis/policy'), $attachmentName);
 
