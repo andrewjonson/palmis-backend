@@ -20,6 +20,26 @@ class Order
         return $this->performRequest('GET', '/orderpub/orders',$data);
     }
 
+    public function destroy($id)
+    {
+        return $this->performRequest('DELETE', '/orderpub/order/'.$id);
+    }
+
+    public function forceDelete($id)
+    {
+        return $this->performRequest('DELETE', '/orderpub/order/force-delete/'.$id);
+    }
+
+    public function restore($id)
+    {
+        return $this->performRequest('PUT', '/orderpub/order/restore/'.$id);
+    }
+
+    public function onlyTrashed($data)
+    {
+        return $this->performRequest('GET', '/orderpub/order/only-trashed',$data);
+    }
+
     public function createGeneralOrder($data,$id)
     {
         return $this->performRequest('POST', '/orderpub/general-order/'.$id, $data);
