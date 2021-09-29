@@ -62,6 +62,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('/orders/templates/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@saveOrderAsTemplate');
     $router->post('/general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@createGeneralOrder');
     $router->put('/revise-general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@reviseGeneralOrder');
+    $router->post('/update-general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@updateGeneralOrder');
     $router->put('/publish-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@publishOrder');
     $router->get('/order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewPublishOrder');
     $router->get('/view-order/{versionId}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewDraftOrder');

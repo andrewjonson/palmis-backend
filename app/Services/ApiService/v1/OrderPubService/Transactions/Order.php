@@ -50,6 +50,11 @@ class Order
         return $this->performRequest('PUT', '/orderpub/revise-general-order/'.$id);
     }
 
+    public function updateGeneralOrder($data,$id)
+    {
+        return $this->performRequest('POST', '/orderpub/update-general-order/'.$id);
+    }
+
     public function publishOrder($id)
     {
         return $this->performRequest('PUT', '/orderpub/publish-order/'.$id);
