@@ -22,7 +22,7 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 |
 */
 
-$app = new Laravel\Lumen\Application(
+$app = new \Dusterio\LumenPassport\Lumen7Application(
     dirname(__DIR__)
 );
 
@@ -155,6 +155,7 @@ $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 */
 
 \Dusterio\LumenPassport\LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
+\Dusterio\LumenPassport\LumenPassport::allowMultipleTokens();
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',

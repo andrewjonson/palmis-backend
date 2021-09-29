@@ -34,10 +34,10 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $client = Http::post(config('passport.login_endpoint'), [
-            'client_secret' => config('passport.client_secret'),
+        $client = Http::post(config('passport.personal_access_client.endpoint'), [
+            'client_secret' => config('passport.personal_access_client.secret'),
             'grant_type' => 'password',
-            'client_id' => config('passport.client_id'),
+            'client_id' => config('passport.personal_access_client.id'),
             'username' => $request->email,
             'password' => $request->password
         ]);
