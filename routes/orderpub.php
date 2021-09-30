@@ -14,7 +14,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/originating-offices', 'OrderPubService\References\OriginatingOfficeController', $router);
 
 
-    $router->put('/statuses', 'ApiService\v1\OrderPubService\References\StatusController@index');
+    $router->get('/statuses', 'ApiService\v1\OrderPubService\References\StatusController@index');
     $router->put('/statuses/{id}', 'ApiService\v1\OrderPubService\References\StatusController@update');
     $router->get('/show-status', 'ApiService\v1\OrderPubService\References\StatusController@getStatusById');
     $router->get('/authority/{office}', 'ApiService\v1\OrderPubService\References\AuthorityLineController@getAuthorityLine');
