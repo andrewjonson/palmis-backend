@@ -17,7 +17,8 @@ class UnitController extends Controller
     public function getUnitByUnitCode($code)
     {
         try {
-            return $this->unitRepository->getUnitByUnitCode($code);
+            $unit = $this->unitRepository->getUnitByUnitCode($code);
+            return new UnitResource($unit);
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
