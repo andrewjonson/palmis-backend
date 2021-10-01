@@ -68,6 +68,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\CharacterReferencePe
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CommunicationSkillPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FinancialReferencePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\SocialOrganizationPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\OrderPubService\Transactions\PersonnelOrderPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\OriginatingOfficePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CivilianCommendationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonalCharacteristicPermissionsTableSeeder;
@@ -170,5 +171,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusPermissionsTableSeeder::class);
         $this->call(OriginatingOfficePermissionsTableSeeder::class);
         $this->call(FileDirectoryPermissionsTableSeeder::class);
+        $this->call(PersonnelOrderPermissionsTableSeeder::class);
     }
 }
