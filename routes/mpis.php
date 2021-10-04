@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/Resource.php';
 
+$router->post('search-serial-birth', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerialNumberBirthdate');
 $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'modular:mpis'], 'prefix' => '/api/'.config('app.version').'/mpis'], function() use($router) {
     resource('/personnels', 'MpisService\Transactions\PersonnelController', $router);
     resource('/barangay', 'MpisService\References\BarangayController', $router);
@@ -93,7 +94,6 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('search-info', 'ApiService\v1\MpisService\Transactions\PersonnelController@advanceSearchPersonnel');
     $router->get('show-pmcode/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelByPmcode');
     $router->post('upload-image', 'ApiService\v1\MpisService\Transactions\PersonnelController@uploadPersonnelImage');
-    $router->post('search-serial-birth', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerialNumberBirthdate');
     $router->post('search-serial', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerial');
     $router->post('create-personnel', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnel');
     $router->put('update-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@updatePersonnel');
