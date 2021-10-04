@@ -149,7 +149,7 @@ class TeamController extends Controller
             $userId = hashid_decode($userId);
             $user[] = $this->userRepository->find($userId);
         }
-        
+
         if (empty($user)) {
             $userId = [];
         } else {
@@ -160,7 +160,7 @@ class TeamController extends Controller
         return $this->successResponse(trans('teams.user_assigned'), DATA_OK);
 
         try {
-            
+
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }
@@ -179,7 +179,7 @@ class TeamController extends Controller
         }
     }
 
-    public function usersWithoutTeam() 
+    public function usersWithoutTeam()
     {
         try {
             $users = $this->userRepository->getUsersWithoutTeam();
@@ -204,7 +204,7 @@ class TeamController extends Controller
                     'is_superadmin' => false
                 ]);
             }
-            
+
             $teamId = hashid_decode($request->team_id);
             $roleId = $request->role_id;
 
@@ -240,6 +240,15 @@ class TeamController extends Controller
         try {
             $this->userRepository->unAssignUser($userId);
             return $this->successResponse(trans('teams.unassigned_user'), DATA_OK);
+        } catch(\Exception $e) {
+            return $this->failedResponse($e->getMessage(), SERVER_ERROR);
+        }
+    }
+
+    public function getTeamByTeamId($teamId)
+    {
+        try {
+            return $this->teamRepository->find($teamId);
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);
         }

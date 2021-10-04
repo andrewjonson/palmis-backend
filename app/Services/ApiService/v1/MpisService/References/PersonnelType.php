@@ -49,4 +49,10 @@ class PersonnelType
     {
         return $this->performRequest('DELETE', '/mpis/personnel-type/force-delete/'.$id);
     }
+
+    public function getPersonnelTypeById($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-personnel-type/'.$id);
+    }
+
 }

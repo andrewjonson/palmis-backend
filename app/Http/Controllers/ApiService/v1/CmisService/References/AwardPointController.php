@@ -16,7 +16,8 @@ class AwardPointController extends Controller
         $this->middleware('permission:awardpoint-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchAwardPointBySubfactor'
             ]
         ]);
         $this->middleware('permission:awardpoint-create|admin', [
@@ -72,5 +73,10 @@ class AwardPointController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchAwardPointBySubfactor(Request $request)
+    {
+        return $this->apiService->searchAwardPointBySubfactor($request->all());
     }
 }

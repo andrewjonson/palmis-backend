@@ -49,4 +49,9 @@ class AwardPoint
     {
         return $this->performRequest('DELETE', '/cmis/award-point/force-delete/'.$id);
     }
+
+    public function searchAwardPointBySubfactor($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/award-points', $data);
+    }
 }

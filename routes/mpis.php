@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/Resource.php';
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modular:mpis'], 'prefix' => '/api/'.config('app.version').'/mpis'], function() use($router) {
+$router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'modular:mpis'], 'prefix' => '/api/'.config('app.version').'/mpis'], function() use($router) {
     resource('/personnels', 'MpisService\Transactions\PersonnelController', $router);
     resource('/barangay', 'MpisService\References\BarangayController', $router);
     resource('/bda-size', 'MpisService\References\BdaSizeController', $router);
@@ -27,7 +27,16 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     resource('/personnel-group', 'MpisService\References\PersonnelGroupController', $router);
     resource('/civil-status', 'MpisService\References\CivilStatusController', $router);
     resource('/country', 'MpisService\References\CountryController', $router);
+    resource('/training', 'MpisService\References\TrainingController', $router);
+    resource('/zipcode', 'MpisService\References\ZipcodeController', $router);
+    resource('/relationship', 'MpisService\References\RelationshipController', $router);
 
+    $router->get('show-personnel-group/{id}', 'ApiService\v1\MpisService\References\PersonnelGroupController@getPersonnelGroupById');
+    $router->get('show-civil-status/{id}', 'ApiService\v1\MpisService\References\CivilStatusController@getCivilStatusById');
+    $router->get('relationship-search', 'ApiService\v1\MpisService\References\RelationshipController@searchRelationship');
+    $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelPromotion');
+    $router->get('search-personnel-rank', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');
+    $router->get('get-zipcode', 'ApiService\v1\MpisService\References\ZipcodeController@getZipcode');
     $router->get('ethnic-code-search', 'ApiService\v1\MpisService\References\EthnicController@searchEthnic');
     $router->get('personnel-group-search', 'ApiService\v1\MpisService\References\PersonnelGroupController@searchPersonnelGroup');
     $router->get('civil-status-search', 'ApiService\v1\MpisService\References\CitizenshipController@searchCivilStatus');
@@ -53,6 +62,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->post('store-civilian-commendation', 'ApiService\v1\MpisService\Transactions\CivilianCommendationController@createCommendation');
     $router->get('show-civilian-commendation/{id}', 'ApiService\v1\MpisService\Transactions\CivilianCommendationController@getCommendation');
     $router->post('store-reference', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@createReference');
+    $router->put('update-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@updateReference');
+    $router->delete('delete-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@deleteReference');
     $router->get('show-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@getReference');
     $router->get('show-tariff-size/{id}', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@getTarrifSizeById');
     $router->post('store-tariff-size', 'ApiService\v1\MpisService\Transactions\TarrifSizeController@createTarrifSize');
@@ -68,6 +79,9 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->get('get-province', 'ApiService\v1\MpisService\References\ProvinceController@getProvince');
     $router->get('get-municity', 'ApiService\v1\MpisService\References\MuniCityController@getMunicity');
     $router->get('get-barangay', 'ApiService\v1\MpisService\References\BarangayController@getBarangay');
+    $router->get('show-municity/{id}', 'ApiService\v1\MpisService\References\MuniCityController@getMunicityById');
+    $router->get('show-province/{id}', 'ApiService\v1\MpisService\References\ProvinceController@getProvinceById');
+    $router->get('show-barangay/{id}', 'ApiService\v1\MpisService\References\BarangayController@getBarangayById');
     $router->post('create-personnel-rank', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelRank');
     $router->post('create-personnel-unit', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelUnit');
     $router->post('store-address', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelAddress');
@@ -83,4 +97,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'modul
     $router->post('search-serial', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerial');
     $router->post('create-personnel', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnel');
     $router->put('update-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@updatePersonnel');
+    $router->get('show-rank/{id}', 'ApiService\v1\MpisService\References\RankController@getRankById');
+    $router->get('show-training/{id}', 'ApiService\v1\MpisService\References\TrainingController@getTrainingById');
+    $router->get('show-personnel-type/{id}', 'ApiService\v1\MpisService\References\PersonnelTypeController@getPersonnelTypeById');
+
 });

@@ -31,15 +31,15 @@ $router->get('/reset-password/{token}/{email}', 'Auth\ResetPasswordController@sh
 $router->get('/verify/{email}/{token}', 'Auth\VerificationController@verify');
 
 //User Management
-$router->group(['middleware' => ['jwt', 'verified'], 'prefix' => 'api'], function() use($router) {
+$router->group(['middleware' => ['auth:api', 'verified'], 'prefix' => 'api'], function() use($router) {
     $router->get('/users/current-user', 'Users\UserController@currentUser');
 });
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenlockEnabled'], 'prefix' => 'api'], function() use($router) {
+$router->group(['middleware' => ['auth:api', 'verified', 'screenlockEnabled'], 'prefix' => 'api'], function() use($router) {
     $router->post('/users/disable-screenlock', 'Users\ScreenlockController@disable');
 });
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'cors'], 'prefix' => 'api'], function() use($router) {
+$router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 'prefix' => 'api'], function() use($router) {
     $router->get('/users', 'Users\UserController@index');
     $router->get('/users/show/{userId}', 'Users\UserController@show');
     $router->put('/users/update/{userId}', 'Users\UserController@update');
@@ -62,13 +62,13 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'cors'
     $router->put('/users/assign-superadmin/{userId}', 'Users\UserController@assignSuperAdmin');
     $router->get('/users/account-type/{userId}', 'Users\UserController@accountType');
     $router->post('/users/validate-password', 'Users\UserController@validatePassword');
-    
+
     //Personnels
     $router->get('/personnels', 'Personnels\PersonnelController@searchPersonnelBySerialNumber');
     $router->get('/personnels/pmcode/{pmcode}', 'Personnels\PersonnelController@getPersonnelByPmcode');
 });
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'superadmin', 'cors'], 'prefix' => 'api'], function() use($router) {
+$router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'superadmin'], 'prefix' => 'api'], function() use($router) {
     //Teams
     $router->get('/teams/show-units', 'TeamModules\TeamController@showUnits');
     $router->get('/teams', 'TeamModules\TeamController@showTeams');
@@ -82,6 +82,8 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'super
     $router->get('/teams/users-without-team', 'TeamModules\TeamController@usersWithoutTeam');
     $router->post('/teams/assign-all/{userId}', 'TeamModules\TeamController@assignAll');
     $router->put('/teams/unassign-user/{userId}', 'TeamModules\TeamController@unAssignUser');
+    $router->get('/teams/{teamId}', 'TeamModules\TeamController@getTeamByTeamId');
+
 
     //Modules
     $router->post('/modules', 'TeamModules\ModuleController@create');
@@ -106,8 +108,9 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'super
     $router->delete('/permissions/{permissionId}', 'RolePermissions\PermissionController@delete');
 
     //Units
-    $router->get('/units/unit-by-code', 'Units\UnitController@getUnitByUnitCode');
+    $router->get('/units/unit-by-code/{code}', 'Units\UnitController@getUnitByUnitCode');
     $router->get('/units', 'Units\UnitController@searchUnit');
+
 
     //Announcements
     $router->get('/announcements', 'Dashboard\AnnouncementController@index');

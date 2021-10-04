@@ -5,11 +5,11 @@ namespace App\Models;
 use App\Models\Team;
 use App\Models\TeamUser;
 use App\Models\Personnel;
+use Laravel\Passport\HasApiTokens;
 use Wildside\Userstamps\Userstamps;
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use App\Traits\RolesPermissions\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,8 +22,9 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordInterface;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject, CanResetPasswordInterface
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordInterface
 {
+    use HasApiTokens;
     use Authenticatable; 
     use Authorizable; 
     use HasFactory; 
@@ -68,21 +69,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 
     public function sendPasswordResetNotification($token)
     {

@@ -17,7 +17,8 @@ class CivilStatusController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'searchCivilStatus'
+                'searchCivilStatus',
+                'getCivilStatusById'
             ]
         ]);
         $this->middleware('permission:civilstatus-create|admin', [
@@ -78,5 +79,10 @@ class CivilStatusController extends Controller
     public function searchCivilStatus(Request $request)
     {
         return $this->apiService->searchCivilStatus($request->all());
+    }
+
+    public function getCivilStatusById($id)
+    {
+        return $this->apiService->getCivilStatusById($id);
     }
 }

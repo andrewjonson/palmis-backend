@@ -49,4 +49,9 @@ class Criteria
     {
         return $this->performRequest('DELETE', '/cmis/criteria/force-delete/'.$id);
     }
+
+    public function getCriteriaPoints($data)
+    {
+        return $this->performRequest('GET', '/cmis/get/criteria/points', $data);
+    }
 }

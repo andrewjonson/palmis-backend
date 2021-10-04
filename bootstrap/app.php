@@ -22,7 +22,7 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 |
 */
 
-$app = new Laravel\Lumen\Application(
+$app = new \Dusterio\LumenPassport\Lumen7Application(
     dirname(__DIR__)
 );
 
@@ -78,6 +78,8 @@ $app->configure('captcha');
 $app->configure('permission');
 $app->configure('services');
 $app->configure('hashid');
+$app->configure('passport');
+$app->configure('cors');
 
 require_once __DIR__. './constant.php';
 
@@ -98,12 +100,11 @@ $app->alias('cache', \Illuminate\Cache\CacheManager::class);
 */
 
 $app->middleware([
-    App\Http\Middleware\CorsMiddleware::class
+    Fruitcake\Cors\HandleCors::class,
 ]);
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
-    'jwt' => App\Http\Middleware\JwtMiddleware::class,
     'verified' => App\Http\Middleware\EmailVerificationMiddleware::class,
     'superadmin' => App\Http\Middleware\SuperAdminMiddleware::class,
     'screenlockEnabled' => App\Http\Middleware\ScreenLockEnabledMiddleware::class,
@@ -129,7 +130,8 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\RepositoryServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
-$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(Laravel\Passport\PassportServiceProvider::class);
+$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(Illuminate\Notifications\NotificationServiceProvider::class);
 $app->register(\Illuminate\Mail\MailServiceProvider::class);
@@ -140,6 +142,7 @@ $app->register(App\Providers\PermissionServiceProvider::class);
 $app->register(ElfSundae\Laravel\Hashid\HashidServiceProvider::class);
 $app->register(GeneaLabs\LaravelModelCaching\Providers\Service::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
+$app->register(Fruitcake\Cors\CorsServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -151,6 +154,9 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
+\Dusterio\LumenPassport\LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
+\Dusterio\LumenPassport\LumenPassport::allowMultipleTokens();
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',

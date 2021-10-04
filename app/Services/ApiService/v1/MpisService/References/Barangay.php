@@ -54,4 +54,9 @@ class Barangay
     {
         return $this->performRequest('GET', '/mpis/get-barangay', $data);
     }
+
+    public function getBarangayById($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-barangay/'. $id);
+    }
 }

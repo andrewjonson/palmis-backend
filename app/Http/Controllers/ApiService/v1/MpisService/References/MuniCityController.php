@@ -17,7 +17,8 @@ class MuniCityController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'getMunicity'
+                'getMunicity',
+                'getMunicityById'
             ]
         ]);
         $this->middleware('permission:municity-create|admin', [
@@ -78,5 +79,10 @@ class MuniCityController extends Controller
     public function getMunicity(Request $request)
     {
         return $this->apiService->getMunicity($request->all());
+    }
+
+    public function getMunicityById($id)
+    {
+        return $this->apiService->getMunicityById($id);
     }
 }

@@ -24,7 +24,11 @@ class DocumentSettingRequest extends FormRequest
     protected function rules(): array
     {
         return [
-            'logo' => 'mimes:jpeg, jpg, png|image'
+            'logo' => 'mimes:jpeg,jpg,png|image',
+            'header' => 'required',
+            'signatories' => 'required',
+            'signatories.*.pmcode' => 'required',
+            'signatories.*.designation' => 'required',
         ];
     }
 }

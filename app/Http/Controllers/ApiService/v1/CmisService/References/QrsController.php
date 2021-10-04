@@ -16,7 +16,10 @@ class QrsController extends Controller
         $this->middleware('permission:qrs-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'searchQrs',
+                'searchQrsByName',
+                'searchQrsByNameOnly'
             ]
         ]);
         $this->middleware('permission:qrs-create|admin', [
@@ -46,7 +49,22 @@ class QrsController extends Controller
 
     public function store(Request $request)
     {
-        return $this->apiService->store($request->all());
+        $attachment = $request->file('policy');
+        $attachmentName = time().rand(1,100).'.'.$attachment->extension();
+        $attachment->move(public_path('cmis/policy'), $attachmentName);
+
+        return $this->apiService->store([
+            'name' => $request->name,
+            'effectivityStart' => $request->effectivityStart,
+            'effectivityEnd' =>  $request->effectivityEnd,
+            'docDemsFrom' =>  $request->docDemsFrom,
+            'status' =>  $request->status,
+            'rf_personnel_type_id' =>  $request->rf_personnel_type_id,
+            'rfPurposeId' =>  $request->rfPurposeId,
+            'totalPoints' =>  $request->totalPoints,
+            'QRSScore' =>  $request->QRSScore,
+            'policy' =>  $attachmentName
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -72,5 +90,20 @@ class QrsController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function searchQrs(Request $request)
+    {
+        return $this->apiService->searchQrs($request->all());
+    }
+
+    public function searchQrsByName(Request $request)
+    {
+        return $this->apiService->searchQrsByName($request->all());
+    }
+
+    public function searchQrsByNameOnly(Request $request)
+    {
+        return $this->apiService->searchQrsByNameOnly($request->all());
     }
 }

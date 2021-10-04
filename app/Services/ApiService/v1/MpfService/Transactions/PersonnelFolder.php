@@ -20,7 +20,7 @@ class PersonnelFolder
         return $this->performRequest('GET', '/mpf/personnels/folder/'.$pmcode, $data);
     }
 
-    public function getPersonnelFolders()
+    public function getFolders()
     {
         return $this->performRequest('GET', '/mpf/personnels/folders');
     }
@@ -28,5 +28,15 @@ class PersonnelFolder
     public function createPersonnelFolder($data)
     {
         return $this->performRequest('POST', '/mpf/personnels/folder', $data);
+    }
+
+    public function syncPersonnelFolder($data)
+    {
+        return $this->performRequest('POST','/mpf/personnels/folder/sync', $data);
+    }
+
+    public function getPersonnelFolders($pmcode)
+    {
+        return $this->performRequest('GET', '/mpf/personnels/personnel-folders/'.$pmcode);
     }
 }

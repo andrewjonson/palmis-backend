@@ -15,13 +15,12 @@ class PersonalCharacteristicController extends Controller
     {
         $this->middleware('permission:personalcharacteristic-read|admin', [
             'only' => [
-                'index',
-                'onlyTrashed'
+                'getPersonalCharacteristicById',
             ]
         ]);
         $this->middleware('permission:personalcharacteristic-create|admin', [
             'only' => [
-                'store'
+                'createPersonalCharacteristic'
             ]
         ]);
 

@@ -5,10 +5,9 @@ use Carbon\Carbon;
 
 trait LoginTrait
 {
-    public function loginResponse($user) 
+    public function loginResponse($user, $token) 
     {
         $this->resetLoginAttempts($user);
-        $token = auth()->login($user);
         $user = $this->userRepository->update([
             'auth_type' => null,
             'auth_status' => true,
