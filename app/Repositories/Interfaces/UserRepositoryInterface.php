@@ -12,7 +12,7 @@ interface UserRepositoryInterface
 
     public function otpEnabled($userId);
 
-    public function getUsersWithTeam($teamId);
+    public function getUsersWithTeam($teamId, $keyword, $rowsPerPage);
 
     public function getUsersWithoutTeam();
 

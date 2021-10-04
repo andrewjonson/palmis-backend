@@ -25,22 +25,22 @@ class StorePassword
      */
     public function handle($event)
     {
+        $oldPasswords = $this->oldPasswordRepository->getOldPasswordsByUserId($event->user->id);
         if ($event->user->password) {
-            if ($this->countOldPasswords($event->user) >= 5) {
+            if (count($oldPasswords) >= 5) {
                 $this->deleteLastOldPassword($event->user);
             }
     
-            $this->oldPasswordRepository->updateOrCreate([
-                'old_password' => $event->user->password,
-                'user_id' => $event->user->id
-            ]);
+            $this->oldPasswordRepository->updateOrCreate(
+                [
+                    'user_id' => $event->user->id
+                ],
+                [
+                    'old_password' => $event->user->password,
+                    'user_id' => $event->user->id
+                ]
+            );
         }
-    }
-
-    protected function countOldPasswords($user)
-    {
-        $oldPasswords = $this->oldPasswordRepository->getOldPasswordsByUserId($user->id);
-        return count($oldPasswords);
     }
 
     protected function deleteLastOldPassword($user)

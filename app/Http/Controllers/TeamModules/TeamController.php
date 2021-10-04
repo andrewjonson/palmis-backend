@@ -166,11 +166,13 @@ class TeamController extends Controller
         }
     }
 
-    public function usersWithTeam($teamId)
+    public function usersWithTeam(Request $request, $teamId)
     {
+        $keyword = $request->keyword;
+        $rowsPerPage = $request->rowsPerPage;
         try {
             $teamId = hashid_decode($teamId);
-            $users = $this->userRepository->getUsersWithTeam($teamId);
+            $users = $this->userRepository->getUsersWithTeam($teamId, $keyword, $rowsPerPage);
             return UserResource::collection($users);
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);

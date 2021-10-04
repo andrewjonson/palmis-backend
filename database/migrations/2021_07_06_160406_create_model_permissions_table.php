@@ -17,6 +17,7 @@ class CreateModelPermissionsTable extends Migration
             $table->id();
             $table->foreignId('model_id')->constrained();
             $table->foreignId('permission_id')->constrained();
+            $table->boolean('is_enabled')->default(false);
         });
     }
 

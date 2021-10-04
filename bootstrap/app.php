@@ -112,6 +112,7 @@ $app->routeMiddleware([
     'permission' => App\Http\Middleware\PermissionMiddleware::class,
     'role' => App\Http\Middleware\RoleMiddleware::class,
     'modular' => App\Http\Middleware\ModularMiddleware::class,
+    'cors' => App\Http\Middleware\CorsMiddleware::class,
 ]);
 
 /*
