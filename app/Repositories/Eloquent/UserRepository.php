@@ -38,9 +38,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $this->model->where('id', $userId)->where('otp_auth', true)->first();
     }
 
-    public function getUsersWithTeam($teamId)
+    public function getUsersWithTeam($teamId, $keyword, $rowsPerPage)
     {
-        return $this->model->where('team_id', $teamId)->get();
+        return $this->columns($keyword)->where('team_id', $teamId)->paginate($rowsPerPage);
     }
 
     public function getUsersWithoutTeam()

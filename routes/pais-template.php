@@ -39,7 +39,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenlockEnabled'], 'prefi
     $router->post('/users/disable-screenlock', 'Users\ScreenlockController@disable');
 });
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'prefix' => 'api'], function() use($router) {
+$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'cors'], 'prefix' => 'api'], function() use($router) {
     $router->get('/users', 'Users\UserController@index');
     $router->get('/users/show/{userId}', 'Users\UserController@show');
     $router->put('/users/update/{userId}', 'Users\UserController@update');
@@ -68,7 +68,7 @@ $router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled'], 'pref
     $router->get('/personnels/pmcode/{pmcode}', 'Personnels\PersonnelController@getPersonnelByPmcode');
 });
 
-$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'superadmin'], 'prefix' => 'api'], function() use($router) {
+$router->group(['middleware' => ['jwt', 'verified', 'screenLockDisabled', 'superadmin', 'cors'], 'prefix' => 'api'], function() use($router) {
     //Teams
     $router->get('/teams/show-units', 'TeamModules\TeamController@showUnits');
     $router->get('/teams', 'TeamModules\TeamController@showTeams');
