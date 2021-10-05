@@ -23,7 +23,6 @@ class PersonnelController extends Controller
                 'advanceSearchPersonnel',
                 'getPersonnelByPmcode',
                 'uploadPersonnelImage',
-                'searchPersonnelBySerialNumberBirthdate',
                 'searchPersonnelBySerial',
                 'countPersonnel',
                 'getPersonnelAddress'

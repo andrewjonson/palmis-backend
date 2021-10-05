@@ -156,7 +156,6 @@ $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 */
 
 \Dusterio\LumenPassport\LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
-\Dusterio\LumenPassport\LumenPassport::allowMultipleTokens();
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
