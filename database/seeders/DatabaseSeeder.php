@@ -20,6 +20,7 @@ use Database\Seeders\ApiService\v1\CmisService\References\PurposePermissionsTabl
 use Database\Seeders\ApiService\v1\MpisService\References\BdaSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CountryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ZipcodePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\AfposmosPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BarangayPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\EyeColorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\HairTypePermissionsTableSeeder;
@@ -55,6 +56,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\GovernmentIdPermissi
 use Database\Seeders\ApiService\v1\MpisService\Transactions\SerialNumberPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BranchOfServicePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelRankPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TableStructurePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CountryVisitedPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\OrderRoutePermissionsTableSeeder;
@@ -147,6 +149,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TrainingPermissionsTableSeeder::class);
         $this->call(ZipcodePermissionsTableSeeder::class);
         $this->call(RelationshipPermissionsTableSeeder::class);
+        $this->call(AfposmosPermissionsTableSeeder::class);
+        $this->call(PersonnelRankPermissionsTableSeeder::class);
 
 
         //Mpf

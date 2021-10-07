@@ -54,4 +54,9 @@ class Course
     {
         return $this->performRequest('GET', '/mpis/course-type', $data);
     }
+
+    public function getCourseByLevel($data)
+    {
+        return $this->performRequest('GET', '/mpis/course-by-level', $data);
+    }
 }

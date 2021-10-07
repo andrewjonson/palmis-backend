@@ -34,7 +34,11 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/training', 'MpisService\References\TrainingController', $router);
     resource('/zipcode', 'MpisService\References\ZipcodeController', $router);
     resource('/relationship', 'MpisService\References\RelationshipController', $router);
+    resource('/afposmos', 'MpisService\References\AfposmosController', $router);
 
+    $router->get('search-personnel-serial', 'ApiService\v1\MpisService\Transactions\PersonnelRankController@searchPersonnelRank');
+    $router->post('create-personnel-serial', 'ApiService\v1\MpisService\Transactions\PersonnelRankController@createPersonnelRank');
+    $router->get('course-by-level', 'ApiService\v1\MpisService\References\AfposmosController@getCourseByLevel');
     $router->get('show-personnel-group/{id}', 'ApiService\v1\MpisService\References\PersonnelGroupController@getPersonnelGroupById');
     $router->get('show-civil-status/{id}', 'ApiService\v1\MpisService\References\CivilStatusController@getCivilStatusById');
     $router->get('relationship-search', 'ApiService\v1\MpisService\References\RelationshipController@searchRelationship');
@@ -92,6 +96,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('show-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAddress');
     $router->put('update-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@updatePersonnelAddress');
     $router->post('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
+    $router->get('personnel-dynamic-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@dynamicSearchPersonnel');
     $router->get('show-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelById');
     $router->get('personnel-total', 'ApiService\v1\MpisService\Transactions\PersonnelController@countPersonnel');
     $router->post('search-info', 'ApiService\v1\MpisService\Transactions\PersonnelController@advanceSearchPersonnel');

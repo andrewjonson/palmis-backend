@@ -5,34 +5,32 @@ namespace App\Http\Controllers\ApiService\v1\MpisService\References;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Services\ApiService\v1\MpisService\References\Course;
+use App\Services\ApiService\v1\MpisService\References\Afposmos;
 
-class CourseController extends Controller
+class AfposmosController extends Controller
 {
     use ConsumeExternalService;
 
-    public function __construct(Course $apiService)
+    public function __construct(Afposmos $apiService)
     {
-        $this->middleware('permission:course-read|admin', [
+        $this->middleware('permission:afposmos-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed',
-                'getCourseByType',
-                'getCourseByLevel'
+                'onlyTrashed'
             ]
         ]);
-        $this->middleware('permission:course-create|admin', [
+        $this->middleware('permission:afposmos-create|admin', [
             'only' => [
                 'store'
             ]
         ]);
-        $this->middleware('permission:course-update|admin', [
+        $this->middleware('permission:afposmos-update|admin', [
             'only' => [
                 'update',
                 'restore'
             ]
         ]);
-        $this->middleware('permission:course-delete|admin', [
+        $this->middleware('permission:afposmos-delete|admin', [
             'only' => [
                 'delete',
                 'forceDelete'
@@ -75,15 +73,4 @@ class CourseController extends Controller
     {
         return $this->apiService->forceDelete($id);
     }
-
-    public function getCourseByType(Request $request)
-    {
-        return $this->apiService->getCourseByType($request->all());
-    }
-
-    public function getCourseByLevel(Request $request)
-    {
-        return $this->apiService->getCourseByLevel($request->all());
-    }
-
 }
