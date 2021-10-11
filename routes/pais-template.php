@@ -62,10 +62,6 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->put('/users/assign-superadmin/{userId}', 'Users\UserController@assignSuperAdmin');
     $router->get('/users/account-type/{userId}', 'Users\UserController@accountType');
     $router->post('/users/validate-password', 'Users\UserController@validatePassword');
-
-    //Personnels
-    $router->post('/personnels', 'Personnels\PersonnelController@searchPersonnelBySerialNumber');
-    $router->get('/personnels/pmcode/{pmcode}', 'Personnels\PersonnelController@getPersonnelByPmcode');
 });
 
 $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'superadmin'], 'prefix' => 'api'], function() use($router) {
