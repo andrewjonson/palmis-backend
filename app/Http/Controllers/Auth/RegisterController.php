@@ -7,10 +7,11 @@ use App\Traits\ResponseTrait;
 use App\Events\UserHasRegistered;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\SettingRepositoryInterface;
-use App\Repositories\Interfaces\PersonnelRepositoryInterface;
+use App\Services\ApiService\v1\MpisService\Transactions\Personnel;
 
 class RegisterController extends Controller
 {
@@ -18,12 +19,12 @@ class RegisterController extends Controller
 
     public function __construct(
         UserRepositoryInterface $userRepository,
-        PersonnelRepositoryInterface $personnelRepository,
+        Personnel $personnelService,
         SettingRepositoryInterface $settingRepository,
     )
     {
         $this->userRepository = $userRepository;
-        $this->personnelRepository = $personnelRepository;
+        $this->personnelService = $personnelService;
         $this->settingRepository = $settingRepository;
     }
 
@@ -32,9 +33,8 @@ class RegisterController extends Controller
         try {
             $serialNumber = $request->serial_number;
             $birthday = $request->birthday;
-            $validateUser = $this->personnelRepository->validateSerialNumberBirthday($serialNumber, $birthday);
-
-            if (!$validateUser) {
+            $validateUser = Http::get(config('services.mpis_base_uri').'/api/'.config('app.version').'/mpis/search-serial-birth', $request->all());
+            if ($validateUser->status() != DATA_OK) {
                 return $this->failedResponse(trans('auth.invalid_user'), BAD_REQUEST);
             }
 

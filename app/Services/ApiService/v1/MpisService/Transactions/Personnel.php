@@ -76,11 +76,6 @@ class Personnel
         return $this->performRequest('POST', '/mpis/upload-image', $data);
     }
 
-    public function searchPersonnelBySerialNumberBirthdate($data)
-    {
-        return $this->performRequest('POST', '/mpis/search-serial-birth', $data);
-    }
-
     public function searchPersonnelBySerial($serial)
     {
         return $this->performRequest('POST', '/mpis/search-serial', $serial);
