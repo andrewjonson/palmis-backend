@@ -1,37 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\ApiService\v1\CmisService\References;
+namespace App\Http\Controllers\ApiService\v1\MpisService\References;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Services\ApiService\v1\CmisService\References\AwardType;
+use App\Services\ApiService\v1\MpisService\References\Afposmos;
 
-class AwardTypeController extends Controller
+class AfposmosController extends Controller
 {
     use ConsumeExternalService;
 
-    public function __construct(AwardType $apiService)
+    public function __construct(Afposmos $apiService)
     {
-        $this->middleware('permission:awardtype-read|admin', [
+        $this->middleware('permission:afposmos-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed',
-                'searchAwardType'
+                'onlyTrashed'
             ]
         ]);
-        $this->middleware('permission:awardtype-create|admin', [
+        $this->middleware('permission:afposmos-create|admin', [
             'only' => [
                 'store'
             ]
         ]);
-        $this->middleware('permission:awardtype-update|admin', [
+        $this->middleware('permission:afposmos-update|admin', [
             'only' => [
                 'update',
                 'restore'
             ]
         ]);
-        $this->middleware('permission:awardtype-delete|admin', [
+        $this->middleware('permission:afposmos-delete|admin', [
             'only' => [
                 'delete',
                 'forceDelete'
@@ -73,10 +72,5 @@ class AwardTypeController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
-    }
-
-    public function searchAwardType(Request $request)
-    {
-        return $this->apiService->searchAwardType($request->all());
     }
 }

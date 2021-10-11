@@ -29,4 +29,9 @@ class OrderRoute
     {
         return $this->performRequest('GET', '/orderpub/order-route/'.$id);
     }
+
+    public function showRouteOrders($data)
+    {
+        return $this->performRequest('GET', '/signatory/route-orders',$data);
+    }
 }

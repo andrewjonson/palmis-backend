@@ -15,7 +15,8 @@ class OrderRouteController extends Controller
     {
         $this->middleware('permission:order-read|admin', [
             'only' => [
-                'showOrderRoute'
+                'showOrderRoute',
+                'showRouteOrders'
             ]
         ]);
         $this->middleware('permission:orderroute-create|admin', [
@@ -44,5 +45,10 @@ class OrderRouteController extends Controller
     public function showOrderRoute($id)
     {
         return $this->apiService->showOrderRoute($id);
+    }
+
+    public function showRouteOrders(Request $request)
+    {
+        return $this->apiService->showRouteOrders($request->all());
     }
 }

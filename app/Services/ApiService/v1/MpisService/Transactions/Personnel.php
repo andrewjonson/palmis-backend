@@ -125,4 +125,9 @@ class Personnel
     {
         return $this->performRequest('POST', '/mpis/store-personnel-promotion', $data);
     }
+
+    public function dynamicSearchPersonnel()
+    {
+        return $this->performRequest('GET', '/mpis/personnel-dynamic-search');
+    }
 }

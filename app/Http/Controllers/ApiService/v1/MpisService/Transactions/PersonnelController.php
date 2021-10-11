@@ -25,7 +25,8 @@ class PersonnelController extends Controller
                 'uploadPersonnelImage',
                 'searchPersonnelBySerial',
                 'countPersonnel',
-                'getPersonnelAddress'
+                'getPersonnelAddress',
+                'dynamicSearchPersonnel'
             ]
         ]);
         $this->middleware('permission:personnel-create|admin', [
@@ -128,5 +129,10 @@ class PersonnelController extends Controller
     public function createPersonnelPromotion(Request $request)
     {
         return $this->apiService->createPersonnelPromotion($request->all());
+    }
+
+    public function dynamicSearchPersonnel(Request $request)
+    {
+        return $this->apiService->dynamicSearchPersonnel($request->all());
     }
 }

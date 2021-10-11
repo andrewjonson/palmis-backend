@@ -16,6 +16,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/subfactor', 'CmisService\Transactions\TSubFactorController', $router);
     resource('/sublvl1', 'CmisService\Transactions\TSubFactorLevelOneController', $router);
 
+    $router->get('/search/award-type', 'ApiService\v1\CmisService\References\AwardTypeController@searchAwardType');
     $router->get('/award/{id}', 'ApiService\v1\CmisService\References\AwardController@searchAwardById');
     $router->get('/search/points', 'ApiService\v1\CmisService\Transactions\TSubFactorController@searchPoints');
     $router->get('/search/criteria', 'ApiService\v1\CmisService\Transactions\TSubFactorController@searchByCriteria');

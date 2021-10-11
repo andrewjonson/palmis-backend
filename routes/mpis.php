@@ -5,7 +5,7 @@ require_once __DIR__ . '/Resource.php';
 $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 'prefix' => '/api/'.config('app.version').'/mpis'], function() use($router) {
     resource('/personnels', 'MpisService\Transactions\PersonnelController', $router);
     resource('/barangay', 'MpisService\References\BarangayController', $router);
-    resource('/bda-size', 'MpisService\References\BdaSizeController', $router);
+    resource('/bda-size', 'MpisService\References\BdaSizeController', $router); 
     resource('/built', 'MpisService\References\BuiltController', $router);
     resource('/citizenship', 'MpisService\References\CitizenshipController', $router);
     resource('/municity', 'MpisService\References\MuniCityController', $router);
@@ -30,7 +30,11 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/training', 'MpisService\References\TrainingController', $router);
     resource('/zipcode', 'MpisService\References\ZipcodeController', $router);
     resource('/relationship', 'MpisService\References\RelationshipController', $router);
+    resource('/afposmos', 'MpisService\References\AfposmosController', $router);
 
+    $router->get('search-personnel-serial', 'ApiService\v1\MpisService\Transactions\PersonnelRankController@searchPersonnelRank');
+    $router->post('create-personnel-serial', 'ApiService\v1\MpisService\Transactions\PersonnelRankController@createPersonnelRank');
+    $router->get('course-by-level', 'ApiService\v1\MpisService\References\AfposmosController@getCourseByLevel');
     $router->get('show-personnel-group/{id}', 'ApiService\v1\MpisService\References\PersonnelGroupController@getPersonnelGroupById');
     $router->get('show-civil-status/{id}', 'ApiService\v1\MpisService\References\CivilStatusController@getCivilStatusById');
     $router->get('relationship-search', 'ApiService\v1\MpisService\References\RelationshipController@searchRelationship');

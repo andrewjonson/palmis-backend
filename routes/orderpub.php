@@ -14,6 +14,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/originating-offices', 'OrderPubService\References\OriginatingOfficeController', $router);
 
 
+    $router->get('/statuses', 'ApiService\v1\OrderPubService\References\StatusController@index');
     $router->put('/statuses/{id}', 'ApiService\v1\OrderPubService\References\StatusController@update');
     $router->get('/show-status', 'ApiService\v1\OrderPubService\References\StatusController@getStatusById');
     $router->get('/authority/{office}', 'ApiService\v1\OrderPubService\References\AuthorityLineController@getAuthorityLine');
@@ -62,13 +63,16 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('/orders/templates/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@saveOrderAsTemplate');
     $router->post('/general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@createGeneralOrder');
     $router->put('/revise-general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@reviseGeneralOrder');
+    $router->post('/update-general-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@updateGeneralOrder');
     $router->put('/publish-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@publishOrder');
     $router->get('/order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewPublishOrder');
     $router->get('/view-order/{versionId}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewDraftOrder');
+    $router->get('/show-order/{orderCode}', 'ApiService\v1\OrderPubService\Transactions\PersonnelOrderController@getOrderByOrderCode');
 
     //Order Route
     $router->post('/route-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@routeOrder');
     $router->get('/order-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@showOrderRoute');
     $router->put('/update-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
+    $router->get('/signatory/route-orders', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@showRouteOrders');
 
 });

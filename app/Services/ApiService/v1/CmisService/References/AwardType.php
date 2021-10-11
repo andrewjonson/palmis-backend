@@ -49,4 +49,10 @@ class AwardType
     {
         return $this->performRequest('DELETE', '/cmis/award/type/force-delete/'.$id);
     }
+
+    public function searchAwardType($data)
+    {
+        return $this->performRequest('GET', '/cmis/search/award-type', $data);
+    }
+
 }

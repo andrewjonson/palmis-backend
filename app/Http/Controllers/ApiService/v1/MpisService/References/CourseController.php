@@ -17,7 +17,8 @@ class CourseController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'getCourseByType'
+                'getCourseByType',
+                'getCourseByLevel'
             ]
         ]);
         $this->middleware('permission:course-create|admin', [
@@ -79,4 +80,10 @@ class CourseController extends Controller
     {
         return $this->apiService->getCourseByType($request->all());
     }
+
+    public function getCourseByLevel(Request $request)
+    {
+        return $this->apiService->getCourseByLevel($request->all());
+    }
+
 }
