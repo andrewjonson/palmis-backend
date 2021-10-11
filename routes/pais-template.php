@@ -64,7 +64,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->post('/users/validate-password', 'Users\UserController@validatePassword');
 
     //Personnels
-    $router->get('/personnels', 'Personnels\PersonnelController@searchPersonnelBySerialNumber');
+    $router->post('/personnels', 'Personnels\PersonnelController@searchPersonnelBySerialNumber');
     $router->get('/personnels/pmcode/{pmcode}', 'Personnels\PersonnelController@getPersonnelByPmcode');
 });
 

@@ -9,6 +9,7 @@ use App\Traits\Auth\LoginTrait;
 use App\Traits\ValidateUrlTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use App\Http\Requests\Users\SetupAccountRequest;
 use App\Http\Requests\Auth\ForgotPasswordRequest;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -16,7 +17,6 @@ use App\Notifications\EmailVerificationNotification;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\InviteRepositoryInterface;
 use App\Repositories\Interfaces\SettingRepositoryInterface;
-use App\Repositories\Interfaces\PersonnelRepositoryInterface;
 use App\Repositories\Interfaces\LoginAttemptRepositoryInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -29,14 +29,12 @@ class VerificationController extends Controller
         UserRepositoryInterface $userRepository,
         SettingRepositoryInterface $settingRepository,
         LoginAttemptRepositoryInterface $loginAttemptRepository,
-        PersonnelRepositoryInterface $personnelRepository,
         InviteRepositoryInterface $inviteRepository
     ) 
     {
         $this->userRepository = $userRepository;
         $this->settingRepository = $settingRepository;
         $this->loginAttemptRepository = $loginAttemptRepository;
-        $this->personnelRepository = $personnelRepository;
         $this->inviteRepository = $inviteRepository;
     }
 
@@ -102,9 +100,9 @@ class VerificationController extends Controller
         try {
             $serialNumber = $request->serial_number;
             $birthday = $request->birthday;
-            $validateUser = $this->personnelRepository->validateSerialNumberBirthday($serialNumber, $birthday);
-            if (!$validateUser) {
-                return $this->failedResponse(trans('auth.invalid_user'), FORBIDDEN);
+            $validateUser = Http::get(config('services.mpis_base_uri').'/api/'.config('app.version').'/mpis/search-serial-birth', $request->all());
+            if ($validateUser->status() != DATA_OK) {
+                return $this->failedResponse(trans('auth.invalid_user'), BAD_REQUEST);
             }
 
             $request['password'] = Hash::make($request->password);

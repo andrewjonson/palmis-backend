@@ -7,27 +7,26 @@ use App\Traits\ResponseTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PersonnelResource;
 use Illuminate\Auth\Access\AuthorizationException;
-use App\Repositories\Interfaces\PersonnelRepositoryInterface;
+use App\Services\ApiService\v1\MpisService\Transactions\Personnel;
 
 class PersonnelController extends Controller
 {
     use ResponseTrait;
     
-    public function __construct(PersonnelRepositoryInterface $personnelRepository)
+    public function __construct(Personnel $personnelService)
     {
-        $this->personnelRepository = $personnelRepository;
+        $this->personnelService = $personnelService;
     }
 
     public function searchPersonnelBySerialNumber(Request $request)
     {
         $serialNumber = $request->serial_number;
-        $rowsPerPage = $request->rowsPerPage;
         try {
             if (!$serialNumber) {
                 return $this->failedResponse(trans('personnels.search'), VALIDATION_EXCEPTION);
             }
-
-            $personnels = $this->personnelRepository->searchPersonnelBySerialNumber($serialNumber, $rowsPerPage);
+            
+            return $personnels = $this->personnelService->searchPersonnelBySerial($request->all());
             return PersonnelResource::collection($personnels);
         } catch(\Exception $e) {
             return $this->failedResponse($e->getMessage(), SERVER_ERROR);

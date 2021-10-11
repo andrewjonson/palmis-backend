@@ -17,10 +17,10 @@ trait ConsumeExternalService
     {
         $base_uri = $this->baseUri;
         $token = request()->bearerToken();
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json'
-        ])->withToken($token)->$method($base_uri.'/api/'.config('app.version').$requestUrl, $formParams);
+        $response = Http::$method($base_uri.'/api/'.config('app.version').$requestUrl, $formParams);
+        if (isset($token)) {
+            $response = Http::withToken($token)->$method($base_uri.'/api/'.config('app.version').$requestUrl, $formParams);
+        }
         return response($response->json(), $response->status());
     }
 }
