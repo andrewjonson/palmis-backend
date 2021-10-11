@@ -57,7 +57,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('show-government/{id}', 'ApiService\v1\MpisService\Transactions\GovernmentIdController@getGovernmentId');
     $router->post('store-financial', 'ApiService\v1\MpisService\Transactions\FinancialReferenceController@createFinancialReference');
     $router->get('show-financial/{id}', 'ApiService\v1\MpisService\Transactions\FinancialReferenceController@getFinancialReference');
-    $router->post('store-eligibility', 'ApiService\v1\MpisService\Transactions\EligibilityController@createElibility');
+    $router->post('store-eligibility', 'ApiService\v1\MpisService\Transactions\EligibilityController@createEligibility');
     $router->get('show-eligibility/{id}', 'ApiService\v1\MpisService\Transactions\EligibilityController@getEligibility');
     $router->post('store-country', 'ApiService\v1\MpisService\Transactions\CountryVisitedController@createCountryVisited');
     $router->get('show-country-visited/{id}', 'ApiService\v1\MpisService\Transactions\CountryVisitedSkillController@getCountryVisited');
