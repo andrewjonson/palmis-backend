@@ -5,7 +5,7 @@ require_once __DIR__ . '/Resource.php';
 $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 'prefix' => '/api/'.config('app.version').'/mpis'], function() use($router) {
     resource('/personnels', 'MpisService\Transactions\PersonnelController', $router);
     resource('/barangay', 'MpisService\References\BarangayController', $router);
-    resource('/bda-size', 'MpisService\References\BdaSizeController', $router);
+    resource('/bda-size', 'MpisService\References\BdaSizeController', $router); 
     resource('/built', 'MpisService\References\BuiltController', $router);
     resource('/citizenship', 'MpisService\References\CitizenshipController', $router);
     resource('/municity', 'MpisService\References\MuniCityController', $router);
@@ -92,7 +92,6 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('show-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAddress');
     $router->put('update-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@updatePersonnelAddress');
     $router->post('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
-    $router->get('personnel-dynamic-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@dynamicSearchPersonnel');
     $router->get('show-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelById');
     $router->get('personnel-total', 'ApiService\v1\MpisService\Transactions\PersonnelController@countPersonnel');
     $router->post('search-info', 'ApiService\v1\MpisService\Transactions\PersonnelController@advanceSearchPersonnel');
