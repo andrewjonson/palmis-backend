@@ -60,6 +60,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelRankPermiss
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TableStructurePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CountryVisitedPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\OrderRoutePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\References\AppurtenanceAwardPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\SubFactorLevelOnePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\AuthorityLinePermissionsTableSeeder;
@@ -107,6 +108,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SubFactorLevelOnePermissionsTableSeeder::class);
         $this->call(TSubFactorLevelOnePermissionsTableSeeder::class);
         $this->call(TSubFactorPermissionsTableSeeder::class);
+        $this->call(AppurtenanceAwardPermissionsTableSeeder::class);
         //Mpis
         $this->call(CountryPermissionsTableSeeder::class);
         $this->call(PersonnelPermissionsTableSeeder::class);

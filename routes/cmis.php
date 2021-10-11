@@ -3,7 +3,8 @@
 require_once __DIR__ . '/Resource.php';
 
 $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'modular:cmis'], 'prefix' => '/api/'.config('app.version').'/cmis'], function() use($router) {
-    resource('/appurtenance', 'CmisService\References\AppurtenanceController', $router);//
+    resource('/appurtenance', 'CmisService\References\AppurtenanceController', $router);
+    resource('/appurtenance-awards', 'CmisService\References\AppurtenanceAwardController', $router);//
     resource('/subfactor/name', 'CmisService\References\SubFactorController', $router);//
     resource('/sublvl1/name', 'CmisService\References\SubFactorLevelOneController', $router);//
     resource('/purpose', 'CmisService\References\PurposeController', $router); //
@@ -16,6 +17,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/subfactor', 'CmisService\Transactions\TSubFactorController', $router);
     resource('/sublvl1', 'CmisService\Transactions\TSubFactorLevelOneController', $router);
 
+    $router->get('/get/award', 'ApiService\v1\CmisService\References\AppurtenanceAwardController@getAppurtenanceAward');
     $router->get('/search/award-type', 'ApiService\v1\CmisService\References\AwardTypeController@searchAwardType');
     $router->get('/award/{id}', 'ApiService\v1\CmisService\References\AwardController@searchAwardById');
     $router->get('/search/points', 'ApiService\v1\CmisService\Transactions\TSubFactorController@searchPoints');
@@ -30,4 +32,5 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/search/main-subfactor', 'ApiService\v1\CmisService\References\SubFactorLevelOneController@searchSubLevelByParent');
     $router->get('/search/sublvl/points', 'ApiService\v1\CmisService\References\SubFactorLevelOneController@searchSubLevelPoints');
     $router->get('/search/command-assignment', 'ApiService\v1\CmisService\References\TableStructureController@getTableStructureByCriteria');
+
 });
