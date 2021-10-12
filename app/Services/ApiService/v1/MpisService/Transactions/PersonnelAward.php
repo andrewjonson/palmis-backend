@@ -15,7 +15,7 @@ class PersonnelAward
         $this->baseUri = config('services.mpis_base_uri');
     }
 
-    public function createPersonnelRank($data)
+    public function createPersonnelAward($data)
     {
         return $this->performRequest('POST', '/mpis/store-personnel-award', $data);
     }
