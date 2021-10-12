@@ -5,7 +5,7 @@ require_once __DIR__ . '/Resource.php';
 $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 'prefix' => '/api/'.config('app.version').'/mpis'], function() use($router) {
     resource('/personnels', 'MpisService\Transactions\PersonnelController', $router);
     resource('/barangay', 'MpisService\References\BarangayController', $router);
-    resource('/bda-size', 'MpisService\References\BdaSizeController', $router); 
+    resource('/bda-size', 'MpisService\References\BdaSizeController', $router);
     resource('/built', 'MpisService\References\BuiltController', $router);
     resource('/citizenship', 'MpisService\References\CitizenshipController', $router);
     resource('/municity', 'MpisService\References\MuniCityController', $router);
@@ -32,6 +32,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/relationship', 'MpisService\References\RelationshipController', $router);
     resource('/afposmos', 'MpisService\References\AfposmosController', $router);
 
+    $router->post('store-personnel-award', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@createPersonnelRank');
+    $router->get('show-personnel-award', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@showPersonnelAward');
+    $router->get('get-award-appurtenance', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@getAppurtenance');
     $router->get('search-personnel-serial', 'ApiService\v1\MpisService\Transactions\PersonnelRankController@searchPersonnelRank');
     $router->post('create-personnel-serial', 'ApiService\v1\MpisService\Transactions\PersonnelRankController@createPersonnelRank');
     $router->get('course-by-level', 'ApiService\v1\MpisService\References\AfposmosController@getCourseByLevel');

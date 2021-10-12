@@ -49,4 +49,10 @@ class Appurtenance
     {
         return $this->performRequest('DELETE', '/cmis/appurtenance/force-delete/'.$id);
     }
+
+    public function getAppurtenances($data)
+    {
+        return $this->performRequest('GET', '/cmis/search-appurtenances', $data);
+    }
+
 }

@@ -59,6 +59,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermiss
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelRankPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TableStructurePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CountryVisitedPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelAwardPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\OrderRoutePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\AppurtenanceAwardPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\SubFactorLevelOnePermissionsTableSeeder;
@@ -153,7 +154,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RelationshipPermissionsTableSeeder::class);
         $this->call(AfposmosPermissionsTableSeeder::class);
         $this->call(PersonnelRankPermissionsTableSeeder::class);
-
+        $this->call(PersonnelAwardPermissionsTableSeeder::class);
 
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);

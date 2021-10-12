@@ -16,7 +16,8 @@ class AppurtenanceController extends Controller
         $this->middleware('permission:appurtenance-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getAppurtenances'
             ]
         ]);
         $this->middleware('permission:appurtenance-create|admin', [
@@ -72,5 +73,10 @@ class AppurtenanceController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getAppurtenances(Request $request)
+    {
+        return $this->apiService->getAppurtenances($request->all());
     }
 }
