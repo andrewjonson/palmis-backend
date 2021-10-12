@@ -21,15 +21,15 @@ class PersonnelAwardController extends Controller
         ]);
         $this->middleware('permission:personnelaward-create|admin', [
             'only' => [
-                'createPersonnelRank'
+                'createPersonnelAward'
             ]
         ]);
         $this->apiService = $apiService;
     }
 
-    public function createPersonnelRank(Request $request)
+    public function createPersonnelAward(Request $request)
     {
-        return $this->apiService->createPersonnelRank($request->all());
+        return $this->apiService->createPersonnelAward($request->all());
     }
 
     public function showPersonnelAward($id)
