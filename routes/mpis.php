@@ -44,7 +44,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('show-personnel-group/{id}', 'ApiService\v1\MpisService\References\PersonnelGroupController@getPersonnelGroupById');
     $router->get('show-civil-status/{id}', 'ApiService\v1\MpisService\References\CivilStatusController@getCivilStatusById');
     $router->get('relationship-search', 'ApiService\v1\MpisService\References\RelationshipController@searchRelationship');
-    $router->get('personnel-dynamic-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@dynamicSearchPersonnel');
+    $router->post('personnel-dynamic-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@dynamicSearchPersonnel');
     $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelPromotion');
     $router->get('search-personnel-rank', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');
     $router->get('get-zipcode', 'ApiService\v1\MpisService\References\ZipcodeController@getZipcode');

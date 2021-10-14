@@ -128,6 +128,6 @@ class Personnel
 
     public function dynamicSearchPersonnel($data)
     {
-        return $this->performRequest('GET', '/mpis/personnel-dynamic-search', $data);
+        return $this->performRequest('POST', '/mpis/personnel-dynamic-search', $data);
     }
 }
