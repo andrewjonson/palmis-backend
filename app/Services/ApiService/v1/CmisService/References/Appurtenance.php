@@ -52,7 +52,7 @@ class Appurtenance
 
     public function getAppurtenances($data)
     {
-        return $this->performRequest('GET', '/cmis/search-appurtenances', $data);
+        return $this->performRequest('GET', '/cmis/search-appurtenance', $data);
     }
 
 }
