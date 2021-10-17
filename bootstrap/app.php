@@ -165,6 +165,7 @@ $app->router->group([
     require __DIR__.'/../routes/mpis.php';
     require __DIR__.'/../routes/orderpub.php';
     require __DIR__.'/../routes/cmis.php';
+    require __DIR__.'/../routes/toeis.php';
 });
 
 return $app;

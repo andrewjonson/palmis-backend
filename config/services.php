@@ -5,5 +5,6 @@ return [
     'mpis_base_uri' => env('MPIS_BASE_URI'),
     'orderpub_base_uri' => env('ORDERPUB_BASE_URI'),
     'cmis_base_uri' => env('CMIS_BASE_URI'),
-    'mpf_secret' => env('MPF_SECRET')
+    'mpf_secret' => env('MPF_SECRET'),
+    'toeis_base_uri' => env('TOEIS_BASE_URI'),
 ];

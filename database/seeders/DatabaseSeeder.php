@@ -26,6 +26,7 @@ use Database\Seeders\ApiService\v1\CmisService\References\PurposePermissionsTabl
 use Database\Seeders\ApiService\v1\MpisService\References\BdaSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CountryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ZipcodePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\ToeisService\Transactions\UnitPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\CriteriaPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\AfposmosPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BarangayPermissionsTableSeeder;
@@ -36,6 +37,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\ProvincePermissionsTab
 use Database\Seeders\ApiService\v1\MpisService\References\ReligionPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\TrainingPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TypePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\ToeisService\References\EchelonPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\AwardTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\SubFactorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\HairColorPermissionsTableSeeder;
@@ -194,5 +196,9 @@ class DatabaseSeeder extends Seeder
         $this->call(OriginatingOfficePermissionsTableSeeder::class);
         $this->call(FileDirectoryPermissionsTableSeeder::class);
         $this->call(PersonnelOrderPermissionsTableSeeder::class);
+
+        //TOEIS
+        $this->call(EchelonPermissionsTableSeeder::class);
+        $this->call(UnitPermissionsTableSeeder::class);
     }
 }
