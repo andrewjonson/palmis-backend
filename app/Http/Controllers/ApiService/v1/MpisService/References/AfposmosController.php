@@ -16,7 +16,8 @@ class AfposmosController extends Controller
         $this->middleware('permission:afposmos-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getAfposmosById'
             ]
         ]);
         $this->middleware('permission:afposmos-create|admin', [
@@ -72,5 +73,10 @@ class AfposmosController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getAfposmosById($id)
+    {
+        return $this->apiService->getAfposmosById($id);
     }
 }

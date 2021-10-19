@@ -49,4 +49,9 @@ class Afposmos
     {
         return $this->performRequest('DELETE', '/mpis/afposmos/force-delete/'.$id);
     }
+
+    public function getAfposmosById($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-afposmos/'. $id);
+    }
 }

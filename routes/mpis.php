@@ -32,6 +32,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/relationship', 'MpisService\References\RelationshipController', $router);
     resource('/afposmos', 'MpisService\References\AfposmosController', $router);
 
+    $router->get('show-afposmos/{id}', 'ApiService\v1\MpisService\References\AfposmosController@getAfposmosById');
     $router->post('create-enlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createEnlistment');
     $router->get('dashboard', 'ApiService\v1\MpisService\Transactions\DashboardController@getDashboard');
     $router->get('logs', 'ApiService\v1\MpisService\Transactions\LogController@getLogs');
