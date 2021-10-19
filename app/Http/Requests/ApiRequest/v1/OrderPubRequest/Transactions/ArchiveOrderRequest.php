@@ -25,6 +25,7 @@ class ArchiveOrderRequest extends FormRequest
     {
         return [
             'attachment' => 'required|mimes:pdf',
+            'order_number' => 'required',
             'type_id' => 'required',
             'date' => 'required|date',
             'pmcode' => 'required'
