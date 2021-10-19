@@ -89,4 +89,9 @@ class Order
     {
         return $this->performRequest('GET', '/orderpub/order-histories/'.$id);
     }
+
+    public function storeOrderArchive($data)
+    {
+        return $this->performRequest('POST', '/orderpub/archive-order/', $data);
+    }
 }

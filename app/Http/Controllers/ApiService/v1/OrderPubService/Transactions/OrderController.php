@@ -28,7 +28,8 @@ class OrderController extends Controller
         $this->middleware('permission:order-create|admin', [
             'only' => [
                 'createGeneralOrder',
-                'updateGeneralOrder'
+                'updateGeneralOrder',
+                'storeOrderArchive'
             ]
         ]);
         $this->middleware('permission:order-update|admin', [
@@ -120,5 +121,20 @@ class OrderController extends Controller
     public function getOrderHistories($id)
     {
         return $this->apiService->getOrderHistories($id);
+    }
+
+    public function storeOrderArchive(ArchiveOrderRequest $request)
+    {
+        $attachment = $request->file('attachment');
+        $attachmentName = time().rand(1,100).'.'.$attachment->extension();
+        $attachment->move(public_path('orderpub/archive'), $attachmentName);
+
+        return $this->apiService->storeOrderArchive([
+            'type_id' => $request->type_id,
+            'order_number' => $request->order_number,
+            'date' => $request->date,
+            'pmcode' => $request->pmcode,
+            'attachment' =>  $attachmentName
+        ]);
     }
 }
