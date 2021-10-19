@@ -50,7 +50,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->put('/folders/{id}', 'ApiService\v1\OrderPubService\Transactions\FolderController@updateFolder');
 
     //Order
-    $router->get('/archive-order', 'ApiService\v1\OrderPubService\Transactions\OrderController@storeOrderArchive');
+    $router->post('/archive-order', 'ApiService\v1\OrderPubService\Transactions\OrderController@storeOrderArchive');
     $router->get('/orders', 'ApiService\v1\OrderPubService\Transactions\OrderController@getOrders');
     $router->delete('/order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@destroy');
     $router->delete('/order/force-delete/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@forceDelete');
