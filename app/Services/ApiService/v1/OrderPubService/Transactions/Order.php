@@ -92,6 +92,6 @@ class Order
 
     public function storeOrderArchive($data)
     {
-        return $this->performRequest('POST', '/orderpub/archive-order/', $data);
+        return $this->performRequest('POST', '/orderpub/archive-order', $data);
     }
 }
