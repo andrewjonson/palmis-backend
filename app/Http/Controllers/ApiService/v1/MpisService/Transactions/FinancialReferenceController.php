@@ -11,14 +11,14 @@ class FinancialReferenceController extends Controller
 {
     use ConsumeExternalService;
 
-    public function __construct(Eligibility $apiService)
+    public function __construct(FinancialReference $apiService)
     {
-        $this->middleware('permission:eligibility-read|admin', [
+        $this->middleware('permission:financialreference-read|admin', [
             'only' => [
                 'getFinancialReference'
             ]
         ]);
-        $this->middleware('permission:eligibility-create|admin', [
+        $this->middleware('permission:financialreference-create|admin', [
             'only' => [
                 'createFinancialReference'
             ]
