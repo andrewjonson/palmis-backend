@@ -68,6 +68,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewPublishOrder');
     $router->get('/view-order/{versionId}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewDraftOrder');
     $router->get('/show-order/{orderCode}', 'ApiService\v1\OrderPubService\Transactions\PersonnelOrderController@getOrderByOrderCode');
+    $router->get('/show-order-details/{orderCode}', 'ApiService\v1\OrderPubService\Transactions\PersonnelOrderController@getOrderCodeDetails');
 
     //Order Route
     $router->post('/route-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@routeOrder');

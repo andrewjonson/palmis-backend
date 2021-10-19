@@ -15,7 +15,8 @@ class PersonnelOrderController extends Controller
     {
         $this->middleware('permission:personnelorder-read|admin', [
             'only' => [
-                'getOrderByOrderCode'
+                'getOrderByOrderCode',
+                'getOrderCodeDetails'
             ]
         ]);
         $this->apiService = $apiService;
@@ -24,5 +25,10 @@ class PersonnelOrderController extends Controller
     public function getOrderByOrderCode($orderCode)
     {
         return $this->apiService->getOrderByOrderCode($orderCode);
+    }
+
+    public function getOrderCodeDetails($orderCode)
+    {
+        return $this->apiService->getOrderCodeDetails($orderCode);
     }
 }

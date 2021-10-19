@@ -19,4 +19,9 @@ class PersonnelOrder
     {
         return $this->performRequest('GET', '/orderpub/show-order/'.$orderCode);
     }
+
+    public function getOrderCodeDetails($orderCode)
+    {
+        return $this->performRequest('GET', '/orderpub/show-order-details/'.$orderCode);
+    }
 }
