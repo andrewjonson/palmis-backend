@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
 use App\Services\ApiService\v1\OrderPubService\Transactions\Order;
+use App\Http\Requests\ApiRequest\v1\OrderPubRequest\Transactions\ArchiveOrderRequest;
 
 class OrderController extends Controller
 {
