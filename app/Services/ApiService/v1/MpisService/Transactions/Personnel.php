@@ -130,4 +130,9 @@ class Personnel
     {
         return $this->performRequest('POST', '/mpis/personnel-dynamic-search', $data);
     }
+
+    public function searchPersonnelBySerialNumber($data)
+    {
+        return $this->performRequest('POST', '/mpis/orderpub-serial-search', $data);
+    }
 }

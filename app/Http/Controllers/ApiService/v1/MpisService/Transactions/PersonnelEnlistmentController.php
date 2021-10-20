@@ -15,7 +15,8 @@ class PersonnelEnlistmentController extends Controller
     {
         $this->middleware('permission:personnelenlistment-create|admin', [
             'only' => [
-                'createEnlistment'
+                'createEnlistment',
+                'createPersonnelEnlistment'
             ]
         ]);
         $this->apiService = $apiService;
@@ -24,5 +25,10 @@ class PersonnelEnlistmentController extends Controller
     public function createEnlistment(Request $request)
     {
         return $this->apiService->createEnlistment($request->all());
+    }
+
+    public function createPersonnelEnlistment(Request $request)
+    {
+        return $this->apiService->createPersonnelEnlistment($request->all());
     }
 }

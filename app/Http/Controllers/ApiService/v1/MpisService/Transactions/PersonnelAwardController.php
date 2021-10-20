@@ -16,7 +16,8 @@ class PersonnelAwardController extends Controller
         $this->middleware('permission:personnelaward-read|admin', [
             'only' => [
                 'showPersonnelAward',
-                'getAppurtenance'
+                'getAppurtenance',
+                'showAwardDetailById'
             ]
         ]);
         $this->middleware('permission:personnelaward-create|admin', [
@@ -40,5 +41,10 @@ class PersonnelAwardController extends Controller
     public function getAppurtenance(Request $request)
     {
         return $this->apiService->getAppurtenance($request->all());
+    }
+
+    public function showAwardDetailById($id)
+    {
+        return $this->apiService->showAwardDetailById($id);
     }
 }

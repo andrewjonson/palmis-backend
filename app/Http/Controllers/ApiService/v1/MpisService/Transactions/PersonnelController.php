@@ -26,7 +26,8 @@ class PersonnelController extends Controller
                 'searchPersonnelBySerial',
                 'countPersonnel',
                 'getPersonnelAddress',
-                'dynamicSearchPersonnel'
+                'dynamicSearchPersonnel',
+                'searchPersonnelBySerialNumber'
             ]
         ]);
         $this->middleware('permission:personnel-create|admin', [
@@ -134,5 +135,10 @@ class PersonnelController extends Controller
     public function dynamicSearchPersonnel(Request $request)
     {
         return $this->apiService->dynamicSearchPersonnel($request->all());
+    }
+
+    public function searchPersonnelBySerialNumber(Request $request)
+    {
+        return $this->apiService->searchPersonnelBySerialNumber($request->all());
     }
 }

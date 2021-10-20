@@ -29,4 +29,9 @@ class PersonnelAward
     {
         return $this->performRequest('GET', '/mpis/get-award-appurtenance', $data);
     }
+
+    public function showAwardDetailById($id)
+    {
+        return $this->performRequest('GET', '/mpis/show-award-detail/'.$id);
+    }
 }

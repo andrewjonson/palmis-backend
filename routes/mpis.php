@@ -32,6 +32,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/relationship', 'MpisService\References\RelationshipController', $router);
     resource('/afposmos', 'MpisService\References\AfposmosController', $router);
 
+    $router->get('show-award-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@showAwardDetailById');
+    $router->post('create-personnel-enlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createPersonnelEnlistment');
+    $router->post('orderpub-serial-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerialNumber');
     $router->get('show-afposmos/{id}', 'ApiService\v1\MpisService\References\AfposmosController@getAfposmosById');
     $router->post('create-enlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createEnlistment');
     $router->get('dashboard', 'ApiService\v1\MpisService\Transactions\DashboardController@getDashboard');

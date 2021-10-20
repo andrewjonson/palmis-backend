@@ -17,6 +17,11 @@ class PersonnelEnlistment
 
     public function createEnlistment($data)
     {
-        return $this->performRequest('GET', '/mpis/create-enlistment', $data);
+        return $this->performRequest('POST', '/mpis/create-enlistment', $data);
+    }
+
+    public function createPersonnelEnlistment($data)
+    {
+        return $this->performRequest('POST', '/mpis/create-personnel-enlistment', $data);
     }
 }
