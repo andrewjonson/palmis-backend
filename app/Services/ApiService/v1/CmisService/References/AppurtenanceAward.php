@@ -55,8 +55,8 @@ class AppurtenanceAward
         return $this->performRequest('GET', '/cmis/search-award', $data);
     }
 
-    public function getAppurtenanceAwardById($data)
+    public function getAppurtenanceAwardById($id)
     {
-        return $this->performRequest('GET', '/cmis/search-appurtenance-award', $data);
+        return $this->performRequest('GET', '/cmis/search-appurtenance-award/'. $id);
     }
 }

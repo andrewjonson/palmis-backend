@@ -81,8 +81,8 @@ class AppurtenanceAwardController extends Controller
         return $this->apiService->getAppurtenanceAward($request->all());
     }
 
-    public function getAppurtenanceAwardById(Request $request)
+    public function getAppurtenanceAwardById($id)
     {
-        return $this->apiService->getAppurtenanceAwardById($request->all());
+        return $this->apiService->getAppurtenanceAwardById($id);
     }
 }
