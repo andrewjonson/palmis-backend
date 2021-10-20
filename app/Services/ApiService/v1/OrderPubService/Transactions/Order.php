@@ -94,4 +94,9 @@ class Order
     {
         return $this->performRequest('POST', '/orderpub/archive-order', $data);
     }
+
+    public function getLatestVersionById($id)
+    {
+        return $this->performRequest('GET', '/orderpub/show-latest-version/'.$id);
+    }
 }

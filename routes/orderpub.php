@@ -56,7 +56,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->delete('/order/force-delete/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@forceDelete');
     $router->get('/order/only-trashed', 'ApiService\v1\OrderPubService\Transactions\OrderController@onlyTrashed');
     $router->put('/order/restore/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@restore');
-
+    $router->get('/show-latest-version/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@getLatestVersionById');
     $router->get('/order-histories/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@getOrderHistories');
     $router->get('/order-drafts', 'ApiService\v1\OrderPubService\Transactions\OrderController@getDraftOrders');
     $router->get('/published-orders', 'ApiService\v1\OrderPubService\Transactions\OrderController@getPublishedOrders');

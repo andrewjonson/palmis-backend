@@ -54,5 +54,4 @@ class AwardType
     {
         return $this->performRequest('GET', '/cmis/search/award-type', $data);
     }
-
 }

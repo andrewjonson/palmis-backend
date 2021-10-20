@@ -23,7 +23,8 @@ class OrderController extends Controller
                 'getDraftOrders',
                 'getPublishedOrders',
                 'getOrderHistories',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getLatestVersionById'
             ]
         ]);
         $this->middleware('permission:order-create|admin', [
@@ -137,5 +138,10 @@ class OrderController extends Controller
             'pmcode' => $request->pmcode,
             'attachment' =>  $attachmentName
         ]);
+    }
+
+    public function getLatestVersionById($id)
+    {
+        return $this->apiService->getLatestVersionById($id);
     }
 }
