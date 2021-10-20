@@ -5,7 +5,7 @@ namespace App\Http\Controllers\ApiService\v1\MpisService\Transactions;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConsumeExternalService;
-use App\Services\ApiService\v1\MpisService\Eligibility;
+use App\Services\ApiService\v1\MpisService\Transactions\Eligibility;
 
 class EligibilityController extends Controller
 {

@@ -44,7 +44,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('get-award-appurtenance', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@getAppurtenance');
     $router->get('search-personnel-serial', 'ApiService\v1\MpisService\Transactions\PersonnelRankController@searchPersonnelRank');
     $router->post('create-personnel-serial', 'ApiService\v1\MpisService\Transactions\PersonnelRankController@createPersonnelRank');
-    $router->get('course-by-level', 'ApiService\v1\MpisService\References\AfposmosController@getCourseByLevel');
+    $router->get('course-by-level', 'ApiService\v1\MpisService\References\CourseController@getCourseByLevel');
     $router->get('show-personnel-group/{id}', 'ApiService\v1\MpisService\References\PersonnelGroupController@getPersonnelGroupById');
     $router->get('show-civil-status/{id}', 'ApiService\v1\MpisService\References\CivilStatusController@getCivilStatusById');
     $router->get('relationship-search', 'ApiService\v1\MpisService\References\RelationshipController@searchRelationship');
