@@ -15,12 +15,23 @@ class WorkHistoryController extends Controller
     {
         $this->middleware('permission:workhistory-read|admin', [
             'only' => [
-                'getWorkHistory'
+                'getWorkHistory',
+                'searchWorkHistory'
             ]
         ]);
         $this->middleware('permission:workhistory-create|admin', [
             'only' => [
                 'createWorkHistory'
+            ]
+        ]);
+        $this->middleware('permission:workhistory-update|admin', [
+            'only' => [
+                'updateWorkHistory'
+            ]
+        ]);
+        $this->middleware('permission:workhistory-delete|admin', [
+            'only' => [
+                'deleteWorkHistory'
             ]
         ]);
         $this->apiService = $apiService;
@@ -34,5 +45,20 @@ class WorkHistoryController extends Controller
     public function createWorkHistory(Request $request)
     {
         return $this->apiService->createWorkHistory($request->all());
+    }
+
+    public function updateWorkHistory(Request $request, $id)
+    {
+        return $this->apiService->updateWorkHistory($request->all(), $id);
+    }
+
+    public function deleteWorkHistory($id)
+    {
+        return $this->apiService->deleteWorkHistory($id);
+    }
+
+    public function searchWorkHistory(Request $request)
+    {
+        return $this->apiService->searchWorkHistory($request);
     }
 }

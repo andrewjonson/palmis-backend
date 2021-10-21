@@ -4,16 +4,16 @@ require_once __DIR__ . '/Resource.php';
 
 $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'modular:cmis'], 'prefix' => '/api/'.config('app.version').'/cmis'], function() use($router) {
     resource('/appurtenance', 'CmisService\References\AppurtenanceController', $router);
-    resource('/appurtenance-awards', 'CmisService\References\AppurtenanceAwardController', $router);//
-    resource('/subfactor/name', 'CmisService\References\SubFactorController', $router);//
-    resource('/sublvl1/name', 'CmisService\References\SubFactorLevelOneController', $router);//
-    resource('/purpose', 'CmisService\References\PurposeController', $router); //
-    resource('/award', 'CmisService\References\AwardController', $router); //
-    resource('/award/type', 'CmisService\References\AwardTypeController', $router); //
-    resource('/award-point', 'CmisService\References\AwardPointController', $router);//
-    resource('/criteria', 'CmisService\References\CriteriaController', $router); //
-    resource('/formula', 'CmisService\References\FormulaController', $router); //
-    resource('/qrs', 'CmisService\References\QrsController', $router); //
+    resource('/appurtenance-awards', 'CmisService\References\AppurtenanceAwardController', $router);
+    resource('/subfactor/name', 'CmisService\References\SubFactorController', $router);
+    resource('/sublvl1/name', 'CmisService\References\SubFactorLevelOneController', $router);
+    resource('/purpose', 'CmisService\References\PurposeController', $router);
+    resource('/award', 'CmisService\References\AwardController', $router);
+    resource('/award/type', 'CmisService\References\AwardTypeController', $router);
+    resource('/award-point', 'CmisService\References\AwardPointController', $router);
+    resource('/criteria', 'CmisService\References\CriteriaController', $router);
+    resource('/formula', 'CmisService\References\FormulaController', $router);
+    resource('/qrs', 'CmisService\References\QrsController', $router);
     resource('/subfactor', 'CmisService\Transactions\TSubFactorController', $router);
     resource('/sublvl1', 'CmisService\Transactions\TSubFactorLevelOneController', $router);
 

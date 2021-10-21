@@ -59,6 +59,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('course-type', 'ApiService\v1\MpisService\References\CourseController@getCourseByType');
     $router->post('create-serial', 'ApiService\v1\MpisService\Transactions\SerialNumberController@createSerialNumber');
     $router->post('store-work', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@createWorkHistory');
+    $router->put('update-work/{id}', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@updateWorkHistory');
+    $router->delete('delete-work/{id}', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@deleteWorkHistory');
+    $router->get('work-dynamic-search', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@searchWorkHistory');
     $router->get('show-work/{id}', 'ApiService\v1\MpisService\Transactions\WorkHistoryController@getWorkHistory');
     $router->post('store-social-org', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@createSocialOrg');
     $router->get('show-social-org/{id}', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@getSocialOrg');
