@@ -31,7 +31,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/zipcode', 'MpisService\References\ZipcodeController', $router);
     resource('/relationship', 'MpisService\References\RelationshipController', $router);
     resource('/afposmos', 'MpisService\References\AfposmosController', $router);
+    resource('/assignment', 'MpisService\References\AssignmentController', $router);
 
+    $router->get('show-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@getAssignmentById');
     $router->get('show-award-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@showAwardDetailById');
     $router->post('create-personnel-enlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createPersonnelEnlistment');
     $router->post('orderpub-serial-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerialNumber');

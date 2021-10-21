@@ -44,6 +44,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\HairColorPermissionsTa
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\AwardPointPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\SubCategoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\AssignmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankStatusPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\StatusPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\MainCategoryPermissionsTableSeeder;
@@ -173,6 +174,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LogPermissionsTableSeeder::class);
         $this->call(DashboardPermissionsTableSeeder::class);
         $this->call(PersonnelEnlistmentPermissionsTableSeeder::class);
+        $this->call(AssignmentPermissionsTableSeeder::class);
 
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
