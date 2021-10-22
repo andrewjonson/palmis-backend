@@ -135,4 +135,14 @@ class Personnel
     {
         return $this->performRequest('POST', '/mpis/orderpub-serial-search', $data);
     }
+
+    public function searchPersonnelId($data)
+    {
+        return $this->performRequest('POST', '/mpis/personnel-id-search', $data);
+    }
+
+    public function getPersonnelAfposmosByPmcode($pmcode)
+    {
+        return $this->performRequest('GET', '/mpis/orderpub-pmcode-afposmos/'.$pmcode);
+    }
 }

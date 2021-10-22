@@ -33,6 +33,8 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/afposmos', 'MpisService\References\AfposmosController', $router);
     resource('/assignment', 'MpisService\References\AssignmentController', $router);
 
+    $router->get('orderpub-pmcode-afposmos/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAfposmosByPmcode');
+    $router->post('personnel-id-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelId');
     $router->get('show-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@getAssignmentById');
     $router->get('show-award-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@showAwardDetailById');
     $router->post('create-personnel-enlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createPersonnelEnlistment');
