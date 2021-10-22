@@ -145,4 +145,9 @@ class Personnel
     {
         return $this->performRequest('GET', '/mpis/orderpub-pmcode-afposmos/'.$pmcode);
     }
+
+    public function getPersonnelDetailByPmcode($pmcode)
+    {
+        return $this->performRequest('GET', '/mpis/orderpub-show-pmcode/'.$pmcode);
+    }
 }
