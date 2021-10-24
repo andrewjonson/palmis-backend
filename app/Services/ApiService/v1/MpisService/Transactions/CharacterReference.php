@@ -27,11 +27,11 @@ class CharacterReference
 
     public function updateReference($data, $id)
     {
-        return $this->performRequest('POST', '/mpis/update-reference/'.$id, $data);
+        return $this->performRequest('PUT', '/mpis/update-reference/'.$id, $data);
     }
 
     public function deleteReference($id)
     {
-        return $this->performRequest('POST', '/mpis/delete-reference/'.$id);
+        return $this->performRequest('DELETE', '/mpis/delete-reference/'.$id);
     }
 }
