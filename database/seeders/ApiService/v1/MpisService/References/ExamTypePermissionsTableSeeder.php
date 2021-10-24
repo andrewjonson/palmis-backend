@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\ApiService\v1\MpisService\Transactions;
+namespace Database\Seeders\ApiService\v1\MpisService\References;
 
 use Illuminate\Database\Seeder;
 use App\Traits\RestfulPermissionSeederTrait;
@@ -10,15 +10,15 @@ use App\Repositories\Interfaces\PermissionRepositoryInterface;
 use App\Repositories\Interfaces\ModuleModelRepositoryInterface;
 use App\Repositories\Interfaces\ModelPermissionRepositoryInterface;
 
-class InsurancePermissionsTableSeeder extends Seeder
+class ExamTypePermissionsTableSeeder extends Seeder
 {
     use RestfulPermissionSeederTrait;
 
     protected $permissions = [
-        'insurance-read',
-        'insurance-create',
-        'insurance-update',
-        'insurance-delete'
+        'examtype-read',
+        'examtype-create',
+        'examtype-update',
+        'examtype-delete'
     ];
 
     public function __construct(
@@ -34,7 +34,7 @@ class InsurancePermissionsTableSeeder extends Seeder
         $this->modelRepository = $modelRepository;
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
-        $this->modelName = 'Insurance';
-        $this->moduleName = 'mpisservice\transactions/insurancepermissionstableseeder';
+        $this->modelName = 'ExamType';
+        $this->moduleName = 'mpis';
     }
 }
