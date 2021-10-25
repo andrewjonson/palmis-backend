@@ -17,11 +17,16 @@ class Unit
 
     public function index($data)
     {
-        return $this->performRequest('GET', '/toeis/unit', $data);
+        return $this->performRequest('GET', '/toeis/unit-all-active', $data);
     }
 
-    public function store($data)
+    public function getUnitById($id)
     {
-        return $this->performRequest('POST', '/toeis/unit', $data);
+        return $this->performRequest('GET', 'toeis/unit-per-id/'.$id);
+    }
+
+    public function getUnitConcatById($id)
+    {
+        return $this->performRequest('GET', 'toeis/unit-concat/'.$id);
     }
 }

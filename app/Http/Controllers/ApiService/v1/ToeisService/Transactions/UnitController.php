@@ -15,12 +15,9 @@ class UnitController extends Controller
     {
         $this->middleware('permission:unit-read|admin', [
             'only' => [
-                'index'
-            ]
-        ]);
-        $this->middleware('permission:unit-create|admin', [
-            'only' => [
-                'store'
+                'index',
+                'getUnitById',
+                'getUnitConcatById'
             ]
         ]);
         $this->apiService = $apiService;
@@ -31,8 +28,13 @@ class UnitController extends Controller
         return $this->apiService->index($request->all());
     }
 
-    public function store(Request $request)
+    public function getUnitById($id)
     {
-        return $this->apiService->store($request->all());
+        return $this->apiService->getUnitById($id);
+    }
+
+    public function getUnitConcatById($id)
+    {
+        return $this->apiService->getUnitConcatById($id);
     }
 }
