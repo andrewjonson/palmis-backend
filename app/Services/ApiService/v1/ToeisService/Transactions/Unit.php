@@ -22,11 +22,11 @@ class Unit
 
     public function getUnitById($id)
     {
-        return $this->performRequest('GET', 'toeis/unit-per-id/'.$id);
+        return $this->performRequest('GET', '/toeis/unit-per-id/'.$id);
     }
 
     public function getUnitConcatById($id)
     {
-        return $this->performRequest('GET', 'toeis/unit-concat/'.$id);
+        return $this->performRequest('GET', '/toeis/unit-concat/'.$id);
     }
 }
