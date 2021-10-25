@@ -38,7 +38,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/account-type', 'MpisService\References\AccountTypeController', $router);
     resource('/insurance', 'MpisService\References\InsuranceTypeController', $router);
     resource('/insurance-type', 'MpisService\References\InsuranceTypeTypeController', $router);
-    resource('/Agency', 'MpisService\References\AgencyTypeController', $router);
+    resource('/agency', 'MpisService\References\AgencyTypeController', $router);
 
     $router->get('orderpub-show-pmcode/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelDetailByPmcode');
     $router->get('orderpub-pmcode-afposmos/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAfposmosByPmcode');
