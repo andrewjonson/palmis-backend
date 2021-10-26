@@ -33,6 +33,6 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/get/criteria/points', 'ApiService\v1\CmisService\References\CriteriaController@getCriteriaPoints');
     $router->get('/search/main-subfactor', 'ApiService\v1\CmisService\References\SubFactorLevelOneController@searchSubLevelByParent');
     $router->get('/search/sublvl/points', 'ApiService\v1\CmisService\References\SubFactorLevelOneController@searchSubLevelPoints');
-    $router->get('/search/command-assignment', 'ApiService\v1\CmisService\References\TableStructureController@getTableStructureByCriteria');
+    $router->get('/search/table-structure', 'ApiService\v1\CmisService\Transactions\TableStructureController@getTableStructureByCriteria');
 
 });
