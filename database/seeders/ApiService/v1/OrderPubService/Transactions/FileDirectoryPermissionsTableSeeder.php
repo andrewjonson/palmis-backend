@@ -35,6 +35,6 @@ class FileDirectoryPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'FileDirectory';
-        $this->moduleName = 'orderpubservice\transactions/filedirectorypermissionstableseeder';
+        $this->moduleName = 'orderpub';
     }
 }

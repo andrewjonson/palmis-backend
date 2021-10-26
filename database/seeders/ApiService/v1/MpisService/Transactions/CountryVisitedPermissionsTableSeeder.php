@@ -35,6 +35,6 @@ class CountryVisitedPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'CountryVisited';
-        $this->moduleName = 'mpisservice\transactions/countryvisitedpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

@@ -13,4 +13,10 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('/personnels/folder/sync', 'ApiService\v1\MpfService\Transactions\PersonnelFolderController@syncPersonnelFolder');
     $router->delete('/tab-attachments/delete/{id}', 'ApiService\v1\MpfService\Transactions\UploadAttachmentController@deleteTabAttachment');
     $router->delete('/sub-tab-attachments/delete/{id}', 'ApiService\v1\MpfService\Transactions\UploadAttachmentController@deleteSubTabAttachment');
+
+    resource('/documenttypes', 'MpfService\References\DocumentTypeController', $router);
+    $router->post('/personnel-documents/upload/{pmcode}', 'ApiService\v1\MpfService\Transactions\PersonnelDocumentController@upload');
+    $router->get('/personnel-documents/{pmcode}', 'ApiService\v1\MpfService\Transactions\PersonnelDocumentController@getPersonnelDocuments');
+    $router->delete('/personnel-documents/{id}', 'ApiService\v1\MpfService\Transactions\PersonnelDocumentController@deletePersonnelDocument');
+    $router->get('/personnel-document-by-id-pmcode/{id}/{pmcode}', 'ApiService\v1\MpfService\Transactions\PersonnelDocumentController@getPersonnelDocumentByIdPmcode');
 });

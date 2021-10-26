@@ -35,6 +35,6 @@ class PersonnelOrderPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'PersonnelOrder';
-        $this->moduleName = 'orderpubservice\transactions/personnelorderpermissionstableseeder';
+        $this->moduleName = 'orderpub';
     }
 }

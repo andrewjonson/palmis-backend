@@ -35,6 +35,6 @@ class SocialOrganizationPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'SocialOrganization';
-        $this->moduleName = 'mpisservice\transactions/socialorganizationpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

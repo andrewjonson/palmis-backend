@@ -35,6 +35,6 @@ class FolderPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'Folder';
-        $this->moduleName = 'orderpubservice\transactions/folderpermissionstableseeder';
+        $this->moduleName = 'orderpub';
     }
 }

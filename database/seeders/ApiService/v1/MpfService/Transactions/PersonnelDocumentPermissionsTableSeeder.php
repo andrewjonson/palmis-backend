@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\ApiService\v1\MpisService\Transactions;
+namespace Database\Seeders\ApiService\v1\MpfService\Transactions;
 
 use Illuminate\Database\Seeder;
 use App\Traits\RestfulPermissionSeederTrait;
@@ -10,15 +10,15 @@ use App\Repositories\Interfaces\PermissionRepositoryInterface;
 use App\Repositories\Interfaces\ModuleModelRepositoryInterface;
 use App\Repositories\Interfaces\ModelPermissionRepositoryInterface;
 
-class DashboardPermissionsTableSeeder extends Seeder
+class PersonnelDocumentPermissionsTableSeeder extends Seeder
 {
     use RestfulPermissionSeederTrait;
 
     protected $permissions = [
-        'dashboard-read',
-        'dashboard-create',
-        'dashboard-update',
-        'dashboard-delete'
+        'personneldocument-read',
+        'personneldocument-create',
+        'personneldocument-update',
+        'personneldocument-delete'
     ];
 
     public function __construct(
@@ -34,7 +34,7 @@ class DashboardPermissionsTableSeeder extends Seeder
         $this->modelRepository = $modelRepository;
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
-        $this->modelName = 'Dashboard';
-        $this->moduleName = 'mpis';
+        $this->modelName = 'PersonnelDocument';
+        $this->moduleName = 'mpf';
     }
 }

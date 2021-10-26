@@ -35,6 +35,6 @@ class CharacterReferencePermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'CharacterReference';
-        $this->moduleName = 'mpisservice\transactions/characterreferencepermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

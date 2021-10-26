@@ -35,6 +35,6 @@ class UnitPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'Unit';
-        $this->moduleName = 'toeisservice\transactions/unitpermissionstableseeder';
+        $this->moduleName = 'toeis';
     }
 }

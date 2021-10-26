@@ -35,6 +35,6 @@ class GovernmentIdPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'GovernmentId';
-        $this->moduleName = 'mpisservice\transactions/governmentidpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

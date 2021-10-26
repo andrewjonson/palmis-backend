@@ -35,6 +35,6 @@ class TableStructurePermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'TableStructure';
-        $this->moduleName = 'cmisservice\transactions/tablestructurepermissionstableseeder';
+        $this->moduleName = 'cmis';
     }
 }

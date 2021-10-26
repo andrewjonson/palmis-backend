@@ -35,6 +35,6 @@ class SerialNumberPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'SerialNumber';
-        $this->moduleName = 'mpisservice\transactions/serialnumberpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

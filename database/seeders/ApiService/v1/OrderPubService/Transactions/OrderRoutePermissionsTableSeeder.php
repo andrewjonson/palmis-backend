@@ -35,6 +35,6 @@ class OrderRoutePermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'OrderRoute';
-        $this->moduleName = 'orderpubservice\transactions/orderroutepermissionstableseeder';
+        $this->moduleName = 'orderpub';
     }
 }

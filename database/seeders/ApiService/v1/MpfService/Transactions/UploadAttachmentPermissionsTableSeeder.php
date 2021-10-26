@@ -35,6 +35,6 @@ class UploadAttachmentPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'UploadAttachment';
-        $this->moduleName = 'mpfservice\transactions/uploadattachmentpermissionstableseeder';
+        $this->moduleName = 'mpf';
     }
 }

@@ -23,6 +23,7 @@ class UserResource extends JsonResource
 
         return [
             'id' => hashid_encode($this->id),
+            'pmcode' => $personnel['pmcode'],
             'serial_number' => $this->serial_number,
             'last_name' => $personnel['lastname'],
             'first_name' => $personnel['firstname'],

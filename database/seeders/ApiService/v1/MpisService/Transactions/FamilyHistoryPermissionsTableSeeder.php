@@ -35,6 +35,6 @@ class FamilyHistoryPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'FamilyHistory';
-        $this->moduleName = 'mpisservice\transactions/familyhistorypermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

@@ -35,6 +35,6 @@ class EligibilityPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'Eligibility';
-        $this->moduleName = 'mpisservice\eligibilitypermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

@@ -2,19 +2,18 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
+use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\RolesTableSeeder;
 use Database\Seeders\TeamsTableSeeder;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ModulesTableSeeder;
 use Database\Seeders\SettingsTableSeeder;
-use Database\Seeders\ApiService\v1\MpfService\References\TabPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\QrsPermissionsTableSeeder;
-use Database\Seeders\ApiService\v1\MpfService\References\GroupPermissionsTableSeeder;
-use Database\Seeders\ApiService\v1\MpfService\Transactions\MpfPermissionsTableSeeder;
-use Database\Seeders\ApiService\v1\MpfService\Transactions\SubPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BankPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\AwardPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpfService\References\FolderPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BuiltPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\LogPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\AgencyPermissionsTableSeeder;
@@ -47,11 +46,10 @@ use Database\Seeders\ApiService\v1\MpisService\References\HairColorPermissionsTa
 use Database\Seeders\ApiService\v1\MpisService\References\InsurancePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\AwardPointPermissionsTableSeeder;
-use Database\Seeders\ApiService\v1\MpfService\References\SubCategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\AssignmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankStatusPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\StatusPermissionsTableSeeder;
-use Database\Seeders\ApiService\v1\MpfService\References\MainCategoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpfService\References\DocumentTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\AccountTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CitizenshipPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CivilStatusPermissionsTableSeeder;
@@ -63,7 +61,6 @@ use Database\Seeders\ApiService\v1\MpisService\References\RelationshipPermission
 use Database\Seeders\ApiService\v1\MpisService\Transactions\TarrifSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\TemplatePermissionsTableSeeder;
-use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FolderPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\InsuranceTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\EligibilityPermissionsTableSeeder;
@@ -77,15 +74,17 @@ use Database\Seeders\ApiService\v1\MpisService\References\BranchOfServicePermiss
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelRankPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TableStructurePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelFolderPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CountryVisitedPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelAwardPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\OrderRoutePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\AppurtenanceAwardPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\CommandAssignmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\SubFactorLevelOnePermissionsTableSeeder;
-use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpfService\Transactions\UploadAttachmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\InsuranceRecordPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\AuthorityLinePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelDocumentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FileDirectoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TSubFactorLevelOnePermissionsTableSeeder;
@@ -98,6 +97,8 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelEnlistmentP
 use Database\Seeders\ApiService\v1\OrderPubService\References\OriginatingOfficePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CivilianCommendationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonalCharacteristicPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingSignatoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FolderPermissionsTableSeeder as OrderPubFolderPermissionsTableSeeder;
 
 
 class DatabaseSeeder extends Seeder
@@ -190,13 +191,11 @@ class DatabaseSeeder extends Seeder
         $this->call(InsuranceRecordPermissionsTableSeeder::class);
 
         //Mpf
-        $this->call(GroupPermissionsTableSeeder::class);
-        $this->call(MainCategoryPermissionsTableSeeder::class);
-        $this->call(SubCategoryPermissionsTableSeeder::class);
-        $this->call(TabPermissionsTableSeeder::class);
-        $this->call(MpfPermissionsTableSeeder::class);
-        $this->call(PersonnelProfilePermissionsTableSeeder::class);
-        $this->call(SubPermissionsTableSeeder::class);
+        $this->call(FolderPermissionsTableSeeder::class);
+        $this->call(PersonnelFolderPermissionsTableSeeder::class);
+        $this->call(UploadAttachmentPermissionsTableSeeder::class);
+        $this->call(DocumentTypePermissionsTableSeeder::class);
+        $this->call(PersonnelDocumentPermissionsTableSeeder::class);
 
         //OrderPub
         $this->call(AuthorityLinePermissionsTableSeeder::class);
@@ -206,7 +205,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ModelListPermissionsTableSeeder::class);
         $this->call(DocumentSettingPermissionsTableSeeder::class);
         $this->call(DocumentSettingSignatoryPermissionsTableSeeder::class);
-        $this->call(FolderPermissionsTableSeeder::class);
+        $this->call(OrderPubFolderPermissionsTableSeeder::class);
         $this->call(OrderRoutePermissionsTableSeeder::class);
         $this->call(StatusPermissionsTableSeeder::class);
         $this->call(OriginatingOfficePermissionsTableSeeder::class);

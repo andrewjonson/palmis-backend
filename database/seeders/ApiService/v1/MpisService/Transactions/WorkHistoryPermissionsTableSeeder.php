@@ -35,6 +35,6 @@ class WorkHistoryPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'WorkHistory';
-        $this->moduleName = 'mpisservice\transactions/workhistorypermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }
