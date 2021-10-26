@@ -23,6 +23,16 @@ class FinancialReferenceController extends Controller
                 'createFinancialReference'
             ]
         ]);
+        $this->middleware('permission:financialreference-update|admin', [
+            'only' => [
+                'updateFinancial'
+            ]
+        ]);
+        $this->middleware('permission:financialreference-delete|admin', [
+            'only' => [
+                'deleteFinancial'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 
@@ -34,5 +44,16 @@ class FinancialReferenceController extends Controller
     public function createFinancialReference(Request $request)
     {
         return $this->apiService->createFinancialReference($request->all());
+    }
+
+
+    public function updateFinancial(Request $request, $id)
+    {
+        return $this->apiService->updateFinancial($request->all(), $id);
+    }
+
+    public function deleteFinancial($id)
+    {
+        return $this->apiService->deleteFinancial($id);
     }
 }

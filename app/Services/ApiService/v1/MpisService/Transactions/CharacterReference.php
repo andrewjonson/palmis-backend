@@ -34,4 +34,9 @@ class CharacterReference
     {
         return $this->performRequest('DELETE', '/mpis/delete-reference/'.$id);
     }
+
+    public function searchReference($data)
+    {
+        return $this->performRequest('GET', '/mpis/reference-dynamic-search', $data);
+    }
 }

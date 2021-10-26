@@ -24,4 +24,14 @@ class CommunicationSkill
     {
         return $this->performRequest('POST', '/mpis/store-communication', $data);
     }
+
+    public function updateCommunicationSkill($data, $id)
+    {
+        return $this->performRequest('PUT', '/mpis/update-communication/'.$id, $data);
+    }
+
+    public function deleteCommunicationSkill($id)
+    {
+        return $this->performRequest('DELETE', '/mpis/delete-communication/'. $id);
+    }
 }

@@ -24,4 +24,14 @@ class SocialOrganization
     {
         return $this->performRequest('POST', '/mpis/store-social-org', $data);
     }
+
+    public function updateSocialOrg($data, $id)
+    {
+        return $this->performRequest('PUT', '/mpis/update-social-org/'.$id, $data);
+    }
+
+    public function deleteSocialOrg($id)
+    {
+        return $this->performRequest('DELETE', '/mpis/delete-social-org/'. $id);
+    }
 }

@@ -86,7 +86,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->post('store-eligibility', 'ApiService\v1\MpisService\Transactions\EligibilityController@createEligibility');
     $router->get('show-eligibility/{id}', 'ApiService\v1\MpisService\Transactions\EligibilityController@getEligibility');
     $router->post('store-country', 'ApiService\v1\MpisService\Transactions\CountryVisitedController@createCountryVisited');
-    $router->get('show-country-visited/{id}', 'ApiService\v1\MpisService\Transactions\CountryVisitedSkillController@getCountryVisited');
+    $router->get('show-country-visited/{id}', 'ApiService\v1\MpisService\Transactions\CountryVisitedController@getCountryVisited');
     $router->post('store-communication', 'ApiService\v1\MpisService\Transactions\CommunicationSkillController@createCommunicationSkill');
     $router->get('show-communication/{id}', 'ApiService\v1\MpisService\Transactions\CommunicationSkillController@getCommunicationSkill');
     $router->post('store-civilian-commendation', 'ApiService\v1\MpisService\Transactions\CivilianCommendationController@createCommendation');
@@ -129,5 +129,23 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('show-rank/{id}', 'ApiService\v1\MpisService\References\RankController@getRankById');
     $router->get('show-training/{id}', 'ApiService\v1\MpisService\References\TrainingController@getTrainingById');
     $router->get('show-personnel-type/{id}', 'ApiService\v1\MpisService\References\PersonnelTypeController@getPersonnelTypeById');
+    $router->post('store-insurance', 'ApiService\v1\MpisService\Transactions\InsuranceRecordController@storeInsurance');
+    $router->get('show-insurance/{id}', 'ApiService\v1\MpisService\Transactions\InsuranceRecordController@showInsurance');
+    $router->put('update-insurance/{id}', 'ApiService\v1\MpisService\Transactions\InsuranceRecordController@updateInsurance');
+    $router->put('delete-insurance/{id}', 'ApiService\v1\MpisService\Transactions\InsuranceRecordController@deleteInsurance');
+    $router->get('insurance-dynamic-search', 'ApiService\v1\MpisService\Transactions\InsuranceRecordController@searchInsurance');
+    $router->post('store-reference', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@createReference');
+    $router->get('show-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@getReference');
+    $router->put('update-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@updateReference');
+    $router->put('delete-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@deleteReference');
+    $router->get('reference-dynamic-search', 'ApiService\v1\MpisService\Transactions\CharacterReferencdController@searchReference');
+    $router->put('update-eligiblity/{id}', 'ApiService\v1\MpisService\Transactions\EligibilityController@updateEligibility');
+    $router->delete('delete-eligiblity/{id}', 'ApiService\v1\MpisService\Transactions\EligibilityController@deleteEligibility');
+    $router->put('update-communication/{id}', 'ApiService\v1\MpisService\Transactions\CommunicationSkillController@updateCommunication');
+    $router->delete('delete-communication/{id}', 'ApiService\v1\MpisService\Transactions\CommunicationSkillController@deleteCommunication');
+    $router->put('update-financial/{id}', 'ApiService\v1\MpisService\Transactions\FinancialReferenceController@updateFinancial');
+    $router->delete('delete-financial/{id}', 'ApiService\v1\MpisService\Transactions\FinancialReferenceController@deleteFinancial');
+    $router->put('update-social-org/{id}', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@updateSocialOrg');
+    $router->delete('delete-social-org/{id}', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@deleteSocialOrg');
 
 });

@@ -24,4 +24,14 @@ class FinancialReference
     {
         return $this->performRequest('POST', '/mpis/store-financial', $data);
     }
+
+    public function updateFinancial($data, $id)
+    {
+        return $this->performRequest('PUT', '/mpis/update-financial/'.$id, $data);
+    }
+
+    public function deleteFinancial($id)
+    {
+        return $this->performRequest('DELETE', '/mpis/delete-financial/'. $id);
+    }
 }

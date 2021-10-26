@@ -23,6 +23,16 @@ class SocialOrganizationController extends Controller
                 'createSocialOrg'
             ]
         ]);
+        $this->middleware('permission:socialorganization-update|admin', [
+            'only' => [
+                'updateSocialOrg'
+            ]
+        ]);
+        $this->middleware('permission:socialorganization-delete|admin', [
+            'only' => [
+                'deleteSocialOrg'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 
@@ -34,5 +44,15 @@ class SocialOrganizationController extends Controller
     public function createSocialOrg(Request $request)
     {
         return $this->apiService->createSocialOrg($request->all());
+    }
+
+    public function updateSocialOrg(Request $request, $id)
+    {
+        return $this->apiService->updateSocialOrg($request->all(), $id);
+    }
+
+    public function deleteSocialOrg($id)
+    {
+        return $this->apiService->deleteSocialOrg($id);
     }
 }

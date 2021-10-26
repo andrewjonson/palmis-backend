@@ -24,4 +24,14 @@ class Eligibility
     {
         return $this->performRequest('POST', '/mpis/store-eligibility', $data);
     }
+
+    public function updateEligibility($data, $id)
+    {
+        return $this->performRequest('PUT', '/mpis/update-eligibility/'.$id, $data);
+    }
+
+    public function deleteEligibility($id)
+    {
+        return $this->performRequest('DELETE', '/mpis/delete-eligibility/'. $id);
+    }
 }

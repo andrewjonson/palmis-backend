@@ -23,6 +23,16 @@ class CommunicationSkillController extends Controller
                 'createCommunicationSkill'
             ]
         ]);
+        $this->middleware('permission:communicationskill-update|admin', [
+            'only' => [
+                'updateCommunicationSkill'
+            ]
+        ]);
+        $this->middleware('permission:communicationskill-delete|admin', [
+            'only' => [
+                'deleteCommunicationSkill'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 
@@ -34,5 +44,15 @@ class CommunicationSkillController extends Controller
     public function createCommunicationSkill(Request $request)
     {
         return $this->apiService->createCommunicationSkill($request->all());
+    }
+
+    public function updateCommunicationSkill(Request $request, $id)
+    {
+        return $this->apiService->updateCommunicationSkill($request->all(), $id);
+    }
+
+    public function deleteCommunicationSkill($id)
+    {
+        return $this->apiService->deleteCommunicationSkill($id);
     }
 }

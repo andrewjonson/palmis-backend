@@ -23,6 +23,16 @@ class EligibilityController extends Controller
                 'createEligibility'
             ]
         ]);
+        $this->middleware('permission:eligibility-update|admin', [
+            'only' => [
+                'updateEligibility'
+            ]
+        ]);
+        $this->middleware('permission:eligibility-delete|admin', [
+            'only' => [
+                'deleteEligibility'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 
@@ -34,5 +44,15 @@ class EligibilityController extends Controller
     public function createEligibility(Request $request)
     {
         return $this->apiService->createEligibility($request->all());
+    }
+
+    public function updateEligibility(Request $request, $id)
+    {
+        return $this->apiService->updateEligibility($request->all(), $id);
+    }
+
+    public function deleteEligibility($id)
+    {
+        return $this->apiService->deleteEligibility($id);
     }
 }

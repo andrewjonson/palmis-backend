@@ -83,6 +83,7 @@ use Database\Seeders\ApiService\v1\OrderPubService\Transactions\OrderRoutePermis
 use Database\Seeders\ApiService\v1\CmisService\References\AppurtenanceAwardPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\SubFactorLevelOnePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelProfilePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\InsuranceRecordPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\AuthorityLinePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FileDirectoryPermissionsTableSeeder;
@@ -186,6 +187,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InsurancePermissionsTableSeeder::class);
         $this->call(InsuranceTypePermissionsTableSeeder::class);
         $this->call(AgencyPermissionsTableSeeder::class);
+        $this->call(InsuranceRecordPermissionsTableSeeder::class);
 
         //Mpf
         $this->call(GroupPermissionsTableSeeder::class);
