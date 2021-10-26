@@ -32,6 +32,11 @@ class PersonnelDocument
 
     public function getPersonnelDocumentById($id)
     {
-        return $this->performRequest('GET', '/mpf/personnel-documents-by-id/'.$id);
+        return $this->performRequest('GET', '/mpf/personnel-document-by-id/'.$id);
+    }
+
+    public function getPersonnelDocumentByIdPmcode($id, $pmcode)
+    {
+        return $this->performRequest('GET', '/mpf/personnel-document-by-id-pmcode/'.$id.'/'.$pmcode);
     }
 }

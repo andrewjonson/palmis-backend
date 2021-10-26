@@ -18,4 +18,5 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->post('/personnel-documents/upload/{pmcode}', 'ApiService\v1\MpfService\Transactions\PersonnelDocumentController@upload');
     $router->get('/personnel-documents/{pmcode}', 'ApiService\v1\MpfService\Transactions\PersonnelDocumentController@getPersonnelDocuments');
     $router->delete('/personnel-documents/{id}', 'ApiService\v1\MpfService\Transactions\PersonnelDocumentController@deletePersonnelDocument');
+    $router->get('/personnel-document-by-id-pmcode/{id}/{pmcode}', 'ApiService\v1\MpfService\Transactions\PersonnelDocumentController@getPersonnelDocumentByIdPmcode');
 });

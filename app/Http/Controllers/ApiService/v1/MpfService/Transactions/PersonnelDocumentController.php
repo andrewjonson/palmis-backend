@@ -42,4 +42,16 @@ class PersonnelDocumentController extends Controller
         }
         return $this->apiService->deletePersonnelDocument($id);
     }
+
+    public function getPersonnelDocumentById($id)
+    {
+        $id = hashid_decode($id);
+        return $this->apiService->getPersonnelDocumentById($id);
+    }
+
+    public function getPersonnelDocumentByIdPmcode($id, $pmcode)
+    {
+        $id = hashid_decode($id);
+        return $this->apiService->getPersonnelDocumentByIdPmcode($id, $pmcode);
+    }
 }
