@@ -15,7 +15,7 @@ class TableStructureController extends Controller
     {
         $this->middleware('permission:tablestructure-read|admin', [
             'only' => [
-                'indgetTableStructureByCriteriaex'
+                'getTableStructureByCriteria'
             ]
         ]);
         $this->apiService = $apiService;

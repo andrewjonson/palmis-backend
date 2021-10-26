@@ -17,6 +17,6 @@ class TableStructure
 
     public function getTableStructureByCriteria($data)
     {
-        return $this->performRequest('GET', '/cmis/search/command-assignment', $data);
+        return $this->performRequest('GET', '/cmis/search/table-structure', $data);
     }
 }
