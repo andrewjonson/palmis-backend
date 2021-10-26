@@ -34,4 +34,9 @@ class OrderRoute
     {
         return $this->performRequest('GET', '/signatory/route-orders',$data);
     }
+
+    public function showSignatoryOrders($data)
+    {
+        return $this->performRequest('GET', '/orderpub/signatory-orders',$data);
+    }
 }

@@ -70,10 +70,11 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/show-order/{orderCode}', 'ApiService\v1\OrderPubService\Transactions\PersonnelOrderController@getOrderByOrderCode');
     $router->get('/show-order-details/{orderCode}', 'ApiService\v1\OrderPubService\Transactions\PersonnelOrderController@getOrderCodeDetails');
 
+
     //Order Route
     $router->post('/route-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@routeOrder');
     $router->get('/order-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@showOrderRoute');
     $router->put('/update-route/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@saveRemarks');
     $router->get('/signatory/route-orders', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@showRouteOrders');
-
+    $router->get('/signatory-orders', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@getSignatoryOrder');
 });
