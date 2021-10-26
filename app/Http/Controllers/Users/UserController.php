@@ -37,7 +37,7 @@ class UserController extends Controller
         PersonnelRepositoryInterface $personnelRepository,
         LoginAttemptRepositoryInterface $loginAttemptRepository,
         OldPasswordRepositoryInterface $oldPasswordRepository,
-        ModuleRepositoryInterface $moduleRepository
+        ModuleRepositoryInterface $moduleRepository,
     )
     {
         $this->userRepository = $userRepository;

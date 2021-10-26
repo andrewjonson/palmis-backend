@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\TeamResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Services\ApiService\v1\MpisService\Transactions\Personnel;
 
 class UserResource extends JsonResource
 {
@@ -15,12 +16,17 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        $personnelService = new Personnel;
+        $personnel = $personnelService->searchPersonnelBySerial([
+            'serial_number' => $this->serial_number
+        ])->{'original'}['data'][0];
+
         return [
             'id' => hashid_encode($this->id),
             'serial_number' => $this->serial_number,
-            'last_name' => $this->personnel->lastname,
-            'first_name' => $this->personnel->firstname,
-            'middle_name' => $this->personnel->middlename,
+            'last_name' => $personnel['lastname'],
+            'first_name' => $personnel['firstname'],
+            'middle_name' => isset($personnel['middlename']) ? $personnel['middlename'] : null,
             'email' => $this->email,
             'is_superadmin' => $this->is_superadmin,
             'role' => count($this->roles) == 0 ? null : $this->roles->pluck('name')->first(),
