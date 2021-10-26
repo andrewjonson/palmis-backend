@@ -21,7 +21,6 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $serialNumber = [
-            '903724',
             '960592',
             '962868',
             '962869',
@@ -37,12 +36,10 @@ class UsersTableSeeder extends Seeder
             '962879',
             '962880',
             '962881',
-            '962882',
-            '962883'
+            '962882'
         ];
 
         $emails = [
-            'philarmee.superdmin@gmail.com',
             'akosiada0@gmail.com',
             'jomar.illana@gmail.com',
             'jbacosmo@gmail.com',
@@ -58,8 +55,7 @@ class UsersTableSeeder extends Seeder
             'baniaga.eugene@gmail.com',
             'henrydeguzman.java73@gmail.com',
             'dianamagno20@gmail.com',
-            'johndavis156@gmail.com',
-            'armydigz@gmail.com'
+            'johndavis156@gmail.com'
         ];
 
         foreach($emails as $key => $email) {
