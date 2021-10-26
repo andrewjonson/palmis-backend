@@ -49,6 +49,7 @@ use Database\Seeders\ApiService\v1\CmisService\References\AwardPointPermissionsT
 use Database\Seeders\ApiService\v1\MpisService\References\AssignmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankStatusPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\StatusPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpfService\References\DocumentTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\AccountTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CitizenshipPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CivilStatusPermissionsTableSeeder;
@@ -83,6 +84,7 @@ use Database\Seeders\ApiService\v1\CmisService\References\SubFactorLevelOnePermi
 use Database\Seeders\ApiService\v1\MpfService\Transactions\UploadAttachmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\InsuranceRecordPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\AuthorityLinePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelDocumentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FileDirectoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TSubFactorLevelOnePermissionsTableSeeder;
@@ -192,6 +194,8 @@ class DatabaseSeeder extends Seeder
         $this->call(FolderPermissionsTableSeeder::class);
         $this->call(PersonnelFolderPermissionsTableSeeder::class);
         $this->call(UploadAttachmentPermissionsTableSeeder::class);
+        $this->call(DocumentTypePermissionsTableSeeder::class);
+        $this->call(PersonnelDocumentPermissionsTableSeeder::class);
 
         //OrderPub
         $this->call(AuthorityLinePermissionsTableSeeder::class);
