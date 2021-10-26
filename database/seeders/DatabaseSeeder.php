@@ -132,7 +132,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TSubFactorLevelOnePermissionsTableSeeder::class);
         $this->call(TSubFactorPermissionsTableSeeder::class);
         $this->call(AppurtenanceAwardPermissionsTableSeeder::class);
-        $this->call(CommandAssignmentPermissionsTableSeeder::class);
         //Mpis
         $this->call(CountryPermissionsTableSeeder::class);
         $this->call(PersonnelPermissionsTableSeeder::class);
