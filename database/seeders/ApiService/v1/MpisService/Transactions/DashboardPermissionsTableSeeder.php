@@ -35,6 +35,6 @@ class DashboardPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'Dashboard';
-        $this->moduleName = 'mpisservice\transactions/dashboardpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

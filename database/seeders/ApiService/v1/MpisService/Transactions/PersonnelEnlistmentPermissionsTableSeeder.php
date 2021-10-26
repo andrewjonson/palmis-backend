@@ -35,6 +35,6 @@ class PersonnelEnlistmentPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'PersonnelEnlistment';
-        $this->moduleName = 'mpisservice\transactions/personnelenlistmentpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

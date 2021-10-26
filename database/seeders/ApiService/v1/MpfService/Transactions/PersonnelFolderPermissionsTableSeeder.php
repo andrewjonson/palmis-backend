@@ -35,6 +35,6 @@ class PersonnelFolderPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'PersonnelFolder';
-        $this->moduleName = 'mpfservice\transactions/personnelfolderpermissionstableseeder';
+        $this->moduleName = 'mpf';
     }
 }

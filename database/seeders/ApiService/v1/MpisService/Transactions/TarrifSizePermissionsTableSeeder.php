@@ -35,6 +35,6 @@ class TarrifSizePermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'TarrifSize';
-        $this->moduleName = 'mpisservice\transactions/tarrifsizepermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

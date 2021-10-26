@@ -24,7 +24,8 @@ class ModulesTableSeeder extends Seeder
             'mpf',
             'orderpub',
             'ucs',
-            'cmis'
+            'cmis',
+            'toeis'
         ];
 
         $descriptions = [
@@ -32,7 +33,8 @@ class ModulesTableSeeder extends Seeder
             'MPF',
             'Order and Publication',
             'UCS',
-            'CMIS'
+            'CMIS',
+            'TOEIS'
         ];
 
         foreach($names as $key => $name) {

@@ -35,6 +35,6 @@ class PersonalCharacteristicPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'PersonalCharacteristic';
-        $this->moduleName = 'mpisservice\transactions/personalcharacteristicpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

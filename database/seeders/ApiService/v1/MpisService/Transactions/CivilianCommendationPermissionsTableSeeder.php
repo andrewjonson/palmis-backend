@@ -35,6 +35,6 @@ class CivilianCommendationPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'CivilianCommendation';
-        $this->moduleName = 'mpisservice\transactions/civiliancommendationpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

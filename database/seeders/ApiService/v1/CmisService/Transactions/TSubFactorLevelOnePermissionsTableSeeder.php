@@ -35,6 +35,6 @@ class TSubFactorLevelOnePermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'TSubFactorLevelOne';
-        $this->moduleName = 'cmisservice\transactions/tsubfactorlevelonepermissionstableseeder';
+        $this->moduleName = 'cmis';
     }
 }

@@ -35,6 +35,6 @@ class CommunicationSkillPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'CommunicationSkill';
-        $this->moduleName = 'mpisservice\transactions/communicationskillpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }

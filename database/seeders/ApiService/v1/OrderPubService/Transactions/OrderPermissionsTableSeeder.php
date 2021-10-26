@@ -35,6 +35,6 @@ class OrderPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'Order';
-        $this->moduleName = 'orderpubservice\transactions/orderpermissionstableseeder';
+        $this->moduleName = 'orderpub';
     }
 }

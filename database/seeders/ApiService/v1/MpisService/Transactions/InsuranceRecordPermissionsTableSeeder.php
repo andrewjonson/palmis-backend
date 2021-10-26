@@ -35,6 +35,6 @@ class InsuranceRecordPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'InsuranceRecord';
-        $this->moduleName = 'mpisservice\transactions/insurancerecordpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }
