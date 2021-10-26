@@ -17,7 +17,8 @@ class AppurtenanceAwardController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'getAppurtenanceAward'
+                'getAppurtenanceAward',
+                'getAppurtenanceAwardById'
             ]
         ]);
         $this->middleware('permission:appurtenanceaward-create|admin', [
@@ -78,5 +79,10 @@ class AppurtenanceAwardController extends Controller
     public function getAppurtenanceAward(Request $request)
     {
         return $this->apiService->getAppurtenanceAward($request->all());
+    }
+
+    public function getAppurtenanceAwardById(Request $request)
+    {
+        return $this->apiService->getAppurtenanceAwardById($request->all());
     }
 }
