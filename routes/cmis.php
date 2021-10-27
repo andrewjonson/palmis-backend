@@ -35,4 +35,14 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/search/sublvl/points', 'ApiService\v1\CmisService\References\SubFactorLevelOneController@searchSubLevelPoints');
     $router->get('/search/table-structure', 'ApiService\v1\CmisService\Transactions\TableStructureController@getTableStructureByCriteria');
 
+
+    $router->post('/promotion', 'ApiService\v1\CmisService\Transactions\PromotionController@createPromotion');
+    $router->get('/promotion', 'ApiService\v1\CmisService\Transactions\PromotionController@getPromotion');
+    $router->put('/promotion/{id}', 'ApiService\v1\CmisService\Transactions\PromotionController@updatePromotion');
+    $router->delete('/promotion/{id}', 'ApiService\v1\CmisService\Transactions\PromotionController@softDeletePromotion');
+    $router->put('/promotion/restore/{id}', 'ApiService\v1\CmisService\Transactions\PromotionController@restorePromotion');
+    $router->get('/promotion/only-trashed', 'ApiService\v1\CmisService\Transactions\PromotionController@onlyTrashedPromotion');
+    $router->delete('/promotion/force-delete/{id}', 'ApiService\v1\CmisService\Transactions\PromotionController@forceDeletePromotion');
+    $router->get('/get/promotable-personnel', 'ApiService\v1\CmisService\Transactions\PromotionController@getPromotablePersonnel');
+
 });

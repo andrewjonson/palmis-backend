@@ -49,6 +49,7 @@ use Database\Seeders\ApiService\v1\CmisService\References\AwardPointPermissionsT
 use Database\Seeders\ApiService\v1\MpisService\References\AssignmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankStatusPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\StatusPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\CmisService\Transactions\PromotionPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\DocumentTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\AccountTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CitizenshipPermissionsTableSeeder;
@@ -134,6 +135,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TSubFactorLevelOnePermissionsTableSeeder::class);
         $this->call(TSubFactorPermissionsTableSeeder::class);
         $this->call(AppurtenanceAwardPermissionsTableSeeder::class);
+        $this->call(PromotionPermissionsTableSeeder::class);
         //Mpis
         $this->call(CountryPermissionsTableSeeder::class);
         $this->call(PersonnelPermissionsTableSeeder::class);
@@ -216,6 +218,6 @@ class DatabaseSeeder extends Seeder
         //TOEIS
         $this->call(EchelonPermissionsTableSeeder::class);
         $this->call(UnitPermissionsTableSeeder::class);
-        $this->call(TaskOrganizationPermissionsTableSeeder::class);
+
     }
 }
