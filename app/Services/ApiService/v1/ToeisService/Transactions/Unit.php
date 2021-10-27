@@ -29,4 +29,20 @@ class Unit
     {
         return $this->performRequest('GET', '/toeis/unit-concat/'.$id);
     }
+
+    public function getUnit($data)
+    {
+        return $this->performRequest('POST', '/toeis/unit', $data);
+    }
+
+    public function createUnit($data)
+    {
+        return $this->performRequest('GET', '/toeis/unit', $data);
+    }
+
+    public function getToggleUnit($id)
+    {
+        return $this->performRequest('GET', '/toeis/toggle-unit-per-id/'.$id);
+    }
+
 }

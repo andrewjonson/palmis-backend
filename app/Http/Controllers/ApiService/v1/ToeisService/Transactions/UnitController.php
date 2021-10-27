@@ -17,7 +17,14 @@ class UnitController extends Controller
             'only' => [
                 'index',
                 'getUnitById',
-                'getUnitConcatById'
+                'getUnitConcatById',
+                'getUnit',
+                'getToggleUnit'
+            ]
+        ]);
+        $this->middleware('permission:unit-create|admin', [
+            'only' => [
+                'createUnit'
             ]
         ]);
         $this->apiService = $apiService;
@@ -36,5 +43,20 @@ class UnitController extends Controller
     public function getUnitConcatById($id)
     {
         return $this->apiService->getUnitConcatById($id);
+    }
+
+    public function getUnit($id)
+    {
+        return $this->apiService->getUnit($id);
+    }
+
+    public function createUnit(Request $request)
+    {
+        return $this->apiService->createUnit($request->all());
+    }
+
+    public function getToggleUnit($id)
+    {
+        return $this->apiService->getToggleUnit($id);
     }
 }

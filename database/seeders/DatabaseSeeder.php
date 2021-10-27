@@ -87,6 +87,7 @@ use Database\Seeders\ApiService\v1\OrderPubService\References\AuthorityLinePermi
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelDocumentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FileDirectoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\ToeisService\Transactions\TaskOrganizationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TSubFactorLevelOnePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CharacterReferencePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CommunicationSkillPermissionsTableSeeder;
@@ -215,5 +216,6 @@ class DatabaseSeeder extends Seeder
         //TOEIS
         $this->call(EchelonPermissionsTableSeeder::class);
         $this->call(UnitPermissionsTableSeeder::class);
+        $this->call(TaskOrganizationPermissionsTableSeeder::class);
     }
 }
