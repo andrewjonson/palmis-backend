@@ -45,9 +45,9 @@ class UnitController extends Controller
         return $this->apiService->getUnitConcatById($id);
     }
 
-    public function getUnit($id)
+    public function getUnit(Request $request)
     {
-        return $this->apiService->getUnit($id);
+        return $this->apiService->getUnit($request->all());
     }
 
     public function createUnit(Request $request)

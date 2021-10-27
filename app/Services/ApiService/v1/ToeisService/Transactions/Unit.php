@@ -32,12 +32,12 @@ class Unit
 
     public function getUnit($data)
     {
-        return $this->performRequest('POST', '/toeis/unit', $data);
+        return $this->performRequest('GET', '/toeis/unit', $data);
     }
 
     public function createUnit($data)
     {
-        return $this->performRequest('GET', '/toeis/unit', $data);
+        return $this->performRequest('POST', '/toeis/unit', $data);
     }
 
     public function getToggleUnit($id)
