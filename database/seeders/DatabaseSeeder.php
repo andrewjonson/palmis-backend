@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\RolesTableSeeder;
 use Database\Seeders\TeamsTableSeeder;
@@ -72,6 +71,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\EducationLevelPermissi
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelGroupPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\GovernmentIdPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\SerialNumberPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\ToeisService\References\TOEAssignmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BranchOfServicePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelRankPermissionsTableSeeder;
@@ -220,6 +220,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EchelonPermissionsTableSeeder::class);
         $this->call(UnitPermissionsTableSeeder::class);
         $this->call(UnitLocationPermissionsTableSeeder::class);
-
+        $this->call(TOEAssignmentPermissionsTableSeeder::class);
     }
 }
