@@ -67,6 +67,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\PersonnelTypePermissio
 use Database\Seeders\ApiService\v1\MpisService\Transactions\EligibilityPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\WorkHistoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\ModelListPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\ToeisService\References\UnitLocationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\EducationLevelPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelGroupPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\GovernmentIdPermissionsTableSeeder;
@@ -218,6 +219,7 @@ class DatabaseSeeder extends Seeder
         //TOEIS
         $this->call(EchelonPermissionsTableSeeder::class);
         $this->call(UnitPermissionsTableSeeder::class);
+        $this->call(UnitLocationPermissionsTableSeeder::class);
 
     }
 }
