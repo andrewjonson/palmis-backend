@@ -47,7 +47,7 @@ class Promotion
 
     public function getPromotablePersonnel($data)
     {
-        return $this->performRequest('GET', '/cmis/promotable-personnel', $data);
+        return $this->performRequest('GET', '/cmis/get/promotable-personnel', $data);
     }
 
     public function onlyTrashedPromotion($data)
