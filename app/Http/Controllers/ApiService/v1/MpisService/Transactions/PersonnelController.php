@@ -80,7 +80,11 @@ class PersonnelController extends Controller
 
     public function uploadPersonnelImage(Request $request)
     {
-        $image = $request->image->getClientOriginalName();
+        if ($request->uploadType === 'base64') {
+            $image = $request->image;
+        } else {
+            $image = $request->image->getClientOriginalName();
+        }
         $personnelImage = array_merge($request->all(),['image' => $image]);
         return $this->apiService->uploadPersonnelImage($personnelImage);
     }
