@@ -22,6 +22,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\RegionPermissionsTable
 use Database\Seeders\ApiService\v1\MpisService\References\SchoolPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\FormulaPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\PurposePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\PurposePermissionsTableSeeder as MpisPurposePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BdaSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CountryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ZipcodePermissionsTableSeeder;
@@ -193,6 +194,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InsuranceTypePermissionsTableSeeder::class);
         $this->call(AgencyPermissionsTableSeeder::class);
         $this->call(InsuranceRecordPermissionsTableSeeder::class);
+        $this->call(PurposePermissionsTableSeeder::class);
 
         //Mpf
         $this->call(FolderPermissionsTableSeeder::class);
