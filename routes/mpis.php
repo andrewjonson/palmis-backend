@@ -148,5 +148,6 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->delete('delete-financial/{id}', 'ApiService\v1\MpisService\Transactions\FinancialReferenceController@deleteFinancial');
     $router->put('update-social-org/{id}', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@updateSocialOrg');
     $router->delete('delete-social-org/{id}', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@deleteSocialOrg');
+    $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitController@createPersonnelUnit');
 
 });

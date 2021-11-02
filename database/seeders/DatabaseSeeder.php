@@ -22,7 +22,6 @@ use Database\Seeders\ApiService\v1\MpisService\References\RegionPermissionsTable
 use Database\Seeders\ApiService\v1\MpisService\References\SchoolPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\FormulaPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\PurposePermissionsTableSeeder;
-use Database\Seeders\ApiService\v1\MpisService\References\PurposePermissionsTableSeeder as MpisPurposePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BdaSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CountryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ZipcodePermissionsTableSeeder;
@@ -76,6 +75,7 @@ use Database\Seeders\ApiService\v1\ToeisService\References\TOEAssignmentPermissi
 use Database\Seeders\ApiService\v1\MpisService\References\BranchOfServicePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelRankPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelUnitPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\TableStructurePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelFolderPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CountryVisitedPermissionsTableSeeder;
@@ -102,6 +102,7 @@ use Database\Seeders\ApiService\v1\OrderPubService\References\OriginatingOfficeP
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CivilianCommendationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonalCharacteristicPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingSignatoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\PurposePermissionsTableSeeder as MpisPurposePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FolderPermissionsTableSeeder as OrderPubFolderPermissionsTableSeeder;
 
 
@@ -195,6 +196,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AgencyPermissionsTableSeeder::class);
         $this->call(InsuranceRecordPermissionsTableSeeder::class);
         $this->call(PurposePermissionsTableSeeder::class);
+        $this->call(PersonnelUnitPermissionsTableSeeder::class);
 
         //Mpf
         $this->call(FolderPermissionsTableSeeder::class);
