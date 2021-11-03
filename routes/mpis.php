@@ -40,6 +40,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/insurance-type', 'MpisService\References\InsuranceTypeController', $router);
     resource('/agency', 'MpisService\References\AgencyController', $router);
     resource('/purpose', 'MpisService\References\PurposeController', $router);
+    resource('/military-school', 'MpisService\References\MilitarySchoolController', $router);
 
     $router->get('orderpub-show-pmcode/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelDetailByPmcode');
     $router->get('orderpub-pmcode-afposmos/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAfposmosByPmcode');
@@ -139,7 +140,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('show-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@getReference');
     $router->put('update-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@updateReference');
     $router->put('delete-reference/{id}', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@deleteReference');
-    $router->get('reference-dynamic-search', 'ApiService\v1\MpisService\Transactions\CharacterReferencdController@searchReference');
+    $router->get('reference-dynamic-search', 'ApiService\v1\MpisService\Transactions\CharacterReferenceController@searchReference');
     $router->put('update-eligiblity/{id}', 'ApiService\v1\MpisService\Transactions\EligibilityController@updateEligibility');
     $router->delete('delete-eligiblity/{id}', 'ApiService\v1\MpisService\Transactions\EligibilityController@deleteEligibility');
     $router->put('update-communication/{id}', 'ApiService\v1\MpisService\Transactions\CommunicationSkillController@updateCommunication');
@@ -149,5 +150,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->put('update-social-org/{id}', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@updateSocialOrg');
     $router->delete('delete-social-org/{id}', 'ApiService\v1\MpisService\Transactions\SocialOrganizationController@deleteSocialOrg');
     $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitController@createPersonnelUnit');
+    $router->get('personnel-soi', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPeronnelSoiByPmcode');
+    $router->get('orderpub-personnel-trainee', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelTrainee');
 
 });

@@ -150,4 +150,14 @@ class Personnel
     {
         return $this->performRequest('GET', '/mpis/orderpub-show-pmcode/'.$pmcode);
     }
+
+    public function getPeronnelSoiByPmcode($data)
+    {
+        return $this->performRequest('GET', '/mpis/personnel-soi', $data);
+    }
+
+    public function getPersonnelTrainee($data)
+    {
+        return $this->performRequest('GET', '/mpis/orderpub-personnel-trainee', $data);
+    }
 }

@@ -68,6 +68,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\WorkHistoryPermissio
 use Database\Seeders\ApiService\v1\OrderPubService\References\ModelListPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\ToeisService\References\UnitLocationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\EducationLevelPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\MilitarySchoolPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelGroupPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\GovernmentIdPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\SerialNumberPermissionsTableSeeder;
@@ -197,6 +198,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InsuranceRecordPermissionsTableSeeder::class);
         $this->call(PurposePermissionsTableSeeder::class);
         $this->call(PersonnelUnitPermissionsTableSeeder::class);
+        $this->call(MilitarySchoolPermissionsTableSeeder::class);
 
         //Mpf
         $this->call(FolderPermissionsTableSeeder::class);
