@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\RolesTableSeeder;
 use Database\Seeders\TeamsTableSeeder;
@@ -22,7 +23,6 @@ use Database\Seeders\ApiService\v1\MpisService\References\RegionPermissionsTable
 use Database\Seeders\ApiService\v1\MpisService\References\SchoolPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\FormulaPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\References\PurposePermissionsTableSeeder;
-use Database\Seeders\ApiService\v1\MpisService\References\PurposePermissionsTableSeeder as MpisPurposePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BdaSizePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\CountryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ZipcodePermissionsTableSeeder;
@@ -102,6 +102,7 @@ use Database\Seeders\ApiService\v1\OrderPubService\References\OriginatingOfficeP
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CivilianCommendationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonalCharacteristicPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingSignatoryPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\PurposePermissionsTableSeeder as MpisPurposePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FolderPermissionsTableSeeder as OrderPubFolderPermissionsTableSeeder;
 
 

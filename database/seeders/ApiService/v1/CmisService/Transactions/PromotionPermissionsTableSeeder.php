@@ -19,7 +19,7 @@ class PromotionPermissionsTableSeeder extends Seeder
         'promotion-create',
         'promotion-update',
         'promotion-delete'
-    ];
+    ]; 
 
     public function __construct(
         PermissionRepositoryInterface $permissionRepository,
@@ -35,6 +35,6 @@ class PromotionPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'Promotion';
-        $this->moduleName = 'cmisservice\transactions/promotionpermissionstableseeder';
+        $this->moduleName = 'cmis';
     }
 }
