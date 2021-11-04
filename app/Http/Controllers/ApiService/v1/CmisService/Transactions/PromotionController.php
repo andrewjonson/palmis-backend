@@ -17,7 +17,8 @@ class PromotionController extends Controller
             'only' => [
                 'getPromotion',
                 'onlyTrashedPromotion',
-                'getPromotablePersonnel'
+                'getPromotablePersonnel',
+                'getPromotablePerPersonnel'
             ]
         ]);
         $this->middleware('permission:promotion-create|admin', [
@@ -78,5 +79,10 @@ class PromotionController extends Controller
     public function getPromotablePersonnel(Request $request)
     {
         return $this->apiService->getPromotablePersonnel($request->all());
+    }
+
+    public function getPromotablePerPersonnel(Request $request)
+    {
+        return $this->apiService->getPromotablePerPersonnel($request->all());
     }
 }

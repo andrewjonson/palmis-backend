@@ -30,7 +30,9 @@ class PersonnelController extends Controller
                 'searchPersonnelBySerialNumber',
                 'searchPersonnelId',
                 'getPersonnelAfposmosByPmcode',
-                'getPersonnelDetailByPmcode'
+                'getPersonnelDetailByPmcode',
+                'getPersonnelTrainee',
+                'getPeronnelSoiByPmcode'
             ]
         ]);
         $this->middleware('permission:personnel-create|admin', [
@@ -162,5 +164,15 @@ class PersonnelController extends Controller
     public function getPersonnelDetailByPmcode($pmcode)
     {
         return $this->apiService->getPersonnelDetailByPmcode($pmcode);
+    }
+
+    public function getPeronnelSoiByPmcode(Request $request)
+    {
+        return $this->apiService->getPeronnelSoiByPmcode($request->all());
+    }
+
+    public function getPersonnelTrainee(Request $request)
+    {
+        return $this->apiService->getPersonnelTrainee($request->all());
     }
 }

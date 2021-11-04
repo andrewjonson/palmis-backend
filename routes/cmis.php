@@ -44,5 +44,6 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/promotion/only-trashed', 'ApiService\v1\CmisService\Transactions\PromotionController@onlyTrashedPromotion');
     $router->delete('/promotion/force-delete/{id}', 'ApiService\v1\CmisService\Transactions\PromotionController@forceDeletePromotion');
     $router->get('/get/promotable-personnel', 'ApiService\v1\CmisService\Transactions\PromotionController@getPromotablePersonnel');
+    $router->get('/promotable-per-personnel', 'ApiService\v1\CmisService\Transactions\PromotionController@getPromotablePerPersonnel');
 
 });
