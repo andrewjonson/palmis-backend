@@ -99,4 +99,14 @@ class Order
     {
         return $this->performRequest('GET', '/orderpub/show-latest-version/'.$id);
     }
+
+    public function showOrderArchive($data)
+    {
+        return $this->performRequest('GET', '/orderpub/show-archive-order', $data);
+    }
+
+    public function showPersonnelOrders($data)
+    {
+        return $this->performRequest('GET', '/orderpub/show-personnel-orders', $data);
+    }
 }
