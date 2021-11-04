@@ -51,6 +51,8 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
 
     //Order
     $router->post('/archive-order', 'ApiService\v1\OrderPubService\Transactions\OrderController@storeOrderArchive');
+    $router->get('/show-archive-order', 'ApiService\v1\OrderPubService\Transactions\OrderController@showOrderArchive');
+    $router->get('/show-personnel-orders', 'ApiService\v1\OrderPubService\Transactions\OrderController@showPersonnelOrders');
     $router->get('/orders', 'ApiService\v1\OrderPubService\Transactions\OrderController@getOrders');
     $router->delete('/order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@destroy');
     $router->delete('/order/force-delete/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderController@forceDelete');
@@ -69,7 +71,6 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/view-order/{versionId}', 'ApiService\v1\OrderPubService\Transactions\OrderController@viewDraftOrder');
     $router->get('/show-order/{orderCode}', 'ApiService\v1\OrderPubService\Transactions\PersonnelOrderController@getOrderByOrderCode');
     $router->get('/show-order-details/{orderCode}', 'ApiService\v1\OrderPubService\Transactions\PersonnelOrderController@getOrderCodeDetails');
-
 
     //Order Route
     $router->post('/route-order/{id}', 'ApiService\v1\OrderPubService\Transactions\OrderRouteController@routeOrder');

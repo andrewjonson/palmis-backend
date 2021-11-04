@@ -24,7 +24,9 @@ class OrderController extends Controller
                 'getPublishedOrders',
                 'getOrderHistories',
                 'onlyTrashed',
-                'getLatestVersionById'
+                'getLatestVersionById',
+                'showOrderArchive',
+                'showPersonnelOrders'
             ]
         ]);
         $this->middleware('permission:order-create|admin', [
@@ -143,5 +145,15 @@ class OrderController extends Controller
     public function getLatestVersionById($id)
     {
         return $this->apiService->getLatestVersionById($id);
+    }
+
+    public function showOrderArchive(Request $request)
+    {
+        return $this->apiService->showOrderArchive($request->all());
+    }
+
+    public function showPersonnelOrders(Request $request)
+    {
+        return $this->apiService->showPersonnelOrders($request->all());
     }
 }
