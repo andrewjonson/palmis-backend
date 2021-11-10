@@ -156,10 +156,10 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitController@createPersonnelUnit');
     $router->get('personnel-soi', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPeronnelSoiByPmcode');
     $router->get('orderpub-personnel-trainee', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelTrainee');
-    $router->post('store-personnel-duty-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignment@createDutyAssignment');
-    $router->get('show-personnel-duty-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignment@showDutyAssignmentById');
-    $router->get('show-order-duty-assignment-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignment@showDutyAssignmentDetailById');
-    $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignment@createUnitAssignment');
-    $router->get('show-personnel-unit-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignment@showUnitAssignmentById');
-    $router->get('show-order-unit-assignment-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignment@showUnitAssignmentDetailById');
+    $router->post('store-personnel-duty-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentController@createDutyAssignment');
+    $router->get('show-personnel-duty-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentController@showDutyAssignmentById');
+    $router->get('show-order-duty-assignment-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentController@showDutyAssignmentDetailById');
+    $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignmentController@createUnitAssignment');
+    $router->get('show-personnel-unit-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignmentController@showUnitAssignmentById');
+    $router->get('show-order-unit-assignment-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignmentController@showUnitAssignmentDetailById');
 });
