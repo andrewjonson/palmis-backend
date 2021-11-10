@@ -152,5 +152,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitController@createPersonnelUnit');
     $router->get('personnel-soi', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPeronnelSoiByPmcode');
     $router->get('orderpub-personnel-trainee', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelTrainee');
-
+    $router->post('id-system/create', 'ApiService\v1\MpisService\Transactions\IDSystemController@createIdSystem');
+    $router->get('id-system', 'ApiService\v1\MpisService\Transactions\IDSystemController@getIdSystem');
+    $router->get('id-system/show', 'ApiService\v1\MpisService\Transactions\IDSystemController@showIdSystem');
 });
