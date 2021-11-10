@@ -97,12 +97,15 @@ use Database\Seeders\ApiService\v1\CmisService\Transactions\TSubFactorLevelOnePe
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CharacterReferencePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CommunicationSkillPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FinancialReferencePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelPromotionPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\SocialOrganizationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\PersonnelOrderPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelEnlistmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\OriginatingOfficePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\CivilianCommendationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonalCharacteristicPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelUnitAssignmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingSignatoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PurposePermissionsTableSeeder as MpisPurposePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FolderPermissionsTableSeeder as OrderPubFolderPermissionsTableSeeder;
@@ -200,7 +203,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PurposePermissionsTableSeeder::class);
         $this->call(PersonnelUnitPermissionsTableSeeder::class);
         $this->call(MilitarySchoolPermissionsTableSeeder::class);
-
+        $this->call(PersonnelPromotionPermissionsTableSeeder::class);
+        $this->call(PersonnelDutyAssignmentPermissionsTableSeeder::class);
+        $this->call(PersonnelUnitAssignmentPermissionsTableSeeder::class);
         //Mpf
         $this->call(FolderPermissionsTableSeeder::class);
         $this->call(PersonnelFolderPermissionsTableSeeder::class);

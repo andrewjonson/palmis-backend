@@ -25,9 +25,9 @@ class Promotion
         return $this->performRequest('GET', '/cmis/promotion', $data);
     }
 
-    public function restorePromotion($data,$id)
+    public function restorePromotion($id)
     {
-        return $this->performRequest('PUT', '/cmis/promotion/restore/'.$id, $data);
+        return $this->performRequest('PUT', '/cmis/promotion/restore/'.$id);
     }
 
     public function updatePromotion($data,$id)
@@ -37,12 +37,12 @@ class Promotion
 
     public function softDeletePromotion($id)
     {
-        return $this->performRequest('DELETE', '/cmis/promotion/'.$id, $data);
+        return $this->performRequest('DELETE', '/cmis/promotion/'.$id);
     }
 
     public function forceDeletePromotion($id)
     {
-        return $this->performRequest('DELETE', '/cmis/promotion/force-delete/'.$id, $data);
+        return $this->performRequest('DELETE', '/cmis/promotion/force-delete/'.$id);
     }
 
     public function getPromotablePersonnel($data)
