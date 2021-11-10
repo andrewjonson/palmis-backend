@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\RolesTableSeeder;
 use Database\Seeders\TeamsTableSeeder;
