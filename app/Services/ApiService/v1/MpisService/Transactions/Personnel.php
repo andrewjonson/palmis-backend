@@ -121,11 +121,6 @@ class Personnel
         return $this->performRequest('PUT', '/mpis/update-personnel/'.$id, $data);
     }
 
-    public function createPersonnelPromotion($data)
-    {
-        return $this->performRequest('POST', '/mpis/store-personnel-promotion', $data);
-    }
-
     public function dynamicSearchPersonnel($data)
     {
         return $this->performRequest('POST', '/mpis/personnel-dynamic-search', $data);

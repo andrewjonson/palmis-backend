@@ -48,9 +48,11 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('show-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@getAssignmentById');
     $router->get('show-award-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@showAwardDetailById');
     $router->post('create-personnel-enlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createPersonnelEnlistment');
+    $router->post('create-personnel-reenlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createPersonnelReenlistment');
+    $router->get('show-personnel-enlistment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@showPersonnelEnlistmentById');
+    $router->get('show-order-detail-enlistment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@showPersonnelEnlistmentDetailById');
     $router->post('orderpub-serial-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelBySerialNumber');
     $router->get('show-afposmos/{id}', 'ApiService\v1\MpisService\References\AfposmosController@getAfposmosById');
-    $router->post('create-enlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createEnlistment');
     $router->get('dashboard', 'ApiService\v1\MpisService\Transactions\DashboardController@getDashboard');
     $router->get('logs', 'ApiService\v1\MpisService\Transactions\LogController@getLogs');
     $router->post('store-personnel-award', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@createPersonnelAward');
@@ -63,7 +65,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('show-civil-status/{id}', 'ApiService\v1\MpisService\References\CivilStatusController@getCivilStatusById');
     $router->get('relationship-search', 'ApiService\v1\MpisService\References\RelationshipController@searchRelationship');
     $router->post('personnel-dynamic-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@dynamicSearchPersonnel');
-    $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelPromotion');
+    $router->post('store-personnel-promotion', 'ApiService\v1\MpisService\Transactions\PersonnelPromotionController@createPersonnelPromotion');
+    $router->get('show-personnel-promotion/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelPromotionController@showPersonnelPromotion');
+    $router->get('show-order-promotion-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelPromotionController@showOrderPromotionDetail');
     $router->get('search-personnel-rank', 'ApiService\v1\MpisService\References\RankController@searchPersonnelRank');
     $router->get('get-zipcode', 'ApiService\v1\MpisService\References\ZipcodeController@getZipcode');
     $router->get('ethnic-code-search', 'ApiService\v1\MpisService\References\EthnicController@searchEthnic');
@@ -152,5 +156,10 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitController@createPersonnelUnit');
     $router->get('personnel-soi', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPeronnelSoiByPmcode');
     $router->get('orderpub-personnel-trainee', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelTrainee');
-
+    $router->post('store-personnel-duty-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignment@createDutyAssignment');
+    $router->get('show-personnel-duty-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignment@showDutyAssignmentById');
+    $router->get('show-order-duty-assignment-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignment@showDutyAssignmentDetailById');
+    $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignment@createUnitAssignment');
+    $router->get('show-personnel-unit-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignment@showUnitAssignmentById');
+    $router->get('show-order-unit-assignment-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignment@showUnitAssignmentDetailById');
 });

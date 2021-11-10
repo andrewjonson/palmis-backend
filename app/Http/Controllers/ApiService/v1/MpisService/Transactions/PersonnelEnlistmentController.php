@@ -13,22 +13,38 @@ class PersonnelEnlistmentController extends Controller
 
     public function __construct(PersonnelEnlistment $apiService)
     {
+        $this->middleware('permission:personnelenlistment-read|admin', [
+            'only' => [
+                'showPersonnelEnlistmentById',
+                'showPersonnelEnlistmentDetailById'
+            ]
+        ]);
         $this->middleware('permission:personnelenlistment-create|admin', [
             'only' => [
-                'createEnlistment',
+                'createPersonnelReenlistment',
                 'createPersonnelEnlistment'
             ]
         ]);
         $this->apiService = $apiService;
     }
 
-    public function createEnlistment(Request $request)
+    public function createPersonnelReenlistment(Request $request)
     {
-        return $this->apiService->createEnlistment($request->all());
+        return $this->apiService->createPersonnelReenlistment($request->all());
     }
 
     public function createPersonnelEnlistment(Request $request)
     {
         return $this->apiService->createPersonnelEnlistment($request->all());
+    }
+
+    public function showPersonnelEnlistmentById($id)
+    {
+        return $this->apiService->showPersonnelEnlistmentById($id);
+    }
+
+    public function showPersonnelEnlistmentDetailById($id)
+    {
+        return $this->apiService->showPersonnelEnlistmentDetailById($id);
     }
 }
