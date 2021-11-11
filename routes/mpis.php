@@ -156,16 +156,14 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitController@createPersonnelUnit');
     $router->get('personnel-soi', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPeronnelSoiByPmcode');
     $router->get('orderpub-personnel-trainee', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelTrainee');
-<<<<<<< HEAD
     $router->post('id-system/create', 'ApiService\v1\MpisService\Transactions\IDSystemController@createIdSystem');
     $router->get('id-system', 'ApiService\v1\MpisService\Transactions\IDSystemController@getIdSystem');
     $router->get('id-system/show', 'ApiService\v1\MpisService\Transactions\IDSystemController@showIdSystem');
-=======
+    $router->get('id-system-search-id/{id}', 'ApiService\v1\MpisService\Transactions\IDSystemController@searchIdSystem');
     $router->post('store-personnel-duty-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentController@createDutyAssignment');
     $router->get('show-personnel-duty-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentController@showDutyAssignmentById');
     $router->get('show-order-duty-assignment-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentController@showDutyAssignmentDetailById');
     $router->post('store-personnel-unit-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignmentController@createUnitAssignment');
     $router->get('show-personnel-unit-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignmentController@showUnitAssignmentById');
     $router->get('show-order-unit-assignment-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelUnitAssignmentController@showUnitAssignmentDetailById');
->>>>>>> 890d5f5a95a1ff87dfb884b0843d59594e921a7c
 });

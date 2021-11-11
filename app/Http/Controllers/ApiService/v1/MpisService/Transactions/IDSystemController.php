@@ -10,6 +10,18 @@ class IDSystemController extends Controller
 {
     public function __construct(IDSystem $apiService)
     {
+        $this->middleware('permission:idsystem-read|admin', [
+            'only' => [
+                'getIdSystem',
+                'showIdSystem',
+                'searchIdSystem'
+            ]
+        ]);
+        $this->middleware('permission:idsystem-create|admin', [
+            'only' => [
+                'createIdSystem'
+            ]
+        ]);
         $this->apiService = $apiService;
     }
 
@@ -26,5 +38,10 @@ class IDSystemController extends Controller
     public function showIdSystem(Request $request)
     {
         return $this->apiService->showIdSystem($request->all());
+    }
+
+    public function searchIdSystem($id)
+    {
+        return $this->apiService->searchIdSystem($id);
     }
 }
