@@ -29,4 +29,9 @@ class IDSystem
     {
         return $this->performRequest('GET', '/mpis/id-system/show', $data);
     }
+
+    public function searchIdSystem($id)
+    {
+        return $this->performRequest('GET', '/mpis/id-system-search-id/'. $id);
+    }
 }

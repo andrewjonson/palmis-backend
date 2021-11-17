@@ -155,4 +155,9 @@ class Personnel
     {
         return $this->performRequest('GET', '/mpis/orderpub-personnel-trainee', $data);
     }
+
+    public function getPersonnelCases($data)
+    {
+        return $this->performRequest('GET', '/mpis/personnel/cases/show', $data);
+    }
 }

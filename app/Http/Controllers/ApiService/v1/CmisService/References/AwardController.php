@@ -17,7 +17,9 @@ class AwardController extends Controller
             'only' => [
                 'index',
                 'onlyTrashed',
-                'searchAwardById'
+                'searchAwardById',
+                'getAwardTypeC',
+                'getAwardTypeA'
             ]
         ]);
         $this->middleware('permission:award-create|admin', [
@@ -78,5 +80,15 @@ class AwardController extends Controller
     public function searchAwardById($id)
     {
         return $this->apiService->searchAwardById($id);
+    }
+
+    public function getAwardTypeA(Request $request)
+    {
+        return $this->apiService->getAwardTypeA($request->all());
+    }
+
+    public function getAwardTypeC(Request $request)
+    {
+        return $this->apiService->getAwardTypeC($request->all());
     }
 }

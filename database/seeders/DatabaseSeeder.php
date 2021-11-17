@@ -48,6 +48,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\PersonnelPermissionsTa
 use Database\Seeders\ApiService\v1\CmisService\References\AwardPointPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\AssignmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\RankStatusPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\Transactions\IDSystemPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\StatusPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\CmisService\Transactions\PromotionPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\References\DocumentTypePermissionsTableSeeder;
@@ -206,6 +207,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PersonnelPromotionPermissionsTableSeeder::class);
         $this->call(PersonnelDutyAssignmentPermissionsTableSeeder::class);
         $this->call(PersonnelUnitAssignmentPermissionsTableSeeder::class);
+        $this->call(IDSystemPermissionsTableSeeder::class);
         //Mpf
         $this->call(FolderPermissionsTableSeeder::class);
         $this->call(PersonnelFolderPermissionsTableSeeder::class);

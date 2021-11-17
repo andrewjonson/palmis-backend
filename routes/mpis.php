@@ -44,7 +44,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
 
     $router->get('orderpub-show-pmcode/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelDetailByPmcode');
     $router->get('orderpub-pmcode-afposmos/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAfposmosByPmcode');
-    $router->post('personnel-id-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelId');
+    $router->get('personnel-id-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelId');
     $router->get('show-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@getAssignmentById');
     $router->get('show-award-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@showAwardDetailById');
     $router->post('create-personnel-enlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createPersonnelEnlistment');
@@ -122,6 +122,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->post('create-personnel-unit', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelUnit');
     $router->post('store-address', 'ApiService\v1\MpisService\Transactions\PersonnelController@createPersonnelAddress');
     $router->get('show-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAddress');
+    $router->get('personnel/cases/show', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelCases');
     $router->put('update-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@updatePersonnelAddress');
     $router->post('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
     $router->get('show-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelById');
@@ -159,6 +160,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->post('id-system/create', 'ApiService\v1\MpisService\Transactions\IDSystemController@createIdSystem');
     $router->get('id-system', 'ApiService\v1\MpisService\Transactions\IDSystemController@getIdSystem');
     $router->get('id-system/show', 'ApiService\v1\MpisService\Transactions\IDSystemController@showIdSystem');
+    $router->get('id-system-search-id/{id}', 'ApiService\v1\MpisService\Transactions\IDSystemController@searchIdSystem');
     $router->post('store-personnel-duty-assignment', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentController@createDutyAssignment');
     $router->get('show-personnel-duty-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentController@showDutyAssignmentById');
     $router->get('show-order-duty-assignment-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelDutyAssignmentController@showDutyAssignmentDetailById');

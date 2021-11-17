@@ -54,4 +54,14 @@ class Award
     {
         return $this->performRequest('GET', '/cmis/award/'.$id);
     }
+
+    public function getAwardTypeA($data)
+    {
+        return $this->performRequest('GET', '/cmis/award/type-a', $data);
+    }
+
+    public function getAwardTypeC($data)
+    {
+        return $this->performRequest('GET', '/cmis/award/type-c', $data);
+    }
 }
