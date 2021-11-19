@@ -45,4 +45,8 @@ class Unit
         return $this->performRequest('GET', '/toeis/toggle-unit-per-id/'.$id);
     }
 
+    public function getToggleUnitName($id)
+    {
+        return $this->performRequest('GET', '/toeis/toggle-unit-name/'.$id);
+    }
 }

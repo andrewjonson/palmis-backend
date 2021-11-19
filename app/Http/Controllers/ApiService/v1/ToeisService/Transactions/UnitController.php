@@ -19,7 +19,8 @@ class UnitController extends Controller
                 'getUnitById',
                 'getUnitConcatById',
                 'getUnit',
-                'getToggleUnit'
+                'getToggleUnit',
+                'getToggleUnitName'
             ]
         ]);
         $this->middleware('permission:unit-create|admin', [
@@ -58,5 +59,10 @@ class UnitController extends Controller
     public function getToggleUnit($id)
     {
         return $this->apiService->getToggleUnit($id);
+    }
+
+    public function getToggleUnitName($id)
+    {
+        return $this->apiService->getToggleUnitName($id);
     }
 }
