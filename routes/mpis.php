@@ -52,6 +52,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('orderpub-show-pmcode/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelDetailByPmcode');
     $router->get('orderpub-pmcode-afposmos/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAfposmosByPmcode');
     $router->get('personnel-id-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnelId');
+    $router->get('cmis-show-pmcode', 'ApiService\v1\MpisService\Transactions\PersonnelController@cmisShowPmcode');
     $router->get('show-assignment/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@getAssignmentById');
     $router->get('show-award-detail/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelAwardController@showAwardDetailById');
     $router->post('create-personnel-enlistment', 'ApiService\v1\MpisService\Transactions\PersonnelEnlistmentController@createPersonnelEnlistment');

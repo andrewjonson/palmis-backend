@@ -160,4 +160,9 @@ class Personnel
     {
         return $this->performRequest('GET', '/mpis/personnel/cases/show', $data);
     }
+
+    public function cmisShowPmcode($data)
+    {
+        return $this->performRequest('GET', '/mpis/cmis-show-pmcode', $data);
+    }
 }
