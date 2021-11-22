@@ -21,9 +21,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/search-appurtenance-award/{id}', 'ApiService\v1\CmisService\References\AppurtenanceAwardController@getAppurtenanceAwardById');
     $router->get('/search-award', 'ApiService\v1\CmisService\References\AppurtenanceAwardController@getAppurtenanceAward');
     $router->get('/search/award-type', 'ApiService\v1\CmisService\References\AwardTypeController@searchAwardType');
-    $router->get('/award/{id}', 'ApiService\v1\CmisService\References\AwardController@searchAwardById');
-    $router->get('/award/type-a', 'ApiService\v1\CmisService\References\AwardController@getAwardTypeA');
     $router->get('/award/type-c', 'ApiService\v1\CmisService\References\AwardController@getAwardTypeC');
+    $router->get('/award/type-a', 'ApiService\v1\CmisService\References\AwardController@getAwardTypeA');
+    $router->get('/award/{id}', 'ApiService\v1\CmisService\References\AwardController@searchAwardById');
     $router->get('/search/points', 'ApiService\v1\CmisService\Transactions\TSubFactorController@searchPoints');
     $router->get('/search/criteria', 'ApiService\v1\CmisService\Transactions\TSubFactorController@searchByCriteria');
     $router->get('/search/sublvl/dropdown', 'ApiService\v1\CmisService\Transactions\TSubFactorController@getDataByCriteria');

@@ -124,7 +124,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     $router->get('show-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAddress');
     $router->get('personnel/cases/show', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelCases');
     $router->put('update-address/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@updatePersonnelAddress');
-    $router->post('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
+    $router->get('personnel-search', 'ApiService\v1\MpisService\Transactions\PersonnelController@searchPersonnel');
     $router->get('show-personnel/{id}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelById');
     $router->get('personnel-total', 'ApiService\v1\MpisService\Transactions\PersonnelController@countPersonnel');
     $router->post('search-info', 'ApiService\v1\MpisService\Transactions\PersonnelController@advanceSearchPersonnel');

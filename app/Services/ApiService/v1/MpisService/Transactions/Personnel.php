@@ -53,7 +53,7 @@ class Personnel
 
     public function searchPersonnel($data)
     {
-        return $this->performRequest('POST', '/mpis/personnel-search', $data);
+        return $this->performRequest('GET', '/mpis/personnel-search', $data);
     }
 
     public function getPersonnelById($id)
