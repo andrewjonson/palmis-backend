@@ -41,6 +41,13 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled'], 
     resource('/agency', 'MpisService\References\AgencyController', $router);
     resource('/purpose', 'MpisService\References\PurposeController', $router);
     resource('/military-school', 'MpisService\References\MilitarySchoolController', $router);
+    resource('/locations', 'MpisService\References\LocationController', $router);
+    resource('/qualifications', 'MpisService\References\QualificationController', $router);
+    resource('/physical-profile', 'MpisService\References\PhysicalProfileController', $router);
+    resource('/source-of-commission', 'MpisService\References\SourceOfCommissionController', $router);
+    resource('/signatory', 'MpisService\References\SignatoryController', $router);
+
+
 
     $router->get('orderpub-show-pmcode/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelDetailByPmcode');
     $router->get('orderpub-pmcode-afposmos/{pmcode}', 'ApiService\v1\MpisService\Transactions\PersonnelController@getPersonnelAfposmosByPmcode');

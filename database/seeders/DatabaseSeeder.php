@@ -34,6 +34,7 @@ use Database\Seeders\ApiService\v1\MpisService\References\ExamTypePermissionsTab
 use Database\Seeders\ApiService\v1\MpisService\References\EyeColorPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\HairTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\LanguagePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\LocationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\MuniCityPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ProvincePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\ReligionPermissionsTableSeeder;
@@ -65,6 +66,7 @@ use Database\Seeders\ApiService\v1\OrderPubService\References\CategoryPermission
 use Database\Seeders\ApiService\v1\OrderPubService\References\TemplatePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\InsuranceTypePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\PersonnelTypePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\QualificationPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\EligibilityPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\WorkHistoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\ModelListPermissionsTableSeeder;
@@ -76,6 +78,7 @@ use Database\Seeders\ApiService\v1\MpisService\Transactions\GovernmentIdPermissi
 use Database\Seeders\ApiService\v1\MpisService\Transactions\SerialNumberPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\ToeisService\References\TOEAssignmentPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\References\BranchOfServicePermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\PhysicalProfilePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\FamilyHistoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelRankPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpisService\Transactions\PersonnelUnitPermissionsTableSeeder;
@@ -91,6 +94,7 @@ use Database\Seeders\ApiService\v1\MpfService\Transactions\UploadAttachmentPermi
 use Database\Seeders\ApiService\v1\MpisService\Transactions\InsuranceRecordPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\AuthorityLinePermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\MpfService\Transactions\PersonnelDocumentPermissionsTableSeeder;
+use Database\Seeders\ApiService\v1\MpisService\References\SourceOfCommissionPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\References\DocumentSettingPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\OrderPubService\Transactions\FileDirectoryPermissionsTableSeeder;
 use Database\Seeders\ApiService\v1\ToeisService\Transactions\TaskOrganizationPermissionsTableSeeder;
@@ -208,6 +212,10 @@ class DatabaseSeeder extends Seeder
         $this->call(PersonnelDutyAssignmentPermissionsTableSeeder::class);
         $this->call(PersonnelUnitAssignmentPermissionsTableSeeder::class);
         $this->call(IDSystemPermissionsTableSeeder::class);
+        $this->call(LocationPermissionsTableSeeder::class);
+        $this->call(QualificationPermissionsTableSeeder::class);
+        $this->call(PhysicalProfilePermissionsTableSeeder::class);
+        $this->call(SourceOfCommissionPermissionsTableSeeder::class);
         //Mpf
         $this->call(FolderPermissionsTableSeeder::class);
         $this->call(PersonnelFolderPermissionsTableSeeder::class);
