@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/Resource.php';
 
-$router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'modular:cmis'], 'prefix' => '/api/'.config('app.version').'/cmis'], function() use($router) {
+$router->group(['middleware' => ['client.credentials', 'verified', 'screenLockDisabled', 'modular:cmis'], 'prefix' => '/api/'.config('app.version').'/cmis'], function() use($router) {
     resource('/appurtenance', 'CmisService\References\AppurtenanceController', $router);
     resource('/appurtenance-awards', 'CmisService\References\AppurtenanceAwardController', $router);
     resource('/subfactor/name', 'CmisService\References\SubFactorController', $router);

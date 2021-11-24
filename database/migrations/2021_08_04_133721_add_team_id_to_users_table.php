@@ -14,7 +14,7 @@ class AddTeamIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('team_id')->constrained();
+            $table->foreignId('team_id')->constrained()->nullable();
         });
     }
 

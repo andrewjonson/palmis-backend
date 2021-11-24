@@ -8,11 +8,13 @@ class PersonnelFolder
 {
     use ConsumeExternalService;
 
-    public $baseUri;
+    public $baseUrl;
+    public $secret;
 
     public function __construct()
     {
-        $this->baseUri = config('services.mpf_base_uri');
+        $this->baseUrl = config('services.mpf.base_url');
+        $this->secret = config('services.mpf.secret');
     }
 
     public function getPersonnelFolderByPmcode($data, $pmcode)

@@ -25,6 +25,7 @@ use App\Repositories\Interfaces\SettingRepositoryInterface;
 use App\Repositories\Interfaces\PersonnelRepositoryInterface;
 use App\Repositories\Interfaces\OldPasswordRepositoryInterface;
 use App\Repositories\Interfaces\LoginAttemptRepositoryInterface;
+use App\Services\ApiService\v1\MpisService\Transactions\Personnel;
 
 class UserController extends Controller
 {
@@ -64,6 +65,10 @@ class UserController extends Controller
     public function currentUser()
     {
         try {
+            $personnelService = new Personnel;
+            return $personnel = $personnelService->searchPersonnelBySerial([
+                'serial_number' => '962875'
+            ]);
             $user = auth()->user();
             return new UserResource($user);
         } catch(\Exception $e) {
@@ -297,5 +302,15 @@ class UserController extends Controller
             return $this->invalidPasswordResponse($user);
         }
         $this->resetLoginAttempts($user);
+    }
+
+    public function getCurrentUserIdTeamId()
+    {
+        $user = auth()->user();
+        return response()->json([
+            'id' => $user->id,
+            'team_id' => $user->team_id,
+            'is_superadmin' => $user->is_superadmin
+        ]);
     }
 }

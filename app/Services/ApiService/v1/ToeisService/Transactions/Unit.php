@@ -8,11 +8,13 @@ class Unit
 {
     use ConsumeExternalService;
 
-    public $baseUri;
+    public $baseUrl;
+    public $secret;
 
     public function __construct()
     {
-        $this->baseUri = config('services.toeis_base_uri');
+        $this->baseUrl = config('services.toeis.base_url');
+        $this->secret = config('services.toeis.secret');
     }
 
     public function index($data)
