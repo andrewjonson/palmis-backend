@@ -8,11 +8,13 @@ class PersonnelUnit
 {
     use ConsumeExternalService;
 
-    public $baseUri;
+    public $baseUrl;
+    public $secret;
 
     public function __construct()
     {
-        $this->baseUri = config('services.mpis_base_uri');
+        $this->baseUrl = config('services.mpis.base_url');
+        $this->secret = config('services.mpis.secret');
     }
 
     public function createPersonnelUnit($data)

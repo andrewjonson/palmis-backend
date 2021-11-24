@@ -8,11 +8,13 @@ class FileDirectory
 {
     use ConsumeExternalService;
 
-    public $baseUri;
+    public $baseUrl;
+    public $secret;
 
     public function __construct()
     {
-        $this->baseUri = config('services.orderpub_base_uri');
+        $this->baseUrl = config('services.orderpub.base_url');
+        $this->secret = config('services.orderpub.secret');
     }
 
     public function getDirectories($data)

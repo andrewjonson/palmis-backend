@@ -8,11 +8,13 @@ class Promotion
 {
     use ConsumeExternalService;
 
-    public $baseUri;
+    public $baseUrl;
+    public $secret;
 
     public function __construct()
     {
-        $this->baseUri = config('services.cmis_base_uri');
+        $this->baseUrl = config('services.cmis.base_url');
+        $this->secret = config('services.cmis.secret');
     }
 
     public function createPromotion($data)
