@@ -104,7 +104,7 @@ $app->middleware([
 ]);
 
 $app->routeMiddleware([
-    // 'auth' => App\Http\Middleware\Authenticate::class,
+    'auth' => App\Http\Middleware\Authenticate::class,
     'verified' => App\Http\Middleware\EmailVerificationMiddleware::class,
     'superadmin' => App\Http\Middleware\SuperAdminMiddleware::class,
     'screenlockEnabled' => App\Http\Middleware\ScreenLockEnabledMiddleware::class,
@@ -113,7 +113,6 @@ $app->routeMiddleware([
     'role' => App\Http\Middleware\RoleMiddleware::class,
     'modular' => App\Http\Middleware\ModularMiddleware::class,
     'cors' => App\Http\Middleware\CorsMiddleware::class,
-    'client.credentials' => Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
 ]);
 
 /*
