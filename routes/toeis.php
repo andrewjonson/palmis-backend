@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/Resource.php';
 
-$router->group(['middleware' => ['client.credentials', 'verified', 'screenLockDisabled', 'modular:toeis'], 'prefix' => '/api/'.config('app.version').'/toeis'], function() use($router) {
+$router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'modular:toeis'], 'prefix' => '/api/'.config('app.version').'/toeis'], function() use($router) {
     resource('/echelons', 'ToeisService\References\EchelonController', $router);
     resource('/unit-locations', 'ToeisService\References\UnitLocationController', $router);
     resource('/assignments', 'ToeisService\References\AssignmentController', $router);

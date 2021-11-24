@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/Resource.php';
 
-$router->group(['middleware' => ['client.credentials', 'verified', 'screenLockDisabled', 'modular:mpf'], 'prefix' => '/api/'.config('app.version').'/mpf'], function() use($router) {
+$router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', 'modular:mpf'], 'prefix' => '/api/'.config('app.version').'/mpf'], function() use($router) {
     resource('/folders', 'MpfService\References\FolderController', $router);
     $router->get('/personnels/folder/{pmcode}', 'ApiService\v1\MpfService\Transactions\PersonnelFolderController@getPersonnelFolderByPmcode');
     $router->get('/personnels/folders', 'ApiService\v1\MpfService\Transactions\PersonnelFolderController@getFolders');

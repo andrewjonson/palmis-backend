@@ -65,10 +65,6 @@ class UserController extends Controller
     public function currentUser()
     {
         try {
-            $personnelService = new Personnel;
-            return $personnel = $personnelService->searchPersonnelBySerial([
-                'serial_number' => '962875'
-            ]);
             $user = auth()->user();
             return new UserResource($user);
         } catch(\Exception $e) {
