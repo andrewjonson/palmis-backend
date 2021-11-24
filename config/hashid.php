@@ -41,7 +41,7 @@ return [
 
         'hashids_integer' => [
             'driver' => 'hashids_integer',
-            'salt' => env('HASHIDS_INTEGER_SALT', '2*t3B2PddD94keDOtPkjlsCtTR6LDmRLkZJPUyvHmy@1M9_2Jv'),
+            'salt' => env('HASHIDS_INTEGER_SALT'),
             'min_length' => env('HASHIDS_INTEGER_MIN_LENGTH'),
             'alphabet' => env('HASHIDS_INTEGER_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'),
         ],
