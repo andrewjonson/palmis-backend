@@ -15,9 +15,10 @@ trait ConsumeExternalService
      */
     public function performRequest($method, $requestUrl, $formParams = [])
     {
+        $token = request()->bearerToken();
         $response = Http::withHeaders([
             'X-Authorization' => $this->secret
-        ])->$method($this->baseUrl.'/api/'.config('app.version').$requestUrl, $formParams);
+        ])->withToken($token)->$method($this->baseUrl.'/api/'.config('app.version').$requestUrl, $formParams);
         return response($response->json(), $response->status());
     }
 }
