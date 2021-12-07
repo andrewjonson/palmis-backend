@@ -35,6 +35,6 @@ class PersonnelUnitPermissionsTableSeeder extends Seeder
         $this->modelPermissionRepository = $modelPermissionRepository;
         $this->moduleRepository = $moduleRepository;
         $this->modelName = 'PersonnelUnit';
-        $this->moduleName = 'mpisservice\transactions/personnelunitpermissionstableseeder';
+        $this->moduleName = 'mpis';
     }
 }
