@@ -161,11 +161,6 @@ $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__.'/../routes/pais-template.php';
-    require __DIR__.'/../routes/mpf.php';
-    require __DIR__.'/../routes/mpis.php';
-    require __DIR__.'/../routes/orderpub.php';
-    require __DIR__.'/../routes/cmis.php';
-    require __DIR__.'/../routes/toeis.php';
 });
 
 return $app;
