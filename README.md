@@ -4,13 +4,15 @@ composer install
 
 cp .env.example .env
 
-change database credentials in .env file
+modify .env file
 
-php artisan migrate --seed
+php artisan migrate
 
 php artisan passport:install
 
 copy client id and client secret to .env file
+
+php artisan db:seed
 
 ## Install Redis
 
