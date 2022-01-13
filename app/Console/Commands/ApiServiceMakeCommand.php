@@ -98,10 +98,18 @@ class ApiServiceMakeCommand extends GeneratorCommand
     protected function createPermissionSeeder()
     {
         $seeder = Str::studly($this->argument('name'));
+        $modelName = $this->qualifyClass($this->getNameInput());
 
-        $this->call('make:api-service-permission-seed', array_filter([
-            'name'  => "{$seeder}PermissionsTableSeeder"
-        ]));
+        if ($this->option('references')) {
+            $this->call('make:api-service-permission-seed', array_filter([
+                'name'  => "{$seeder}PermissionsTableSeeder",
+                '--references' => $modelName
+            ]));
+        } else {
+            $this->call('make:api-service-permission-seed', array_filter([
+                'name'  => "{$seeder}PermissionsTableSeeder"
+            ]));
+        }
     }
 
     /**
@@ -132,7 +140,10 @@ class ApiServiceMakeCommand extends GeneratorCommand
     protected function buildApiServiceReplacements(array $replace)
     {
         $name = Str::replaceArray('/', ['\\'], $this->argument('name'));
-        $module = Str::replaceArray('Service\\References/'.class_basename($name), [''], $name);
+        $module = Str::replaceArray('Service\\Transactions/'.class_basename($name), [''], $name);
+        if ($this->option('references')) {
+            $module = Str::replaceArray('Service\\References/'.class_basename($name), [''], $name);
+        }
 
         return array_merge($replace, [
             'DummyModuleLowerClass' => Str::lower($module),
