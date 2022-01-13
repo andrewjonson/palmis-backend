@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
+use Symfony\Component\Console\Input\InputOption;
 
 class ApiServicePermissionSeederMakeCommand extends GeneratorCommand
 {
@@ -94,7 +95,10 @@ class ApiServicePermissionSeederMakeCommand extends GeneratorCommand
         $name = Str::replaceArray('/', ['\\'], $this->argument('name'));
         $seeder = Str::replaceArray('/'.class_basename($name), [''], $name);
         $baseName = Str::replaceArray('PermissionsTableSeeder', [''], class_basename($name));
-        $moduleName = Str::replaceArray('Service\\References/'.class_basename($name), [''], $name);
+        $moduleName = Str::replaceArray('Service\\Transactions/'.class_basename($name), [''], $name);
+        if ($this->option('references')) {
+            $moduleName = Str::replaceArray('Service\\References/'.class_basename($name), [''], $name);
+        }
 
         return array_merge($replace, [
             'DummyAppVersion' => config('app.version'),
@@ -103,5 +107,17 @@ class ApiServicePermissionSeederMakeCommand extends GeneratorCommand
             'DummyNameStudly' => Str::studly($baseName),
             'DummyModuleLowerClass' => Str::lower($moduleName)
         ]);
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['references', 'r', InputOption::VALUE_NONE, 'Create a plain api service class'],
+        ];
     }
 }
