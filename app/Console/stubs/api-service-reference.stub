@@ -8,11 +8,13 @@ class DummyClass
 {
     use ConsumeExternalService;
 
-    public $baseUri;
+    public $baseUrl;
+    public $secret;
 
     public function __construct()
     {
-        $this->baseUri = config('services.DummyModuleLowerClass_base_uri');
+        $this->baseUrl = config('services.DummyModuleLowerClass.base_url');
+        $this->secret = config('services.DummyModuleLowerClass.secret');
     }
 
     public function index($data)
