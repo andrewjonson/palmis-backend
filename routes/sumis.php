@@ -35,6 +35,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
         resource('/supply', 'SumisService\References\AmmunitionSupplyController', $router);
         resource('/type', 'SumisService\References\AmmunitionTypeController', $router);
         resource('/head-stump-marking', 'SumisService\References\AmmunitionHeadStumpMarkingController', $router);
+        resource('/articles', 'SumisService\References\AmmunitionArticleController', $router);
     
         $router->get('/category-search', 'ApiService\v1\SumisService\References\AmmunitionCategoryController@search');
     });
