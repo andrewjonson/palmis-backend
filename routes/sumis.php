@@ -92,4 +92,9 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->get('/report/iar/{id}', 'ApiService\v1\SumisService\Reports\IarReportController@getReportIar');
     $router->get('/report/issuance-directive/{id}', 'ApiService\v1\SumisService\Reports\IssuanceDirectiveReportController@getReportIssuanceDirective');
     $router->get('/report/stock-card/{id}', 'ApiService\v1\SumisService\Reports\StockCardReportController@getReportStockCard');
+
+    //STD
+    resource('/stds', 'SumisService\Transactions\StdController', $router);
+    $router->post('/create-std-item/{id}', 'ApiService\v1\SumisService\Transactions\StdItemController@createStdItem');
+    $router->delete('/delete-std-item/{id}', 'ApiService\v1\SumisService\Transactions\StdItemController@deleteStdItem');
 });
