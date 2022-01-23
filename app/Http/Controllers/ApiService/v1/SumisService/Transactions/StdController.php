@@ -16,7 +16,8 @@ class StdController extends Controller
         $this->middleware('permission:std-read|admin', [
             'only' => [
                 'index',
-                'onlyTrashed'
+                'onlyTrashed',
+                'getStdById'
             ]
         ]);
         $this->middleware('permission:std-create|admin', [
@@ -72,5 +73,10 @@ class StdController extends Controller
     public function forceDelete($id)
     {
         return $this->apiService->forceDelete($id);
+    }
+
+    public function getStdById($id)
+    {
+        return $this->apiService->getStdById($id);
     }
 }

@@ -32,4 +32,9 @@ class IarController extends Controller
     {
         return $this->apiService->getIarList($request->all());
     }
+
+    public function getRpci($id)
+    {
+        return $this->apiService->getRpci($id);
+    }
 }

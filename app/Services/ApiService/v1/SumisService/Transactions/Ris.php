@@ -31,4 +31,9 @@ class Ris
     {
         return $this->performRequest('GET', '/sumis/ris/search/'.$id);
     }
+
+    public function createRis($data, $id)
+    {
+        return $this->performRequest('POST', '/sumis/ris/create/'.$id, $data);
+    }
 } 

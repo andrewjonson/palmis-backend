@@ -49,6 +49,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     $router->delete('/tally/delete-tally-in/{id}', 'ApiService\v1\SumisService\Transactions\TallyInController@deleteTallyIn');
 
     //RIS
+    $router->post('/ris/create/{id}', 'ApiService\v1\SumisService\Transactions\RisController@createRis');
     $router->post('/update-directive-item', 'ApiService\v1\SumisService\Transactions\RisController@updateDirectiveItems');
     $router->get('/ris/get-list', 'ApiService\v1\SumisService\Transactions\RisController@getRisList');
     $router->get('/ris/search/{id}', 'ApiService\v1\SumisService\Transactions\RisController@getRisById');
@@ -59,6 +60,7 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
         $router->get('/get-inventory/{id}', 'ApiService\v1\SumisService\Transactions\IarController@getInventoryByTallyId');
         $router->get('/tally-inventory/{id}', 'ApiService\v1\SumisService\Transactions\IarController@getByTallyId');
         $router->get('/get-list', 'ApiService\v1\SumisService\Transactions\IarController@getIarList');
+        $router->get('/rpci/{id}', 'ApiService\v1\SumisService\Transactions\IarController@getRpci');
     });
 
     //Stock Card
@@ -97,4 +99,5 @@ $router->group(['middleware' => ['auth:api', 'verified', 'screenLockDisabled', '
     resource('/stds', 'SumisService\Transactions\StdController', $router);
     $router->post('/create-std-item/{id}', 'ApiService\v1\SumisService\Transactions\StdItemController@createStdItem');
     $router->delete('/delete-std-item/{id}', 'ApiService\v1\SumisService\Transactions\StdItemController@deleteStdItem');
+    $router->get('/get-std-by-id/{id}', 'ApiService\v1\SumisService\Transactions\StdController@getStdById');
 });

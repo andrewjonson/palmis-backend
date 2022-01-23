@@ -36,4 +36,9 @@ class Iar
     {
         return $this->performRequest('GET', '/sumis/iar/get-list', $data);
     }
+
+    public function getRpci($id)
+    {
+        return $this->performRequest('GET', '/sumis/iar/rpci/'.$id);
+    }
 }

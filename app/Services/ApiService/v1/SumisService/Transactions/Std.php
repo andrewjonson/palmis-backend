@@ -51,4 +51,9 @@ class Std
     {
         return $this->performRequest('DELETE', '/sumis/force-delete/'.$id);
     }
+
+    public function getStdById($id)
+    {
+        return $this->performRequest('GET', '/sumis/get-std-by-id/'.$id);
+    }
 }

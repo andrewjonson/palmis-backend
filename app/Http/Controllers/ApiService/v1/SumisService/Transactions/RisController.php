@@ -27,4 +27,9 @@ class RisController extends Controller
     {
         return $this->apiService->getRisById($id);
     }
+
+    public function createRis(Request $request, $id)
+    {
+        return $this->apiService->createRis($request->all(), $id);
+    }
 }
